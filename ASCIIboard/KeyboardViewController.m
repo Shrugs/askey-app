@@ -53,7 +53,7 @@
 
     [self.drawImage mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.equalTo(self.view);
-        make.width.equalTo(self.view).multipliedBy(0.7);
+        make.width.equalTo(self.view).multipliedBy(0.8);
         make.center.equalTo(self.view);
     }];
 
@@ -185,10 +185,12 @@
 
 - (void)backspaceButtonPressed:(UIButton *)sender
 {
-    NSNumber *lastTextCount = [self.insertHistory objectAtIndex:0];
-    [self.insertHistory removeObjectAtIndex:0];
-    for (int i = 0; i < [lastTextCount intValue]; i++) {
-        [self.textDocumentProxy deleteBackward];
+    if ([self.insertHistory count]) {
+        NSNumber *lastTextCount = [self.insertHistory objectAtIndex:0];
+        [self.insertHistory removeObjectAtIndex:0];
+        for (int i = 0; i < [lastTextCount intValue]; i++) {
+            [self.textDocumentProxy deleteBackward];
+        }
     }
 }
 - (void)undoButtonPressed:(UIButton *)sender
@@ -239,7 +241,6 @@
         CGContextMoveToPoint(UIGraphicsGetCurrentContext(), lastPoint.x, lastPoint.y);
         CGContextAddLineToPoint(UIGraphicsGetCurrentContext(), lastPoint.x, lastPoint.y);
         CGContextStrokePath(UIGraphicsGetCurrentContext());
-        CGContextFlush(UIGraphicsGetCurrentContext());
         self.drawImage.image = UIGraphicsGetImageFromCurrentImageContext();
         [self.drawImage setAlpha:1.0];
         UIGraphicsEndImageContext();
