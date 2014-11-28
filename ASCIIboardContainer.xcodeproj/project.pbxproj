@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C93A516119DA2E1A00BC939D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C93A516019DA2E1A00BC939D /* libPods.a */; };
+		C93A516419DA576F00BC939D /* UIImage+ASCII.m in Sources */ = {isa = PBXBuildFile; fileRef = C93A516319DA576F00BC939D /* UIImage+ASCII.m */; };
 		C952A45819D123870025DD73 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C952A45719D123870025DD73 /* main.m */; };
 		C952A45B19D123870025DD73 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C952A45A19D123870025DD73 /* AppDelegate.m */; };
 		C952A45E19D123870025DD73 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C952A45D19D123870025DD73 /* ViewController.m */; };
@@ -14,6 +16,27 @@
 		C952A46319D123870025DD73 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C952A46219D123870025DD73 /* Images.xcassets */; };
 		C952A46619D123870025DD73 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C952A46419D123870025DD73 /* LaunchScreen.xib */; };
 		C952A47219D123870025DD73 /* ASCIIboardContainerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C952A47119D123870025DD73 /* ASCIIboardContainerTests.m */; };
+		C952A48519D123990025DD73 /* KeyboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C952A48419D123990025DD73 /* KeyboardViewController.m */; };
+		C952A48819D123990025DD73 /* ASCIIboard.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C952A47F19D123990025DD73 /* ASCIIboard.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C9DAD4CF1A28139E00CE0BC6 /* Undo-Button-Down.png in Resources */ = {isa = PBXBuildFile; fileRef = C9DAD4CD1A28139E00CE0BC6 /* Undo-Button-Down.png */; };
+		C9DAD4D01A28139E00CE0BC6 /* Undo-Button-Up.png in Resources */ = {isa = PBXBuildFile; fileRef = C9DAD4CE1A28139E00CE0BC6 /* Undo-Button-Up.png */; };
+		C9EB33C51A280624006754A6 /* Brush-Button-Down-1.png in Resources */ = {isa = PBXBuildFile; fileRef = C9EB33B51A280624006754A6 /* Brush-Button-Down-1.png */; };
+		C9EB33C61A280624006754A6 /* Brush-Button-Down-2.png in Resources */ = {isa = PBXBuildFile; fileRef = C9EB33B61A280624006754A6 /* Brush-Button-Down-2.png */; };
+		C9EB33C71A280624006754A6 /* Brush-Button-Down-3.png in Resources */ = {isa = PBXBuildFile; fileRef = C9EB33B71A280624006754A6 /* Brush-Button-Down-3.png */; };
+		C9EB33C81A280624006754A6 /* Brush-Button-Up-1.png in Resources */ = {isa = PBXBuildFile; fileRef = C9EB33B81A280624006754A6 /* Brush-Button-Up-1.png */; };
+		C9EB33C91A280624006754A6 /* Brush-Button-Up-2.png in Resources */ = {isa = PBXBuildFile; fileRef = C9EB33B91A280624006754A6 /* Brush-Button-Up-2.png */; };
+		C9EB33CA1A280624006754A6 /* Brush-Button-Up-3.png in Resources */ = {isa = PBXBuildFile; fileRef = C9EB33BA1A280624006754A6 /* Brush-Button-Up-3.png */; };
+		C9EB33CB1A280624006754A6 /* Clear-Button-Down.png in Resources */ = {isa = PBXBuildFile; fileRef = C9EB33BB1A280624006754A6 /* Clear-Button-Down.png */; };
+		C9EB33CC1A280624006754A6 /* Clear-Button-Up.png in Resources */ = {isa = PBXBuildFile; fileRef = C9EB33BC1A280624006754A6 /* Clear-Button-Up.png */; };
+		C9EB33CD1A280624006754A6 /* Delete-Button-Down.png in Resources */ = {isa = PBXBuildFile; fileRef = C9EB33BD1A280624006754A6 /* Delete-Button-Down.png */; };
+		C9EB33CE1A280624006754A6 /* Delete-Button-Up.png in Resources */ = {isa = PBXBuildFile; fileRef = C9EB33BE1A280624006754A6 /* Delete-Button-Up.png */; };
+		C9EB33CF1A280624006754A6 /* Edit-Button-Down.png in Resources */ = {isa = PBXBuildFile; fileRef = C9EB33BF1A280624006754A6 /* Edit-Button-Down.png */; };
+		C9EB33D01A280624006754A6 /* Edit-Button-Up.png in Resources */ = {isa = PBXBuildFile; fileRef = C9EB33C01A280624006754A6 /* Edit-Button-Up.png */; };
+		C9EB33D11A280624006754A6 /* Globe-Button-Down.png in Resources */ = {isa = PBXBuildFile; fileRef = C9EB33C11A280624006754A6 /* Globe-Button-Down.png */; };
+		C9EB33D21A280624006754A6 /* Globe-Button-Up.png in Resources */ = {isa = PBXBuildFile; fileRef = C9EB33C21A280624006754A6 /* Globe-Button-Up.png */; };
+		C9EB33D31A280624006754A6 /* Up-Button-Down.png in Resources */ = {isa = PBXBuildFile; fileRef = C9EB33C31A280624006754A6 /* Up-Button-Down.png */; };
+		C9EB33D41A280624006754A6 /* Up-Button-Up.png in Resources */ = {isa = PBXBuildFile; fileRef = C9EB33C41A280624006754A6 /* Up-Button-Up.png */; };
+		F27B2AE4F798D923F6690A40 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 246A63C1FC39E0DD3657E3B9 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -24,9 +47,43 @@
 			remoteGlobalIDString = C952A45119D123870025DD73;
 			remoteInfo = ASCIIboardContainer;
 		};
+		C952A48619D123990025DD73 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C952A44A19D123870025DD73 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C952A47E19D123990025DD73;
+			remoteInfo = ASCIIboard;
+		};
+		C952A48919D123990025DD73 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C952A44A19D123870025DD73 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C952A47E19D123990025DD73;
+			remoteInfo = ASCIIboard;
+		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		C952A48E19D123990025DD73 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				C952A48819D123990025DD73 /* ASCIIboard.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		246A63C1FC39E0DD3657E3B9 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		848203DA404B8484DED96D51 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		B3DDAEF02FB1B2E2B404DE3F /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		C93A516019DA2E1A00BC939D /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
+		C93A516219DA576F00BC939D /* UIImage+ASCII.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ASCII.h"; sourceTree = "<group>"; };
+		C93A516319DA576F00BC939D /* UIImage+ASCII.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ASCII.m"; sourceTree = "<group>"; };
 		C952A45219D123870025DD73 /* ASCIIboardContainer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ASCIIboardContainer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C952A45619D123870025DD73 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C952A45719D123870025DD73 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -40,6 +97,28 @@
 		C952A46B19D123870025DD73 /* ASCIIboardContainerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ASCIIboardContainerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C952A47019D123870025DD73 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C952A47119D123870025DD73 /* ASCIIboardContainerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ASCIIboardContainerTests.m; sourceTree = "<group>"; };
+		C952A47F19D123990025DD73 /* ASCIIboard.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ASCIIboard.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		C952A48219D123990025DD73 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C952A48319D123990025DD73 /* KeyboardViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeyboardViewController.h; sourceTree = "<group>"; };
+		C952A48419D123990025DD73 /* KeyboardViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KeyboardViewController.m; sourceTree = "<group>"; };
+		C9DAD4CD1A28139E00CE0BC6 /* Undo-Button-Down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Undo-Button-Down.png"; sourceTree = "<group>"; };
+		C9DAD4CE1A28139E00CE0BC6 /* Undo-Button-Up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Undo-Button-Up.png"; sourceTree = "<group>"; };
+		C9EB33B51A280624006754A6 /* Brush-Button-Down-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Brush-Button-Down-1.png"; sourceTree = "<group>"; };
+		C9EB33B61A280624006754A6 /* Brush-Button-Down-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Brush-Button-Down-2.png"; sourceTree = "<group>"; };
+		C9EB33B71A280624006754A6 /* Brush-Button-Down-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Brush-Button-Down-3.png"; sourceTree = "<group>"; };
+		C9EB33B81A280624006754A6 /* Brush-Button-Up-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Brush-Button-Up-1.png"; sourceTree = "<group>"; };
+		C9EB33B91A280624006754A6 /* Brush-Button-Up-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Brush-Button-Up-2.png"; sourceTree = "<group>"; };
+		C9EB33BA1A280624006754A6 /* Brush-Button-Up-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Brush-Button-Up-3.png"; sourceTree = "<group>"; };
+		C9EB33BB1A280624006754A6 /* Clear-Button-Down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Clear-Button-Down.png"; sourceTree = "<group>"; };
+		C9EB33BC1A280624006754A6 /* Clear-Button-Up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Clear-Button-Up.png"; sourceTree = "<group>"; };
+		C9EB33BD1A280624006754A6 /* Delete-Button-Down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Delete-Button-Down.png"; sourceTree = "<group>"; };
+		C9EB33BE1A280624006754A6 /* Delete-Button-Up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Delete-Button-Up.png"; sourceTree = "<group>"; };
+		C9EB33BF1A280624006754A6 /* Edit-Button-Down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Edit-Button-Down.png"; sourceTree = "<group>"; };
+		C9EB33C01A280624006754A6 /* Edit-Button-Up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Edit-Button-Up.png"; sourceTree = "<group>"; };
+		C9EB33C11A280624006754A6 /* Globe-Button-Down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Globe-Button-Down.png"; sourceTree = "<group>"; };
+		C9EB33C21A280624006754A6 /* Globe-Button-Up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Globe-Button-Up.png"; sourceTree = "<group>"; };
+		C9EB33C31A280624006754A6 /* Up-Button-Down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Up-Button-Down.png"; sourceTree = "<group>"; };
+		C9EB33C41A280624006754A6 /* Up-Button-Up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Up-Button-Up.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +126,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F27B2AE4F798D923F6690A40 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -57,15 +137,35 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C952A47C19D123990025DD73 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C93A516119DA2E1A00BC939D /* libPods.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C1F96D68E01993E66C03A35A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C93A516019DA2E1A00BC939D /* libPods.a */,
+				246A63C1FC39E0DD3657E3B9 /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		C952A44919D123870025DD73 = {
 			isa = PBXGroup;
 			children = (
 				C952A45419D123870025DD73 /* ASCIIboardContainer */,
 				C952A46E19D123870025DD73 /* ASCIIboardContainerTests */,
+				C952A48019D123990025DD73 /* ASCIIboard */,
 				C952A45319D123870025DD73 /* Products */,
+				EE5CCFD29AFDD073400484FF /* Pods */,
+				C1F96D68E01993E66C03A35A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -74,6 +174,7 @@
 			children = (
 				C952A45219D123870025DD73 /* ASCIIboardContainer.app */,
 				C952A46B19D123870025DD73 /* ASCIIboardContainerTests.xctest */,
+				C952A47F19D123990025DD73 /* ASCIIboard.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -119,6 +220,61 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		C952A48019D123990025DD73 /* ASCIIboard */ = {
+			isa = PBXGroup;
+			children = (
+				C9EB33B41A280614006754A6 /* Buttons */,
+				C93A516219DA576F00BC939D /* UIImage+ASCII.h */,
+				C93A516319DA576F00BC939D /* UIImage+ASCII.m */,
+				C952A48319D123990025DD73 /* KeyboardViewController.h */,
+				C952A48419D123990025DD73 /* KeyboardViewController.m */,
+				C952A48119D123990025DD73 /* Supporting Files */,
+			);
+			path = ASCIIboard;
+			sourceTree = "<group>";
+		};
+		C952A48119D123990025DD73 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C952A48219D123990025DD73 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C9EB33B41A280614006754A6 /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				C9DAD4CD1A28139E00CE0BC6 /* Undo-Button-Down.png */,
+				C9DAD4CE1A28139E00CE0BC6 /* Undo-Button-Up.png */,
+				C9EB33B51A280624006754A6 /* Brush-Button-Down-1.png */,
+				C9EB33B61A280624006754A6 /* Brush-Button-Down-2.png */,
+				C9EB33B71A280624006754A6 /* Brush-Button-Down-3.png */,
+				C9EB33B81A280624006754A6 /* Brush-Button-Up-1.png */,
+				C9EB33B91A280624006754A6 /* Brush-Button-Up-2.png */,
+				C9EB33BA1A280624006754A6 /* Brush-Button-Up-3.png */,
+				C9EB33BB1A280624006754A6 /* Clear-Button-Down.png */,
+				C9EB33BC1A280624006754A6 /* Clear-Button-Up.png */,
+				C9EB33BD1A280624006754A6 /* Delete-Button-Down.png */,
+				C9EB33BE1A280624006754A6 /* Delete-Button-Up.png */,
+				C9EB33BF1A280624006754A6 /* Edit-Button-Down.png */,
+				C9EB33C01A280624006754A6 /* Edit-Button-Up.png */,
+				C9EB33C11A280624006754A6 /* Globe-Button-Down.png */,
+				C9EB33C21A280624006754A6 /* Globe-Button-Up.png */,
+				C9EB33C31A280624006754A6 /* Up-Button-Down.png */,
+				C9EB33C41A280624006754A6 /* Up-Button-Up.png */,
+			);
+			name = Buttons;
+			sourceTree = "<group>";
+		};
+		EE5CCFD29AFDD073400484FF /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B3DDAEF02FB1B2E2B404DE3F /* Pods.debug.xcconfig */,
+				848203DA404B8484DED96D51 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -126,13 +282,18 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C952A47519D123870025DD73 /* Build configuration list for PBXNativeTarget "ASCIIboardContainer" */;
 			buildPhases = (
+				FD14332535ABC72D3C439BFE /* Check Pods Manifest.lock */,
 				C952A44E19D123870025DD73 /* Sources */,
 				C952A44F19D123870025DD73 /* Frameworks */,
 				C952A45019D123870025DD73 /* Resources */,
+				C952A48E19D123990025DD73 /* Embed App Extensions */,
+				FE89D7699B159ABFE956B5BB /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				C952A48719D123990025DD73 /* PBXTargetDependency */,
+				C952A48A19D123990025DD73 /* PBXTargetDependency */,
 			);
 			name = ASCIIboardContainer;
 			productName = ASCIIboardContainer;
@@ -157,6 +318,23 @@
 			productReference = C952A46B19D123870025DD73 /* ASCIIboardContainerTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		C952A47E19D123990025DD73 /* ASCIIboard */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C952A48B19D123990025DD73 /* Build configuration list for PBXNativeTarget "ASCIIboard" */;
+			buildPhases = (
+				C952A47B19D123990025DD73 /* Sources */,
+				C952A47C19D123990025DD73 /* Frameworks */,
+				C952A47D19D123990025DD73 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ASCIIboard;
+			productName = ASCIIboard;
+			productReference = C952A47F19D123990025DD73 /* ASCIIboard.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -172,6 +350,9 @@
 					C952A46A19D123870025DD73 = {
 						CreatedOnToolsVersion = 6.0;
 						TestTargetID = C952A45119D123870025DD73;
+					};
+					C952A47E19D123990025DD73 = {
+						CreatedOnToolsVersion = 6.0;
 					};
 				};
 			};
@@ -190,6 +371,7 @@
 			targets = (
 				C952A45119D123870025DD73 /* ASCIIboardContainer */,
 				C952A46A19D123870025DD73 /* ASCIIboardContainerTests */,
+				C952A47E19D123990025DD73 /* ASCIIboard */,
 			);
 		};
 /* End PBXProject section */
@@ -212,7 +394,65 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C952A47D19D123990025DD73 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C9EB33CC1A280624006754A6 /* Clear-Button-Up.png in Resources */,
+				C9EB33C51A280624006754A6 /* Brush-Button-Down-1.png in Resources */,
+				C9EB33CB1A280624006754A6 /* Clear-Button-Down.png in Resources */,
+				C9EB33D41A280624006754A6 /* Up-Button-Up.png in Resources */,
+				C9EB33C81A280624006754A6 /* Brush-Button-Up-1.png in Resources */,
+				C9EB33D11A280624006754A6 /* Globe-Button-Down.png in Resources */,
+				C9EB33C61A280624006754A6 /* Brush-Button-Down-2.png in Resources */,
+				C9EB33CE1A280624006754A6 /* Delete-Button-Up.png in Resources */,
+				C9DAD4D01A28139E00CE0BC6 /* Undo-Button-Up.png in Resources */,
+				C9EB33D31A280624006754A6 /* Up-Button-Down.png in Resources */,
+				C9EB33D01A280624006754A6 /* Edit-Button-Up.png in Resources */,
+				C9EB33D21A280624006754A6 /* Globe-Button-Up.png in Resources */,
+				C9DAD4CF1A28139E00CE0BC6 /* Undo-Button-Down.png in Resources */,
+				C9EB33CF1A280624006754A6 /* Edit-Button-Down.png in Resources */,
+				C9EB33CA1A280624006754A6 /* Brush-Button-Up-3.png in Resources */,
+				C9EB33C71A280624006754A6 /* Brush-Button-Down-3.png in Resources */,
+				C9EB33C91A280624006754A6 /* Brush-Button-Up-2.png in Resources */,
+				C9EB33CD1A280624006754A6 /* Delete-Button-Down.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		FD14332535ABC72D3C439BFE /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		FE89D7699B159ABFE956B5BB /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C952A44E19D123870025DD73 /* Sources */ = {
@@ -233,6 +473,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C952A47B19D123990025DD73 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C952A48519D123990025DD73 /* KeyboardViewController.m in Sources */,
+				C93A516419DA576F00BC939D /* UIImage+ASCII.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -240,6 +489,16 @@
 			isa = PBXTargetDependency;
 			target = C952A45119D123870025DD73 /* ASCIIboardContainer */;
 			targetProxy = C952A46C19D123870025DD73 /* PBXContainerItemProxy */;
+		};
+		C952A48719D123990025DD73 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C952A47E19D123990025DD73 /* ASCIIboard */;
+			targetProxy = C952A48619D123990025DD73 /* PBXContainerItemProxy */;
+		};
+		C952A48A19D123990025DD73 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C952A47E19D123990025DD73 /* ASCIIboard */;
+			targetProxy = C952A48919D123990025DD73 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -341,6 +600,7 @@
 		};
 		C952A47619D123870025DD73 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B3DDAEF02FB1B2E2B404DE3F /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = ASCIIboardContainer/Info.plist;
@@ -351,6 +611,7 @@
 		};
 		C952A47719D123870025DD73 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 848203DA404B8484DED96D51 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = ASCIIboardContainer/Info.plist;
@@ -393,6 +654,42 @@
 			};
 			name = Release;
 		};
+		C952A48C19D123990025DD73 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B3DDAEF02FB1B2E2B404DE3F /* Pods.debug.xcconfig */;
+			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = ASCIIboard/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/**";
+			};
+			name = Debug;
+		};
+		C952A48D19D123990025DD73 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 848203DA404B8484DED96D51 /* Pods.release.xcconfig */;
+			buildSettings = {
+				INFOPLIST_FILE = ASCIIboard/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/**";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -412,6 +709,7 @@
 				C952A47719D123870025DD73 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C952A47819D123870025DD73 /* Build configuration list for PBXNativeTarget "ASCIIboardContainerTests" */ = {
 			isa = XCConfigurationList;
@@ -420,6 +718,16 @@
 				C952A47A19D123870025DD73 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C952A48B19D123990025DD73 /* Build configuration list for PBXNativeTarget "ASCIIboard" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C952A48C19D123990025DD73 /* Debug */,
+				C952A48D19D123990025DD73 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
