@@ -10,8 +10,14 @@
 #import "Masonry.h"
 #import "UIImage+ASCII.h"
 
+#define ASCIIBOARD_LANDSCAPE_HEIGHT 203
+#define ASCIIBOARD_PORTRAIT_HEIGHT 256
+
 
 @interface KeyboardViewController ()
+{
+
+}
 
 
 
@@ -34,26 +40,27 @@
 
 @implementation KeyboardViewController
 
-- (void)updateViewConstraints {
-    [super updateViewConstraints];
-
-    // Add custom view sizing constraints here
-}
-
 - (void)viewDidLoad {
-    NSLog(@"viewDidLoad");
     [super viewDidLoad];
 
-    [self.view setBackgroundColor:[UIColor whiteColor]];
+    [self.view setBackgroundColor:[UIColor clearColor]];
+    self.view.alpha = 0.5;
 
     self.drawImage = [[UIImageView alloc] initWithFrame:self.view.frame];
     [self.drawImage setBackgroundColor:[UIColor clearColor]];
+
+    UIBezierPath *shadowPath = [UIBezierPath bezierPathWithRect:self.drawImage.bounds];
+    self.drawImage.layer.masksToBounds = NO;
+    self.drawImage.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.drawImage.layer.shadowOffset = CGSizeMake(0.0f, 5.0f);
+    self.drawImage.layer.shadowOpacity = 0.5f;
+    self.drawImage.layer.shadowPath = shadowPath.CGPath;
 
     [self.view addSubview:self.drawImage];
 
     [self.drawImage mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.equalTo(self.view);
-        make.width.equalTo(self.view).multipliedBy(0.8);
+        make.width.equalTo(self.drawImage.mas_height).multipliedBy(0.9);
         make.center.equalTo(self.view);
     }];
 
@@ -101,47 +108,99 @@
     [self.view addSubview:self.backspaceButton];
     [self.view addSubview:self.undoButton];
 
-    [self.brushButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.equalTo(self.view).multipliedBy(0.3*0.5).offset(-5);
-        make.height.equalTo(self.brushButton.mas_width);
-        make.left.equalTo(self.view).offset(2);
-        make.top.equalTo(self.view).offset(2);
-    }];
-    [self.nextKeyboardButton mas_makeConstraints:^(MASConstraintMaker *make){
-        make.width.equalTo(self.view).multipliedBy(0.3*0.5).offset(-5);
-        make.height.equalTo(self.nextKeyboardButton.mas_width);
-        make.left.equalTo(self.view.mas_left).offset(2);
-        make.bottom.equalTo(self.view.mas_bottom);
-    }];
-    [self.enterButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.equalTo(self.view).multipliedBy(0.3*0.5).offset(-5);
-        make.height.equalTo(self.enterButton.mas_width);
-        make.right.equalTo(self.view).offset(-2);
-        make.top.equalTo(self.view).offset(2);
-    }];
-    [self.backspaceButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.equalTo(self.view).multipliedBy(0.3*0.5).offset(-5);
-        make.height.equalTo(self.backspaceButton.mas_width);
-        make.right.equalTo(self.enterButton.mas_right);
-        make.top.equalTo(self.enterButton.mas_bottom).offset(2);
-    }];
-    [self.clearButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.equalTo(self.view).multipliedBy(0.3*0.5).offset(-5);
-        make.height.equalTo(self.clearButton.mas_width);
-        make.right.equalTo(self.enterButton.mas_right);
-        make.bottom.equalTo(self.view.mas_bottom);
-    }];
-    [self.undoButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.equalTo(self.view).multipliedBy(0.3*0.5).offset(-5);
-        make.height.equalTo(self.undoButton.mas_width);
-        make.right.equalTo(self.clearButton.mas_right);
-        make.bottom.equalTo(self.clearButton.mas_top).offset(-2);
-    }];
-    NSLog(@"Done Layout");
+    [self establishConstraints];
 
     self.insertHistory = [[NSMutableArray alloc] init];
     self.brushSize = 10.0;
 
+}
+
+- (void)establishPortraitIPhoneConstraints
+{
+    [self.brushButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.height.equalTo(self.view.mas_height).multipliedBy(0.25*0.95);
+        make.width.equalTo(self.brushButton.mas_height);
+        make.left.equalTo(self.view).offset(2);
+        make.top.equalTo(self.view).offset(2);
+    }];
+    [self.nextKeyboardButton mas_remakeConstraints:^(MASConstraintMaker *make){
+        make.height.equalTo(self.view.mas_height).multipliedBy(0.25*0.95);
+        make.width.equalTo(self.nextKeyboardButton.mas_height);
+        make.left.equalTo(self.view.mas_left).offset(2);
+        make.bottom.equalTo(self.view.mas_bottom);
+    }];
+    [self.enterButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.height.equalTo(self.view.mas_height).multipliedBy(0.25*0.95);
+        make.width.equalTo(self.enterButton.mas_height);
+        make.right.equalTo(self.view).offset(-2);
+        make.top.equalTo(self.view).offset(2);
+    }];
+    [self.backspaceButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.height.equalTo(self.view.mas_height).multipliedBy(0.25*0.95);
+        make.width.equalTo(self.backspaceButton.mas_height);
+        make.right.equalTo(self.enterButton.mas_right);
+        make.top.equalTo(self.enterButton.mas_bottom).offset(2);
+    }];
+    [self.undoButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.height.equalTo(self.view.mas_height).multipliedBy(0.25*0.95);
+        make.width.equalTo(self.undoButton.mas_height);
+        make.right.equalTo(self.clearButton.mas_right);
+        make.bottom.equalTo(self.clearButton.mas_top).offset(-2);
+    }];
+    [self.clearButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.height.equalTo(self.view.mas_height).multipliedBy(0.25*0.95);
+        make.width.equalTo(self.clearButton.mas_height);
+        make.right.equalTo(self.enterButton.mas_right);
+        make.bottom.equalTo(self.view.mas_bottom);
+    }];
+}
+
+- (void)updateViewConstraints {
+
+    [super updateViewConstraints];
+
+    // Add custom view sizing constraints here
+    // if (self.view.frame.size.width == 0 || self.view.frame.size.height == 0) {
+    //     return;
+    // }
+
+    NSLog(@"UPDATE VIEW CONSTRAINTS");
+    [self establishConstraints];
+
+
+}
+
+- (void)establishConstraints
+{
+    // @TODO(Shrugs) make iphone only?
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        NSLog(@"[DEBUG] determineKeyboardNib: Enter iPad");
+        // iPad
+        if (self.view.frame.size.width > 1000) {
+            NSLog(@"[DEBUG] determineKeyboardNib: Enter iPad Landscape");
+            // landscape
+            NSLog(@"IPAD LANDSCAPE");
+        } else {
+            NSLog(@"[DEBUG] determineKeyboardNib: Enter iPad Portrait");
+            // portrait
+            NSLog(@"IPAD PORTRAIT");
+        }
+    } else {
+        NSLog(@"[DEBUG] determineKeyboardNib: Enter iPhone");
+        // iPhone
+        if (self.view.frame.size.width > 500){
+            NSLog(@"[DEBUG] determineKeyboardNib: Enter iPhone Landscape");
+            // landscape
+            [self advanceToNextInputMode];
+        } else if (self.view.frame.size.width > 450){
+            NSLog(@"[DEBUG] determineKeyboardNib: Enter iPhone 4 Portrait");
+            // portrait
+            [self establishPortraitIPhoneConstraints];
+        } else {
+            NSLog(@"[DEBUG] determineKeyboardNib: Enter iPhone 5 Portrait");
+            [self establishPortraitIPhoneConstraints];
+        }
+    }
 }
 
 
@@ -149,6 +208,13 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated
 }
+
+// -(void)viewDidLayoutSubviews
+// {
+//     NSLog(@"LAYING OUT SUBVIEWS");
+
+//     [super viewWillLayoutSubviews];
+// }
 
 - (void)textWillChange:(id<UITextInput>)textInput {
     // The app is about to change the document's contents. Perform any preparation here.

@@ -13,17 +13,28 @@
 
 -(NSString *)getASCII
 {
-    CGSize blockSize = CGSizeMake(15, 20);
+    // block size, in pixels
+    // need to remake the algo so that the blockSize is the number of blocks horizontally and columnly.
+    // newBlockSize = floor(pixels.x/blockSize.x)
+
+    // number of ASCII "pixels" in widthxheight
+    CGSize numBlocks = CGSizeMake(20, 10);
+
+    CGSize blockSize = CGSizeMake(floor(self.size.width/numBlocks.width), floor(self.size.height/numBlocks.height));
+    NSLog(@"%@", NSStringFromCGSize(blockSize));
+
+
     float maxAlpha = blockSize.width * blockSize.height * 1.0;
+
     NSArray *alphaChars = [NSArray arrayWithObjects:@"  ",
-                                                    @"..",
-                                                    @"..",
-                                                    @"o",
                                                     @"::",
+                                                    @"~",
+                                                    @"^",
+                                                    @"+",
                                                     @"o",
-                                                    @"o",
+                                                    @"()",
+                                                    @"[]",
                                                     @"8",
-                                                    @"#",
                                                     @"#",
                                                     nil];
 
@@ -58,7 +69,6 @@
     // now split the pixels 2 dimensional array into another two dimentional array based on blockSize
     int picBlockHeight = self.size.height / blockSize.height;
     int picBlockWidth = self.size.width / blockSize.width;
-
     // this will be an array
     NSMutableArray *blocks = [NSMutableArray arrayWithCapacity:picBlockHeight];
 
