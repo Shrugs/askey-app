@@ -18,6 +18,10 @@
 		C952A47219D123870025DD73 /* ASCIIboardContainerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C952A47119D123870025DD73 /* ASCIIboardContainerTests.m */; };
 		C952A48519D123990025DD73 /* KeyboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C952A48419D123990025DD73 /* KeyboardViewController.m */; };
 		C952A48819D123990025DD73 /* ASCIIboard.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C952A47F19D123990025DD73 /* ASCIIboard.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C9D530AA1A32884A00E72584 /* Delete-Button-Down.png in Resources */ = {isa = PBXBuildFile; fileRef = C9D530A61A32884A00E72584 /* Delete-Button-Down.png */; };
+		C9D530AB1A32884A00E72584 /* Delete-Button-Up.png in Resources */ = {isa = PBXBuildFile; fileRef = C9D530A71A32884A00E72584 /* Delete-Button-Up.png */; };
+		C9D530AC1A32884A00E72584 /* Up-Button-Down.png in Resources */ = {isa = PBXBuildFile; fileRef = C9D530A81A32884A00E72584 /* Up-Button-Down.png */; };
+		C9D530AD1A32884A00E72584 /* Up-Button-Up.png in Resources */ = {isa = PBXBuildFile; fileRef = C9D530A91A32884A00E72584 /* Up-Button-Up.png */; };
 		C9DAD4CF1A28139E00CE0BC6 /* Undo-Button-Down.png in Resources */ = {isa = PBXBuildFile; fileRef = C9DAD4CD1A28139E00CE0BC6 /* Undo-Button-Down.png */; };
 		C9DAD4D01A28139E00CE0BC6 /* Undo-Button-Up.png in Resources */ = {isa = PBXBuildFile; fileRef = C9DAD4CE1A28139E00CE0BC6 /* Undo-Button-Up.png */; };
 		C9EB33C51A280624006754A6 /* Brush-Button-Down-1.png in Resources */ = {isa = PBXBuildFile; fileRef = C9EB33B51A280624006754A6 /* Brush-Button-Down-1.png */; };
@@ -28,14 +32,10 @@
 		C9EB33CA1A280624006754A6 /* Brush-Button-Up-3.png in Resources */ = {isa = PBXBuildFile; fileRef = C9EB33BA1A280624006754A6 /* Brush-Button-Up-3.png */; };
 		C9EB33CB1A280624006754A6 /* Clear-Button-Down.png in Resources */ = {isa = PBXBuildFile; fileRef = C9EB33BB1A280624006754A6 /* Clear-Button-Down.png */; };
 		C9EB33CC1A280624006754A6 /* Clear-Button-Up.png in Resources */ = {isa = PBXBuildFile; fileRef = C9EB33BC1A280624006754A6 /* Clear-Button-Up.png */; };
-		C9EB33CD1A280624006754A6 /* Delete-Button-Down.png in Resources */ = {isa = PBXBuildFile; fileRef = C9EB33BD1A280624006754A6 /* Delete-Button-Down.png */; };
-		C9EB33CE1A280624006754A6 /* Delete-Button-Up.png in Resources */ = {isa = PBXBuildFile; fileRef = C9EB33BE1A280624006754A6 /* Delete-Button-Up.png */; };
 		C9EB33CF1A280624006754A6 /* Edit-Button-Down.png in Resources */ = {isa = PBXBuildFile; fileRef = C9EB33BF1A280624006754A6 /* Edit-Button-Down.png */; };
 		C9EB33D01A280624006754A6 /* Edit-Button-Up.png in Resources */ = {isa = PBXBuildFile; fileRef = C9EB33C01A280624006754A6 /* Edit-Button-Up.png */; };
 		C9EB33D11A280624006754A6 /* Globe-Button-Down.png in Resources */ = {isa = PBXBuildFile; fileRef = C9EB33C11A280624006754A6 /* Globe-Button-Down.png */; };
 		C9EB33D21A280624006754A6 /* Globe-Button-Up.png in Resources */ = {isa = PBXBuildFile; fileRef = C9EB33C21A280624006754A6 /* Globe-Button-Up.png */; };
-		C9EB33D31A280624006754A6 /* Up-Button-Down.png in Resources */ = {isa = PBXBuildFile; fileRef = C9EB33C31A280624006754A6 /* Up-Button-Down.png */; };
-		C9EB33D41A280624006754A6 /* Up-Button-Up.png in Resources */ = {isa = PBXBuildFile; fileRef = C9EB33C41A280624006754A6 /* Up-Button-Up.png */; };
 		F27B2AE4F798D923F6690A40 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 246A63C1FC39E0DD3657E3B9 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -101,6 +101,10 @@
 		C952A48219D123990025DD73 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C952A48319D123990025DD73 /* KeyboardViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeyboardViewController.h; sourceTree = "<group>"; };
 		C952A48419D123990025DD73 /* KeyboardViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KeyboardViewController.m; sourceTree = "<group>"; };
+		C9D530A61A32884A00E72584 /* Delete-Button-Down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Delete-Button-Down.png"; sourceTree = "<group>"; };
+		C9D530A71A32884A00E72584 /* Delete-Button-Up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Delete-Button-Up.png"; sourceTree = "<group>"; };
+		C9D530A81A32884A00E72584 /* Up-Button-Down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Up-Button-Down.png"; sourceTree = "<group>"; };
+		C9D530A91A32884A00E72584 /* Up-Button-Up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Up-Button-Up.png"; sourceTree = "<group>"; };
 		C9DAD4CD1A28139E00CE0BC6 /* Undo-Button-Down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Undo-Button-Down.png"; sourceTree = "<group>"; };
 		C9DAD4CE1A28139E00CE0BC6 /* Undo-Button-Up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Undo-Button-Up.png"; sourceTree = "<group>"; };
 		C9EB33B51A280624006754A6 /* Brush-Button-Down-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Brush-Button-Down-1.png"; sourceTree = "<group>"; };
@@ -111,14 +115,10 @@
 		C9EB33BA1A280624006754A6 /* Brush-Button-Up-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Brush-Button-Up-3.png"; sourceTree = "<group>"; };
 		C9EB33BB1A280624006754A6 /* Clear-Button-Down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Clear-Button-Down.png"; sourceTree = "<group>"; };
 		C9EB33BC1A280624006754A6 /* Clear-Button-Up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Clear-Button-Up.png"; sourceTree = "<group>"; };
-		C9EB33BD1A280624006754A6 /* Delete-Button-Down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Delete-Button-Down.png"; sourceTree = "<group>"; };
-		C9EB33BE1A280624006754A6 /* Delete-Button-Up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Delete-Button-Up.png"; sourceTree = "<group>"; };
 		C9EB33BF1A280624006754A6 /* Edit-Button-Down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Edit-Button-Down.png"; sourceTree = "<group>"; };
 		C9EB33C01A280624006754A6 /* Edit-Button-Up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Edit-Button-Up.png"; sourceTree = "<group>"; };
 		C9EB33C11A280624006754A6 /* Globe-Button-Down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Globe-Button-Down.png"; sourceTree = "<group>"; };
 		C9EB33C21A280624006754A6 /* Globe-Button-Up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Globe-Button-Up.png"; sourceTree = "<group>"; };
-		C9EB33C31A280624006754A6 /* Up-Button-Down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Up-Button-Down.png"; sourceTree = "<group>"; };
-		C9EB33C41A280624006754A6 /* Up-Button-Up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Up-Button-Up.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -244,6 +244,10 @@
 		C9EB33B41A280614006754A6 /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
+				C9D530A61A32884A00E72584 /* Delete-Button-Down.png */,
+				C9D530A71A32884A00E72584 /* Delete-Button-Up.png */,
+				C9D530A81A32884A00E72584 /* Up-Button-Down.png */,
+				C9D530A91A32884A00E72584 /* Up-Button-Up.png */,
 				C9DAD4CD1A28139E00CE0BC6 /* Undo-Button-Down.png */,
 				C9DAD4CE1A28139E00CE0BC6 /* Undo-Button-Up.png */,
 				C9EB33B51A280624006754A6 /* Brush-Button-Down-1.png */,
@@ -254,14 +258,10 @@
 				C9EB33BA1A280624006754A6 /* Brush-Button-Up-3.png */,
 				C9EB33BB1A280624006754A6 /* Clear-Button-Down.png */,
 				C9EB33BC1A280624006754A6 /* Clear-Button-Up.png */,
-				C9EB33BD1A280624006754A6 /* Delete-Button-Down.png */,
-				C9EB33BE1A280624006754A6 /* Delete-Button-Up.png */,
 				C9EB33BF1A280624006754A6 /* Edit-Button-Down.png */,
 				C9EB33C01A280624006754A6 /* Edit-Button-Up.png */,
 				C9EB33C11A280624006754A6 /* Globe-Button-Down.png */,
 				C9EB33C21A280624006754A6 /* Globe-Button-Up.png */,
-				C9EB33C31A280624006754A6 /* Up-Button-Down.png */,
-				C9EB33C41A280624006754A6 /* Up-Button-Up.png */,
 			);
 			name = Buttons;
 			sourceTree = "<group>";
@@ -400,22 +400,22 @@
 			files = (
 				C9EB33CC1A280624006754A6 /* Clear-Button-Up.png in Resources */,
 				C9EB33C51A280624006754A6 /* Brush-Button-Down-1.png in Resources */,
+				C9D530AA1A32884A00E72584 /* Delete-Button-Down.png in Resources */,
 				C9EB33CB1A280624006754A6 /* Clear-Button-Down.png in Resources */,
-				C9EB33D41A280624006754A6 /* Up-Button-Up.png in Resources */,
 				C9EB33C81A280624006754A6 /* Brush-Button-Up-1.png in Resources */,
+				C9D530AB1A32884A00E72584 /* Delete-Button-Up.png in Resources */,
 				C9EB33D11A280624006754A6 /* Globe-Button-Down.png in Resources */,
 				C9EB33C61A280624006754A6 /* Brush-Button-Down-2.png in Resources */,
-				C9EB33CE1A280624006754A6 /* Delete-Button-Up.png in Resources */,
 				C9DAD4D01A28139E00CE0BC6 /* Undo-Button-Up.png in Resources */,
-				C9EB33D31A280624006754A6 /* Up-Button-Down.png in Resources */,
 				C9EB33D01A280624006754A6 /* Edit-Button-Up.png in Resources */,
 				C9EB33D21A280624006754A6 /* Globe-Button-Up.png in Resources */,
+				C9D530AD1A32884A00E72584 /* Up-Button-Up.png in Resources */,
 				C9DAD4CF1A28139E00CE0BC6 /* Undo-Button-Down.png in Resources */,
 				C9EB33CF1A280624006754A6 /* Edit-Button-Down.png in Resources */,
 				C9EB33CA1A280624006754A6 /* Brush-Button-Up-3.png in Resources */,
 				C9EB33C71A280624006754A6 /* Brush-Button-Down-3.png in Resources */,
 				C9EB33C91A280624006754A6 /* Brush-Button-Up-2.png in Resources */,
-				C9EB33CD1A280624006754A6 /* Delete-Button-Down.png in Resources */,
+				C9D530AC1A32884A00E72584 /* Up-Button-Down.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
