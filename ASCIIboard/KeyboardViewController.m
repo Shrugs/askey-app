@@ -43,19 +43,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    [self.view setBackgroundColor:[UIColor clearColor]];
-    self.view.alpha = 0.5;
+    // set bg color
+    [self.view setBackgroundColor:[UIColor whiteColor]];
 
+    // setup draw image
     self.drawImage = [[UIImageView alloc] initWithFrame:self.view.frame];
-    [self.drawImage setBackgroundColor:[UIColor clearColor]];
-
-    UIBezierPath *shadowPath = [UIBezierPath bezierPathWithRect:self.drawImage.bounds];
+    [self.drawImage setBackgroundColor:[UIColor whiteColor]];
     self.drawImage.layer.masksToBounds = NO;
     self.drawImage.layer.shadowColor = [UIColor blackColor].CGColor;
     self.drawImage.layer.shadowOffset = CGSizeMake(0.0f, 5.0f);
     self.drawImage.layer.shadowOpacity = 0.5f;
-    self.drawImage.layer.shadowPath = shadowPath.CGPath;
-
+    self.drawImage.layer.shadowRadius = 5.0f;
     [self.view addSubview:self.drawImage];
 
     [self.drawImage mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -64,6 +62,18 @@
         make.center.equalTo(self.view);
     }];
 
+    // set up top border thing
+    UIView *borderView = [[UIView alloc] init];
+    [borderView setBackgroundColor:[UIColor blackColor]];
+    borderView.alpha = 0.1f;
+    [self.view addSubview:borderView];
+
+    [borderView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.equalTo(@(1.0f));
+        make.top.equalTo(self.view);
+        make.left.equalTo(self.view);
+        make.width.equalTo(self.view);
+    }];
 
     // NEXT BUTTON
     self.nextKeyboardButton = [UIButton buttonWithType:UIButtonTypeCustom];
