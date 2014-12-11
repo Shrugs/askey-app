@@ -9,14 +9,19 @@
 #import "KeyboardViewController.h"
 #import "Masonry.h"
 #import "UIImage+ASCII.h"
+#import <LIVBubbleMenu/LIVBubbleMenu.h>
+
+#define BRUSH_SIZE_SMALL 8.0f
+#define BRUSH_SIZE_MEDIUM 11.0f
+#define BRUSH_SIZE_LARGE 15.0f
 
 #define ASCIIBOARD_LANDSCAPE_HEIGHT 203
 #define ASCIIBOARD_PORTRAIT_HEIGHT 256
 
 
-@interface KeyboardViewController ()
+@interface KeyboardViewController () <LIVBubbleButtonDelegate>
 {
-
+    LIVBubbleMenu *brushMenu;
 }
 
 
@@ -26,9 +31,11 @@
 @property (nonatomic, strong) UIButton    *clearButton;
 @property (nonatomic, strong) UIButton    *enterButton;
 @property (nonatomic, strong) UIButton    *backspaceButton;
-@property (nonatomic, strong) UIButton    *undoButton;
+// @property (nonatomic, strong) UIButton    *undoButton;
 @property (nonatomic, strong) UIImageView *drawImage;
 @property (nonatomic) float brushSize;
+
+@property (nonatomic, retain) NSArray *brushImagesArray;
 
 
 // array of characters that were inserted (I should use a queue for this)
@@ -41,6 +48,8 @@
 @implementation KeyboardViewController
 
 - (void)viewDidLoad {
+    NSLog(@"VIEW DID LOAD");
+
     [super viewDidLoad];
 
     // set bg color
@@ -85,7 +94,7 @@
     self.brushButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.brushButton setImage:[UIImage imageNamed:@"Edit-Button-Up.png"] forState:UIControlStateNormal];
     [self.brushButton setImage:[UIImage imageNamed:@"Edit-Button-Down.png"] forState:UIControlStateHighlighted];
-    [self.brushButton addTarget:self action:@selector(brushButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [self.brushButton addTarget:self action:@selector(brushButtonPressed:) forControlEvents:UIControlEventTouchDown];
 
     // CLEAR BUTTON
     self.clearButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -106,22 +115,28 @@
     [self.backspaceButton addTarget:self action:@selector(backspaceButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
 
     // UNDO BUTTON
-    self.undoButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.undoButton setImage:[UIImage imageNamed:@"Undo-Button-Up.png"] forState:UIControlStateNormal];
-    [self.undoButton setImage:[UIImage imageNamed:@"Undo-Button-Down.png"] forState:UIControlStateHighlighted];
-    [self.undoButton addTarget:self action:@selector(undoButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    // self.undoButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    // [self.undoButton setImage:[UIImage imageNamed:@"Undo-Button-Up.png"] forState:UIControlStateNormal];
+    // [self.undoButton setImage:[UIImage imageNamed:@"Undo-Button-Down.png"] forState:UIControlStateHighlighted];
+    // [self.undoButton addTarget:self action:@selector(undoButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
 
     [self.view addSubview:self.nextKeyboardButton];
     [self.view addSubview:self.brushButton];
     [self.view addSubview:self.clearButton];
     [self.view addSubview:self.enterButton];
     [self.view addSubview:self.backspaceButton];
-    [self.view addSubview:self.undoButton];
+    // [self.view addSubview:self.undoButton];
 
     [self establishConstraints];
 
     self.insertHistory = [[NSMutableArray alloc] init];
     self.brushSize = 10.0;
+
+    self.brushImagesArray = [NSArray arrayWithObjects:
+                                 [UIImage imageNamed:@"Brush-Button-Up-1.png"],
+                                 [UIImage imageNamed:@"Brush-Button-Up-2.png"],
+                                 [UIImage imageNamed:@"Brush-Button-Up-3.png"],
+                                 nil];
 
 }
 
@@ -151,12 +166,12 @@
         make.right.equalTo(self.enterButton.mas_right);
         make.top.equalTo(self.enterButton.mas_bottom).offset(2);
     }];
-    [self.undoButton mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.height.equalTo(self.view.mas_height).multipliedBy(0.25*0.95);
-        make.width.equalTo(self.undoButton.mas_height);
-        make.right.equalTo(self.clearButton.mas_right);
-        make.bottom.equalTo(self.clearButton.mas_top).offset(-2);
-    }];
+    // [self.undoButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+    //     make.height.equalTo(self.view.mas_height).multipliedBy(0.25*0.95);
+    //     make.width.equalTo(self.undoButton.mas_height);
+    //     make.right.equalTo(self.clearButton.mas_right);
+    //     make.bottom.equalTo(self.clearButton.mas_top).offset(-2);
+    // }];
     [self.clearButton mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.height.equalTo(self.view.mas_height).multipliedBy(0.25*0.95);
         make.width.equalTo(self.clearButton.mas_height);
@@ -196,10 +211,8 @@
             NSLog(@"IPAD PORTRAIT");
         }
     } else {
-        NSLog(@"[DEBUG] determineKeyboardNib: Enter iPhone");
         // iPhone
         if (self.view.frame.size.width > 500){
-            NSLog(@"[DEBUG] determineKeyboardNib: Enter iPhone Landscape");
             // landscape
             [self advanceToNextInputMode];
         } else if (self.view.frame.size.width > 450){
@@ -207,7 +220,7 @@
             // portrait
             [self establishPortraitIPhoneConstraints];
         } else {
-            NSLog(@"[DEBUG] determineKeyboardNib: Enter iPhone 5 Portrait");
+            // NSLog(@"[DEBUG] determineKeyboardNib: Enter iPhone 5 Portrait");
             [self establishPortraitIPhoneConstraints];
         }
     }
@@ -244,7 +257,23 @@
 
 - (void)brushButtonPressed:(UIButton *)sender
 {
-    NSLog(@"Should configure some shit here");
+    NSLog(@"%@", NSStringFromCGPoint(self.brushButton.center));
+
+    brushMenu = [[LIVBubbleMenu alloc] initWithPoint:self.brushButton.center radius:75.0f menuItems:self.brushImagesArray inView:self.view];
+   brushMenu.bubbleStartAngle = 0;
+   brushMenu.bubbleEndAngle = 90;
+    brushMenu.bubbleRadius = self.brushButton.frame.size.width / 2.0f;
+    brushMenu.menuRadius = self.brushButton.frame.size.width * 2.0f;
+    brushMenu.bubbleShowDelayTime = 0.1f;
+    brushMenu.bubbleHideDelayTime = 0.1f;
+    brushMenu.bubbleSpringBounciness = 5.0f;
+    // brushMenu.bubbleSpringSpeed = 10.0f;
+    brushMenu.bubblePopInDuration = 0.3f;
+    brushMenu.bubblePopOutDuration = 0.3f;
+    brushMenu.backgroundFadeDuration = 0.3f;
+    brushMenu.backgroundAlpha = 0.3f;
+    brushMenu.delegate = self;
+    [brushMenu show];
 }
 
 - (void)clearButtonPressed:(UIButton *)sender
@@ -269,10 +298,10 @@
         }
     }
 }
-- (void)undoButtonPressed:(UIButton *)sender
-{
-    NSLog(@"UNDO");
-}
+// - (void)undoButtonPressed:(UIButton *)sender
+// {
+//     NSLog(@"UNDO");
+// }
 
 
 #pragma Touches
@@ -324,6 +353,31 @@
 
 }
 
+
+#pragma LIVBubbleMenu
+
+//User selected a bubble
+-(void)livBubbleMenu:(LIVBubbleMenu *)bubbleMenu tappedBubbleWithIndex:(NSUInteger)index {
+    switch (index) {
+        case 0:
+            self.brushSize = BRUSH_SIZE_SMALL;
+            break;
+        case 1:
+            self.brushSize = BRUSH_SIZE_MEDIUM;
+            break;
+        case 2:
+            self.brushSize = BRUSH_SIZE_LARGE;
+            break;
+        default:
+            self.brushSize = BRUSH_SIZE_MEDIUM;
+            break;
+    }
+}
+
+//The bubble menu has been hidden
+-(void)livBubbleMenuDidHide:(LIVBubbleMenu *)bubbleMenu {
+    NSLog(@"LIVBubbleMenu has been hidden");
+}
 
 
 

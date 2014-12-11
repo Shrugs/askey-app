@@ -4,7 +4,17 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Pods-LIVBubbleMenu.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Masonry.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-pop.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -17,12 +27,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>0D6B258DE153034C4E8A89C5</key>
+		<key>2B1FE3C6E3E59686A991CF13</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4D8B0DB3E62D10A5112B79E7</key>
+		<key>43A031654BF9A84F16D7F46F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5FEFB275DA797EE44F123CBB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6B47C081C5A537B6185F5F85</key>
 		<dict>
 			<key>primary</key>
 			<true/>

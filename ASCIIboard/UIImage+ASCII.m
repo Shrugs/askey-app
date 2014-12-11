@@ -38,6 +38,7 @@
                                                     @"#",
                                                     nil];
 
+
     NSArray *rawPixels = [UIImage getAlphaFromImage:self atX:0 andY:0 count:self.size.width*self.size.height];
     NSMutableArray *pixels = [NSMutableArray arrayWithCapacity:self.size.height];
     for (int h=0; h<self.size.height; h++) {
@@ -120,7 +121,7 @@
             }
 
             // convert to [0 .. 9] value
-            int relativeAlpha = floor((totalAlpha/maxAlpha) * 9.0);
+            int relativeAlpha = floor((totalAlpha/maxAlpha) * ([alphaChars count] - 1));
             finalString = [finalString stringByAppendingString:[alphaChars objectAtIndex:relativeAlpha]];
 
         }
