@@ -9,6 +9,7 @@
 #import "KeyboardViewController.h"
 #import "Masonry.h"
 #import "UIImage+ASCII.h"
+#import "MCDrawView.h"
 #import <LIVBubbleMenu/LIVBubbleMenu.h>
 
 #define BRUSH_SIZE_SMALL 8.0f
@@ -21,6 +22,8 @@
 
 @interface KeyboardViewController () <LIVBubbleButtonDelegate>
 {
+    BOOL mouseSwiped;
+    CGPoint lastPoint;
     LIVBubbleMenu *brushMenu;
 }
 
@@ -32,7 +35,7 @@
 @property (nonatomic, strong) UIButton    *enterButton;
 @property (nonatomic, strong) UIButton    *backspaceButton;
 // @property (nonatomic, strong) UIButton    *undoButton;
-@property (nonatomic, strong) UIImageView *drawImage;
+@property (nonatomic, strong) MCDrawView *drawImage;
 @property (nonatomic) float brushSize;
 
 @property (nonatomic, retain) NSArray *brushImagesArray;
@@ -48,15 +51,24 @@
 @implementation KeyboardViewController
 
 - (void)viewDidLoad {
-    NSLog(@"VIEW DID LOAD");
-
     [super viewDidLoad];
 
+
+    // INITS
+    self.insertHistory = [[NSMutableArray alloc] init];
+    self.brushSize = 10.0;
+    self.brushImagesArray = [NSArray arrayWithObjects:
+                                 [UIImage imageNamed:@"Brush-Button-Up-1.png"],
+                                 [UIImage imageNamed:@"Brush-Button-Up-2.png"],
+                                 [UIImage imageNamed:@"Brush-Button-Up-3.png"],
+                                 nil];
+
+    // LAYOUT
     // set bg color
     [self.view setBackgroundColor:[UIColor whiteColor]];
 
     // setup draw image
-    self.drawImage = [[UIImageView alloc] initWithFrame:self.view.frame];
+    self.drawImage = [[MCDrawView alloc] initWithFrame:self.view.frame];
     [self.drawImage setBackgroundColor:[UIColor whiteColor]];
     self.drawImage.layer.masksToBounds = NO;
     self.drawImage.layer.shadowColor = [UIColor blackColor].CGColor;
@@ -128,15 +140,6 @@
     // [self.view addSubview:self.undoButton];
 
     [self establishConstraints];
-
-    self.insertHistory = [[NSMutableArray alloc] init];
-    self.brushSize = 10.0;
-
-    self.brushImagesArray = [NSArray arrayWithObjects:
-                                 [UIImage imageNamed:@"Brush-Button-Up-1.png"],
-                                 [UIImage imageNamed:@"Brush-Button-Up-2.png"],
-                                 [UIImage imageNamed:@"Brush-Button-Up-3.png"],
-                                 nil];
 
 }
 
@@ -267,9 +270,9 @@
     brushMenu.bubbleHideDelayTime = 0.1f;
     brushMenu.bubbleSpringBounciness = 5.0f;
     // brushMenu.bubbleSpringSpeed = 10.0f;
-    brushMenu.bubblePopInDuration = 0.3f;
-    brushMenu.bubblePopOutDuration = 0.3f;
-    brushMenu.backgroundFadeDuration = 0.3f;
+    brushMenu.bubblePopInDuration = 0.15f;
+    brushMenu.bubblePopOutDuration = 0.15f;
+    brushMenu.backgroundFadeDuration = 0.1f;
     brushMenu.backgroundAlpha = 0.3f;
     brushMenu.delegate = self;
     [brushMenu show];
@@ -303,79 +306,36 @@
 // }
 
 
-#pragma Touches
-
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    mouseSwiped = NO;
-    UITouch *touch = [touches anyObject];
-    lastPoint = [touch locationInView:self.drawImage];
-}
-
-- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-
-    mouseSwiped = YES;
-    UITouch *touch = [touches anyObject];
-    CGPoint currentPoint = [touch locationInView:self.drawImage];
-
-    UIGraphicsBeginImageContext(self.drawImage.frame.size);
-    [self.drawImage.image drawInRect:CGRectMake(0, 0, self.drawImage.frame.size.width, self.drawImage.frame.size.height)];
-    CGContextMoveToPoint(UIGraphicsGetCurrentContext(), lastPoint.x, lastPoint.y);
-    CGContextAddLineToPoint(UIGraphicsGetCurrentContext(), currentPoint.x, currentPoint.y);
-    CGContextSetLineCap(UIGraphicsGetCurrentContext(), kCGLineCapRound);
-    CGContextSetLineWidth(UIGraphicsGetCurrentContext(), self.brushSize);
-    CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), 0.0, 0.0, 0.0, 1.0);
-    CGContextSetBlendMode(UIGraphicsGetCurrentContext(), kCGBlendModeNormal);
-
-    CGContextStrokePath(UIGraphicsGetCurrentContext());
-    self.drawImage.image = UIGraphicsGetImageFromCurrentImageContext();
-    [self.drawImage setAlpha:1.0];
-    UIGraphicsEndImageContext();
-
-    lastPoint = currentPoint;
-}
-
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-
-    if(!mouseSwiped) {
-        UIGraphicsBeginImageContext(self.drawImage.frame.size);
-        [self.drawImage.image drawInRect:CGRectMake(0, 0, self.drawImage.frame.size.width, self.drawImage.frame.size.height)];
-        CGContextSetLineCap(UIGraphicsGetCurrentContext(), kCGLineCapRound);
-        CGContextSetLineWidth(UIGraphicsGetCurrentContext(), self.brushSize);
-        CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), 0.0, 0.0, 0.0, 1.0);
-        CGContextMoveToPoint(UIGraphicsGetCurrentContext(), lastPoint.x, lastPoint.y);
-        CGContextAddLineToPoint(UIGraphicsGetCurrentContext(), lastPoint.x, lastPoint.y);
-        CGContextStrokePath(UIGraphicsGetCurrentContext());
-        self.drawImage.image = UIGraphicsGetImageFromCurrentImageContext();
-        [self.drawImage setAlpha:1.0];
-        UIGraphicsEndImageContext();
-    }
-
-}
-
-
 #pragma LIVBubbleMenu
 
 //User selected a bubble
 -(void)livBubbleMenu:(LIVBubbleMenu *)bubbleMenu tappedBubbleWithIndex:(NSUInteger)index {
     switch (index) {
         case 0:
-            self.brushSize = BRUSH_SIZE_SMALL;
+            NSLog(@"Brush: SMALL");
+
+            self.drawImage.brushSize = BRUSH_SIZE_SMALL;
             break;
         case 1:
-            self.brushSize = BRUSH_SIZE_MEDIUM;
+            NSLog(@"Brush: MEDIUM");
+
+            self.drawImage.brushSize = BRUSH_SIZE_MEDIUM;
             break;
         case 2:
-            self.brushSize = BRUSH_SIZE_LARGE;
+            NSLog(@"Brush: LARGE");
+
+            self.drawImage.brushSize = BRUSH_SIZE_LARGE;
             break;
         default:
-            self.brushSize = BRUSH_SIZE_MEDIUM;
+            self.drawImage.brushSize = BRUSH_SIZE_MEDIUM;
             break;
     }
 }
 
 //The bubble menu has been hidden
 -(void)livBubbleMenuDidHide:(LIVBubbleMenu *)bubbleMenu {
-    NSLog(@"LIVBubbleMenu has been hidden");
+    NSLog(@"BUBBLE MENU HIDDEN");
+
 }
 
 

@@ -9,9 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface KeyboardViewController : UIInputViewController
-{
-    BOOL mouseSwiped;
-    CGPoint lastPoint;
-}
 
 @end
