@@ -15,7 +15,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   LIVBubbleMenu:
-    :commit: 208531958d1708b5356aefad5672d9b03fb1e278
+    :commit: 9654b82eccccbb4a402650a2d443155312181a5a
     :git: https://github.com/Shrugs/LIVBubbleMenu-iOS.git
 
 SPEC CHECKSUMS:

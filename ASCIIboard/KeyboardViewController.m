@@ -257,11 +257,10 @@
 
 - (void)brushButtonPressed:(UIButton *)sender
 {
-    NSLog(@"%@", NSStringFromCGPoint(self.brushButton.center));
 
     brushMenu = [[LIVBubbleMenu alloc] initWithPoint:self.brushButton.center radius:75.0f menuItems:self.brushImagesArray inView:self.view];
-   brushMenu.bubbleStartAngle = 0;
-   brushMenu.bubbleEndAngle = 90;
+    brushMenu.bubbleStartAngle = 0;
+    brushMenu.bubbleEndAngle = 90;
     brushMenu.bubbleRadius = self.brushButton.frame.size.width / 2.0f;
     brushMenu.menuRadius = self.brushButton.frame.size.width * 2.0f;
     brushMenu.bubbleShowDelayTime = 0.1f;
