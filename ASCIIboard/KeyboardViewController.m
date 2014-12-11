@@ -261,18 +261,17 @@
 - (void)brushButtonPressed:(UIButton *)sender
 {
 
-    brushMenu = [[LIVBubbleMenu alloc] initWithPoint:self.brushButton.center radius:75.0f menuItems:self.brushImagesArray inView:self.view];
+    brushMenu = [[LIVBubbleMenu alloc] initWithPoint:self.brushButton.center radius:self.brushButton.frame.size.width * 2.0f menuItems:self.brushImagesArray inView:self.view];
     brushMenu.bubbleStartAngle = 0;
-    brushMenu.bubbleEndAngle = 90;
+    brushMenu.bubbleTotalAngle = 90;
     brushMenu.bubbleRadius = self.brushButton.frame.size.width / 2.0f;
-    brushMenu.menuRadius = self.brushButton.frame.size.width * 2.0f;
     brushMenu.bubbleShowDelayTime = 0.1f;
     brushMenu.bubbleHideDelayTime = 0.1f;
     brushMenu.bubbleSpringBounciness = 5.0f;
     // brushMenu.bubbleSpringSpeed = 10.0f;
-    brushMenu.bubblePopInDuration = 0.15f;
-    brushMenu.bubblePopOutDuration = 0.15f;
-    brushMenu.backgroundFadeDuration = 0.1f;
+    brushMenu.bubblePopInDuration = 0.3f;
+    brushMenu.bubblePopOutDuration = 0.3f;
+    brushMenu.backgroundFadeDuration = 0.3f;
     brushMenu.backgroundAlpha = 0.3f;
     brushMenu.delegate = self;
     [brushMenu show];
@@ -312,18 +311,12 @@
 -(void)livBubbleMenu:(LIVBubbleMenu *)bubbleMenu tappedBubbleWithIndex:(NSUInteger)index {
     switch (index) {
         case 0:
-            NSLog(@"Brush: SMALL");
-
             self.drawImage.brushSize = BRUSH_SIZE_SMALL;
             break;
         case 1:
-            NSLog(@"Brush: MEDIUM");
-
             self.drawImage.brushSize = BRUSH_SIZE_MEDIUM;
             break;
         case 2:
-            NSLog(@"Brush: LARGE");
-
             self.drawImage.brushSize = BRUSH_SIZE_LARGE;
             break;
         default:
@@ -334,7 +327,6 @@
 
 //The bubble menu has been hidden
 -(void)livBubbleMenuDidHide:(LIVBubbleMenu *)bubbleMenu {
-    NSLog(@"BUBBLE MENU HIDDEN");
 
 }
 

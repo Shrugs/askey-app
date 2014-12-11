@@ -5,21 +5,21 @@ PODS:
   - pop (1.0.7)
 
 DEPENDENCIES:
-  - LIVBubbleMenu (from `https://github.com/Shrugs/LIVBubbleMenu-iOS.git`, branch `angle`)
+  - LIVBubbleMenu (from `https://github.com/Shrugs/LIVBubbleMenu-iOS.git`, branch `master`)
   - Masonry
 
 EXTERNAL SOURCES:
   LIVBubbleMenu:
-    :branch: angle
+    :branch: master
     :git: https://github.com/Shrugs/LIVBubbleMenu-iOS.git
 
 CHECKOUT OPTIONS:
   LIVBubbleMenu:
-    :commit: 9654b82eccccbb4a402650a2d443155312181a5a
+    :commit: faa45f17b752c5a3203c5fdef21dfb7e2142c324
     :git: https://github.com/Shrugs/LIVBubbleMenu-iOS.git
 
 SPEC CHECKSUMS:
-  LIVBubbleMenu: 843432d306eb3066f6f4cc8ec53b5f1a03e5b905
+  LIVBubbleMenu: c0f3704c9332cb7b8db80eabef0e666d6a2fac80
   Masonry: 35368c2ca9577ca87722c12fc52c4bad9b1c1516
   pop: 2f14a1ea61339767af9e66741b418c831b3844df
 
