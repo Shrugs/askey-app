@@ -30,13 +30,15 @@
 
 
 
-@property (nonatomic, strong) UIButton    *brushButton;
-@property (nonatomic, strong) UIButton    *nextKeyboardButton;
-@property (nonatomic, strong) UIButton    *clearButton;
-@property (nonatomic, strong) UIButton    *enterButton;
-@property (nonatomic, strong) UIButton    *backspaceButton;
-@property (nonatomic, strong) UIButton    *undoButton;
-@property (nonatomic, strong) ACEDrawingView *drawImage;
+@property (nonatomic, strong) UIButton *brushButton;
+@property (nonatomic, strong) UIButton *nextKeyboardButton;
+@property (nonatomic, strong) UIButton *clearButton;
+@property (nonatomic, strong) UIButton *enterButton;
+@property (nonatomic, strong) UIButton *backspaceButton;
+@property (nonatomic, strong) UIButton *undoButton;
+@property (nonatomic, strong) UIButton *eraserButton;
+@property (nonatomic, strong) ACEDrawingView *currentSheet;
+@property (nonatomic, strong) ACEDrawingView *previousSheet;
 @property (nonatomic) float brushSize;
 
 @property (nonatomic, retain) NSArray *brushImagesArray;
@@ -57,7 +59,7 @@
     self.view.translatesAutoresizingMaskIntoConstraints = NO;
 
     // LOAD KLUDGE so that height can change -_-
-    [self loadKludge];
+    // [self loadKludge];
 
     // INITS
     self.insertHistory = [[NSMutableArray alloc] init];
@@ -81,11 +83,11 @@
     drawImageBackground.layer.shadowOpacity = 0.5f;
     drawImageBackground.layer.shadowRadius = 5.0f;
 
-    self.drawImage = [[ACEDrawingView alloc] initWithFrame:drawImageBackground.frame];
-    self.drawImage.lineWidth = BRUSH_SIZE_MEDIUM;
-    self.drawImage.delegate = self;
+    self.currentSheet = [[ACEDrawingView alloc] initWithFrame:drawImageBackground.frame];
+    self.currentSheet.lineWidth = BRUSH_SIZE_MEDIUM;
+    self.currentSheet.delegate = self;
 
-    [drawImageBackground addSubview:self.drawImage];
+    [drawImageBackground addSubview:self.currentSheet];
     [self.view addSubview:drawImageBackground];
 
     [drawImageBackground mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -94,7 +96,7 @@
         make.center.equalTo(self.view);
     }];
 
-    [self.drawImage mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.currentSheet mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.equalTo(drawImageBackground);
         make.width.equalTo(drawImageBackground);
         make.center.equalTo(drawImageBackground);
@@ -125,6 +127,12 @@
     [self.brushButton setImage:[UIImage imageNamed:@"Edit-Button-Down.png"] forState:UIControlStateHighlighted];
     [self.brushButton addTarget:self action:@selector(brushButtonPressed:) forControlEvents:UIControlEventTouchDown];
 
+    // ERASER BUTTON
+    self.eraserButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.eraserButton setImage:[UIImage imageNamed:@"Edit-Button-Up.png"] forState:UIControlStateNormal];
+    [self.eraserButton setImage:[UIImage imageNamed:@"Edit-Button-Down.png"] forState:UIControlStateHighlighted];
+    [self.eraserButton addTarget:self action:@selector(eraserButtonPressed:) forControlEvents:UIControlEventTouchDown];
+
     // CLEAR BUTTON
     self.clearButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.clearButton setImage:[UIImage imageNamed:@"Clear-Button-Up.png"] forState:UIControlStateNormal];
@@ -151,6 +159,7 @@
 
     [self.view addSubview:self.nextKeyboardButton];
     [self.view addSubview:self.brushButton];
+    [self.view addSubview:self.eraserButton];
     [self.view addSubview:self.clearButton];
     [self.view addSubview:self.enterButton];
     [self.view addSubview:self.backspaceButton];
@@ -193,6 +202,12 @@
         make.width.equalTo(self.brushButton.mas_height);
         make.left.equalTo(self.view).offset(2);
         make.top.equalTo(self.view).offset(2);
+    }];
+    [self.eraserButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.height.equalTo(self.view).multipliedBy(0.25*0.95);
+        make.width.equalTo(self.eraserButton.mas_height);
+        make.left.equalTo(self.view).offset(2);
+        make.top.equalTo(self.brushButton).offset(2);
     }];
     [self.nextKeyboardButton mas_remakeConstraints:^(MASConstraintMaker *make){
         make.height.equalTo(self.view).multipliedBy(0.25*0.95);
@@ -310,14 +325,20 @@
 
 - (void)clearButtonPressed:(UIButton *)sender
 {
-    [self.drawImage clear];
+    [self.currentSheet clear];
     [self updateButtonStatus];
+}
+
+- (void)eraserButtonPressed:(UIButton *)sender
+{
+    // change to eraser here
+    NSLog(@"ERASER YAY");
 }
 
 - (void)enterButtonPressed:(UIButton *)sender
 {
     CGSize numBlocks = CGSizeMake(40, 10);
-    NSString *text = [self.drawImage.image getASCIIWithResolution:numBlocks];
+    NSString *text = [self.currentSheet.image getASCIIWithResolution:numBlocks];
 
     // only insert period at beginning of string if necessary
     NSCharacterSet *charSet = [NSCharacterSet whitespaceAndNewlineCharacterSet];
@@ -378,13 +399,13 @@
 }
 - (void)undoButtonPressed:(UIButton *)sender
 {
-    [self.drawImage undoLatestStep];
+    [self.currentSheet undoLatestStep];
     [self updateButtonStatus];
 }
 
 - (void)updateButtonStatus
 {
-    self.undoButton.enabled = [self.drawImage canUndo];
+    self.undoButton.enabled = [self.currentSheet canUndo];
 }
 
 #pragma mark - ACEDrawing View Delegate
@@ -400,16 +421,16 @@
 -(void)livBubbleMenu:(LIVBubbleMenu *)bubbleMenu tappedBubbleWithIndex:(NSUInteger)index {
     switch (index) {
         case 0:
-            self.drawImage.lineWidth = BRUSH_SIZE_SMALL;
+            self.currentSheet.lineWidth = BRUSH_SIZE_SMALL;
             break;
         case 1:
-            self.drawImage.lineWidth = BRUSH_SIZE_MEDIUM;
+            self.currentSheet.lineWidth = BRUSH_SIZE_MEDIUM;
             break;
         case 2:
-            self.drawImage.lineWidth = BRUSH_SIZE_LARGE;
+            self.currentSheet.lineWidth = BRUSH_SIZE_LARGE;
             break;
         default:
-            self.drawImage.lineWidth = BRUSH_SIZE_MEDIUM;
+            self.currentSheet.lineWidth = BRUSH_SIZE_MEDIUM;
             break;
     }
 }
