@@ -9,7 +9,7 @@
 #import "KeyboardViewController.h"
 #import "Masonry.h"
 #import "UIImage+ASCII.h"
-#import "MCDrawView.h"
+#import <ACEDrawingView/ACEDrawingView.h>
 #import <LIVBubbleMenu/LIVBubbleMenu.h>
 
 #define BRUSH_SIZE_SMALL 8.0f
@@ -20,7 +20,7 @@
 #define ASCIIBOARD_PORTRAIT_HEIGHT 256
 
 
-@interface KeyboardViewController () <LIVBubbleButtonDelegate>
+@interface KeyboardViewController () <LIVBubbleButtonDelegate, ACEDrawingViewDelegate>
 {
     BOOL mouseSwiped;
     CGPoint lastPoint;
@@ -34,8 +34,8 @@
 @property (nonatomic, strong) UIButton    *clearButton;
 @property (nonatomic, strong) UIButton    *enterButton;
 @property (nonatomic, strong) UIButton    *backspaceButton;
-// @property (nonatomic, strong) UIButton    *undoButton;
-@property (nonatomic, strong) MCDrawView *drawImage;
+ @property (nonatomic, strong) UIButton    *undoButton;
+@property (nonatomic, strong) ACEDrawingView *drawImage;
 @property (nonatomic) float brushSize;
 
 @property (nonatomic, retain) NSArray *brushImagesArray;
@@ -58,23 +58,25 @@
     self.insertHistory = [[NSMutableArray alloc] init];
     self.brushSize = 10.0;
     self.brushImagesArray = [NSArray arrayWithObjects:
-                                 [UIImage imageNamed:@"Brush-Button-Up-1.png"],
-                                 [UIImage imageNamed:@"Brush-Button-Up-2.png"],
-                                 [UIImage imageNamed:@"Brush-Button-Up-3.png"],
-                                 nil];
+                                [UIImage imageNamed:@"Brush-Button-Up-1.png"],
+                                [UIImage imageNamed:@"Brush-Button-Up-2.png"],
+                                [UIImage imageNamed:@"Brush-Button-Up-3.png"],
+                                nil];
 
     // LAYOUT
     // set bg color
     [self.view setBackgroundColor:[UIColor whiteColor]];
 
     // setup draw image
-    self.drawImage = [[MCDrawView alloc] initWithFrame:self.view.frame];
+    self.drawImage = [[ACEDrawingView alloc] initWithFrame:self.view.frame];
+    self.drawImage.delegate = self;
     [self.drawImage setBackgroundColor:[UIColor whiteColor]];
     self.drawImage.layer.masksToBounds = NO;
     self.drawImage.layer.shadowColor = [UIColor blackColor].CGColor;
     self.drawImage.layer.shadowOffset = CGSizeMake(0.0f, 5.0f);
     self.drawImage.layer.shadowOpacity = 0.5f;
     self.drawImage.layer.shadowRadius = 5.0f;
+    [self.drawImage setNeedsDisplay];
     [self.view addSubview:self.drawImage];
 
     [self.drawImage mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -127,17 +129,17 @@
     [self.backspaceButton addTarget:self action:@selector(backspaceButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
 
     // UNDO BUTTON
-    // self.undoButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    // [self.undoButton setImage:[UIImage imageNamed:@"Undo-Button-Up.png"] forState:UIControlStateNormal];
-    // [self.undoButton setImage:[UIImage imageNamed:@"Undo-Button-Down.png"] forState:UIControlStateHighlighted];
-    // [self.undoButton addTarget:self action:@selector(undoButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    self.undoButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.undoButton setImage:[UIImage imageNamed:@"Undo-Button-Up.png"] forState:UIControlStateNormal];
+    [self.undoButton setImage:[UIImage imageNamed:@"Undo-Button-Down.png"] forState:UIControlStateHighlighted];
+    [self.undoButton addTarget:self action:@selector(undoButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
 
     [self.view addSubview:self.nextKeyboardButton];
     [self.view addSubview:self.brushButton];
     [self.view addSubview:self.clearButton];
     [self.view addSubview:self.enterButton];
     [self.view addSubview:self.backspaceButton];
-    // [self.view addSubview:self.undoButton];
+    [self.view addSubview:self.undoButton];
 
     [self establishConstraints];
 
@@ -169,12 +171,12 @@
         make.right.equalTo(self.enterButton.mas_right);
         make.top.equalTo(self.enterButton.mas_bottom).offset(2);
     }];
-    // [self.undoButton mas_remakeConstraints:^(MASConstraintMaker *make) {
-    //     make.height.equalTo(self.view.mas_height).multipliedBy(0.25*0.95);
-    //     make.width.equalTo(self.undoButton.mas_height);
-    //     make.right.equalTo(self.clearButton.mas_right);
-    //     make.bottom.equalTo(self.clearButton.mas_top).offset(-2);
-    // }];
+     [self.undoButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+         make.height.equalTo(self.view.mas_height).multipliedBy(0.25*0.95);
+         make.width.equalTo(self.undoButton.mas_height);
+         make.right.equalTo(self.clearButton.mas_right);
+         make.bottom.equalTo(self.clearButton.mas_top).offset(-2);
+     }];
     [self.clearButton mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.height.equalTo(self.view.mas_height).multipliedBy(0.25*0.95);
         make.width.equalTo(self.clearButton.mas_height);
@@ -187,12 +189,6 @@
 
     [super updateViewConstraints];
 
-    // Add custom view sizing constraints here
-    // if (self.view.frame.size.width == 0 || self.view.frame.size.height == 0) {
-    //     return;
-    // }
-
-    NSLog(@"UPDATE VIEW CONSTRAINTS");
     [self establishConstraints];
 
 
@@ -235,12 +231,6 @@
     // Dispose of any resources that can be recreated
 }
 
-// -(void)viewDidLayoutSubviews
-// {
-//     NSLog(@"LAYING OUT SUBVIEWS");
-
-//     [super viewWillLayoutSubviews];
-// }
 
 - (void)textWillChange:(id<UITextInput>)textInput {
     // The app is about to change the document's contents. Perform any preparation here.
@@ -279,7 +269,7 @@
 
 - (void)clearButtonPressed:(UIButton *)sender
 {
-    self.drawImage.image = nil;
+    [self.drawImage clear];
 }
 
 - (void)enterButtonPressed:(UIButton *)sender
@@ -299,28 +289,40 @@
         }
     }
 }
-// - (void)undoButtonPressed:(UIButton *)sender
-// {
-//     NSLog(@"UNDO");
-// }
+- (void)undoButtonPressed:(UIButton *)sender
+{
+    [self.drawImage undoLatestStep];
+    [self updateButtonStatus];
+}
 
+- (void)updateButtonStatus
+{
+    self.undoButton.enabled = [self.drawImage canUndo];
+}
 
-#pragma LIVBubbleMenu
+#pragma mark - ACEDrawing View Delegate
+
+- (void)drawingView:(ACEDrawingView *)view didEndDrawUsingTool:(id<ACEDrawingTool>)tool;
+{
+    [self updateButtonStatus];
+}
+
+#pragma make - LIVBubbleMenu
 
 //User selected a bubble
 -(void)livBubbleMenu:(LIVBubbleMenu *)bubbleMenu tappedBubbleWithIndex:(NSUInteger)index {
     switch (index) {
         case 0:
-            self.drawImage.brushSize = BRUSH_SIZE_SMALL;
+            self.drawImage.lineWidth = BRUSH_SIZE_SMALL;
             break;
         case 1:
-            self.drawImage.brushSize = BRUSH_SIZE_MEDIUM;
+            self.drawImage.lineWidth = BRUSH_SIZE_MEDIUM;
             break;
         case 2:
-            self.drawImage.brushSize = BRUSH_SIZE_LARGE;
+            self.drawImage.lineWidth = BRUSH_SIZE_LARGE;
             break;
         default:
-            self.drawImage.brushSize = BRUSH_SIZE_MEDIUM;
+            self.drawImage.lineWidth = BRUSH_SIZE_MEDIUM;
             break;
     }
 }

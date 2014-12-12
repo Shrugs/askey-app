@@ -21,8 +21,7 @@
     CGSize numBlocks = CGSizeMake(20, 10);
 
     CGSize blockSize = CGSizeMake(floor(self.size.width/numBlocks.width), floor(self.size.height/numBlocks.height));
-    NSLog(@"%@", NSStringFromCGSize(blockSize));
-
+    NSLog(@"blockSize: %@", NSStringFromCGSize(blockSize));
 
     float maxAlpha = blockSize.width * blockSize.height * 1.0;
 

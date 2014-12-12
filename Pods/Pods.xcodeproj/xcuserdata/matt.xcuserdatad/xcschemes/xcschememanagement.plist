@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Pods-ACEDrawingView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-LIVBubbleMenu.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -27,22 +32,27 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>1621FB663205ECF57A7B1B88</key>
+		<key>1BAEFA3443F84A7CADC77474</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>82F53F3320DA5856D7A04267</key>
+		<key>57010A74C916C97E4D45CF26</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C83FEC9D0385A59457319091</key>
+		<key>A059FA9146746ED1399B6202</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>DEE173DE6E9E1C9C45A41B63</key>
+		<key>B54B17B5806C21FDFA94AB96</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C8EE06EBE6A06A9006BE21F2</key>
 		<dict>
 			<key>primary</key>
 			<true/>
