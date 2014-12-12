@@ -35,6 +35,7 @@
     // setup draw image
 
     self.currentSheet = [[MCDrawSheet alloc] init];
+    self.currentSheet.delegate = self;
     self.currentSheet.drawView.lineWidth = BRUSH_SIZE_MEDIUM;
     self.currentSheet.drawView.delegate = self;
     [self.view addSubview:self.currentSheet];
@@ -283,7 +284,7 @@
 {
     // change to eraser here
     NSLog(@"ERASER YAY");
-    [self.currentSheet listenForPanGestureWithTarget:self action:@selector(moveViewWithGestureRecognizer:)];
+    [self.currentSheet listenForGestures];
 }
 
 - (void)enterButtonPressed:(UIButton *)sender
@@ -349,20 +350,26 @@
     // makes previousSheet currentSheet and then makes previousSheet nil
 }
 
--(void)moveViewWithGestureRecognizer:(UIPanGestureRecognizer *)panGestureRecognizer{
+- (void)drawSheet:(MCDrawSheet *)sheet wasMovedWithGestureRecognizer:(UIPanGestureRecognizer *)panGestureRecognizer
+{
     CGPoint touchLocation = [panGestureRecognizer locationInView:self.view];
 
     switch ([panGestureRecognizer state]) {
         case UIGestureRecognizerStateBegan:
-
+            NSLog(@"GESTURE BEGAN");
+            // get initial point
             break;
 
         case UIGestureRecognizerStateChanged:
-
+            // follow finger delta on vertical axis
+            NSLog(@"GESTURE CHANGED");
             break;
 
         case UIGestureRecognizerStateEnded:
-
+            // if we were throwing with enough velocity in a certain direction, move to that position
+            // otherwise, do position threshold to check for new position
+            // move to that position with any initial velocity
+            NSLog(@"GESTURE ENDED");
             break;
 
         default:
@@ -370,9 +377,13 @@
     }
 
     self.currentSheet.center = touchLocation;
-
 }
 
+- (void)drawSheet:(MCDrawSheet *)sheet wasTappedWithGestureRecognizer:(UITapGestureRecognizer *)tapGestureRecognizer
+{
+    // if it was tapped at all, that means to decrement sheets
+    [self decrementSheets];
+}
 
 
 #pragma mark - ACEDrawing View Delegate

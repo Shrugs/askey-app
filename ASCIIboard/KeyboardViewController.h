@@ -15,6 +15,8 @@
 #define BRUSH_SIZE_LARGE 20.0f
 
 #define ASKEY_HEIGHT 250
+// same ratio as 8.5x11 paper
+#define ASKEY_WIDTH_RATIO 0.772727273f
 
 @interface KeyboardViewController : UIInputViewController  <LIVBubbleButtonDelegate, ACEDrawingViewDelegate>
 {

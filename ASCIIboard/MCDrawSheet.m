@@ -50,18 +50,39 @@
     }];
 }
 
-- (void)listenForPanGestureWithTarget:(id)target action:(SEL)selector
+- (void)listenForGestures
 {
     coverView = [[UIView alloc] initWithFrame:self.bounds];
     coverView.backgroundColor = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.1f];
-    panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:target action:selector];
+    panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
     [coverView addGestureRecognizer:panGestureRecognizer];
+    tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
+    [coverView addGestureRecognizer:tapGestureRecognizer];
     [self addSubview:coverView];
 }
 
-- (void)unlistenForPanGesture
+- (void)unlistenForGestures
 {
-    [coverView removeFromSuperview];
+    if (coverView != nil) {
+        [coverView removeFromSuperview];
+        coverView = nil;
+    }
+}
+
+- (void)handlePan:(UIPanGestureRecognizer *)pan
+{
+    // - (void)drawSheet:(MCDrawSheet *)sheet wasMovedWithGestureRecognizer:(UIPanGestureRecognizer *)panGestureRecognizer
+    if([self.delegate respondsToSelector:@selector(drawSheet:wasMovedWithGestureRecognizer:)]) {
+        [self.delegate drawSheet:self wasMovedWithGestureRecognizer:pan];
+    }
+}
+
+- (void)handleTap:(UITapGestureRecognizer *)tap
+{
+    // - (void)drawSheet:(MCDrawSheet *)sheet wasTappedWithGestureRecognizer:(UITapGestureRecognizer *)tapGestureRecognizer
+    if([self.delegate respondsToSelector:@selector(drawSheet:wasTappedWithGestureRecognizer:)]) {
+        [self.delegate drawSheet:self wasTappedWithGestureRecognizer:tap];
+    }
 }
 
 /*

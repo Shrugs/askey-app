@@ -9,16 +9,30 @@
 #import <UIKit/UIKit.h>
 #import <ACEDrawingView/ACEDrawingView.h>
 
+@class MCDrawSheet;
+
+@protocol MCDrawSheetDelegate <NSObject>
+
+@optional
+- (void)drawSheet:(MCDrawSheet *)sheet wasMovedWithGestureRecognizer:(UIPanGestureRecognizer *)panGestureRecognizer;
+- (void)drawSheet:(MCDrawSheet *)sheet wasTappedWithGestureRecognizer:(UITapGestureRecognizer *)tapGestureRecognizer;
+
+@end
+
 @interface MCDrawSheet : UIView
 {
     UIPanGestureRecognizer *panGestureRecognizer;
+    UITapGestureRecognizer *tapGestureRecognizer;
     UIView *coverView;
 }
+
+//Delegate
+@property (nonatomic, assign) id<MCDrawSheetDelegate> delegate;
 
 @property (nonatomic, retain) ACEDrawingView *drawView;
 
 
-- (void)listenForPanGestureWithTarget:(id)target action:(SEL)selector;
-- (void)unlistenForPanGesture;
+- (void)listenForGestures;
+- (void)unlistenForGestures;
 
 @end
