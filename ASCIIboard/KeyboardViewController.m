@@ -285,17 +285,47 @@
 
 - (void)enterButtonPressed:(UIButton *)sender
 {
-    NSString *text = [self.drawImage.image getASCII];
+    CGSize numBlocks = CGSizeMake(40, 10);
+    NSString *text = [self.drawImage.image getASCIIWithResolution:numBlocks];
 
-    NSCharacterSet *charSet = [NSCharacterSet whitespaceCharacterSet];
+    // only insert period at beginning of string if necessary
+    NSCharacterSet *charSet = [NSCharacterSet whitespaceAndNewlineCharacterSet];
     NSString *trimmedString = [[self.textDocumentProxy documentContextBeforeInput] stringByTrimmingCharactersInSet:charSet];
     if ((trimmedString == nil || [trimmedString isEqualToString:@""]) && [text hasPrefix:@" "]) {
         // it's empty or contains only white spaces
-        // therefore, insert period
+        // therefore, strip extra white space
+        text = [self removeExtraWhiteSpaceLinesFromText:text withSize:numBlocks];
+        // and insert period if necessary
         text = [text stringByReplacingCharactersInRange:NSMakeRange(0, 1) withString:@"."];
     }
     [self.insertHistory insertObject:@([text length]) atIndex:0];
     [self.textDocumentProxy insertText:text];
+}
+
+- (NSString *)removeExtraWhiteSpaceLinesFromText:(NSString *)text withSize:(CGSize)size
+{
+    NSRange range = NSMakeRange(0, size.width);
+    while (YES) {
+        // for each line of width size.width, discard it if it's whitespace
+        if ([self stringIsWhiteSpace:[text substringWithRange:range]] &&
+            [self stringIsWhiteSpace:[text substringWithRange:NSMakeRange(size.width, size.width)]]) {
+            // if is whitespace, remove if next string is white space as well
+            text = [text stringByReplacingCharactersInRange:range withString:@""];
+
+        } else {
+            break;
+        }
+
+    }
+
+    return text;
+}
+
+- (BOOL)stringIsWhiteSpace:(NSString *)str
+{
+    NSCharacterSet *charSet = [NSCharacterSet whitespaceAndNewlineCharacterSet];
+    NSString *trimmedString = [str stringByTrimmingCharactersInSet:charSet];
+    return (trimmedString == nil || [trimmedString isEqualToString:@""]);
 }
 
 - (void)backspaceButtonPressed:(UIButton *)sender

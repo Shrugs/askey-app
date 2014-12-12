@@ -11,11 +11,10 @@
 @implementation UIImage (ASCII)
 
 
-- (NSString *)getASCII
+- (NSString *)getASCIIWithResolution:(CGSize)numBlocks
 {
 
-    // number of ASCII "pixels" in widthxheight
-    CGSize numBlocks = CGSizeMake(40, 10);
+    // numBlocks = number of ASCII "pixels" in widthxheight
 
     CGImageRef imageRef = [self CGImage];
     CGSize picSize;
