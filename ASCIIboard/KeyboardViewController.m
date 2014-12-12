@@ -291,7 +291,13 @@
     // only insert period at beginning of string if necessary
     NSCharacterSet *charSet = [NSCharacterSet whitespaceAndNewlineCharacterSet];
     NSString *trimmedString = [[self.textDocumentProxy documentContextBeforeInput] stringByTrimmingCharactersInSet:charSet];
-    if ((trimmedString == nil || [trimmedString isEqualToString:@""]) && [text hasPrefix:@" "]) {
+    NSLog(@"before:%@:", [self.textDocumentProxy documentContextBeforeInput]);
+    NSLog(@"beforeTrimmed:%@:", trimmedString);
+
+    // so this condition is broken because textDocumentProxy isn't behaving
+    // if ((trimmedString == nil || [trimmedString isEqualToString:@""]) && [text hasPrefix:@" "]) {
+    // so for now, use this
+    if ([self.insertHistory count] == 0) {
         // it's empty or contains only white spaces
         // therefore, strip extra white space
         text = [self removeExtraWhiteSpaceLinesFromText:text withSize:numBlocks];
@@ -307,7 +313,8 @@
     NSRange range = NSMakeRange(0, size.width);
     while (YES) {
         // for each line of width size.width, discard it if it's whitespace
-        if ([self stringIsWhiteSpace:[text substringWithRange:range]] &&
+        if (text.length > 2*(size.width) &&
+            [self stringIsWhiteSpace:[text substringWithRange:range]] &&
             [self stringIsWhiteSpace:[text substringWithRange:NSMakeRange(size.width, size.width)]]) {
             // if is whitespace, remove if next string is white space as well
             text = [text stringByReplacingCharactersInRange:range withString:@""];
