@@ -285,6 +285,9 @@
 - (void)enterButtonPressed:(UIButton *)sender
 {
     NSString *text = [self.drawImage.image getASCII];
+    if ([text hasPrefix:@" "]) {
+        text = [text stringByReplacingCharactersInRange:NSMakeRange(0, 1) withString:@"."];
+    }
     [self.insertHistory insertObject:@([text length]) atIndex:0];
     [self.textDocumentProxy insertText:text];
 }
