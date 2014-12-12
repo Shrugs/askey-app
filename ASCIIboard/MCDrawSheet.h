@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <ACEDrawingView/ACEDrawingView.h>
+#import "Masonry.h"
 
 @class MCDrawSheet;
 
@@ -29,8 +30,9 @@
 //Delegate
 @property (nonatomic, assign) id<MCDrawSheetDelegate> delegate;
 
-@property (nonatomic, retain) ACEDrawingView *drawView;
+@property (nonatomic, strong) ACEDrawingView *drawView;
 
+@property (nonatomic, strong) MASConstraint *centerConstraint;
 
 - (void)listenForGestures;
 - (void)unlistenForGestures;

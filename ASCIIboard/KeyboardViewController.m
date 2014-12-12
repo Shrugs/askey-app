@@ -32,17 +32,16 @@
     // set bg color
     [self.view setBackgroundColor:[UIColor whiteColor]];
 
-    // setup draw image
-
+    // setup draw sheets
     self.currentSheet = [[MCDrawSheet alloc] init];
     self.currentSheet.delegate = self;
     self.currentSheet.drawView.lineWidth = BRUSH_SIZE_MEDIUM;
     self.currentSheet.drawView.delegate = self;
     [self.view addSubview:self.currentSheet];
     [self.currentSheet mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.height.equalTo(self.view);
-        make.width.equalTo(self.view.mas_height).multipliedBy(0.9);
-        make.center.equalTo(self.view);
+        make.height.equalTo(self.view).multipliedBy(ASKEY_HEIGHT_FRACTION);
+        make.width.equalTo(self.view.mas_height).multipliedBy(ASKEY_WIDTH_RATIO);
+        self.currentSheet.centerConstraint = make.center.equalTo(self.view);
     }];
 
     // set up top border thing
@@ -100,28 +99,46 @@
     [self.undoButton setImage:[UIImage imageNamed:@"Undo-Button-Down.png"] forState:UIControlStateHighlighted];
     [self.undoButton addTarget:self action:@selector(undoButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
 
-    [self.view addSubview:self.nextKeyboardButton];
     [self.view addSubview:self.brushButton];
     [self.view addSubview:self.eraserButton];
-    [self.view addSubview:self.clearButton];
+    [self.view addSubview:self.nextKeyboardButton];
+
     [self.view addSubview:self.enterButton];
     [self.view addSubview:self.backspaceButton];
     [self.view addSubview:self.undoButton];
+    [self.view addSubview:self.clearButton];
 
     [self establishConstraints];
 
 }
 
-// - (void)viewDidAppear:(BOOL)animated
-// {
-//     [self makeKeyboardHeight:250];
-// }
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self makeKeyboardHeight:250];
+
+}
 
 - (void)makeKeyboardHeight:(float)height
 {
-    [self.view mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.height.equalTo(@(height));
-    }];
+    if (_heightConstraint != nil) {
+        [self.view removeConstraint:_heightConstraint];
+    }
+
+    _heightConstraint =
+        [NSLayoutConstraint constraintWithItem: self.view
+                                     attribute: NSLayoutAttributeHeight
+                                     relatedBy: NSLayoutRelationEqual
+                                        toItem: nil
+                                     attribute: NSLayoutAttributeNotAnAttribute
+                                    multiplier: 0.0
+                                      constant: height];
+    [self.view addConstraint: _heightConstraint];
+    // [self.view mas_updateConstraints:^(MASConstraintMaker *make) {
+    //     make.height.equalTo(@(height));
+    //     make.width.lessThanOrEqualTo(@(1000));
+    // }];
+
 }
 
 - (void)loadKludge
@@ -163,6 +180,7 @@
         make.left.equalTo(self.view.mas_left).offset(2);
         make.bottom.equalTo(self.view.mas_bottom);
     }];
+
     [self.enterButton mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.height.equalTo(self.view).multipliedBy(0.25*0.95);
         make.width.equalTo(self.enterButton.mas_height);
@@ -172,19 +190,19 @@
     [self.backspaceButton mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.height.equalTo(self.view).multipliedBy(0.25*0.95);
         make.width.equalTo(self.backspaceButton.mas_height);
-        make.right.equalTo(self.enterButton.mas_right);
+        make.right.equalTo(self.enterButton);
         make.top.equalTo(self.enterButton.mas_bottom).offset(2);
     }];
      [self.undoButton mas_remakeConstraints:^(MASConstraintMaker *make) {
          make.height.equalTo(self.view).multipliedBy(0.25*0.95);
          make.width.equalTo(self.undoButton.mas_height);
-         make.right.equalTo(self.clearButton.mas_right);
+         make.right.equalTo(self.clearButton);
          make.bottom.equalTo(self.clearButton.mas_top).offset(-2);
      }];
     [self.clearButton mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.height.equalTo(self.view).multipliedBy(0.25*0.95);
         make.width.equalTo(self.clearButton.mas_height);
-        make.right.equalTo(self.enterButton.mas_right);
+        make.right.equalTo(self.enterButton);
         make.bottom.equalTo(self.view.mas_bottom);
     }];
 }
@@ -283,7 +301,7 @@
 - (void)eraserButtonPressed:(UIButton *)sender
 {
     // change to eraser here
-    NSLog(@"ERASER YAY");
+
     [self.currentSheet listenForGestures];
 }
 

@@ -7,7 +7,6 @@
 //
 
 #import "MCDrawSheet.h"
-#import "Masonry.h"
 
 @implementation MCDrawSheet
 

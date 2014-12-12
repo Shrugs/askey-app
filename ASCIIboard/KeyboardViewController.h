@@ -17,8 +17,10 @@
 #define ASKEY_HEIGHT 250
 // same ratio as 8.5x11 paper
 #define ASKEY_WIDTH_RATIO 0.772727273f
+// ratio of sheet height to view height
+#define ASKEY_HEIGHT_FRACTION 0.85f
 
-@interface KeyboardViewController : UIInputViewController  <LIVBubbleButtonDelegate, ACEDrawingViewDelegate>
+@interface KeyboardViewController : UIInputViewController  <LIVBubbleButtonDelegate, ACEDrawingViewDelegate, MCDrawSheetDelegate>
 {
     BOOL mouseSwiped;
     CGPoint lastPoint;
