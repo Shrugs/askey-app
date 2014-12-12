@@ -283,6 +283,7 @@
 {
     // change to eraser here
     NSLog(@"ERASER YAY");
+    [self.currentSheet listenForPanGestureWithTarget:self action:@selector(moveViewWithGestureRecognizer:)];
 }
 
 - (void)enterButtonPressed:(UIButton *)sender
@@ -308,6 +309,7 @@
     }
     [self.insertHistory insertObject:@([text length]) atIndex:0];
     [self.textDocumentProxy insertText:text];
+    [self updateButtonStatus];
 }
 
 - (void)backspaceButtonPressed:(UIButton *)sender
@@ -329,7 +331,49 @@
 - (void)updateButtonStatus
 {
     self.undoButton.enabled = [self.currentSheet.drawView canUndo];
+    self.backspaceButton.enabled = (BOOL)[self.insertHistory count];
 }
+
+#pragma mark - MCDrawSheet Movement
+
+- (void)incrementSheets
+{
+    // moves both sheets upwards, making a new sheet after previousSheet is out of the view
+    // makes currentSheet previousSheet and then makes _newSheet currentSheet
+
+}
+
+- (void)decrementSheets
+{
+    // move both sheets down, dropping currentSheet into the void
+    // makes previousSheet currentSheet and then makes previousSheet nil
+}
+
+-(void)moveViewWithGestureRecognizer:(UIPanGestureRecognizer *)panGestureRecognizer{
+    CGPoint touchLocation = [panGestureRecognizer locationInView:self.view];
+
+    switch ([panGestureRecognizer state]) {
+        case UIGestureRecognizerStateBegan:
+
+            break;
+
+        case UIGestureRecognizerStateChanged:
+
+            break;
+
+        case UIGestureRecognizerStateEnded:
+
+            break;
+
+        default:
+            break;
+    }
+
+    self.currentSheet.center = touchLocation;
+
+}
+
+
 
 #pragma mark - ACEDrawing View Delegate
 

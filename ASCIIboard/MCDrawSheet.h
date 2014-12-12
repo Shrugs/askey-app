@@ -10,7 +10,15 @@
 #import <ACEDrawingView/ACEDrawingView.h>
 
 @interface MCDrawSheet : UIView
+{
+    UIPanGestureRecognizer *panGestureRecognizer;
+    UIView *coverView;
+}
 
 @property (nonatomic, retain) ACEDrawingView *drawView;
+
+
+- (void)listenForPanGestureWithTarget:(id)target action:(SEL)selector;
+- (void)unlistenForPanGesture;
 
 @end

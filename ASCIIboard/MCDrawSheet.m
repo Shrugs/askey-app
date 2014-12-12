@@ -50,6 +50,19 @@
     }];
 }
 
+- (void)listenForPanGestureWithTarget:(id)target action:(SEL)selector
+{
+    coverView = [[UIView alloc] initWithFrame:self.bounds];
+    coverView.backgroundColor = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.1f];
+    panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:target action:selector];
+    [coverView addGestureRecognizer:panGestureRecognizer];
+    [self addSubview:coverView];
+}
+
+- (void)unlistenForPanGesture
+{
+    [coverView removeFromSuperview];
+}
 
 /*
 // Only override drawRect: if you perform custom drawing.
