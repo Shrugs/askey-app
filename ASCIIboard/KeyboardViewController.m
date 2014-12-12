@@ -56,10 +56,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.view.translatesAutoresizingMaskIntoConstraints = NO;
-
     // LOAD KLUDGE so that height can change -_-
-    // [self loadKludge];
+    [self loadKludge];
 
     // INITS
     self.insertHistory = [[NSMutableArray alloc] init];
@@ -168,6 +166,11 @@
     [self establishConstraints];
 
 }
+
+// - (void)viewDidAppear:(BOOL)animated
+// {
+//     [self makeKeyboardHeight:250];
+// }
 
 - (void)makeKeyboardHeight:(float)height
 {
