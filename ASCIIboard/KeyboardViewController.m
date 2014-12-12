@@ -9,7 +9,7 @@
 #import "KeyboardViewController.h"
 #import "Masonry.h"
 #import "UIImage+ASCII.h"
-#import <ACEDrawingView/ACEDrawingView.h>
+#import "MCDrawSheet.h"
 #import <LIVBubbleMenu/LIVBubbleMenu.h>
 
 #define BRUSH_SIZE_SMALL 11.0f
@@ -37,8 +37,8 @@
 @property (nonatomic, strong) UIButton *backspaceButton;
 @property (nonatomic, strong) UIButton *undoButton;
 @property (nonatomic, strong) UIButton *eraserButton;
-@property (nonatomic, strong) ACEDrawingView *currentSheet;
-@property (nonatomic, strong) ACEDrawingView *previousSheet;
+@property (nonatomic, strong) MCDrawSheet *currentSheet;
+@property (nonatomic, strong) MCDrawSheet *previousSheet;
 @property (nonatomic) float brushSize;
 
 @property (nonatomic, retain) NSArray *brushImagesArray;
@@ -73,31 +73,15 @@
     [self.view setBackgroundColor:[UIColor whiteColor]];
 
     // setup draw image
-    UIView *drawImageBackground = [[UIView alloc] initWithFrame:self.view.frame];
-    drawImageBackground.backgroundColor = [UIColor whiteColor];
-    drawImageBackground.layer.masksToBounds = NO;
-    drawImageBackground.layer.shadowColor = [UIColor blackColor].CGColor;
-    drawImageBackground.layer.shadowOffset = CGSizeMake(0.0f, 5.0f);
-    drawImageBackground.layer.shadowOpacity = 0.5f;
-    drawImageBackground.layer.shadowRadius = 5.0f;
 
-    self.currentSheet = [[ACEDrawingView alloc] initWithFrame:drawImageBackground.frame];
-    self.currentSheet.lineWidth = BRUSH_SIZE_MEDIUM;
-    self.currentSheet.delegate = self;
-
-    [drawImageBackground addSubview:self.currentSheet];
-    [self.view addSubview:drawImageBackground];
-
-    [drawImageBackground mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.height.equalTo(self.view);
-        make.width.equalTo(drawImageBackground.mas_height).multipliedBy(0.9);
-        make.center.equalTo(self.view);
-    }];
-
+    self.currentSheet = [[MCDrawSheet alloc] init];
+    self.currentSheet.drawView.lineWidth = BRUSH_SIZE_MEDIUM;
+    self.currentSheet.drawView.delegate = self;
+    [self.view addSubview:self.currentSheet];
     [self.currentSheet mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.height.equalTo(drawImageBackground);
-        make.width.equalTo(drawImageBackground);
-        make.center.equalTo(drawImageBackground);
+        make.height.equalTo(self.view);
+        make.width.equalTo(self.view.mas_height).multipliedBy(0.9);
+        make.center.equalTo(self.view);
     }];
 
     // set up top border thing
@@ -328,7 +312,7 @@
 
 - (void)clearButtonPressed:(UIButton *)sender
 {
-    [self.currentSheet clear];
+    [self.currentSheet.drawView clear];
     [self updateButtonStatus];
 }
 
@@ -341,7 +325,7 @@
 - (void)enterButtonPressed:(UIButton *)sender
 {
     CGSize numBlocks = CGSizeMake(40, 10);
-    NSString *text = [self.currentSheet.image getASCIIWithResolution:numBlocks];
+    NSString *text = [self.currentSheet.drawView.image getASCIIWithResolution:numBlocks];
 
     // only insert period at beginning of string if necessary
     NSCharacterSet *charSet = [NSCharacterSet whitespaceAndNewlineCharacterSet];
@@ -402,13 +386,13 @@
 }
 - (void)undoButtonPressed:(UIButton *)sender
 {
-    [self.currentSheet undoLatestStep];
+    [self.currentSheet.drawView undoLatestStep];
     [self updateButtonStatus];
 }
 
 - (void)updateButtonStatus
 {
-    self.undoButton.enabled = [self.currentSheet canUndo];
+    self.undoButton.enabled = [self.currentSheet.drawView canUndo];
 }
 
 #pragma mark - ACEDrawing View Delegate
@@ -424,16 +408,16 @@
 -(void)livBubbleMenu:(LIVBubbleMenu *)bubbleMenu tappedBubbleWithIndex:(NSUInteger)index {
     switch (index) {
         case 0:
-            self.currentSheet.lineWidth = BRUSH_SIZE_SMALL;
+            self.currentSheet.drawView.lineWidth = BRUSH_SIZE_SMALL;
             break;
         case 1:
-            self.currentSheet.lineWidth = BRUSH_SIZE_MEDIUM;
+            self.currentSheet.drawView.lineWidth = BRUSH_SIZE_MEDIUM;
             break;
         case 2:
-            self.currentSheet.lineWidth = BRUSH_SIZE_LARGE;
+            self.currentSheet.drawView.lineWidth = BRUSH_SIZE_LARGE;
             break;
         default:
-            self.currentSheet.lineWidth = BRUSH_SIZE_MEDIUM;
+            self.currentSheet.drawView.lineWidth = BRUSH_SIZE_MEDIUM;
             break;
     }
 }

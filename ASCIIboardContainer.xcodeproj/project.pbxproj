@@ -18,6 +18,7 @@
 		C952A47219D123870025DD73 /* ASCIIboardContainerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C952A47119D123870025DD73 /* ASCIIboardContainerTests.m */; };
 		C952A48519D123990025DD73 /* KeyboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C952A48419D123990025DD73 /* KeyboardViewController.m */; };
 		C952A48819D123990025DD73 /* ASCIIboard.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C952A47F19D123990025DD73 /* ASCIIboard.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C9959CDC1A3B86DB0038315E /* MCDrawSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = C9959CDB1A3B86DB0038315E /* MCDrawSheet.m */; };
 		C9D530AA1A32884A00E72584 /* Delete-Button-Down.png in Resources */ = {isa = PBXBuildFile; fileRef = C9D530A61A32884A00E72584 /* Delete-Button-Down.png */; };
 		C9D530AB1A32884A00E72584 /* Delete-Button-Up.png in Resources */ = {isa = PBXBuildFile; fileRef = C9D530A71A32884A00E72584 /* Delete-Button-Up.png */; };
 		C9D530AC1A32884A00E72584 /* Up-Button-Down.png in Resources */ = {isa = PBXBuildFile; fileRef = C9D530A81A32884A00E72584 /* Up-Button-Down.png */; };
@@ -101,6 +102,8 @@
 		C952A48219D123990025DD73 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C952A48319D123990025DD73 /* KeyboardViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeyboardViewController.h; sourceTree = "<group>"; };
 		C952A48419D123990025DD73 /* KeyboardViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KeyboardViewController.m; sourceTree = "<group>"; };
+		C9959CDA1A3B86DB0038315E /* MCDrawSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCDrawSheet.h; sourceTree = "<group>"; };
+		C9959CDB1A3B86DB0038315E /* MCDrawSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCDrawSheet.m; sourceTree = "<group>"; };
 		C9D530A61A32884A00E72584 /* Delete-Button-Down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Delete-Button-Down.png"; sourceTree = "<group>"; };
 		C9D530A71A32884A00E72584 /* Delete-Button-Up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Delete-Button-Up.png"; sourceTree = "<group>"; };
 		C9D530A81A32884A00E72584 /* Up-Button-Down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Up-Button-Down.png"; sourceTree = "<group>"; };
@@ -229,6 +232,8 @@
 				C952A48319D123990025DD73 /* KeyboardViewController.h */,
 				C952A48419D123990025DD73 /* KeyboardViewController.m */,
 				C952A48119D123990025DD73 /* Supporting Files */,
+				C9959CDA1A3B86DB0038315E /* MCDrawSheet.h */,
+				C9959CDB1A3B86DB0038315E /* MCDrawSheet.m */,
 			);
 			path = ASCIIboard;
 			sourceTree = "<group>";
@@ -477,6 +482,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9959CDC1A3B86DB0038315E /* MCDrawSheet.m in Sources */,
 				C952A48519D123990025DD73 /* KeyboardViewController.m in Sources */,
 				C93A516419DA576F00BC939D /* UIImage+ASCII.m in Sources */,
 			);
