@@ -279,6 +279,7 @@
 - (void)clearButtonPressed:(UIButton *)sender
 {
     [self.drawImage clear];
+    [self updateButtonStatus];
 }
 
 - (void)enterButtonPressed:(UIButton *)sender
