@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		C93A516119DA2E1A00BC939D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C93A516019DA2E1A00BC939D /* libPods.a */; };
 		C93A516419DA576F00BC939D /* UIImage+ASCII.m in Sources */ = {isa = PBXBuildFile; fileRef = C93A516319DA576F00BC939D /* UIImage+ASCII.m */; };
-		C94B73471A3A38E700D79070 /* MCDrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = C94B73461A3A38E700D79070 /* MCDrawView.m */; };
 		C952A45819D123870025DD73 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C952A45719D123870025DD73 /* main.m */; };
 		C952A45B19D123870025DD73 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C952A45A19D123870025DD73 /* AppDelegate.m */; };
 		C952A45E19D123870025DD73 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C952A45D19D123870025DD73 /* ViewController.m */; };
@@ -85,8 +84,6 @@
 		C93A516019DA2E1A00BC939D /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
 		C93A516219DA576F00BC939D /* UIImage+ASCII.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ASCII.h"; sourceTree = "<group>"; };
 		C93A516319DA576F00BC939D /* UIImage+ASCII.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ASCII.m"; sourceTree = "<group>"; };
-		C94B73451A3A38E700D79070 /* MCDrawView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCDrawView.h; sourceTree = "<group>"; };
-		C94B73461A3A38E700D79070 /* MCDrawView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCDrawView.m; sourceTree = "<group>"; };
 		C952A45219D123870025DD73 /* ASCIIboardContainer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ASCIIboardContainer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C952A45619D123870025DD73 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C952A45719D123870025DD73 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -232,8 +229,6 @@
 				C952A48319D123990025DD73 /* KeyboardViewController.h */,
 				C952A48419D123990025DD73 /* KeyboardViewController.m */,
 				C952A48119D123990025DD73 /* Supporting Files */,
-				C94B73451A3A38E700D79070 /* MCDrawView.h */,
-				C94B73461A3A38E700D79070 /* MCDrawView.m */,
 			);
 			path = ASCIIboard;
 			sourceTree = "<group>";
@@ -482,7 +477,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C94B73471A3A38E700D79070 /* MCDrawView.m in Sources */,
 				C952A48519D123990025DD73 /* KeyboardViewController.m in Sources */,
 				C93A516419DA576F00BC939D /* UIImage+ASCII.m in Sources */,
 			);
