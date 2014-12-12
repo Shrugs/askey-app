@@ -9,49 +9,10 @@
 #import "KeyboardViewController.h"
 #import "Masonry.h"
 #import "UIImage+ASCII.h"
-#import "MCDrawSheet.h"
-#import <LIVBubbleMenu/LIVBubbleMenu.h>
-
-#define BRUSH_SIZE_SMALL 11.0f
-#define BRUSH_SIZE_MEDIUM 15.0f
-#define BRUSH_SIZE_LARGE 20.0f
-
-#define ASKEY_HEIGHT 250
-
-
-@interface KeyboardViewController () <LIVBubbleButtonDelegate, ACEDrawingViewDelegate>
-{
-    BOOL mouseSwiped;
-    CGPoint lastPoint;
-    LIVBubbleMenu *brushMenu;
-    NSLayoutConstraint *_heightConstraint;
-    UIView *kludge;
-}
-
-
-
-@property (nonatomic, strong) UIButton *brushButton;
-@property (nonatomic, strong) UIButton *nextKeyboardButton;
-@property (nonatomic, strong) UIButton *clearButton;
-@property (nonatomic, strong) UIButton *enterButton;
-@property (nonatomic, strong) UIButton *backspaceButton;
-@property (nonatomic, strong) UIButton *undoButton;
-@property (nonatomic, strong) UIButton *eraserButton;
-@property (nonatomic, strong) MCDrawSheet *currentSheet;
-@property (nonatomic, strong) MCDrawSheet *previousSheet;
-@property (nonatomic) float brushSize;
-
-@property (nonatomic, retain) NSArray *brushImagesArray;
-
-
-// array of characters that were inserted (I should use a queue for this)
-@property (nonatomic, strong) NSMutableArray *insertHistory;
-// array of lines drawn that they can undo
-@property (nonatomic, strong) NSMutableArray *drawHistory;
-
-@end
 
 @implementation KeyboardViewController
+
+#pragma mark - KeyboardViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -61,7 +22,6 @@
 
     // INITS
     self.insertHistory = [[NSMutableArray alloc] init];
-    self.brushSize = 10.0;
     self.brushImagesArray = [NSArray arrayWithObjects:
                                 [UIImage imageNamed:@"Brush-Button-Up-1.png"],
                                 [UIImage imageNamed:@"Brush-Button-Up-2.png"],
@@ -194,7 +154,7 @@
         make.height.equalTo(self.view).multipliedBy(0.25*0.95);
         make.width.equalTo(self.eraserButton.mas_height);
         make.left.equalTo(self.view).offset(2);
-        make.top.equalTo(self.brushButton).offset(2);
+        make.top.equalTo(self.brushButton.mas_bottom).offset(2);
     }];
     [self.nextKeyboardButton mas_remakeConstraints:^(MASConstraintMaker *make){
         make.height.equalTo(self.view).multipliedBy(0.25*0.95);
@@ -274,6 +234,7 @@
     // Dispose of any resources that can be recreated
 }
 
+#pragma mark - TextInput Delegate
 
 - (void)textWillChange:(id<UITextInput>)textInput {
     // The app is about to change the document's contents. Perform any preparation here.
@@ -290,6 +251,8 @@
     }
     [self.nextKeyboardButton setTitleColor:textColor forState:UIControlStateNormal];
 }
+
+#pragma mark - Button Handlers
 
 - (void)brushButtonPressed:(UIButton *)sender
 {
@@ -347,33 +310,6 @@
     [self.textDocumentProxy insertText:text];
 }
 
-- (NSString *)removeExtraWhiteSpaceLinesFromText:(NSString *)text withSize:(CGSize)size
-{
-    NSRange range = NSMakeRange(0, size.width);
-    while (YES) {
-        // for each line of width size.width, discard it if it's whitespace
-        if (text.length > 2*(size.width) &&
-            [self stringIsWhiteSpace:[text substringWithRange:range]] &&
-            [self stringIsWhiteSpace:[text substringWithRange:NSMakeRange(size.width, size.width)]]) {
-            // if is whitespace, remove if next string is white space as well
-            text = [text stringByReplacingCharactersInRange:range withString:@""];
-
-        } else {
-            break;
-        }
-
-    }
-
-    return text;
-}
-
-- (BOOL)stringIsWhiteSpace:(NSString *)str
-{
-    NSCharacterSet *charSet = [NSCharacterSet whitespaceAndNewlineCharacterSet];
-    NSString *trimmedString = [str stringByTrimmingCharactersInSet:charSet];
-    return (trimmedString == nil || [trimmedString isEqualToString:@""]);
-}
-
 - (void)backspaceButtonPressed:(UIButton *)sender
 {
     if ([self.insertHistory count]) {
@@ -427,6 +363,35 @@
 
 }
 
+#pragma mark - Utils
+
+
+- (NSString *)removeExtraWhiteSpaceLinesFromText:(NSString *)text withSize:(CGSize)size
+{
+    NSRange range = NSMakeRange(0, size.width);
+    while (YES) {
+        // for each line of width size.width, discard it if it's whitespace
+        if (text.length > 2*(size.width) &&
+            [self stringIsWhiteSpace:[text substringWithRange:range]] &&
+            [self stringIsWhiteSpace:[text substringWithRange:NSMakeRange(size.width, size.width)]]) {
+            // if is whitespace, remove if next string is white space as well
+            text = [text stringByReplacingCharactersInRange:range withString:@""];
+
+        } else {
+            break;
+        }
+
+    }
+
+    return text;
+}
+
+- (BOOL)stringIsWhiteSpace:(NSString *)str
+{
+    NSCharacterSet *charSet = [NSCharacterSet whitespaceAndNewlineCharacterSet];
+    NSString *trimmedString = [str stringByTrimmingCharactersInSet:charSet];
+    return (trimmedString == nil || [trimmedString isEqualToString:@""]);
+}
 
 
 @end
