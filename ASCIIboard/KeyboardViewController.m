@@ -16,8 +16,7 @@
 #define BRUSH_SIZE_MEDIUM 15.0f
 #define BRUSH_SIZE_LARGE 20.0f
 
-#define ASCIIBOARD_LANDSCAPE_HEIGHT 203
-#define ASCIIBOARD_PORTRAIT_HEIGHT 256
+#define ASKEY_HEIGHT 250
 
 
 @interface KeyboardViewController () <LIVBubbleButtonDelegate, ACEDrawingViewDelegate>
@@ -25,6 +24,7 @@
     BOOL mouseSwiped;
     CGPoint lastPoint;
     LIVBubbleMenu *brushMenu;
+    NSLayoutConstraint *_heightConstraint;
 }
 
 
@@ -34,7 +34,7 @@
 @property (nonatomic, strong) UIButton    *clearButton;
 @property (nonatomic, strong) UIButton    *enterButton;
 @property (nonatomic, strong) UIButton    *backspaceButton;
- @property (nonatomic, strong) UIButton    *undoButton;
+@property (nonatomic, strong) UIButton    *undoButton;
 @property (nonatomic, strong) ACEDrawingView *drawImage;
 @property (nonatomic) float brushSize;
 
@@ -53,6 +53,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    // self.view.translatesAutoresizingMaskIntoConstraints = NO;
+
+    // _heightConstraint =
+    //     [NSLayoutConstraint constraintWithItem: self.view
+    //                                  attribute: NSLayoutAttributeHeight
+    //                                  relatedBy: NSLayoutRelationEqual
+    //                                     toItem: nil
+    //                                  attribute: NSLayoutAttributeNotAnAttribute
+    //                                 multiplier: 0.0
+    //                                   constant: ASKEY_HEIGHT];
+    // [self.view mas_makeConstraints:^(MASConstraintMaker *make) {
+    //     make.height.equalTo(@ASKEY_HEIGHT).with.priority(1000);
+    // }];
+
+    self.view.backgroundColor = [UIColor redColor];
 
     // INITS
     self.insertHistory = [[NSMutableArray alloc] init];
@@ -157,38 +172,39 @@
 
 - (void)establishPortraitIPhoneConstraints
 {
+
     [self.brushButton mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.height.equalTo(self.view.mas_height).multipliedBy(0.25*0.95);
+        make.height.equalTo(self.view).multipliedBy(0.25*0.95);
         make.width.equalTo(self.brushButton.mas_height);
         make.left.equalTo(self.view).offset(2);
         make.top.equalTo(self.view).offset(2);
     }];
     [self.nextKeyboardButton mas_remakeConstraints:^(MASConstraintMaker *make){
-        make.height.equalTo(self.view.mas_height).multipliedBy(0.25*0.95);
+        make.height.equalTo(self.view).multipliedBy(0.25*0.95);
         make.width.equalTo(self.nextKeyboardButton.mas_height);
         make.left.equalTo(self.view.mas_left).offset(2);
         make.bottom.equalTo(self.view.mas_bottom);
     }];
     [self.enterButton mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.height.equalTo(self.view.mas_height).multipliedBy(0.25*0.95);
+        make.height.equalTo(self.view).multipliedBy(0.25*0.95);
         make.width.equalTo(self.enterButton.mas_height);
         make.right.equalTo(self.view).offset(-2);
         make.top.equalTo(self.view).offset(2);
     }];
     [self.backspaceButton mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.height.equalTo(self.view.mas_height).multipliedBy(0.25*0.95);
+        make.height.equalTo(self.view).multipliedBy(0.25*0.95);
         make.width.equalTo(self.backspaceButton.mas_height);
         make.right.equalTo(self.enterButton.mas_right);
         make.top.equalTo(self.enterButton.mas_bottom).offset(2);
     }];
      [self.undoButton mas_remakeConstraints:^(MASConstraintMaker *make) {
-         make.height.equalTo(self.view.mas_height).multipliedBy(0.25*0.95);
+         make.height.equalTo(self.view).multipliedBy(0.25*0.95);
          make.width.equalTo(self.undoButton.mas_height);
          make.right.equalTo(self.clearButton.mas_right);
          make.bottom.equalTo(self.clearButton.mas_top).offset(-2);
      }];
     [self.clearButton mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.height.equalTo(self.view.mas_height).multipliedBy(0.25*0.95);
+        make.height.equalTo(self.view).multipliedBy(0.25*0.95);
         make.width.equalTo(self.clearButton.mas_height);
         make.right.equalTo(self.enterButton.mas_right);
         make.bottom.equalTo(self.view.mas_bottom);
