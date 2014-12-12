@@ -12,9 +12,9 @@
 #import <ACEDrawingView/ACEDrawingView.h>
 #import <LIVBubbleMenu/LIVBubbleMenu.h>
 
-#define BRUSH_SIZE_SMALL 8.0f
-#define BRUSH_SIZE_MEDIUM 11.0f
-#define BRUSH_SIZE_LARGE 15.0f
+#define BRUSH_SIZE_SMALL 11.0f
+#define BRUSH_SIZE_MEDIUM 15.0f
+#define BRUSH_SIZE_LARGE 20.0f
 
 #define ASCIIBOARD_LANDSCAPE_HEIGHT 203
 #define ASCIIBOARD_PORTRAIT_HEIGHT 256
@@ -77,6 +77,7 @@
     drawImageBackground.layer.shadowRadius = 5.0f;
 
     self.drawImage = [[ACEDrawingView alloc] initWithFrame:drawImageBackground.frame];
+    self.drawImage.lineWidth = BRUSH_SIZE_MEDIUM;
     self.drawImage.delegate = self;
 
     [drawImageBackground addSubview:self.drawImage];
@@ -285,7 +286,12 @@
 - (void)enterButtonPressed:(UIButton *)sender
 {
     NSString *text = [self.drawImage.image getASCII];
-    if ([text hasPrefix:@" "]) {
+
+    NSCharacterSet *charSet = [NSCharacterSet whitespaceCharacterSet];
+    NSString *trimmedString = [[self.textDocumentProxy documentContextBeforeInput] stringByTrimmingCharactersInSet:charSet];
+    if ((trimmedString == nil || [trimmedString isEqualToString:@""]) && [text hasPrefix:@" "]) {
+        // it's empty or contains only white spaces
+        // therefore, insert period
         text = [text stringByReplacingCharactersInRange:NSMakeRange(0, 1) withString:@"."];
     }
     [self.insertHistory insertObject:@([text length]) atIndex:0];

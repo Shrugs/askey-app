@@ -15,7 +15,7 @@
 {
 
     // number of ASCII "pixels" in widthxheight
-    CGSize numBlocks = CGSizeMake(20, 10);
+    CGSize numBlocks = CGSizeMake(40, 10);
 
     CGImageRef imageRef = [self CGImage];
     CGSize picSize;
@@ -28,16 +28,25 @@
 
     float maxAlpha = blockSize.width * blockSize.height * 1.0;
 
-    NSArray *alphaChars = [NSArray arrayWithObjects:@"  ",
-                                                    @"::",
-                                                    @"~",
-                                                    @"^",
-                                                    @"+",
-                                                    @"o",
-                                                    @"()",
-                                                    @"[]",
-                                                    @"8",
-                                                    @"#",
+    NSArray *alphaChars = [NSArray arrayWithObjects:@" ",
+                                                    @".",
+                                                    @".",
+                                                    @",",
+                                                    @",",
+                                                    @"'",
+                                                    @"'",
+                                                    @":",
+                                                    @";",
+                                                    @"!",
+                                                    // @"'",
+                                                    // @"~",
+                                                    // @"^",
+                                                    // @"+",
+                                                    // @"o",
+                                                    // @"()",
+                                                    // @"[]",
+                                                    // @"8",
+                                                    // @"#",
                                                     nil];
 
 
