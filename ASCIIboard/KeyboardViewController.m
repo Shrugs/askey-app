@@ -68,21 +68,30 @@
     [self.view setBackgroundColor:[UIColor whiteColor]];
 
     // setup draw image
-    self.drawImage = [[ACEDrawingView alloc] initWithFrame:self.view.frame];
+    UIView *drawImageBackground = [[UIView alloc] initWithFrame:self.view.frame];
+    drawImageBackground.backgroundColor = [UIColor whiteColor];
+    drawImageBackground.layer.masksToBounds = NO;
+    drawImageBackground.layer.shadowColor = [UIColor blackColor].CGColor;
+    drawImageBackground.layer.shadowOffset = CGSizeMake(0.0f, 5.0f);
+    drawImageBackground.layer.shadowOpacity = 0.5f;
+    drawImageBackground.layer.shadowRadius = 5.0f;
+
+    self.drawImage = [[ACEDrawingView alloc] initWithFrame:drawImageBackground.frame];
     self.drawImage.delegate = self;
-    [self.drawImage setBackgroundColor:[UIColor whiteColor]];
-    self.drawImage.layer.masksToBounds = NO;
-    self.drawImage.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.drawImage.layer.shadowOffset = CGSizeMake(0.0f, 5.0f);
-    self.drawImage.layer.shadowOpacity = 0.5f;
-    self.drawImage.layer.shadowRadius = 5.0f;
-    [self.drawImage setNeedsDisplay];
-    [self.view addSubview:self.drawImage];
+
+    [drawImageBackground addSubview:self.drawImage];
+    [self.view addSubview:drawImageBackground];
+
+    [drawImageBackground mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.equalTo(self.view);
+        make.width.equalTo(drawImageBackground.mas_height).multipliedBy(0.9);
+        make.center.equalTo(self.view);
+    }];
 
     [self.drawImage mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.height.equalTo(self.view);
-        make.width.equalTo(self.drawImage.mas_height).multipliedBy(0.9);
-        make.center.equalTo(self.view);
+        make.height.equalTo(drawImageBackground);
+        make.width.equalTo(drawImageBackground);
+        make.center.equalTo(drawImageBackground);
     }];
 
     // set up top border thing
