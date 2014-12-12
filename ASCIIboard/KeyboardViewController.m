@@ -25,6 +25,7 @@
     CGPoint lastPoint;
     LIVBubbleMenu *brushMenu;
     NSLayoutConstraint *_heightConstraint;
+    UIView *kludge;
 }
 
 
@@ -53,21 +54,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    // self.view.translatesAutoresizingMaskIntoConstraints = NO;
+    self.view.translatesAutoresizingMaskIntoConstraints = NO;
 
-    // _heightConstraint =
-    //     [NSLayoutConstraint constraintWithItem: self.view
-    //                                  attribute: NSLayoutAttributeHeight
-    //                                  relatedBy: NSLayoutRelationEqual
-    //                                     toItem: nil
-    //                                  attribute: NSLayoutAttributeNotAnAttribute
-    //                                 multiplier: 0.0
-    //                                   constant: ASKEY_HEIGHT];
-    // [self.view mas_makeConstraints:^(MASConstraintMaker *make) {
-    //     make.height.equalTo(@ASKEY_HEIGHT).with.priority(1000);
-    // }];
-
-    self.view.backgroundColor = [UIColor redColor];
+    // LOAD KLUDGE so that height can change -_-
+    [self loadKludge];
 
     // INITS
     self.insertHistory = [[NSMutableArray alloc] init];
@@ -168,6 +158,31 @@
 
     [self establishConstraints];
 
+}
+
+- (void)makeKeyboardHeight:(float)height
+{
+    [self.view mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.height.equalTo(@(height));
+    }];
+}
+
+- (void)loadKludge
+{
+    if (kludge == nil) {
+        kludge = [[UIView alloc] init];
+        [self.view addSubview:kludge];
+        kludge.translatesAutoresizingMaskIntoConstraints = NO;
+        kludge.hidden = YES;
+
+        [kludge mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.view);
+            make.right.equalTo(self.view.mas_left);
+            make.top.equalTo(self.view);
+            make.bottom.equalTo(self.view.mas_top);
+        }];
+
+    }
 }
 
 - (void)establishPortraitIPhoneConstraints
