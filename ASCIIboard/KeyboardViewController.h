@@ -10,10 +10,16 @@
 #import "MCDrawSheet.h"
 #import <LIVBubbleMenu/LIVBubbleMenu.h>
 
+// DEBUG
+#define DEBUG_SPACERS NO
+
+// BRUSH SIZES
 #define BRUSH_SIZE_SMALL 11.0f
 #define BRUSH_SIZE_MEDIUM 15.0f
 #define BRUSH_SIZE_LARGE 20.0f
 
+
+// ASKEY VALUES
 #define ASKEY_HEIGHT 300
 // same ratio as 8.5x11 paper
 #define ASKEY_WIDTH_RATIO 0.772727273f

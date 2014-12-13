@@ -12,9 +12,6 @@
 #import "UIColor+Random.h"
 
 
-// DEBUG
-#define DEBUG_SPACERS NO
-
 @implementation KeyboardViewController
 
 #pragma mark - KeyboardViewController
