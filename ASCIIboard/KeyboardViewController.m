@@ -386,7 +386,7 @@
 
 - (void)enterButtonPressed:(UIButton *)sender
 {
-    CGSize numBlocks = CGSizeMake(40, 10);
+    CGSize numBlocks = CGSizeMake(40, 11);
     NSString *text = [self.currentSheet.drawView.image getASCIIWithResolution:numBlocks];
 
     // only insert period at beginning of string if necessary
@@ -398,7 +398,7 @@
     // so this condition is broken because textDocumentProxy isn't behaving
     // if ((trimmedString == nil || [trimmedString isEqualToString:@""]) && [text hasPrefix:@" "]) {
     // so for now, use this
-    if ([self.insertHistory count] == 0) {
+    if ([self.insertHistory count] == 0 && [text hasPrefix:@" "]) {
         // it's empty or contains only white spaces
         // therefore, strip extra white space
         text = [self removeExtraWhiteSpaceLinesFromText:text withSize:numBlocks];
