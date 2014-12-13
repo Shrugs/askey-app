@@ -31,10 +31,15 @@
 #define RELATIVE_BUTTON_SIZE 0.75
 #define BUTTON_HEIGHT (ASKEY_HEIGHT * 0.25 * RELATIVE_BUTTON_SIZE)
 
+// height of exposed portion of sheet, relative to keyboard height
+#define RELATIVE_SHEET_EXPOSED_HEIGHT 0.15
+// base velocity of sheets
+#define SHEET_VELOCITY 10
+// initial delay in seconds for first sheet to slide in
+#define INITIAL_SHEET_DELAY 0.3f
+
 @interface KeyboardViewController : UIInputViewController  <LIVBubbleButtonDelegate, ACEDrawingViewDelegate, MCDrawSheetDelegate>
 {
-    BOOL mouseSwiped;
-    CGPoint lastPoint;
     LIVBubbleMenu *brushMenu;
     NSLayoutConstraint *_heightConstraint;
     UIView *kludge;
@@ -51,6 +56,7 @@
 // SHEETS
 @property (nonatomic, strong) MCDrawSheet *currentSheet;
 @property (nonatomic, strong) MCDrawSheet *previousSheet;
+@property (nonatomic, strong) UIView *sheetBackground;
 
 // array of images that must be retained
 @property (nonatomic, retain) NSArray *brushImagesArray;

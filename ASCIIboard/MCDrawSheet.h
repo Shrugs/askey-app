@@ -32,8 +32,6 @@
 
 @property (nonatomic, strong) ACEDrawingView *drawView;
 
-@property (nonatomic, strong) MASConstraint *centerConstraint;
-
 - (void)listenForGestures;
 - (void)unlistenForGestures;
 

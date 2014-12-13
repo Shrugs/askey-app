@@ -16,6 +16,8 @@
     if (self) {
         // body: 253, 253, 253
         // shadow 132, 133, 136
+        // selected 11, 106, 255
+        // selected shadow 0, 94, 177
         [self setImage:image forState:UIControlStateNormal];
         [self setAdjustsImageWhenDisabled:YES];
 

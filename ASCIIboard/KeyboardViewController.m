@@ -10,6 +10,7 @@
 #import "Masonry.h"
 #import "UIImage+ASCII.h"
 #import "UIColor+Random.h"
+#import "POP.h"
 
 
 @implementation KeyboardViewController
@@ -35,16 +36,10 @@
     [self.view setBackgroundColor:[UIColor colorWithRed:0.863 green:.8671875 blue:.8828125 alpha:1.000]];
 
     // setup draw sheets
-    self.currentSheet = [[MCDrawSheet alloc] init];
-    self.currentSheet.delegate = self;
-    self.currentSheet.drawView.lineWidth = BRUSH_SIZE_MEDIUM;
-    self.currentSheet.drawView.delegate = self;
-    [self.view addSubview:self.currentSheet];
-    [self.currentSheet mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.height.equalTo(self.view).multipliedBy(ASKEY_HEIGHT_FRACTION);
-        make.width.equalTo(self.currentSheet.mas_height).multipliedBy(ASKEY_WIDTH_RATIO);
-        self.currentSheet.centerConstraint = make.center.equalTo(self.view);
-    }];
+
+    self.sheetBackground = [[UIView alloc] init];
+    self.sheetBackground.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:self.sheetBackground];
 
     // set up top border thing
     UIView *borderView = [[UIView alloc] init];
@@ -73,6 +68,18 @@
     [self makeKeyboardHeight:ASKEY_HEIGHT];
 
     [self updateButtonStatus];
+
+
+    MCDrawSheet *firstSheet = [self generateDrawSheet];
+
+    // sheet constraints (they're actually not shitty)
+    [self.sheetBackground mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.equalTo(self.view);
+        make.width.equalTo(firstSheet.mas_height).multipliedBy(ASKEY_WIDTH_RATIO);
+        make.center.equalTo(self.view);
+    }];
+
+    [NSTimer scheduledTimerWithTimeInterval:INITIAL_SHEET_DELAY target:self selector:@selector(animateSheetInWithTimer:) userInfo:firstSheet repeats:NO];
 
 
 }
@@ -190,12 +197,12 @@
     }];
     [spacerLeftRight mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.width.and.height.equalTo(spacerLeftLeft);
-        make.right.equalTo(self.currentSheet.mas_left);
+        make.right.equalTo(self.sheetBackground.mas_left);
         make.centerY.equalTo(self.view);
     }];
     [spacerRightLeft mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.width.and.height.equalTo(spacerLeftLeft);
-        make.left.equalTo(self.currentSheet.mas_right);
+        make.left.equalTo(self.sheetBackground.mas_right);
         make.centerY.equalTo(self.view);
     }];
     [spacerRightRight mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -283,6 +290,7 @@
         make.top.equalTo(((UIView *)spacers[3]).mas_bottom);
         make.bottom.equalTo(((UIView *)spacers[4]).mas_top);
     }];
+
 }
 
 - (void)updateViewConstraints {
@@ -381,7 +389,7 @@
     // change to eraser here
     self.currentSheet.drawView.drawTool = ACEDrawingToolTypeEraser;
     self.currentSheet.drawView.lineWidth = BRUSH_SIZE_MEDIUM;
-    // [self.currentSheet listenForGestures];
+    [self.currentSheet listenForGestures];
 }
 
 - (void)enterButtonPressed:(UIButton *)sender
@@ -408,6 +416,7 @@
     [self.insertHistory insertObject:@([text length]) atIndex:0];
     [self.textDocumentProxy insertText:text];
     [self updateButtonStatus];
+    [self incrementSheets];
 }
 
 - (void)backspaceButtonPressed:(UIButton *)sender
@@ -439,6 +448,33 @@
 {
     // moves both sheets upwards, making a new sheet after previousSheet is out of the view
     // makes currentSheet previousSheet and then makes _newSheet currentSheet
+    if (self.previousSheet != nil) {
+        // animate out and then reassign
+        POPSpringAnimation *anim = [self.previousSheet pop_animationForKey:@"previousSheetSlideOut"];
+        if (!anim) {
+            anim = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerPositionY];
+        }
+        anim.toValue = @(-ASKEY_HEIGHT);
+        anim.velocity = @(SHEET_VELOCITY);
+        anim.name = @"previousSheetSlideOut";
+        [self.previousSheet pop_addAnimation:anim forKey:@"previousSheetSlideOut"];
+    }
+    // now pop them into position!
+
+    // CURRENT SHEET
+    POPSpringAnimation *anim = [self.currentSheet pop_animationForKey:@"currentSheetSlideOut"];
+    if (!anim) {
+        anim = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerPositionY];
+    }
+    anim.toValue = @((-self.currentSheet.frame.size.height + RELATIVE_SHEET_EXPOSED_HEIGHT * ASKEY_HEIGHT)/2);
+    anim.velocity = @(SHEET_VELOCITY);
+    anim.name = @"currentSheetSlideOut";
+    [self.currentSheet pop_addAnimation:anim forKey:@"currentSheetSlideOut"];
+
+    // NEW SHEET
+    MCDrawSheet *newSheet = [self generateDrawSheet];
+    [NSTimer scheduledTimerWithTimeInterval:INITIAL_SHEET_DELAY target:self selector:@selector(animateSheetInWithTimer:) userInfo:newSheet repeats:NO];
+
 
 }
 
@@ -450,31 +486,42 @@
 
 - (void)drawSheet:(MCDrawSheet *)sheet wasMovedWithGestureRecognizer:(UIPanGestureRecognizer *)panGestureRecognizer
 {
+
+    static CGFloat lastY = 0;
+
     CGPoint touchLocation = [panGestureRecognizer locationInView:self.view];
 
     switch ([panGestureRecognizer state]) {
-        case UIGestureRecognizerStateBegan:
-            NSLog(@"GESTURE BEGAN");
+        case UIGestureRecognizerStateBegan: {
             // get initial point
-            break;
+            lastY = touchLocation.y;
 
-        case UIGestureRecognizerStateChanged:
+            NSLog(@"GESTURE BEGAN");
+            break;
+        }
+        case UIGestureRecognizerStateChanged: {
             // follow finger delta on vertical axis
+            CGFloat dy = touchLocation.y - lastY;
+            lastY = touchLocation.y;
+            self.previousSheet.center = CGPointMake(self.previousSheet.center.x, self.previousSheet.center.y + dy);
+            self.currentSheet.center = CGPointMake(self.currentSheet.center.x, self.currentSheet.center.y + dy);
+
             NSLog(@"GESTURE CHANGED");
             break;
-
-        case UIGestureRecognizerStateEnded:
+        }
+        case UIGestureRecognizerStateEnded: {
             // if we were throwing with enough velocity in a certain direction, move to that position
             // otherwise, do position threshold to check for new position
             // move to that position with any initial velocity
             NSLog(@"GESTURE ENDED");
+            NSLog(@"%@", NSStringFromCGRect(self.currentSheet.frame));
             break;
-
-        default:
+        }
+        default: {
             break;
+        }
     }
 
-    self.currentSheet.center = touchLocation;
 }
 
 - (void)drawSheet:(MCDrawSheet *)sheet wasTappedWithGestureRecognizer:(UITapGestureRecognizer *)tapGestureRecognizer
@@ -556,6 +603,43 @@
     }
 }
 
+- (MCDrawSheet *)generateDrawSheet
+{
+
+    MCDrawSheet *sheet = [[MCDrawSheet alloc] initWithFrame:CGRectMake(0, ASKEY_HEIGHT, 0, 0)];
+    sheet.delegate = self;
+    sheet.drawView.lineWidth = BRUSH_SIZE_MEDIUM;
+    sheet.drawView.delegate = self;
+    [self.sheetBackground addSubview:sheet];
+    [sheet mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.equalTo(self.view).multipliedBy(ASKEY_HEIGHT_FRACTION);
+        make.width.equalTo(sheet.mas_height).multipliedBy(ASKEY_WIDTH_RATIO);
+        make.centerX.equalTo(self.sheetBackground);
+    }];
+    return sheet;
+}
+
+- (void)animateSheetInWithTimer:(NSTimer *)timer
+{
+    return [self animateSheetIn:[timer userInfo]];
+}
+
+- (void)animateSheetIn:(MCDrawSheet *)sheet
+{
+    // NEW SHEET
+    POPSpringAnimation *inAnim = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerPositionY];
+    inAnim.toValue = @(self.sheetBackground.center.y);
+    inAnim.velocity = @(-SHEET_VELOCITY);
+    inAnim.name = @"slideNewSheetIn";
+    inAnim.completionBlock = ^(POPAnimation *anim, BOOL finished) {
+        NSLog(@"new sheet in");
+        self.previousSheet = self.currentSheet;
+        self.currentSheet = sheet;
+
+        [self.previousSheet listenForGestures];
+    };
+    [sheet pop_addAnimation:inAnim forKey:@"slideNewSheetIn"];
+}
 
 @end
 
