@@ -1,5 +1,5 @@
 link_with 'ASCIIboardContainer', 'ASCIIboard'
 pod 'Masonry'
-pod 'LIVBubbleMenu', :git => 'https://github.com/Shrugs/LIVBubbleMenu-iOS.git', :branch => 'master'
+pod 'LIVBubbleMenu', :git => 'https://github.com/Shrugs/LIVBubbleMenu-iOS.git', :branch => 'custom-buttons'
 pod 'ACEDrawingView'
 pod 'pop', '~> 1.0'

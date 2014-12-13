@@ -109,6 +109,8 @@
     // BACKSPACE BUTTON
     self.backspaceButton = [[AKButton alloc] initWithImage:[UIImage imageNamed:@"backspace"] andDiameter:BUTTON_HEIGHT];
     [self.backspaceButton addTarget:self action:@selector(backspaceButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [self.backspaceButton addTarget:self action:@selector(backspaceButtonRepeat:) forControlEvents:UIControlEventTouchDownRepeat];
+
 
     // UNDO BUTTON
     self.undoButton = [[AKButton alloc] initWithImage:[UIImage imageNamed:@"undo"] andDiameter:BUTTON_HEIGHT];
@@ -344,6 +346,8 @@
     brushMenu.delegate = self;
 
     [brushMenu show];
+    self.brushButton.enabled = NO;
+    [self.view bringSubviewToFront:self.brushButton];
 }
 
 - (void)clearButtonPressed:(UIButton *)sender
@@ -380,8 +384,8 @@
         // and insert period if necessary
         text = [text stringByReplacingCharactersInRange:NSMakeRange(0, 1) withString:@"."];
     }
-    [self.insertHistory insertObject:@([text length]) atIndex:0];
-    if (text != nil) {
+    if (text != nil && text.length) {
+        [self.insertHistory insertObject:@([text length]) atIndex:0];
         [self.textDocumentProxy insertText:text];
     }
     [self updateButtonStatus];
@@ -396,7 +400,15 @@
         for (int i = 0; i < [lastTextCount intValue]; i++) {
             [self.textDocumentProxy deleteBackward];
         }
+    } else {
+        [self.textDocumentProxy deleteBackward];
     }
+    [self updateButtonStatus];
+}
+- (void)backspaceButtonRepeat:(UIButton *)sender
+{
+    NSLog(@"REPEATING BACKSPACE");
+    [self.textDocumentProxy deleteBackward];
     [self updateButtonStatus];
 }
 - (void)undoButtonPressed:(UIButton *)sender
@@ -407,8 +419,10 @@
 
 - (void)updateButtonStatus
 {
+    // enable button if there is still stuff to backspace
     self.undoButton.enabled = [self.currentSheet.drawView canUndo];
-    self.backspaceButton.enabled = (BOOL)[self.insertHistory count];
+    self.backspaceButton.enabled = (BOOL)[self.insertHistory count] ||
+                                   !([self.textDocumentProxy documentContextBeforeInput] == nil || [[self.textDocumentProxy documentContextBeforeInput] isEqualToString:@""]);
 }
 
 #pragma mark - MCDrawSheet Movement
@@ -624,7 +638,7 @@
 
 //The bubble menu has been hidden
 -(void)livBubbleMenuDidHide:(LIVBubbleMenu *)bubbleMenu {
-
+    self.brushButton.enabled = YES;
 }
 
 #pragma mark - Utils

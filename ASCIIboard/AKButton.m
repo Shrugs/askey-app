@@ -7,17 +7,20 @@
 //
 
 #import "AKButton.h"
+#import "POP.h"
 
 @implementation AKButton
 
 - (id)initWithImage:(UIImage *)image andDiameter:(float)diameter
 {
-    self = [UIButton buttonWithType:UIButtonTypeCustom];
+    self = [[self class] buttonWithType:UIButtonTypeCustom];
     if (self) {
         // body: 253, 253, 253
         // shadow 132, 133, 136
+        // highlighted: 197, 197, 197
         // selected 11, 106, 255
         // selected shadow 0, 94, 177
+
         [self setImage:image forState:UIControlStateNormal];
         [self setAdjustsImageWhenDisabled:YES];
 
@@ -31,9 +34,61 @@
         self.layer.shadowOffset = CGSizeMake(0.0f, 2.0f);
         self.layer.shadowOpacity = 1.0f;
         self.layer.shadowRadius = 1.0f;
-
+        [self addTarget:self action:@selector(touchDownInside:) forControlEvents:UIControlEventTouchDown];
+        [self addTarget:self action:@selector(touchAll:) forControlEvents:UIControlEventAllTouchEvents];
     }
     return self;
+}
+
+- (void)touchDownInside:(AKButton *)btn
+{
+    // cancel a previous animation
+    POPSpringAnimation *scaleUpAnim = [self.layer pop_animationForKey:@"scaleUp"];
+    if (scaleUpAnim) {
+        [self.layer removeAnimationForKey:@"scaleUp"];
+    }
+
+    // bounce to smaller size
+    POPBasicAnimation *anim = [self.layer pop_animationForKey:@"scaleDown"];
+    if (!anim) {
+        anim = [POPBasicAnimation animationWithPropertyNamed:kPOPLayerScaleXY];
+    }
+    anim.toValue = [NSValue valueWithCGSize:CGSizeMake(0.9, 0.9)];
+    anim.duration = 0.1f;
+    [self.layer pop_addAnimation:anim forKey:@"scaleDown"];
+}
+- (void)touchUpInside:(AKButton *)btn
+{
+    // bounce back to normal size
+
+    POPBasicAnimation *oldAnim = [self.layer pop_animationForKey:@"scaleDown"];
+    if (oldAnim) {
+        oldAnim.completionBlock = ^(POPAnimation *oldAnim, BOOL finished) {
+            [self scaleUp];
+        };
+    } else {
+        [self scaleUp];
+    }
+
+}
+
+- (void)touchAll:(AKButton *)btn
+{
+    if(![btn isTracking]) {
+        [self touchUpInside:btn];
+    }
+}
+
+- (void)scaleUp
+{
+    POPSpringAnimation *anim = [self.layer pop_animationForKey:@"scaleUp"];
+    if (!anim) {
+        anim = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerScaleXY];
+    }
+    anim.toValue = [NSValue valueWithCGSize:CGSizeMake(1, 1)];
+    anim.springBounciness = 20.0f;
+    anim.springSpeed = 15.0f;
+    [self.layer pop_addAnimation:anim forKey:@"scaleUp"];
 }
 
 @end
