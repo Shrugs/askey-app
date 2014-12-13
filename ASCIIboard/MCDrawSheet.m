@@ -52,7 +52,7 @@
 - (void)listenForGestures
 {
     coverView = [[UIView alloc] initWithFrame:self.bounds];
-    coverView.backgroundColor = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.1f];
+    coverView.backgroundColor = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.001f];
     panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
     [coverView addGestureRecognizer:panGestureRecognizer];
     tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];

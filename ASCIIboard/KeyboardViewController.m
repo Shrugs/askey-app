@@ -38,7 +38,7 @@
     // setup draw sheets
 
     self.sheetBackground = [[UIView alloc] init];
-    self.sheetBackground.backgroundColor = [UIColor clearColor];
+    self.sheetBackground.backgroundColor = [UIColor randomColor];
     [self.view addSubview:self.sheetBackground];
 
     // set up top border thing
@@ -73,7 +73,7 @@
     MCDrawSheet *firstSheet = [self generateDrawSheet];
 
     // sheet constraints (they're actually not shitty)
-    [self.sheetBackground mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.sheetBackground mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.height.equalTo(self.view);
         make.width.equalTo(firstSheet.mas_height).multipliedBy(ASKEY_WIDTH_RATIO);
         make.center.equalTo(self.view);
@@ -414,7 +414,9 @@
         text = [text stringByReplacingCharactersInRange:NSMakeRange(0, 1) withString:@"."];
     }
     [self.insertHistory insertObject:@([text length]) atIndex:0];
-    [self.textDocumentProxy insertText:text];
+    if (text != nil) {
+        [self.textDocumentProxy insertText:text];
+    }
     [self updateButtonStatus];
     [self incrementSheets];
 }
@@ -450,6 +452,7 @@
     // makes currentSheet previousSheet and then makes _newSheet currentSheet
     if (self.previousSheet != nil) {
         // animate out and then reassign
+        MCDrawSheet *tempSheet = self.previousSheet;
         POPSpringAnimation *anim = [self.previousSheet pop_animationForKey:@"previousSheetSlideOut"];
         if (!anim) {
             anim = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerPositionY];
@@ -457,7 +460,10 @@
         anim.toValue = @(-ASKEY_HEIGHT);
         anim.velocity = @(SHEET_VELOCITY);
         anim.name = @"previousSheetSlideOut";
-        [self.previousSheet pop_addAnimation:anim forKey:@"previousSheetSlideOut"];
+        anim.completionBlock = ^(POPAnimation *anim, BOOL finished) {
+            [tempSheet removeFromSuperview];
+        };
+        [tempSheet pop_addAnimation:anim forKey:@"previousSheetSlideOut"];
     }
     // now pop them into position!
 
@@ -471,10 +477,15 @@
     anim.name = @"currentSheetSlideOut";
     [self.currentSheet pop_addAnimation:anim forKey:@"currentSheetSlideOut"];
 
+    POPBasicAnimation *opacityAnimation = [POPBasicAnimation animationWithPropertyNamed:kPOPLayerOpacity];
+    opacityAnimation.toValue = @(0.65);
+    [self.currentSheet.layer pop_addAnimation:opacityAnimation forKey:@"opacityAnimation"];
+
     // NEW SHEET
     MCDrawSheet *newSheet = [self generateDrawSheet];
     [NSTimer scheduledTimerWithTimeInterval:INITIAL_SHEET_DELAY target:self selector:@selector(animateSheetInWithTimer:) userInfo:newSheet repeats:NO];
 
+    self.enterButton.enabled = NO;
 
 }
 
@@ -606,16 +617,19 @@
 - (MCDrawSheet *)generateDrawSheet
 {
 
-    MCDrawSheet *sheet = [[MCDrawSheet alloc] initWithFrame:CGRectMake(0, ASKEY_HEIGHT, 0, 0)];
+    MCDrawSheet *sheet = [[MCDrawSheet alloc] initWithFrame:CGRectMake(0,
+                                                                       ASKEY_HEIGHT,
+                                                                       ASKEY_HEIGHT*ASKEY_HEIGHT_FRACTION*ASKEY_WIDTH_RATIO,
+                                                                       ASKEY_HEIGHT*ASKEY_HEIGHT_FRACTION)];
     sheet.delegate = self;
     sheet.drawView.lineWidth = BRUSH_SIZE_MEDIUM;
     sheet.drawView.delegate = self;
     [self.sheetBackground addSubview:sheet];
-    [sheet mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.height.equalTo(self.view).multipliedBy(ASKEY_HEIGHT_FRACTION);
-        make.width.equalTo(sheet.mas_height).multipliedBy(ASKEY_WIDTH_RATIO);
-        make.centerX.equalTo(self.sheetBackground);
-    }];
+    // [sheet mas_remakeConstraints:^(MASConstraintMaker *make) {
+    //     make.height.equalTo(self.view).multipliedBy(ASKEY_HEIGHT_FRACTION);
+    //     make.width.equalTo(sheet.mas_height).multipliedBy(ASKEY_WIDTH_RATIO);
+    //     make.centerX.equalTo(self.sheetBackground);
+    // }];
     return sheet;
 }
 
@@ -632,11 +646,18 @@
     inAnim.velocity = @(-SHEET_VELOCITY);
     inAnim.name = @"slideNewSheetIn";
     inAnim.completionBlock = ^(POPAnimation *anim, BOOL finished) {
-        NSLog(@"new sheet in");
         self.previousSheet = self.currentSheet;
+        NSLog(@"%@", self.currentSheet);
         self.currentSheet = sheet;
-
+        self.enterButton.enabled = YES;
         [self.previousSheet listenForGestures];
+
+        [self.sheetBackground mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.height.equalTo(self.view);
+            make.width.equalTo(self.currentSheet.mas_height).multipliedBy(ASKEY_WIDTH_RATIO);
+            make.center.equalTo(self.view);
+        }];
+
     };
     [sheet pop_addAnimation:inAnim forKey:@"slideNewSheetIn"];
 }
