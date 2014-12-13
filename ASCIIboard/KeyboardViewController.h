@@ -14,11 +14,11 @@
 #define BRUSH_SIZE_MEDIUM 15.0f
 #define BRUSH_SIZE_LARGE 20.0f
 
-#define ASKEY_HEIGHT 250
+#define ASKEY_HEIGHT 300
 // same ratio as 8.5x11 paper
 #define ASKEY_WIDTH_RATIO 0.772727273f
 // ratio of sheet height to view height
-#define ASKEY_HEIGHT_FRACTION 0.85f
+#define ASKEY_HEIGHT_FRACTION 0.8f
 
 @interface KeyboardViewController : UIInputViewController  <LIVBubbleButtonDelegate, ACEDrawingViewDelegate, MCDrawSheetDelegate>
 {
