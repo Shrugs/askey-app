@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "MCDrawSheet.h"
 #import <LIVBubbleMenu/LIVBubbleMenu.h>
+#import "AKButton.h"
 
 // DEBUG
 #define DEBUG_SPACERS NO
@@ -20,11 +21,15 @@
 
 
 // ASKEY VALUES
-#define ASKEY_HEIGHT 300
+#define ASKEY_HEIGHT 300.0
 // same ratio as 8.5x11 paper
 #define ASKEY_WIDTH_RATIO 0.772727273f
 // ratio of sheet height to view height
 #define ASKEY_HEIGHT_FRACTION 0.8f
+
+// size of buttons relative to a fouth of the view height
+#define RELATIVE_BUTTON_SIZE 0.75
+#define BUTTON_HEIGHT (ASKEY_HEIGHT * 0.25 * RELATIVE_BUTTON_SIZE)
 
 @interface KeyboardViewController : UIInputViewController  <LIVBubbleButtonDelegate, ACEDrawingViewDelegate, MCDrawSheetDelegate>
 {
@@ -36,13 +41,13 @@
 }
 
 // BUTTONS
-@property (nonatomic, strong) UIButton *brushButton;
-@property (nonatomic, strong) UIButton *nextKeyboardButton;
-@property (nonatomic, strong) UIButton *clearButton;
-@property (nonatomic, strong) UIButton *enterButton;
-@property (nonatomic, strong) UIButton *backspaceButton;
-@property (nonatomic, strong) UIButton *undoButton;
-@property (nonatomic, strong) UIButton *eraserButton;
+@property (nonatomic, strong) AKButton *brushButton;
+@property (nonatomic, strong) AKButton *nextKeyboardButton;
+@property (nonatomic, strong) AKButton *clearButton;
+@property (nonatomic, strong) AKButton *enterButton;
+@property (nonatomic, strong) AKButton *backspaceButton;
+@property (nonatomic, strong) AKButton *undoButton;
+@property (nonatomic, strong) AKButton *eraserButton;
 // SHEETS
 @property (nonatomic, strong) MCDrawSheet *currentSheet;
 @property (nonatomic, strong) MCDrawSheet *previousSheet;

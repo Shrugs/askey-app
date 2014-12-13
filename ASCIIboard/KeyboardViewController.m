@@ -25,14 +25,14 @@
     // INITS
     self.insertHistory = [[NSMutableArray alloc] init];
     self.brushImagesArray = [NSArray arrayWithObjects:
-                                [UIImage imageNamed:@"Brush-Button-Up-1.png"],
-                                [UIImage imageNamed:@"Brush-Button-Up-2.png"],
-                                [UIImage imageNamed:@"Brush-Button-Up-3.png"],
+                                [UIImage imageNamed:@"pen"],
+                                [UIImage imageNamed:@"pen"],
+                                [UIImage imageNamed:@"pen"],
                                 nil];
 
     // LAYOUT
-    // set bg color
-    [self.view setBackgroundColor:[UIColor whiteColor]];
+    // set bg color 220, 222, 226
+    [self.view setBackgroundColor:[UIColor colorWithRed:0.863 green:.8671875 blue:.8828125 alpha:1.000]];
 
     // setup draw sheets
     self.currentSheet = [[MCDrawSheet alloc] init];
@@ -59,50 +59,56 @@
         make.width.equalTo(self.view);
     }];
 
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+
+    [self createButtons];
+
+    // add constraints
+    [self establishConstraints];
+
+    [self makeKeyboardHeight:ASKEY_HEIGHT];
+
+    [self updateButtonStatus];
+
+
+}
+
+- (void)createButtons
+{
     // LEFT SIDE
 
     // BRUSH BUTTON
-    self.brushButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.brushButton setImage:[UIImage imageNamed:@"Edit-Button-Up.png"] forState:UIControlStateNormal];
-    [self.brushButton setImage:[UIImage imageNamed:@"Edit-Button-Down.png"] forState:UIControlStateHighlighted];
+    self.brushButton = [[AKButton alloc] initWithImage:[UIImage imageNamed:@"pen"] andDiameter:BUTTON_HEIGHT];
     [self.brushButton addTarget:self action:@selector(brushButtonPressed:) forControlEvents:UIControlEventTouchDown];
 
     // ERASER BUTTON
-    self.eraserButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.eraserButton setImage:[UIImage imageNamed:@"Edit-Button-Up.png"] forState:UIControlStateNormal];
-    [self.eraserButton setImage:[UIImage imageNamed:@"Edit-Button-Down.png"] forState:UIControlStateHighlighted];
+    self.eraserButton = [[AKButton alloc] initWithImage:[UIImage imageNamed:@"eraser"] andDiameter:BUTTON_HEIGHT];
     [self.eraserButton addTarget:self action:@selector(eraserButtonPressed:) forControlEvents:UIControlEventTouchDown];
 
     // NEXT BUTTON
-    self.nextKeyboardButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.nextKeyboardButton setImage:[UIImage imageNamed:@"Globe-Button-Up.png"] forState:UIControlStateNormal];
-    [self.nextKeyboardButton setImage:[UIImage imageNamed:@"Globe-Button-Down.png"] forState:UIControlStateHighlighted];
+    self.nextKeyboardButton = [[AKButton alloc] initWithImage:[UIImage imageNamed:@"globe"] andDiameter:BUTTON_HEIGHT];
     [self.nextKeyboardButton addTarget:self action:@selector(advanceToNextInputMode) forControlEvents:UIControlEventTouchUpInside];
 
     // RIGHT SIDE
 
     // ENTER BUTTON
-    self.enterButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.enterButton setImage:[UIImage imageNamed:@"Up-Button-Up.png"] forState:UIControlStateNormal];
-    [self.enterButton setImage:[UIImage imageNamed:@"Up-Button-Down.png"] forState:UIControlStateHighlighted];
+    self.enterButton = [[AKButton alloc] initWithImage:[UIImage imageNamed:@"return"] andDiameter:BUTTON_HEIGHT];
     [self.enterButton addTarget:self action:@selector(enterButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
 
     // BACKSPACE BUTTON
-    self.backspaceButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.backspaceButton setImage:[UIImage imageNamed:@"Delete-Button-Up.png"] forState:UIControlStateNormal];
-    [self.backspaceButton setImage:[UIImage imageNamed:@"Delete-Button-Down.png"] forState:UIControlStateHighlighted];
+    self.backspaceButton = [[AKButton alloc] initWithImage:[UIImage imageNamed:@"backspace"] andDiameter:BUTTON_HEIGHT];
     [self.backspaceButton addTarget:self action:@selector(backspaceButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
 
     // UNDO BUTTON
-    self.undoButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.undoButton setImage:[UIImage imageNamed:@"Undo-Button-Up.png"] forState:UIControlStateNormal];
-    [self.undoButton setImage:[UIImage imageNamed:@"Undo-Button-Down.png"] forState:UIControlStateHighlighted];
+    self.undoButton = [[AKButton alloc] initWithImage:[UIImage imageNamed:@"undo"] andDiameter:BUTTON_HEIGHT];
     [self.undoButton addTarget:self action:@selector(undoButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
 
     // CLEAR BUTTON
-    self.clearButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.clearButton setImage:[UIImage imageNamed:@"Clear-Button-Up.png"] forState:UIControlStateNormal];
-    [self.clearButton setImage:[UIImage imageNamed:@"Clear-Button-Down.png"] forState:UIControlStateHighlighted];
+    self.clearButton = [[AKButton alloc] initWithImage:[UIImage imageNamed:@"trash"] andDiameter:BUTTON_HEIGHT];
     [self.clearButton addTarget:self action:@selector(clearButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
 
 
@@ -115,20 +121,6 @@
     [self.view addSubview:self.backspaceButton];
     [self.view addSubview:self.undoButton];
     [self.view addSubview:self.clearButton];
-
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    // add constraints
-    [self establishConstraints];
-
-    [self makeKeyboardHeight:ASKEY_HEIGHT];
-
-    [self updateButtonStatus];
-
-
 }
 
 - (void)makeKeyboardHeight:(float)height
@@ -214,9 +206,6 @@
 
     int numSpacers = 5;
 
-    float buttonHeight = ASKEY_HEIGHT * 0.25 * 0.94;
-    NSLog(@"button height: %f", buttonHeight);
-
     NSMutableArray *spacers = [[NSMutableArray alloc] initWithCapacity:numSpacers];
 
     for (int i = 0; i < numSpacers; ++i) {
@@ -250,7 +239,7 @@
         make.left.equalTo(spacerLeftLeft.mas_right);
         make.right.equalTo(spacerLeftRight.mas_left);
         make.width.equalTo(self.brushButton.mas_height);
-        make.height.equalTo(@(buttonHeight));
+        make.height.equalTo(@(BUTTON_HEIGHT));
 
         // @TODO(Shrugs)
         make.centerY.equalTo(self.enterButton);
@@ -270,7 +259,7 @@
         make.left.equalTo(spacerRightLeft.mas_right);
         make.right.equalTo(spacerRightRight.mas_left);
         make.width.equalTo(self.enterButton.mas_height);
-        make.height.equalTo(@(buttonHeight));
+        make.height.equalTo(@(BUTTON_HEIGHT));
 
         make.top.equalTo(((UIView *)spacers[0]).mas_bottom);
         make.bottom.equalTo(((UIView *)spacers[1]).mas_top);
@@ -375,7 +364,9 @@
     brushMenu.bubblePopOutDuration = 0.3f;
     brushMenu.backgroundFadeDuration = 0.3f;
     brushMenu.backgroundAlpha = 0.3f;
+    brushMenu.easyButtons = YES;
     brushMenu.delegate = self;
+
     [brushMenu show];
 }
 
