@@ -38,7 +38,7 @@
     // setup draw sheets
 
     self.sheetBackground = [[UIView alloc] init];
-    self.sheetBackground.backgroundColor = [UIColor randomColor];
+    self.sheetBackground.backgroundColor = [UIColor clearColor];
     [self.view addSubview:self.sheetBackground];
 
     // set up top border thing
@@ -171,7 +171,7 @@
     }
 }
 
-- (void)establishPortraitIPhoneConstraints
+- (void)establishConstraints
 {
     // MAKE SPACERS
     UIView *spacerLeftLeft = [[UIView alloc] init];
@@ -296,41 +296,9 @@
 - (void)updateViewConstraints {
 
     [super updateViewConstraints];
-    // [self establishConstraints];
+
 
 }
-
-- (void)establishConstraints
-{
-    // @TODO(Shrugs) make iphone only?
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-        NSLog(@"[DEBUG] determineKeyboardNib: Enter iPad");
-        // iPad
-        if (self.view.frame.size.width > 1000) {
-            NSLog(@"[DEBUG] determineKeyboardNib: Enter iPad Landscape");
-            // landscape
-            NSLog(@"IPAD LANDSCAPE");
-        } else {
-            NSLog(@"[DEBUG] determineKeyboardNib: Enter iPad Portrait");
-            // portrait
-            NSLog(@"IPAD PORTRAIT");
-        }
-    } else {
-        // iPhone
-        if (self.view.frame.size.width > 500){
-            // landscape
-            [self advanceToNextInputMode];
-        } else if (self.view.frame.size.width > 450){
-            NSLog(@"[DEBUG] determineKeyboardNib: Enter iPhone 4 Portrait");
-            // portrait
-            [self establishPortraitIPhoneConstraints];
-        } else {
-            // NSLog(@"[DEBUG] determineKeyboardNib: Enter iPhone 5 Portrait");
-            [self establishPortraitIPhoneConstraints];
-        }
-    }
-}
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -389,7 +357,6 @@
     // change to eraser here
     self.currentSheet.drawView.drawTool = ACEDrawingToolTypeEraser;
     self.currentSheet.drawView.lineWidth = BRUSH_SIZE_MEDIUM;
-    [self.currentSheet listenForGestures];
 }
 
 - (void)enterButtonPressed:(UIButton *)sender
@@ -468,6 +435,8 @@
     // now pop them into position!
 
     // CURRENT SHEET
+    [self.currentSheet listenForGestures];
+    self.currentSheet.userInteractionEnabled = NO;
     POPSpringAnimation *anim = [self.currentSheet pop_animationForKey:@"currentSheetSlideOut"];
     if (!anim) {
         anim = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerPositionY];
@@ -493,11 +462,88 @@
 {
     // move both sheets down, dropping currentSheet into the void
     // makes previousSheet currentSheet and then makes previousSheet nil
+
+    self.enterButton.enabled = NO;
+
+
+    // CURRENT SHEET
+    POPSpringAnimation *anim = [self.currentSheet pop_animationForKey:@"currentSheetReset"];
+    if (!anim) {
+        anim = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerPositionY];
+    }
+    anim.toValue = @(ASKEY_HEIGHT + self.currentSheet.frame.size.height/2);
+    anim.velocity = @(SHEET_VELOCITY);
+    anim.name = @"currentSheetReset";
+    anim.completionBlock = ^(POPAnimation *anim, BOOL finished) {
+    };
+    [self.currentSheet pop_addAnimation:anim forKey:@"currentSheetReset"];
+
+
+    // PREVIOUS SHEET
+    [self.previousSheet unlistenForGestures];
+
+    // reset opacity
+    POPBasicAnimation *opacityAnimation = [POPBasicAnimation animationWithPropertyNamed:kPOPLayerOpacity];
+    opacityAnimation.toValue = @(1);
+    [self.previousSheet.layer pop_addAnimation:opacityAnimation forKey:@"opacityAnimation"];
+
+    // move to center
+    POPSpringAnimation *previousAnim = [self.previousSheet pop_animationForKey:@"currentSheetSlideOut"];
+    if (!previousAnim) {
+        previousAnim = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerPositionY];
+    }
+    previousAnim.toValue = @(self.sheetBackground.center.y);
+    previousAnim.velocity = @(SHEET_VELOCITY);
+    previousAnim.name = @"currentSheetSlideOut";
+    previousAnim.completionBlock = ^(POPAnimation *anim, BOOL finished) {
+        NSLog(@"DONE PREVIOUS");
+        MCDrawSheet *tempSheet = self.currentSheet;
+        self.currentSheet = self.previousSheet;
+
+        [self.sheetBackground mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.height.equalTo(self.view);
+            make.width.equalTo(self.currentSheet.mas_height).multipliedBy(ASKEY_WIDTH_RATIO);
+            make.center.equalTo(self.view);
+        }];
+
+        [tempSheet removeFromSuperview];
+        self.previousSheet = nil;
+        self.enterButton.enabled = YES;
+
+    };
+    [self.previousSheet pop_addAnimation:previousAnim forKey:@"currentSheetSlideOut"];
+
+}
+
+- (void)resetSheetsWithVelocity:(float)velocity
+{
+    // moves sheet back to established locations
+
+    // PREVIOUS SHEET
+    POPSpringAnimation *previousAnim = [self.previousSheet pop_animationForKey:@"currentSheetSlideOut"];
+    if (!previousAnim) {
+        previousAnim = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerPositionY];
+    }
+    previousAnim.toValue = @((-self.previousSheet.frame.size.height + RELATIVE_SHEET_EXPOSED_HEIGHT * ASKEY_HEIGHT)/2);
+    previousAnim.velocity = @(velocity);
+    previousAnim.name = @"currentSheetSlideOut";
+    [self.previousSheet pop_addAnimation:previousAnim forKey:@"currentSheetSlideOut"];
+
+    // CURRENT SHEET
+    POPSpringAnimation *anim = [self.currentSheet pop_animationForKey:@"currentSheetReset"];
+    if (!anim) {
+        anim = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerPositionY];
+    }
+    anim.toValue = @(self.sheetBackground.center.y);
+    anim.velocity = @(velocity);
+    anim.name = @"currentSheetReset";
+    [self.currentSheet pop_addAnimation:anim forKey:@"currentSheetReset"];
 }
 
 - (void)drawSheet:(MCDrawSheet *)sheet wasMovedWithGestureRecognizer:(UIPanGestureRecognizer *)panGestureRecognizer
 {
 
+    static CGFloat initialY = 0;
     static CGFloat lastY = 0;
 
     CGPoint touchLocation = [panGestureRecognizer locationInView:self.view];
@@ -505,9 +551,8 @@
     switch ([panGestureRecognizer state]) {
         case UIGestureRecognizerStateBegan: {
             // get initial point
+            initialY = touchLocation.y;
             lastY = touchLocation.y;
-
-            NSLog(@"GESTURE BEGAN");
             break;
         }
         case UIGestureRecognizerStateChanged: {
@@ -516,16 +561,23 @@
             lastY = touchLocation.y;
             self.previousSheet.center = CGPointMake(self.previousSheet.center.x, self.previousSheet.center.y + dy);
             self.currentSheet.center = CGPointMake(self.currentSheet.center.x, self.currentSheet.center.y + dy);
-
-            NSLog(@"GESTURE CHANGED");
             break;
         }
         case UIGestureRecognizerStateEnded: {
             // if we were throwing with enough velocity in a certain direction, move to that position
             // otherwise, do position threshold to check for new position
             // move to that position with any initial velocity
-            NSLog(@"GESTURE ENDED");
-            NSLog(@"%@", NSStringFromCGRect(self.currentSheet.frame));
+            float velocity = [panGestureRecognizer velocityInView:self.sheetBackground].y;
+            float translation = touchLocation.y - initialY;
+
+            if (velocity > SHEET_VELOCITY_THRESHOLD) {
+                [self decrementSheets];
+            } else if (translation > SHEET_TRANSLATION_THRESHOLD) {
+                [self decrementSheets];
+            } else {
+                [self resetSheetsWithVelocity:velocity];
+            }
+
             break;
         }
         default: {
@@ -647,10 +699,9 @@
     inAnim.name = @"slideNewSheetIn";
     inAnim.completionBlock = ^(POPAnimation *anim, BOOL finished) {
         self.previousSheet = self.currentSheet;
-        NSLog(@"%@", self.currentSheet);
+        self.previousSheet.userInteractionEnabled = YES;
         self.currentSheet = sheet;
         self.enterButton.enabled = YES;
-        [self.previousSheet listenForGestures];
 
         [self.sheetBackground mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.height.equalTo(self.view);

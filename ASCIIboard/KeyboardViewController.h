@@ -37,6 +37,11 @@
 #define SHEET_VELOCITY 10
 // initial delay in seconds for first sheet to slide in
 #define INITIAL_SHEET_DELAY 0.3f
+// speed to guarantee decrement
+#define SHEET_VELOCITY_THRESHOLD 300
+// position thresh to guarantee decrement
+#define SHEET_TRANSLATION_THRESHOLD 50
+
 
 @interface KeyboardViewController : UIInputViewController  <LIVBubbleButtonDelegate, ACEDrawingViewDelegate, MCDrawSheetDelegate>
 {
