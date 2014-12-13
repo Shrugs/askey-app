@@ -380,6 +380,7 @@
 {
     // change to eraser here
     self.currentSheet.drawView.drawTool = ACEDrawingToolTypeEraser;
+    self.currentSheet.drawView.lineWidth = BRUSH_SIZE_MEDIUM;
     // [self.currentSheet listenForGestures];
 }
 
