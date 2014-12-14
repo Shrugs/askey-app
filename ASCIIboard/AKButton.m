@@ -19,6 +19,7 @@
         // highlighted: 197, 197, 197
         if (image) {
             self.icon = image;
+            self.iconNegative = [image negativeImage];
             [self setAdjustsImageWhenDisabled:YES];
         }
 
@@ -59,7 +60,7 @@
             // selected 11, 106, 255
             // selected shadow 0, 94, 177
             if (self.icon) {
-                [self setImage:[self.icon negativeImage] forState:UIControlStateNormal];
+                [self setImage:self.iconNegative forState:UIControlStateNormal];
             }
 
             self.layer.backgroundColor = [[UIColor colorWithRed:0.04296875f green:0.4140625f blue:0.99609375f alpha:1.0] CGColor];

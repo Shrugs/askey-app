@@ -16,6 +16,7 @@ typedef enum {
 @interface AKButton : UIButton
 
 @property (nonatomic, strong) UIImage *icon;
+@property (nonatomic, strong) UIImage *iconNegative;
 
 - (id)initWithImage:(UIImage *)image andDiameter:(float)diameter;
 

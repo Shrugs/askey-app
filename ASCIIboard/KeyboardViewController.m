@@ -25,11 +25,6 @@
 
     // INITS
     self.insertHistory = [[NSMutableArray alloc] init];
-    self.brushButtonsArray = [NSArray arrayWithObjects:
-                                [[AKBrushButton alloc] initWithBrushSize:BRUSH_SIZE_SMALL andDiamter:(BUTTON_HEIGHT * BRUSH_BUTTON_RELATIVE_SIZE)],
-                                [[AKBrushButton alloc] initWithBrushSize:BRUSH_SIZE_MEDIUM andDiamter:(BUTTON_HEIGHT * BRUSH_BUTTON_RELATIVE_SIZE)],
-                                [[AKBrushButton alloc] initWithBrushSize:BRUSH_SIZE_LARGE andDiamter:(BUTTON_HEIGHT * BRUSH_BUTTON_RELATIVE_SIZE)],
-                                nil];
 
     // LAYOUT
     // set bg color 220, 222, 226
@@ -91,6 +86,7 @@
     // BRUSH BUTTON
     self.brushButton = [[AKButton alloc] initWithImage:[UIImage imageNamed:@"pen"] andDiameter:BUTTON_HEIGHT];
     [self.brushButton addTarget:self action:@selector(brushButtonPressed:) forControlEvents:UIControlEventTouchDown];
+    [self.brushButton setAdjustsImageWhenDisabled:NO];
 
     // ERASER BUTTON
     self.eraserButton = [[AKButton alloc] initWithImage:[UIImage imageNamed:@"eraser"] andDiameter:BUTTON_HEIGHT];
@@ -329,7 +325,15 @@
 
 - (void)brushButtonPressed:(UIButton *)sender
 {
-    NSLog(@"buttons: %@", self.brushButtonsArray);
+    self.brushButtonsArray = [NSArray arrayWithObjects:
+                              [[AKBrushButton alloc] initWithBrushSize:BRUSH_SIZE_SMALL andDiamter:(BUTTON_HEIGHT * BRUSH_BUTTON_RELATIVE_SIZE)],
+                              [[AKBrushButton alloc] initWithBrushSize:BRUSH_SIZE_MEDIUM andDiamter:(BUTTON_HEIGHT * BRUSH_BUTTON_RELATIVE_SIZE)],
+                              [[AKBrushButton alloc] initWithBrushSize:BRUSH_SIZE_LARGE andDiamter:(BUTTON_HEIGHT * BRUSH_BUTTON_RELATIVE_SIZE)],
+                              nil];
+
+    // make selected, at least for now
+    [self.brushButton setStyle:AKButtonStyleSelected];
+
     brushMenu = [[LIVBubbleMenu alloc] initWithPoint:self.brushButton.center radius:self.brushButton.frame.size.width * 2.0f menuItems:self.brushButtonsArray inView:self.view];
     brushMenu.bubbleStartAngle = 0;
     brushMenu.bubbleTotalAngle = 90;
@@ -358,7 +362,10 @@
 
 - (void)eraserButtonPressed:(UIButton *)sender
 {
-    // change to eraser here
+    // select eraser and deselect brush
+    [self.brushButton setStyle:AKButtonStyleDefault];
+    [self.eraserButton setStyle:AKButtonStyleSelected];
+    // change to eraser
     self.currentSheet.drawView.drawTool = ACEDrawingToolTypeEraser;
     self.currentSheet.drawView.lineWidth = BRUSH_SIZE_MEDIUM;
 }
@@ -638,6 +645,15 @@
 
 //The bubble menu has been hidden
 -(void)livBubbleMenuDidHide:(LIVBubbleMenu *)bubbleMenu {
+    // check tool type and enable current tool
+    if (self.currentSheet.drawView.drawTool == ACEDrawingToolTypePen) {
+        [self.brushButton setStyle:AKButtonStyleSelected];
+        [self.eraserButton setStyle:AKButtonStyleDefault];
+    } else {
+        [self.brushButton setStyle:AKButtonStyleDefault];
+        [self.eraserButton setStyle:AKButtonStyleSelected];
+    }
+
     self.brushButton.enabled = YES;
 }
 
