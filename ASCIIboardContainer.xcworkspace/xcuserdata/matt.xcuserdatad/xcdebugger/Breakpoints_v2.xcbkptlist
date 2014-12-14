@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ASCIIboard/KeyboardViewController.m"
-            timestampString = "440218870.984845"
+            timestampString = "440221603.3659"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "645"
-            endingLineNumber = "645"
+            startingLineNumber = "671"
+            endingLineNumber = "671"
             landmarkName = "-livBubbleMenuDidHide:"
             landmarkType = "5">
          </BreakpointContent>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ASCIIboard/KeyboardViewController.m"
-            timestampString = "440218870.984845"
+            timestampString = "440221603.3659"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "648"
-            endingLineNumber = "648"
+            startingLineNumber = "674"
+            endingLineNumber = "674"
             landmarkName = "-livBubbleMenuDidHide:"
             landmarkType = "5">
          </BreakpointContent>
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Pods/LIVBubbleMenu/LIVBubbleMenu/LIVBubbleMenu.m"
-            timestampString = "440218980.427861"
+            timestampString = "440221849.695058"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "280"
-            endingLineNumber = "280"
+            startingLineNumber = "283"
+            endingLineNumber = "283"
             landmarkName = "-buttonWasTapped:"
             landmarkType = "5">
          </BreakpointContent>

@@ -43,6 +43,12 @@
 // position thresh to guarantee decrement
 #define SHEET_TRANSLATION_THRESHOLD 50
 
+typedef enum {
+    ASKEYScreenOrientationUnknown,
+    ASKEYScreenOrientationPortrait,
+    ASKEYScreenOrientationLandscape
+} ASKEYScreenOrientation;
+
 
 @interface KeyboardViewController : UIInputViewController  <LIVBubbleButtonDelegate, ACEDrawingViewDelegate, MCDrawSheetDelegate>
 {

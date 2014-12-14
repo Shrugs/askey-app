@@ -300,6 +300,32 @@
     // Dispose of any resources that can be recreated
 }
 
+- (void)viewDidLayoutSubviews
+{
+    static ASKEYScreenOrientation previousOrientation = ASKEYScreenOrientationUnknown;
+
+    int appExtensionWidth = (int)round(self.view.frame.size.width);
+
+    int possibleScreenWidthValue1 = (int)round([[UIScreen mainScreen] bounds].size.width);
+    int possibleScreenWidthValue2 = (int)round([[UIScreen mainScreen] bounds].size.height);
+
+    int screenWidthValue;
+
+    if (possibleScreenWidthValue1 < possibleScreenWidthValue2) {
+        screenWidthValue = possibleScreenWidthValue1;
+    } else {
+        screenWidthValue = possibleScreenWidthValue2;
+    }
+
+    ASKEYScreenOrientation currentOrientation = (appExtensionWidth == screenWidthValue) ? ASKEYScreenOrientationPortrait : ASKEYScreenOrientationLandscape;
+
+    if (currentOrientation != previousOrientation) {
+        [brushMenu hide];
+        previousOrientation = currentOrientation;
+    }
+
+}
+
 #pragma mark - TextInput Delegate
 
 - (void)textWillChange:(id<UITextInput>)textInput {
