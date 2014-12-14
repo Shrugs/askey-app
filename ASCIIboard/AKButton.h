@@ -20,7 +20,7 @@ typedef enum {
 
 - (id)initWithImage:(UIImage *)image andDiameter:(float)diameter;
 
-- (void)setStyle:(AKButtonStyle)style;
+- (void)setStyle:(AKButtonStyle)style animated:(BOOL)animated;
 
 
 @end

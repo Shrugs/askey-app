@@ -28,7 +28,7 @@
         float inset = 0.2*diameter;
         [self setImageEdgeInsets:UIEdgeInsetsMake(inset, inset, inset, inset)];
 
-        [self setStyle:AKButtonStyleDefault];
+        [self setStyle:AKButtonStyleDefault animated:NO];
 
         self.layer.cornerRadius = diameter/2.0;
         self.layer.masksToBounds = NO;
@@ -41,33 +41,44 @@
     return self;
 }
 
-- (void)setStyle:(AKButtonStyle)style
+- (void)setStyle:(AKButtonStyle)style animated:(BOOL)animated
 {
+    
+    UIColor *bgc;
+    UIColor *sc;
     switch (style) {
         case AKButtonStyleDefault: {
-            // body: 253, 253, 253
-            // shadow 132, 133, 136
-
             if (self.icon) {
                 [self setImage:self.icon forState:UIControlStateNormal];
             }
+            // body: 253, 253, 253
+            // shadow 132, 133, 136
+            bgc = [UIColor colorWithRed:0.98828125f green:0.98828125f blue:0.98828125f alpha:1.0];
+            sc = [UIColor colorWithRed:0.515625f green:0.51953125f blue:0.53125f alpha:1.0f];
 
-            self.layer.backgroundColor = [[UIColor colorWithRed:0.98828125f green:0.98828125f blue:0.98828125f alpha:1.0] CGColor];
-            self.layer.shadowColor = [[UIColor colorWithRed:0.515625f green:0.51953125f blue:0.53125f alpha:1.0f] CGColor];
             break;
         }
         case AKButtonStyleSelected: {
-            // selected 11, 106, 255
-            // selected shadow 0, 94, 177
+
             if (self.icon) {
                 [self setImage:self.iconNegative forState:UIControlStateNormal];
             }
 
-            self.layer.backgroundColor = [[UIColor colorWithRed:0.04296875f green:0.4140625f blue:0.99609375f alpha:1.0] CGColor];
-            self.layer.shadowColor = [[UIColor colorWithRed:0.0f green:0.3671875f blue:0.69140625f alpha:1.0f] CGColor];
+            // selected 11, 106, 255
+            // selected shadow 0, 94, 177
+            bgc = [UIColor colorWithRed:0.04296875f green:0.4140625f blue:0.99609375f alpha:1.0];
+            sc = [UIColor colorWithRed:0.0f green:0.3671875f blue:0.69140625f alpha:1.0f];
+
+            break;
         }
         default:
             break;
+    }
+    if (animated) {
+        [self animateToBackgroundColor:bgc
+                        andShadowColor:sc];
+    } else {
+        self.layer.backgroundColor = [bgc CGColor];
     }
 }
 
@@ -120,6 +131,23 @@
     anim.springBounciness = 20.0f;
     anim.springSpeed = 15.0f;
     [self.layer pop_addAnimation:anim forKey:@"askey_scaleUp"];
+}
+
+- (void)animateToBackgroundColor:(UIColor *)bgc andShadowColor:(UIColor *)sc
+{
+    POPSpringAnimation *colorAnimation = [self.layer pop_animationForKey:@"colorShift"];
+    if (!colorAnimation) {
+        colorAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerBackgroundColor];
+    }
+    colorAnimation.toValue = (id)[bgc CGColor];
+    [self.layer pop_addAnimation:colorAnimation forKey:@"colorShift"];
+
+    POPSpringAnimation *shadowAnimation = [self.layer pop_animationForKey:@"shadowShift"];
+    if (!shadowAnimation) {
+        shadowAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerShadowColor];
+    }
+    shadowAnimation.toValue = (id)[sc CGColor];
+    [self.layer pop_addAnimation:shadowAnimation forKey:@"shadowShift"];
 }
 
 @end

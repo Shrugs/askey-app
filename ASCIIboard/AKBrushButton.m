@@ -14,7 +14,7 @@
 {
     self = [[[self class] alloc] initWithImage:nil andDiameter:diameter];
     if (self) {
-        [self setStyle:AKButtonStyleSelected];
+        [self setStyle:AKButtonStyleSelected animated:NO];
         // add brush circle to button
         UIView *circle = [[UIView alloc] initWithFrame:CGRectMake(0, 0, size*1.2, size*1.2)];
         circle.layer.cornerRadius = (size*1.2)/2;
