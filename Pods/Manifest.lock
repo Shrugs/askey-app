@@ -7,18 +7,18 @@ PODS:
 
 DEPENDENCIES:
   - ACEDrawingView
-  - LIVBubbleMenu (from `https://github.com/Shrugs/LIVBubbleMenu-iOS.git`, branch `custom-buttons`)
+  - LIVBubbleMenu (from `https://github.com/Shrugs/LIVBubbleMenu-iOS.git`, branch `bganimation-fix`)
   - Masonry
   - pop (~> 1.0)
 
 EXTERNAL SOURCES:
   LIVBubbleMenu:
-    :branch: custom-buttons
+    :branch: bganimation-fix
     :git: https://github.com/Shrugs/LIVBubbleMenu-iOS.git
 
 CHECKOUT OPTIONS:
   LIVBubbleMenu:
-    :commit: 9f8ea417b816958c50bf44c0568df91c54599b37
+    :commit: 2dc42b82027b41e2db8d5a03937c4bbf1e4a47c9
     :git: https://github.com/Shrugs/LIVBubbleMenu-iOS.git
 
 SPEC CHECKSUMS:

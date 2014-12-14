@@ -144,10 +144,6 @@
                                     multiplier: 0.0
                                       constant: height];
     [self.view addConstraint: _heightConstraint];
-    // [self.view mas_updateConstraints:^(MASConstraintMaker *make) {
-    //     make.height.equalTo(@(height));
-    //     make.width.lessThanOrEqualTo(@(1000));
-    // }];
 
 }
 
@@ -334,6 +330,7 @@
 
     // make selected, at least for now
     [self.brushButton setStyle:AKButtonStyleSelected];
+    [self.eraserButton setStyle:AKButtonStyleDefault];
 
     brushMenu = [[LIVBubbleMenu alloc] initWithPoint:self.brushButton.center radius:self.brushButton.frame.size.width * 2.0f menuItems:self.brushButtonsArray inView:self.view];
     brushMenu.bubbleStartAngle = 0;
