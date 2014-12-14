@@ -79,6 +79,7 @@
                         andShadowColor:sc];
     } else {
         self.layer.backgroundColor = [bgc CGColor];
+        self.layer.shadowColor = [sc CGColor];
     }
 }
 
