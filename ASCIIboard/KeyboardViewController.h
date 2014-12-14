@@ -19,6 +19,7 @@
 #define BRUSH_SIZE_MEDIUM 15.0f
 #define BRUSH_SIZE_LARGE 20.0f
 
+#define BRUSH_BUTTON_RELATIVE_SIZE 0.7f
 
 // ASKEY VALUES
 #define ASKEY_HEIGHT 300.0
@@ -64,7 +65,7 @@
 @property (nonatomic, strong) UIView *sheetBackground;
 
 // array of images that must be retained
-@property (nonatomic, retain) NSArray *brushImagesArray;
+@property (nonatomic, retain) NSArray *brushButtonsArray;
 
 
 // array of characters that were inserted (I should use a queue for this)

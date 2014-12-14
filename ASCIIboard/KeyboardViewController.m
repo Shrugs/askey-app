@@ -11,7 +11,7 @@
 #import "UIImage+ASCII.h"
 #import "UIColor+Random.h"
 #import "POP.h"
-
+#import "AKBrushButton.h"
 
 @implementation KeyboardViewController
 
@@ -25,10 +25,10 @@
 
     // INITS
     self.insertHistory = [[NSMutableArray alloc] init];
-    self.brushImagesArray = [NSArray arrayWithObjects:
-                                [UIImage imageNamed:@"pen"],
-                                [UIImage imageNamed:@"pen"],
-                                [UIImage imageNamed:@"pen"],
+    self.brushButtonsArray = [NSArray arrayWithObjects:
+                                [[AKBrushButton alloc] initWithBrushSize:BRUSH_SIZE_SMALL andDiamter:(BUTTON_HEIGHT * BRUSH_BUTTON_RELATIVE_SIZE)],
+                                [[AKBrushButton alloc] initWithBrushSize:BRUSH_SIZE_MEDIUM andDiamter:(BUTTON_HEIGHT * BRUSH_BUTTON_RELATIVE_SIZE)],
+                                [[AKBrushButton alloc] initWithBrushSize:BRUSH_SIZE_LARGE andDiamter:(BUTTON_HEIGHT * BRUSH_BUTTON_RELATIVE_SIZE)],
                                 nil];
 
     // LAYOUT
@@ -329,8 +329,8 @@
 
 - (void)brushButtonPressed:(UIButton *)sender
 {
-
-    brushMenu = [[LIVBubbleMenu alloc] initWithPoint:self.brushButton.center radius:self.brushButton.frame.size.width * 2.0f menuItems:self.brushImagesArray inView:self.view];
+    NSLog(@"buttons: %@", self.brushButtonsArray);
+    brushMenu = [[LIVBubbleMenu alloc] initWithPoint:self.brushButton.center radius:self.brushButton.frame.size.width * 2.0f menuItems:self.brushButtonsArray inView:self.view];
     brushMenu.bubbleStartAngle = 0;
     brushMenu.bubbleTotalAngle = 90;
     brushMenu.bubbleRadius = self.brushButton.frame.size.width / 2.0f;
@@ -342,7 +342,7 @@
     brushMenu.bubblePopOutDuration = 0.3f;
     brushMenu.backgroundFadeDuration = 0.3f;
     brushMenu.backgroundAlpha = 0.3f;
-    brushMenu.easyButtons = YES;
+    brushMenu.customButtons = YES;
     brushMenu.delegate = self;
 
     [brushMenu show];

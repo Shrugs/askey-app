@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C93223531A3CF91A0082C72C /* AKBrushButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C93223521A3CF91A0082C72C /* AKBrushButton.m */; };
+		C93223561A3D22490082C72C /* UIImage+NegativeImage.m in Sources */ = {isa = PBXBuildFile; fileRef = C93223551A3D22490082C72C /* UIImage+NegativeImage.m */; };
 		C93A516119DA2E1A00BC939D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C93A516019DA2E1A00BC939D /* libPods.a */; };
 		C93A516419DA576F00BC939D /* UIImage+ASCII.m in Sources */ = {isa = PBXBuildFile; fileRef = C93A516319DA576F00BC939D /* UIImage+ASCII.m */; };
 		C952A45819D123870025DD73 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C952A45719D123870025DD73 /* main.m */; };
@@ -73,6 +75,10 @@
 		246A63C1FC39E0DD3657E3B9 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		848203DA404B8484DED96D51 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		B3DDAEF02FB1B2E2B404DE3F /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		C93223511A3CF91A0082C72C /* AKBrushButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKBrushButton.h; sourceTree = "<group>"; };
+		C93223521A3CF91A0082C72C /* AKBrushButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKBrushButton.m; sourceTree = "<group>"; };
+		C93223541A3D22490082C72C /* UIImage+NegativeImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+NegativeImage.h"; sourceTree = "<group>"; };
+		C93223551A3D22490082C72C /* UIImage+NegativeImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+NegativeImage.m"; sourceTree = "<group>"; };
 		C93A516019DA2E1A00BC939D /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
 		C93A516219DA576F00BC939D /* UIImage+ASCII.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ASCII.h"; sourceTree = "<group>"; };
 		C93A516319DA576F00BC939D /* UIImage+ASCII.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ASCII.m"; sourceTree = "<group>"; };
@@ -222,6 +228,10 @@
 				C9C094651A3BE1C300742427 /* UIColor+Random.m */,
 				C9C094671A3BE90B00742427 /* AKButton.h */,
 				C9C094681A3BE90B00742427 /* AKButton.m */,
+				C93223511A3CF91A0082C72C /* AKBrushButton.h */,
+				C93223521A3CF91A0082C72C /* AKBrushButton.m */,
+				C93223541A3D22490082C72C /* UIImage+NegativeImage.h */,
+				C93223551A3D22490082C72C /* UIImage+NegativeImage.m */,
 			);
 			path = ASCIIboard;
 			sourceTree = "<group>";
@@ -448,11 +458,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C93223531A3CF91A0082C72C /* AKBrushButton.m in Sources */,
 				C9C094691A3BE90B00742427 /* AKButton.m in Sources */,
 				C9C094661A3BE1C300742427 /* UIColor+Random.m in Sources */,
 				C9959CDC1A3B86DB0038315E /* MCDrawSheet.m in Sources */,
 				C952A48519D123990025DD73 /* KeyboardViewController.m in Sources */,
 				C93A516419DA576F00BC939D /* UIImage+ASCII.m in Sources */,
+				C93223561A3D22490082C72C /* UIImage+NegativeImage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

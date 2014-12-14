@@ -8,9 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
+typedef enum {
+    AKButtonStyleDefault,
+    AKButtonStyleSelected
+} AKButtonStyle;
+
 @interface AKButton : UIButton
 
+@property (nonatomic, strong) UIImage *icon;
+
 - (id)initWithImage:(UIImage *)image andDiameter:(float)diameter;
+
+- (void)setStyle:(AKButtonStyle)style;
 
 
 @end
