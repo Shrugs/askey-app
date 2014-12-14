@@ -87,6 +87,7 @@
     self.brushButton = [[AKButton alloc] initWithImage:[UIImage imageNamed:@"pen"] andDiameter:BUTTON_HEIGHT];
     [self.brushButton addTarget:self action:@selector(brushButtonPressed:) forControlEvents:UIControlEventTouchDown];
     [self.brushButton setAdjustsImageWhenDisabled:NO];
+    [self.brushButton setStyle:AKButtonStyleSelected];
 
     // ERASER BUTTON
     self.eraserButton = [[AKButton alloc] initWithImage:[UIImage imageNamed:@"eraser"] andDiameter:BUTTON_HEIGHT];
@@ -337,7 +338,7 @@
     brushMenu = [[LIVBubbleMenu alloc] initWithPoint:self.brushButton.center radius:self.brushButton.frame.size.width * 2.0f menuItems:self.brushButtonsArray inView:self.view];
     brushMenu.bubbleStartAngle = 0;
     brushMenu.bubbleTotalAngle = 90;
-    brushMenu.bubbleRadius = self.brushButton.frame.size.width / 2.0f;
+    brushMenu.bubbleRadius = (BUTTON_HEIGHT*BRUSH_BUTTON_RELATIVE_SIZE) / 2.0f;
     brushMenu.bubbleShowDelayTime = 0.1f;
     brushMenu.bubbleHideDelayTime = 0.1f;
     brushMenu.bubbleSpringBounciness = 5.0f;

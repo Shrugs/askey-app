@@ -36,7 +36,7 @@
     self.layer.shadowColor = [[UIColor colorWithRed:0.515625f green:0.51953125f blue:0.53125f alpha:1.0f] CGColor];
     self.layer.shadowOffset = CGSizeMake(0.0f, 2.0f);
     self.layer.shadowOpacity = 1.0f;
-    self.layer.shadowRadius = 1.0f;
+    self.layer.shadowRadius = 0.0f;
 
     self.drawView = [[ACEDrawingView alloc] initWithFrame:self.frame];
 

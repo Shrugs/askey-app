@@ -34,7 +34,7 @@
         self.layer.masksToBounds = NO;
         self.layer.shadowOffset = CGSizeMake(0.0f, 2.0f);
         self.layer.shadowOpacity = 1.0f;
-        self.layer.shadowRadius = 1.0f;
+        self.layer.shadowRadius = 0.0f;
         [self addTarget:self action:@selector(touchDownInside:) forControlEvents:UIControlEventTouchDown];
         [self addTarget:self action:@selector(touchAll:) forControlEvents:UIControlEventAllTouchEvents];
     }
