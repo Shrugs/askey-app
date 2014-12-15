@@ -722,12 +722,9 @@
                                                                        ASKEY_HEIGHT*ASKEY_HEIGHT_FRACTION*ASKEY_WIDTH_RATIO,
                                                                        ASKEY_HEIGHT*ASKEY_HEIGHT_FRACTION)];
     sheet.delegate = self;
-    NSLog(@"%@", self.previousSheet);
     if (self.currentSheet != nil) {
-        NSLog(@"YAY");
         sheet.drawView.lineWidth = self.currentSheet.drawView.lineWidth;
     } else {
-        NSLog(@"NAY");
         sheet.drawView.lineWidth = BRUSH_SIZE_MEDIUM;
     }
     sheet.drawView.delegate = self;
