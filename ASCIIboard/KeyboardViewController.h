@@ -22,7 +22,7 @@
 #define BRUSH_BUTTON_RELATIVE_SIZE 0.9f
 
 // ASKEY VALUES
-#define ASKEY_HEIGHT 300.0
+#define ASKEY_HEIGHT 280.0
 // same ratio as 8.5x11 paper
 #define ASKEY_WIDTH_RATIO 0.772727273f
 // ratio of sheet height to view height
