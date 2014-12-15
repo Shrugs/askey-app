@@ -354,9 +354,7 @@
                               [[AKBrushButton alloc] initWithBrushSize:BRUSH_SIZE_LARGE andDiamter:(BUTTON_HEIGHT * BRUSH_BUTTON_RELATIVE_SIZE)],
                               nil];
 
-    // make selected, at least for now
-    [self.brushButton setStyle:AKButtonStyleSelected animated:YES];
-    [self.eraserButton setStyle:AKButtonStyleDefault animated:YES];
+    [self setBrushSelected];
 
     brushMenu = [[LIVBubbleMenu alloc] initWithPoint:self.brushButton.center radius:self.brushButton.frame.size.width * 2.0f menuItems:self.brushButtonsArray inView:self.view];
     brushMenu.bubbleStartAngle = 0;
@@ -386,9 +384,7 @@
 
 - (void)eraserButtonPressed:(UIButton *)sender
 {
-    // select eraser and deselect brush
-    [self.brushButton setStyle:AKButtonStyleDefault animated:YES];
-    [self.eraserButton setStyle:AKButtonStyleSelected animated:YES];
+    [self setEraserSelected];
     // change to eraser
     self.currentSheet.drawView.drawTool = ACEDrawingToolTypeEraser;
     self.currentSheet.drawView.lineWidth = BRUSH_SIZE_MEDIUM;
@@ -671,11 +667,9 @@
 -(void)livBubbleMenuDidHide:(LIVBubbleMenu *)bubbleMenu {
     // check tool type and enable current tool
     if (self.currentSheet.drawView.drawTool == ACEDrawingToolTypePen) {
-        [self.brushButton setStyle:AKButtonStyleSelected animated:YES];
-        [self.eraserButton setStyle:AKButtonStyleDefault animated:YES];
+        [self setBrushSelected];
     } else {
-        [self.brushButton setStyle:AKButtonStyleDefault animated:YES];
-        [self.eraserButton setStyle:AKButtonStyleSelected animated:YES];
+        [self setEraserSelected];
     }
 
     self.brushButton.enabled = YES;
@@ -728,7 +722,14 @@
                                                                        ASKEY_HEIGHT*ASKEY_HEIGHT_FRACTION*ASKEY_WIDTH_RATIO,
                                                                        ASKEY_HEIGHT*ASKEY_HEIGHT_FRACTION)];
     sheet.delegate = self;
-    sheet.drawView.lineWidth = BRUSH_SIZE_MEDIUM;
+    NSLog(@"%@", self.previousSheet);
+    if (self.currentSheet != nil) {
+        NSLog(@"YAY");
+        sheet.drawView.lineWidth = self.currentSheet.drawView.lineWidth;
+    } else {
+        NSLog(@"NAY");
+        sheet.drawView.lineWidth = BRUSH_SIZE_MEDIUM;
+    }
     sheet.drawView.delegate = self;
     [self.sheetBackground addSubview:sheet];
     // [sheet mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -757,6 +758,9 @@
         self.currentSheet = sheet;
         self.enterButton.enabled = YES;
 
+
+        [self setBrushSelected];
+
         [self.sheetBackground mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.height.equalTo(self.view);
             make.width.equalTo(self.currentSheet.mas_height).multipliedBy(ASKEY_WIDTH_RATIO);
@@ -765,6 +769,19 @@
 
     };
     [sheet pop_addAnimation:inAnim forKey:@"slideNewSheetIn"];
+}
+
+- (void)setBrushSelected
+{
+    // select brush, deselect eraser
+    [self.brushButton setStyle:AKButtonStyleSelected animated:YES];
+    [self.eraserButton setStyle:AKButtonStyleDefault animated:YES];
+}
+- (void)setEraserSelected
+{
+    // select eraser and deselect brush
+    [self.brushButton setStyle:AKButtonStyleDefault animated:YES];
+    [self.eraserButton setStyle:AKButtonStyleSelected animated:YES];
 }
 
 @end

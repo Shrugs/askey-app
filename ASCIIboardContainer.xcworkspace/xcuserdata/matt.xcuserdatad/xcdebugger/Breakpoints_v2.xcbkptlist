@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ASCIIboard/KeyboardViewController.m"
-            timestampString = "440221603.3659"
+            timestampString = "440370701.012858"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "671"
-            endingLineNumber = "671"
+            startingLineNumber = "667"
+            endingLineNumber = "667"
             landmarkName = "-livBubbleMenuDidHide:"
             landmarkType = "5">
          </BreakpointContent>
