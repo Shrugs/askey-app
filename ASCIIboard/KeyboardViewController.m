@@ -451,17 +451,25 @@
     if (!self.numpadView) {
         self.numpadView = [[AKNumPadView alloc] initWithFrame:self.view.frame];
         // set up button handlers
+        // back
         [self.numpadView.backButton addTarget:self action:@selector(removeNumPad:) forControlEvents:UIControlEventTouchDown];
+        // next
         [self.numpadView.nextKeyboardButton addTarget:self action:@selector(advanceToNextInputMode) forControlEvents:UIControlEventTouchUpInside];
-        [self.numpadView.deleteButton addTarget:self action:@selector(numpadBackspaceButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        // backspace
+        [self.numpadView.deleteButton addTarget:self action:@selector(numpadBackspaceButtonPressed:) forControlEvents:UIControlEventTouchDown];
+        [self.numpadView.deleteButton addTarget:self action:@selector(backspaceButtonReleased:) forControlEvents:UIControlEventTouchUpOutside];
+        UILongPressGestureRecognizer *backspaceRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(backspaceButtonHeld:)];
+        [self.numpadView.deleteButton addGestureRecognizer:backspaceRecognizer];
+        // everyone else
         for (AKButton *btn in self.numpadView.numpadButtons) {
             [btn addTarget:self action:@selector(numpadNumberButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
         }
-        // add and constrain
+        // add and to view
         [self.view addSubview:self.numpadView];
     } else {
         [self.view addSubview:self.numpadView];
     }
+    // constrain
     [self.numpadView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
     }];
