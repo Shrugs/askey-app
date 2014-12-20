@@ -115,8 +115,10 @@
 
     // BACKSPACE BUTTON
     self.backspaceButton = [[AKButton alloc] initWithImage:[UIImage imageNamed:@"backspace"] andDiameter:BUTTON_HEIGHT];
-    [self.backspaceButton addTarget:self action:@selector(backspaceButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [self.backspaceButton addTarget:self action:@selector(backspaceButtonRepeat:) forControlEvents:UIControlEventTouchDownRepeat];
+    [self.backspaceButton addTarget:self action:@selector(backspaceButtonPressed:) forControlEvents:UIControlEventTouchDown];
+    [self.backspaceButton addTarget:self action:@selector(backspaceButtonReleased:) forControlEvents:UIControlEventTouchUpOutside];
+    UILongPressGestureRecognizer *backspaceRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(backspaceButtonHeld:)];
+    [self.backspaceButton addGestureRecognizer:backspaceRecognizer];
 
 
     // UNDO BUTTON
@@ -509,6 +511,12 @@
     [self incrementSheets];
 }
 
+- (void)backspaceButtonReleased:(UIButton *)sender
+{
+    NSLog(@"RELEASED");
+    [holdTimer invalidate];
+}
+
 - (void)backspaceButtonPressed:(UIButton *)sender
 {
     if ([self.insertHistory count]) {
@@ -521,7 +529,23 @@
         [self.textDocumentProxy deleteBackward];
     }
     [self updateButtonStatus];
+    [self backspaceButtonReleased:sender];
 }
+
+- (void)backspaceButtonHeld:(UILongPressGestureRecognizer *)sender
+{
+    if (sender.state == UIGestureRecognizerStateBegan) {
+        // only repeat delete if we don't have history
+        if ([self.insertHistory count]) {
+            [self backspaceButtonPressed:nil];
+        } else {
+            holdTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(backspaceButtonRepeat:) userInfo:nil repeats:YES];
+        }
+    } else {
+        [holdTimer invalidate];
+    }
+}
+
 - (void)backspaceButtonRepeat:(UIButton *)sender
 {
     NSLog(@"REPEATING BACKSPACE");
@@ -539,7 +563,9 @@
     // enable button if there is still stuff to backspace
     self.undoButton.enabled = [self.currentSheet.drawView canUndo];
     self.backspaceButton.enabled = (BOOL)[self.insertHistory count] ||
-                                   !([self.textDocumentProxy documentContextBeforeInput] == nil || [[self.textDocumentProxy documentContextBeforeInput] isEqualToString:@""]);
+                                   !([self.textDocumentProxy documentContextBeforeInput] == nil ||
+                                   [[self.textDocumentProxy documentContextBeforeInput] isEqualToString:@""]) ||
+                                    [self.textDocumentProxy hasText];
 }
 
 #pragma mark - MCDrawSheet Movement
