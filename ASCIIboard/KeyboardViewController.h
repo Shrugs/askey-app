@@ -19,6 +19,7 @@
     NSLayoutConstraint *_heightConstraint;
     UIView *kludge;
     NSTimer* holdTimer;
+    BOOL enterButtonWasHeld;
 }
 
 // BUTTONS

@@ -108,9 +108,10 @@
 
     // ENTER BUTTON
     self.enterButton = [[AKButton alloc] initWithImage:[UIImage imageNamed:@"return"] andDiameter:BUTTON_HEIGHT];
+    [self.enterButton addTarget:self action:@selector(enterDown:) forControlEvents:UIControlEventTouchDown];
     [self.enterButton addTarget:self action:@selector(enterButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    UILongPressGestureRecognizer *enterRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(sendButtonPressed:)];
-    [self.numpadButton addGestureRecognizer:enterRecognizer];
+    UILongPressGestureRecognizer *enterRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(enterButtonHeld:)];
+    [self.enterButton addGestureRecognizer:enterRecognizer];
 
     // BACKSPACE BUTTON
     self.backspaceButton = [[AKButton alloc] initWithImage:[UIImage imageNamed:@"backspace"] andDiameter:BUTTON_HEIGHT];
@@ -435,8 +436,10 @@
     [self.view bringSubviewToFront:self.numpadButton];
 }
 
-- (void)sendButtonPressed:(UIButton *)sender
+- (void)enterButtonHeld:(UIButton *)sender
 {
+    [self enterButtonPressed:sender];
+    enterButtonWasHeld = YES;
     [self.textDocumentProxy insertText:@"\n"];
 }
 
@@ -477,8 +480,15 @@
     [self.textDocumentProxy insertText:[sender currentTitle]];
 }
 
+- (void)enterDown:(UIButton *)sender
+{
+    enterButtonWasHeld = NO;
+}
 - (void)enterButtonPressed:(UIButton *)sender
 {
+    if (enterButtonWasHeld) {
+        return;
+    }
     CGSize numBlocks = CGSizeMake(40, 11);
     NSString *text = [self.currentSheet.drawView.image getASCIIWithResolution:numBlocks];
 
