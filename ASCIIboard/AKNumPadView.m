@@ -117,7 +117,7 @@
                 spacer.backgroundColor = [UIColor clearColor];
                 thing = spacer;
             } else if ([val isEqualToString:@"BACK"]) {
-                self.backButton = [[AKButton alloc] initWithImage:[UIImage imageNamed:@"undo"] andDiameter:BUTTON_HEIGHT];
+                self.backButton = [[AKButton alloc] initWithImage:[UIImage imageNamed:@"pen"] andDiameter:BUTTON_HEIGHT];
                 thing = self.backButton;
             } else if ([val isEqualToString:@"GLOBE"]) {
                 self.nextKeyboardButton = [[AKButton alloc] initWithImage:[UIImage imageNamed:@"globe"] andDiameter:BUTTON_HEIGHT];

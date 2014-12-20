@@ -86,17 +86,19 @@
 
     // BRUSH BUTTON
     self.brushButton = [[AKButton alloc] initWithImage:[UIImage imageNamed:@"pen"] andDiameter:BUTTON_HEIGHT];
-    [self.brushButton addTarget:self action:@selector(brushButtonPressed:) forControlEvents:UIControlEventTouchDown];
+    [self.brushButton addTarget:self action:@selector(brushButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.brushButton setAdjustsImageWhenDisabled:NO];
     [self.brushButton setStyle:AKButtonStyleSelected animated:NO];
 
     // ERASER BUTTON
     self.eraserButton = [[AKButton alloc] initWithImage:[UIImage imageNamed:@"eraser"] andDiameter:BUTTON_HEIGHT];
-    [self.eraserButton addTarget:self action:@selector(eraserButtonPressed:) forControlEvents:UIControlEventTouchDown];
+    [self.eraserButton addTarget:self action:@selector(eraserButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
 
     // NUMPAD BUTTON
-    self.numpadButton = [[AKButton alloc] initWithImage:[UIImage imageNamed:@"undo"] andDiameter:BUTTON_HEIGHT];
-    [self.numpadButton addTarget:self action:@selector(numpadButtonPressed:) forControlEvents:UIControlEventTouchDown];
+    self.numpadButton = [[AKButton alloc] initWithText:@"123" andDiameter:BUTTON_HEIGHT];
+    [self.numpadButton addTarget:self action:@selector(characterPackButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    UILongPressGestureRecognizer *numpadRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(numpadButtonPressed:)];
+    [self.numpadButton addGestureRecognizer:numpadRecognizer];
 
     // NEXT BUTTON
     self.nextKeyboardButton = [[AKButton alloc] initWithImage:[UIImage imageNamed:@"globe"] andDiameter:BUTTON_HEIGHT];
@@ -107,6 +109,8 @@
     // ENTER BUTTON
     self.enterButton = [[AKButton alloc] initWithImage:[UIImage imageNamed:@"return"] andDiameter:BUTTON_HEIGHT];
     [self.enterButton addTarget:self action:@selector(enterButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    UILongPressGestureRecognizer *enterRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(sendButtonPressed:)];
+    [self.numpadButton addGestureRecognizer:enterRecognizer];
 
     // BACKSPACE BUTTON
     self.backspaceButton = [[AKButton alloc] initWithImage:[UIImage imageNamed:@"backspace"] andDiameter:BUTTON_HEIGHT];
@@ -399,13 +403,50 @@
     self.currentSheet.drawView.lineWidth = BRUSH_SIZE_MEDIUM;
 }
 
+- (void)characterPackButtonPressed:(UIButton *)sender
+{
+    // @TODO(Shrugs) grab character packs and icons from container
+    // disable ones that have not been unlocked
+    // fuck drm, just write to a plist
+    // jailbreak users could make their own if they really wanted to
+    self.characterPackButtonsArray = [NSArray arrayWithObjects:
+                              [[AKButton alloc] initWithText:@"ignore" andDiameter:(BUTTON_HEIGHT * BRUSH_BUTTON_RELATIVE_SIZE)],
+                              [[AKButton alloc] initWithText:@"this" andDiameter:(BUTTON_HEIGHT * BRUSH_BUTTON_RELATIVE_SIZE)],
+                              [[AKButton alloc] initWithText:@"lol" andDiameter:(BUTTON_HEIGHT * BRUSH_BUTTON_RELATIVE_SIZE)],
+                              nil];
+
+    characterPackMenu = [[LIVBubbleMenu alloc] initWithPoint:self.numpadButton.center radius:self.numpadButton.frame.size.width * 2.0f menuItems:self.characterPackButtonsArray inView:self.view];
+    characterPackMenu.bubbleStartAngle = -45;
+    characterPackMenu.bubbleTotalAngle = 90;
+    characterPackMenu.bubbleRadius = (BUTTON_HEIGHT*BRUSH_BUTTON_RELATIVE_SIZE) / 2.0f;
+    characterPackMenu.bubbleShowDelayTime = 0.1f;
+    characterPackMenu.bubbleHideDelayTime = 0.1f;
+    characterPackMenu.bubbleSpringBounciness = 5.0f;
+    // characterPackMenu.bubbleSpringSpeed = 10.0f;
+    characterPackMenu.bubblePopInDuration = 0.3f;
+    characterPackMenu.bubblePopOutDuration = 0.3f;
+    characterPackMenu.backgroundFadeDuration = 0.3f;
+    characterPackMenu.backgroundAlpha = 0.3f;
+    characterPackMenu.customButtons = YES;
+    characterPackMenu.delegate = self;
+
+    [characterPackMenu show];
+    self.numpadButton.enabled = NO;
+    [self.view bringSubviewToFront:self.numpadButton];
+}
+
+- (void)sendButtonPressed:(UIButton *)sender
+{
+    [self.textDocumentProxy insertText:@"\n"];
+}
+
 - (void)numpadButtonPressed:(UIButton *)sender
 {
     // instantiate if necessary
     if (!self.numpadView) {
         self.numpadView = [[AKNumPadView alloc] initWithFrame:self.view.frame];
         // set up button handlers
-        [self.numpadView.backButton addTarget:self action:@selector(removeNumPad:) forControlEvents:UIControlEventTouchUpInside];
+        [self.numpadView.backButton addTarget:self action:@selector(removeNumPad:) forControlEvents:UIControlEventTouchDown];
         [self.numpadView.nextKeyboardButton addTarget:self action:@selector(advanceToNextInputMode) forControlEvents:UIControlEventTouchUpInside];
         [self.numpadView.deleteButton addTarget:self action:@selector(numpadBackspaceButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
         for (AKButton *btn in self.numpadView.numpadButtons) {
@@ -441,26 +482,19 @@
     CGSize numBlocks = CGSizeMake(40, 11);
     NSString *text = [self.currentSheet.drawView.image getASCIIWithResolution:numBlocks];
 
-    // only insert period at beginning of string if necessary
-    NSCharacterSet *charSet = [NSCharacterSet whitespaceAndNewlineCharacterSet];
-    NSString *trimmedString = [[self.textDocumentProxy documentContextBeforeInput] stringByTrimmingCharactersInSet:charSet];
-    NSLog(@"before:%@:", [self.textDocumentProxy documentContextBeforeInput]);
-    NSLog(@"beforeTrimmed:%@:", trimmedString);
-
-    // so this condition is broken because textDocumentProxy isn't behaving
-    // if ((trimmedString == nil || [trimmedString isEqualToString:@""]) && [text hasPrefix:@" "]) {
-    // so for now, use this
-    if ([self.insertHistory count] == 0 && [text hasPrefix:@" "]) {
-        // it's empty or contains only white spaces
-        // therefore, strip extra white space
+    if (![self.textDocumentProxy hasText]) {
+        // if textField is empty
+        // strip extra white space
         text = [self removeExtraWhiteSpaceLinesFromText:text withSize:numBlocks];
-        // and insert period if necessary
+        // and insert period
         text = [text stringByReplacingCharactersInRange:NSMakeRange(0, 1) withString:@"."];
     }
+    // insert into textField
     if (text != nil && text.length) {
         [self.insertHistory insertObject:@([text length]) atIndex:0];
         [self.textDocumentProxy insertText:text];
     }
+    // update UI
     [self updateButtonStatus];
     [self incrementSheets];
 }
@@ -688,24 +722,28 @@
     [self updateButtonStatus];
 }
 
-#pragma make - LIVBubbleMenu
+#pragma mark - LIVBubbleMenu
 
 //User selected a bubble
 -(void)livBubbleMenu:(LIVBubbleMenu *)bubbleMenu tappedBubbleWithIndex:(NSUInteger)index {
-    self.currentSheet.drawView.drawTool = ACEDrawingToolTypePen;
-    switch (index) {
-        case 0:
-            self.currentSheet.drawView.lineWidth = BRUSH_SIZE_SMALL;
-            break;
-        case 1:
-            self.currentSheet.drawView.lineWidth = BRUSH_SIZE_MEDIUM;
-            break;
-        case 2:
-            self.currentSheet.drawView.lineWidth = BRUSH_SIZE_LARGE;
-            break;
-        default:
-            self.currentSheet.drawView.lineWidth = BRUSH_SIZE_MEDIUM;
-            break;
+    if (bubbleMenu == brushMenu) {
+        self.currentSheet.drawView.drawTool = ACEDrawingToolTypePen;
+        switch (index) {
+            case 0:
+                self.currentSheet.drawView.lineWidth = BRUSH_SIZE_SMALL;
+                break;
+            case 1:
+                self.currentSheet.drawView.lineWidth = BRUSH_SIZE_MEDIUM;
+                break;
+            case 2:
+                self.currentSheet.drawView.lineWidth = BRUSH_SIZE_LARGE;
+                break;
+            default:
+                self.currentSheet.drawView.lineWidth = BRUSH_SIZE_MEDIUM;
+                break;
+        }
+    } else if (bubbleMenu == characterPackMenu) {
+        // switch character packs
     }
 }
 
@@ -719,6 +757,7 @@
     }
 
     self.brushButton.enabled = YES;
+    self.numpadButton.enabled = YES;
 }
 
 #pragma mark - Utils

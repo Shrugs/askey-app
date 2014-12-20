@@ -19,6 +19,7 @@
         [self configureWithDiameter:diameter];
         [self setTitle:text forState:UIControlStateNormal];
         [self setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [self.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Medium" size:18]];
         self.titleLabel.adjustsFontSizeToFitWidth = YES;
     }
     return self;

@@ -15,8 +15,10 @@
 @interface KeyboardViewController : UIInputViewController  <LIVBubbleButtonDelegate, ACEDrawingViewDelegate, MCDrawSheetDelegate>
 {
     LIVBubbleMenu *brushMenu;
+    LIVBubbleMenu *characterPackMenu;
     NSLayoutConstraint *_heightConstraint;
     UIView *kludge;
+    NSTimer* holdTimer;
 }
 
 // BUTTONS
@@ -37,7 +39,8 @@
 @property (nonatomic, strong) AKNumPadView *numpadView;
 
 // array of images that must be retained
-@property (nonatomic, retain) NSArray *brushButtonsArray;
+@property (nonatomic, strong) NSArray *brushButtonsArray;
+@property (nonatomic, strong) NSArray *characterPackButtonsArray;
 
 
 // array of characters that were inserted (I should use a queue for this)
