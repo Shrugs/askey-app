@@ -12,6 +12,7 @@
 #import "UIColor+Random.h"
 #import "POP.h"
 #import "AKBrushButton.h"
+#import "AKConfig.h"
 
 @implementation KeyboardViewController
 
@@ -28,7 +29,7 @@
 
     // LAYOUT
     // set bg color 220, 222, 226
-    [self.view setBackgroundColor:[UIColor colorWithRed:0.863 green:.8671875 blue:.8828125 alpha:1.000]];
+    [self.view setBackgroundColor:ASKEY_BACKGROUND_COLOR];
 
     // setup draw sheets
 
@@ -93,6 +94,10 @@
     self.eraserButton = [[AKButton alloc] initWithImage:[UIImage imageNamed:@"eraser"] andDiameter:BUTTON_HEIGHT];
     [self.eraserButton addTarget:self action:@selector(eraserButtonPressed:) forControlEvents:UIControlEventTouchDown];
 
+    // NUMPAD BUTTON
+    self.numpadButton = [[AKButton alloc] initWithImage:[UIImage imageNamed:@"undo"] andDiameter:BUTTON_HEIGHT];
+    [self.numpadButton addTarget:self action:@selector(numpadButtonPressed:) forControlEvents:UIControlEventTouchDown];
+
     // NEXT BUTTON
     self.nextKeyboardButton = [[AKButton alloc] initWithImage:[UIImage imageNamed:@"globe"] andDiameter:BUTTON_HEIGHT];
     [self.nextKeyboardButton addTarget:self action:@selector(advanceToNextInputMode) forControlEvents:UIControlEventTouchUpInside];
@@ -121,6 +126,7 @@
     // ADD VIEWS TO SELF.VIEW
     [self.view addSubview:self.brushButton];
     [self.view addSubview:self.eraserButton];
+    [self.view addSubview:self.numpadButton];
     [self.view addSubview:self.nextKeyboardButton];
 
     [self.view addSubview:self.enterButton];
@@ -222,7 +228,6 @@
             make.width.equalTo(self.view.mas_width).multipliedBy(0.1);
             if (i == 0) {
                 // first
-                make.centerX.equalTo(self.enterButton);
                 make.height.greaterThanOrEqualTo(@(0));
                 make.top.equalTo(self.view);
             } else if (i == numSpacers - 1) {
@@ -249,6 +254,10 @@
     [self.eraserButton mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.right.and.height.equalTo(self.brushButton);
         make.centerY.equalTo(self.backspaceButton);
+    }];
+    [self.numpadButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.and.height.equalTo(self.brushButton);
+        make.centerY.equalTo(self.undoButton);
     }];
     [self.nextKeyboardButton mas_remakeConstraints:^(MASConstraintMaker *make){
         make.left.right.and.height.equalTo(self.brushButton);
@@ -388,6 +397,43 @@
     // change to eraser
     self.currentSheet.drawView.drawTool = ACEDrawingToolTypeEraser;
     self.currentSheet.drawView.lineWidth = BRUSH_SIZE_MEDIUM;
+}
+
+- (void)numpadButtonPressed:(UIButton *)sender
+{
+    // instantiate if necessary
+    if (!self.numpadView) {
+        self.numpadView = [[AKNumPadView alloc] initWithFrame:self.view.frame];
+        // set up button handlers
+        [self.numpadView.backButton addTarget:self action:@selector(removeNumPad:) forControlEvents:UIControlEventTouchUpInside];
+        [self.numpadView.nextKeyboardButton addTarget:self action:@selector(advanceToNextInputMode) forControlEvents:UIControlEventTouchUpInside];
+        [self.numpadView.deleteButton addTarget:self action:@selector(numpadBackspaceButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        for (AKButton *btn in self.numpadView.numpadButtons) {
+            [btn addTarget:self action:@selector(numpadNumberButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        }
+        // add and constrain
+        [self.view addSubview:self.numpadView];
+    } else {
+        [self.view addSubview:self.numpadView];
+    }
+    [self.numpadView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view);
+    }];
+}
+
+- (void)removeNumPad:(AKButton *)sender
+{
+    [self.numpadView removeFromSuperview];
+}
+
+- (void)numpadBackspaceButtonPressed:(AKButton *)sender
+{
+    [self.textDocumentProxy deleteBackward];
+}
+
+- (void)numpadNumberButtonPressed:(AKButton *)sender
+{
+    [self.textDocumentProxy insertText:[sender currentTitle]];
 }
 
 - (void)enterButtonPressed:(UIButton *)sender

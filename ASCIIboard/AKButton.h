@@ -19,6 +19,7 @@ typedef enum {
 @property (nonatomic, strong) UIImage *iconNegative;
 
 - (id)initWithImage:(UIImage *)image andDiameter:(float)diameter;
+- (id)initWithText:(NSString *)text andDiameter:(float)diameter;
 
 - (void)setStyle:(AKButtonStyle)style animated:(BOOL)animated;
 

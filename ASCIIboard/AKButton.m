@@ -12,6 +12,18 @@
 
 @implementation AKButton
 
+- (id)initWithText:(NSString *)text andDiameter:(float)diameter
+{
+    self = [[self class] buttonWithType:UIButtonTypeCustom];
+    if (self) {
+        [self configureWithDiameter:diameter];
+        [self setTitle:text forState:UIControlStateNormal];
+        [self setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        self.titleLabel.adjustsFontSizeToFitWidth = YES;
+    }
+    return self;
+}
+
 - (id)initWithImage:(UIImage *)image andDiameter:(float)diameter
 {
     self = [[self class] buttonWithType:UIButtonTypeCustom];
@@ -23,22 +35,27 @@
             [self setAdjustsImageWhenDisabled:YES];
         }
 
-        self.frame = CGRectMake(0, 0, diameter, diameter);
-
-        float inset = 0.2*diameter;
-        [self setImageEdgeInsets:UIEdgeInsetsMake(inset, inset, inset, inset)];
-
-        [self setStyle:AKButtonStyleDefault animated:NO];
-
-        self.layer.cornerRadius = diameter/2.0;
-        self.layer.masksToBounds = NO;
-        self.layer.shadowOffset = CGSizeMake(0.0f, 2.0f);
-        self.layer.shadowOpacity = 1.0f;
-        self.layer.shadowRadius = 0.0f;
-        [self addTarget:self action:@selector(touchDownInside:) forControlEvents:UIControlEventTouchDown];
-        [self addTarget:self action:@selector(touchAll:) forControlEvents:UIControlEventAllTouchEvents];
+        [self configureWithDiameter:diameter];
     }
     return self;
+}
+
+- (void)configureWithDiameter:(float)diameter
+{
+    self.frame = CGRectMake(0, 0, diameter, diameter);
+
+    float inset = 0.2*diameter;
+    [self setImageEdgeInsets:UIEdgeInsetsMake(inset, inset, inset, inset)];
+
+    [self setStyle:AKButtonStyleDefault animated:NO];
+
+    self.layer.cornerRadius = diameter/2.0;
+    self.layer.masksToBounds = NO;
+    self.layer.shadowOffset = CGSizeMake(0.0f, 2.0f);
+    self.layer.shadowOpacity = 1.0f;
+    self.layer.shadowRadius = 0.0f;
+    [self addTarget:self action:@selector(touchDownInside:) forControlEvents:UIControlEventTouchDown];
+    [self addTarget:self action:@selector(touchAll:) forControlEvents:UIControlEventAllTouchEvents];
 }
 
 - (void)setStyle:(AKButtonStyle)style animated:(BOOL)animated
