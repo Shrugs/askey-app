@@ -20,6 +20,8 @@
     UIView *kludge;
     NSTimer* holdTimer;
     BOOL enterButtonWasHeld;
+
+    float lastBrushSize;
 }
 
 // BUTTONS

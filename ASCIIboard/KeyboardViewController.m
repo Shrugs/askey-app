@@ -89,6 +89,9 @@
     [self.brushButton addTarget:self action:@selector(brushButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.brushButton setAdjustsImageWhenDisabled:NO];
     [self.brushButton setStyle:MCBouncyButtonStyleSelected animated:NO];
+    UILongPressGestureRecognizer *brushRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(brushButtonHeld:)];
+    brushRecognizer.minimumPressDuration = ASKEY_HOLD_DURATION;
+    [self.brushButton addGestureRecognizer:brushRecognizer];
 
     // ERASER BUTTON
     self.eraserButton = [[MCBouncyButton alloc] initWithImage:[UIImage imageNamed:@"eraser"] andRadius:(BUTTON_HEIGHT/2.0f)];
@@ -98,6 +101,7 @@
     self.numpadButton = [[MCBouncyButton alloc] initWithText:@"123" andRadius:(BUTTON_HEIGHT/2.0f)];
     [self.numpadButton addTarget:self action:@selector(characterPackButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     UILongPressGestureRecognizer *numpadRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(numpadButtonPressed:)];
+    numpadRecognizer.minimumPressDuration = ASKEY_HOLD_DURATION;
     [self.numpadButton addGestureRecognizer:numpadRecognizer];
 
     // NEXT BUTTON
@@ -111,6 +115,7 @@
     [self.enterButton addTarget:self action:@selector(enterDown:) forControlEvents:UIControlEventTouchDown];
     [self.enterButton addTarget:self action:@selector(enterButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     UILongPressGestureRecognizer *enterRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(enterButtonHeld:)];
+    enterRecognizer.minimumPressDuration = ASKEY_HOLD_DURATION;
     [self.enterButton addGestureRecognizer:enterRecognizer];
 
     // BACKSPACE BUTTON
@@ -364,6 +369,22 @@
 
 - (void)brushButtonPressed:(UIButton *)sender
 {
+    // select brush
+    self.currentSheet.drawView.drawTool = ACEDrawingToolTypePen;
+    self.currentSheet.drawView.lineWidth = lastBrushSize;
+    [self setBrushSelected];
+    
+}
+
+- (void)brushButtonHeld:(UILongPressGestureRecognizer *)sender
+{
+    if (sender.state == UIGestureRecognizerStateBegan) {
+        [self showBrushMenu];
+    }
+}
+
+- (void)showBrushMenu
+{
     self.brushButtonsArray = [NSArray arrayWithObjects:
                               [[AKBrushButton alloc] initWithBrushSize:BRUSH_SIZE_SMALL andRadius:(BUTTON_HEIGHT * BRUSH_BUTTON_RELATIVE_SIZE / 2.0f)],
                               [[AKBrushButton alloc] initWithBrushSize:BRUSH_SIZE_MEDIUM andRadius:(BUTTON_HEIGHT * BRUSH_BUTTON_RELATIVE_SIZE / 2.0f)],
@@ -403,6 +424,7 @@
     [self setEraserSelected];
     // change to eraser
     self.currentSheet.drawView.drawTool = ACEDrawingToolTypeEraser;
+    lastBrushSize = self.currentSheet.drawView.lineWidth;
     self.currentSheet.drawView.lineWidth = BRUSH_SIZE_MEDIUM;
 }
 
@@ -857,6 +879,7 @@
     } else {
         sheet.drawView.lineWidth = BRUSH_SIZE_MEDIUM;
     }
+    lastBrushSize = sheet.drawView.lineWidth;
     sheet.drawView.delegate = self;
     [self.sheetBackground addSubview:sheet];
     // [sheet mas_remakeConstraints:^(MASConstraintMaker *make) {
