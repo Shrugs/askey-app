@@ -10,16 +10,16 @@
 
 @implementation AKBrushButton
 
-- (AKBrushButton *)initWithBrushSize:(float)size andDiamter:(float)diameter
+- (AKBrushButton *)initWithBrushSize:(float)size andRadius:(float)radius
 {
-    self = [[[self class] alloc] initWithImage:nil andDiameter:diameter];
+    self = [[[self class] alloc] initWithImage:nil andRadius:radius];
     if (self) {
-        [self setStyle:AKButtonStyleSelected animated:NO];
+        [self setStyle:MCBouncyButtonStyleSelected animated:NO];
         // add brush circle to button
         UIView *circle = [[UIView alloc] initWithFrame:CGRectMake(0, 0, size*1.2, size*1.2)];
         circle.layer.cornerRadius = (size*1.2)/2;
         circle.backgroundColor = [UIColor whiteColor];
-        circle.center = CGPointMake(diameter/2, diameter/2);
+        circle.center = CGPointMake(radius, radius);
         circle.userInteractionEnabled = NO;
         [self addSubview:circle];
     }

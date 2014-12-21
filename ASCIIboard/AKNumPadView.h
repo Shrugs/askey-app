@@ -7,13 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "AKButton.h"
+#import <MCBouncyButton/MCBouncyButton.h>
 
 @interface AKNumPadView : UIView
 
-@property (nonatomic, strong) AKButton *nextKeyboardButton;
-@property (nonatomic, strong) AKButton *backButton;
-@property (nonatomic, strong) AKButton *deleteButton;
+@property (nonatomic, strong) MCBouncyButton *nextKeyboardButton;
+@property (nonatomic, strong) MCBouncyButton *backButton;
+@property (nonatomic, strong) MCBouncyButton *deleteButton;
 @property (nonatomic, strong) NSMutableArray *numpadButtons;
 
 @end

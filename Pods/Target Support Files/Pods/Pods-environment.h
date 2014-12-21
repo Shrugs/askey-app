@@ -18,6 +18,12 @@
 #define COCOAPODS_VERSION_MINOR_LIVBubbleMenu 0
 #define COCOAPODS_VERSION_PATCH_LIVBubbleMenu 0
 
+// MCBouncyButton
+#define COCOAPODS_POD_AVAILABLE_MCBouncyButton
+#define COCOAPODS_VERSION_MAJOR_MCBouncyButton 1
+#define COCOAPODS_VERSION_MINOR_MCBouncyButton 0
+#define COCOAPODS_VERSION_PATCH_MCBouncyButton 0
+
 // Masonry
 #define COCOAPODS_POD_AVAILABLE_Masonry
 #define COCOAPODS_VERSION_MAJOR_Masonry 0

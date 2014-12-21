@@ -9,8 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "MCDrawSheet.h"
 #import <LIVBubbleMenu/LIVBubbleMenu.h>
-#import "AKButton.h"
 #import "AKNumPadView.h"
+#import <MCBouncyButton/MCBouncyButton.h>
 
 @interface KeyboardViewController : UIInputViewController  <LIVBubbleButtonDelegate, ACEDrawingViewDelegate, MCDrawSheetDelegate>
 {
@@ -23,14 +23,14 @@
 }
 
 // BUTTONS
-@property (nonatomic, strong) AKButton *brushButton;
-@property (nonatomic, strong) AKButton *nextKeyboardButton;
-@property (nonatomic, strong) AKButton *clearButton;
-@property (nonatomic, strong) AKButton *enterButton;
-@property (nonatomic, strong) AKButton *backspaceButton;
-@property (nonatomic, strong) AKButton *undoButton;
-@property (nonatomic, strong) AKButton *eraserButton;
-@property (nonatomic, strong) AKButton *numpadButton;
+@property (nonatomic, strong) MCBouncyButton *brushButton;
+@property (nonatomic, strong) MCBouncyButton *nextKeyboardButton;
+@property (nonatomic, strong) MCBouncyButton *clearButton;
+@property (nonatomic, strong) MCBouncyButton *enterButton;
+@property (nonatomic, strong) MCBouncyButton *backspaceButton;
+@property (nonatomic, strong) MCBouncyButton *undoButton;
+@property (nonatomic, strong) MCBouncyButton *eraserButton;
+@property (nonatomic, strong) MCBouncyButton *numpadButton;
 
 // SHEETS
 @property (nonatomic, strong) MCDrawSheet *currentSheet;

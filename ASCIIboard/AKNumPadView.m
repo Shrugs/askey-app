@@ -10,7 +10,6 @@
 #import "Masonry.h"
 #import "AKConfig.h"
 #import "UIColor+Random.h"
-#import "AKButton.h"
 
 @implementation AKNumPadView
 
@@ -117,16 +116,16 @@
                 spacer.backgroundColor = [UIColor clearColor];
                 thing = spacer;
             } else if ([val isEqualToString:@"BACK"]) {
-                self.backButton = [[AKButton alloc] initWithImage:[UIImage imageNamed:@"pen"] andDiameter:BUTTON_HEIGHT];
+                self.backButton = [[MCBouncyButton alloc] initWithImage:[UIImage imageNamed:@"pen"] andRadius:(BUTTON_HEIGHT / 2.0f)];
                 thing = self.backButton;
             } else if ([val isEqualToString:@"GLOBE"]) {
-                self.nextKeyboardButton = [[AKButton alloc] initWithImage:[UIImage imageNamed:@"globe"] andDiameter:BUTTON_HEIGHT];
+                self.nextKeyboardButton = [[MCBouncyButton alloc] initWithImage:[UIImage imageNamed:@"globe"] andRadius:(BUTTON_HEIGHT / 2.0f)];
                 thing = self.nextKeyboardButton;
             } else if ([val isEqualToString:@"DELETE"]) {
-                self.deleteButton = [[AKButton alloc] initWithImage:[UIImage imageNamed:@"backspace"] andDiameter:BUTTON_HEIGHT];
+                self.deleteButton = [[MCBouncyButton alloc] initWithImage:[UIImage imageNamed:@"backspace"] andRadius:(BUTTON_HEIGHT / 2.0f)];
                 thing = self.deleteButton;
             } else {
-                AKButton *button = [[AKButton alloc] initWithText:val andDiameter:BUTTON_HEIGHT];
+                MCBouncyButton *button = [[MCBouncyButton alloc] initWithText:val andRadius:(BUTTON_HEIGHT / 2.0f)];
                 [self.numpadButtons addObject:button];
                 thing = button;
             }

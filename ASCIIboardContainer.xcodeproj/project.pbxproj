@@ -23,7 +23,6 @@
 		C9959CDC1A3B86DB0038315E /* MCDrawSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = C9959CDB1A3B86DB0038315E /* MCDrawSheet.m */; };
 		C9A7181F1A44F9E9002A8824 /* AKNumPadView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A7181E1A44F9E9002A8824 /* AKNumPadView.m */; };
 		C9C094661A3BE1C300742427 /* UIColor+Random.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C094651A3BE1C300742427 /* UIColor+Random.m */; };
-		C9C094691A3BE90B00742427 /* AKButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C094681A3BE90B00742427 /* AKButton.m */; };
 		C9C094711A3BED4800742427 /* backspace.png in Resources */ = {isa = PBXBuildFile; fileRef = C9C0946A1A3BED4800742427 /* backspace.png */; };
 		C9C094721A3BED4800742427 /* eraser.png in Resources */ = {isa = PBXBuildFile; fileRef = C9C0946B1A3BED4800742427 /* eraser.png */; };
 		C9C094731A3BED4800742427 /* globe.png in Resources */ = {isa = PBXBuildFile; fileRef = C9C0946C1A3BED4800742427 /* globe.png */; };
@@ -107,8 +106,6 @@
 		C9A718201A44FCC7002A8824 /* AKConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AKConfig.h; sourceTree = "<group>"; };
 		C9C094641A3BE1C300742427 /* UIColor+Random.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Random.h"; sourceTree = "<group>"; };
 		C9C094651A3BE1C300742427 /* UIColor+Random.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Random.m"; sourceTree = "<group>"; };
-		C9C094671A3BE90B00742427 /* AKButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKButton.h; sourceTree = "<group>"; };
-		C9C094681A3BE90B00742427 /* AKButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKButton.m; sourceTree = "<group>"; };
 		C9C0946A1A3BED4800742427 /* backspace.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backspace.png; sourceTree = "<group>"; };
 		C9C0946B1A3BED4800742427 /* eraser.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eraser.png; sourceTree = "<group>"; };
 		C9C0946C1A3BED4800742427 /* globe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = globe.png; sourceTree = "<group>"; };
@@ -230,8 +227,6 @@
 				C9959CDB1A3B86DB0038315E /* MCDrawSheet.m */,
 				C9C094641A3BE1C300742427 /* UIColor+Random.h */,
 				C9C094651A3BE1C300742427 /* UIColor+Random.m */,
-				C9C094671A3BE90B00742427 /* AKButton.h */,
-				C9C094681A3BE90B00742427 /* AKButton.m */,
 				C93223511A3CF91A0082C72C /* AKBrushButton.h */,
 				C93223521A3CF91A0082C72C /* AKBrushButton.m */,
 				C93223541A3D22490082C72C /* UIImage+NegativeImage.h */,
@@ -466,7 +461,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C93223531A3CF91A0082C72C /* AKBrushButton.m in Sources */,
-				C9C094691A3BE90B00742427 /* AKButton.m in Sources */,
 				C9C094661A3BE1C300742427 /* UIColor+Random.m in Sources */,
 				C9959CDC1A3B86DB0038315E /* MCDrawSheet.m in Sources */,
 				C952A48519D123990025DD73 /* KeyboardViewController.m in Sources */,

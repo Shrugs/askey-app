@@ -3,12 +3,15 @@ PODS:
   - LIVBubbleMenu (1.0.0):
     - pop (~> 1.0.7)
   - Masonry (0.5.3)
+  - MCBouncyButton (1.0.0):
+    - pop (~> 1.0)
   - pop (1.0.7)
 
 DEPENDENCIES:
   - ACEDrawingView
   - LIVBubbleMenu (from `https://github.com/Shrugs/LIVBubbleMenu-iOS.git`, branch `bganimation-fix`)
   - Masonry
+  - MCBouncyButton
   - pop (~> 1.0)
 
 EXTERNAL SOURCES:
@@ -25,6 +28,7 @@ SPEC CHECKSUMS:
   ACEDrawingView: 70e79a58cbd3a07c8e3ea9166fc3cafe16cf9a97
   LIVBubbleMenu: c0f3704c9332cb7b8db80eabef0e666d6a2fac80
   Masonry: 35368c2ca9577ca87722c12fc52c4bad9b1c1516
+  MCBouncyButton: f56f99744f56a62d092152c06c929e7868886d69
   pop: 2f14a1ea61339767af9e66741b418c831b3844df
 
 COCOAPODS: 0.35.0

@@ -6,10 +6,10 @@
 //  Copyright (c) 2014 Shrugs. All rights reserved.
 //
 
-#import "AKButton.h"
+#import <MCBouncyButton/MCBouncyButton.h>
 
-@interface AKBrushButton : AKButton
+@interface AKBrushButton : MCBouncyButton
 
-- (AKBrushButton *)initWithBrushSize:(float)size andDiamter:(float)diameter;
+- (AKBrushButton *)initWithBrushSize:(float)size andRadius:(float)radius;
 
 @end

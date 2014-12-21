@@ -85,36 +85,36 @@
     // LEFT SIDE
 
     // BRUSH BUTTON
-    self.brushButton = [[AKButton alloc] initWithImage:[UIImage imageNamed:@"pen"] andDiameter:BUTTON_HEIGHT];
+    self.brushButton = [[MCBouncyButton alloc] initWithImage:[UIImage imageNamed:@"pen"] andRadius:(BUTTON_HEIGHT/2.0f)];
     [self.brushButton addTarget:self action:@selector(brushButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.brushButton setAdjustsImageWhenDisabled:NO];
-    [self.brushButton setStyle:AKButtonStyleSelected animated:NO];
+    [self.brushButton setStyle:MCBouncyButtonStyleSelected animated:NO];
 
     // ERASER BUTTON
-    self.eraserButton = [[AKButton alloc] initWithImage:[UIImage imageNamed:@"eraser"] andDiameter:BUTTON_HEIGHT];
+    self.eraserButton = [[MCBouncyButton alloc] initWithImage:[UIImage imageNamed:@"eraser"] andRadius:(BUTTON_HEIGHT/2.0f)];
     [self.eraserButton addTarget:self action:@selector(eraserButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
 
     // NUMPAD BUTTON
-    self.numpadButton = [[AKButton alloc] initWithText:@"123" andDiameter:BUTTON_HEIGHT];
+    self.numpadButton = [[MCBouncyButton alloc] initWithText:@"123" andRadius:(BUTTON_HEIGHT/2.0f)];
     [self.numpadButton addTarget:self action:@selector(characterPackButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     UILongPressGestureRecognizer *numpadRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(numpadButtonPressed:)];
     [self.numpadButton addGestureRecognizer:numpadRecognizer];
 
     // NEXT BUTTON
-    self.nextKeyboardButton = [[AKButton alloc] initWithImage:[UIImage imageNamed:@"globe"] andDiameter:BUTTON_HEIGHT];
+    self.nextKeyboardButton = [[MCBouncyButton alloc] initWithImage:[UIImage imageNamed:@"globe"] andRadius:(BUTTON_HEIGHT/2.0f)];
     [self.nextKeyboardButton addTarget:self action:@selector(advanceToNextInputMode) forControlEvents:UIControlEventTouchUpInside];
 
     // RIGHT SIDE
 
     // ENTER BUTTON
-    self.enterButton = [[AKButton alloc] initWithImage:[UIImage imageNamed:@"return"] andDiameter:BUTTON_HEIGHT];
+    self.enterButton = [[MCBouncyButton alloc] initWithImage:[UIImage imageNamed:@"return"] andRadius:(BUTTON_HEIGHT/2.0f)];
     [self.enterButton addTarget:self action:@selector(enterDown:) forControlEvents:UIControlEventTouchDown];
     [self.enterButton addTarget:self action:@selector(enterButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     UILongPressGestureRecognizer *enterRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(enterButtonHeld:)];
     [self.enterButton addGestureRecognizer:enterRecognizer];
 
     // BACKSPACE BUTTON
-    self.backspaceButton = [[AKButton alloc] initWithImage:[UIImage imageNamed:@"backspace"] andDiameter:BUTTON_HEIGHT];
+    self.backspaceButton = [[MCBouncyButton alloc] initWithImage:[UIImage imageNamed:@"backspace"] andRadius:(BUTTON_HEIGHT/2.0f)];
     [self.backspaceButton addTarget:self action:@selector(backspaceButtonPressed:) forControlEvents:UIControlEventTouchDown];
     [self.backspaceButton addTarget:self action:@selector(backspaceButtonReleased:) forControlEvents:UIControlEventTouchUpOutside];
     UILongPressGestureRecognizer *backspaceRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(backspaceButtonHeld:)];
@@ -122,11 +122,11 @@
 
 
     // UNDO BUTTON
-    self.undoButton = [[AKButton alloc] initWithImage:[UIImage imageNamed:@"undo"] andDiameter:BUTTON_HEIGHT];
+    self.undoButton = [[MCBouncyButton alloc] initWithImage:[UIImage imageNamed:@"undo"] andRadius:(BUTTON_HEIGHT/2.0f)];
     [self.undoButton addTarget:self action:@selector(undoButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
 
     // CLEAR BUTTON
-    self.clearButton = [[AKButton alloc] initWithImage:[UIImage imageNamed:@"trash"] andDiameter:BUTTON_HEIGHT];
+    self.clearButton = [[MCBouncyButton alloc] initWithImage:[UIImage imageNamed:@"trash"] andRadius:(BUTTON_HEIGHT/2.0f)];
     [self.clearButton addTarget:self action:@selector(clearButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
 
 
@@ -365,9 +365,9 @@
 - (void)brushButtonPressed:(UIButton *)sender
 {
     self.brushButtonsArray = [NSArray arrayWithObjects:
-                              [[AKBrushButton alloc] initWithBrushSize:BRUSH_SIZE_SMALL andDiamter:(BUTTON_HEIGHT * BRUSH_BUTTON_RELATIVE_SIZE)],
-                              [[AKBrushButton alloc] initWithBrushSize:BRUSH_SIZE_MEDIUM andDiamter:(BUTTON_HEIGHT * BRUSH_BUTTON_RELATIVE_SIZE)],
-                              [[AKBrushButton alloc] initWithBrushSize:BRUSH_SIZE_LARGE andDiamter:(BUTTON_HEIGHT * BRUSH_BUTTON_RELATIVE_SIZE)],
+                              [[AKBrushButton alloc] initWithBrushSize:BRUSH_SIZE_SMALL andRadius:(BUTTON_HEIGHT * BRUSH_BUTTON_RELATIVE_SIZE / 2.0f)],
+                              [[AKBrushButton alloc] initWithBrushSize:BRUSH_SIZE_MEDIUM andRadius:(BUTTON_HEIGHT * BRUSH_BUTTON_RELATIVE_SIZE / 2.0f)],
+                              [[AKBrushButton alloc] initWithBrushSize:BRUSH_SIZE_LARGE andRadius:(BUTTON_HEIGHT * BRUSH_BUTTON_RELATIVE_SIZE / 2.0f)],
                               nil];
 
     [self setBrushSelected];
@@ -413,9 +413,9 @@
     // fuck drm, just write to a plist
     // jailbreak users could make their own if they really wanted to
     self.characterPackButtonsArray = [NSArray arrayWithObjects:
-                              [[AKButton alloc] initWithText:@"ignore" andDiameter:(BUTTON_HEIGHT * BRUSH_BUTTON_RELATIVE_SIZE)],
-                              [[AKButton alloc] initWithText:@"this" andDiameter:(BUTTON_HEIGHT * BRUSH_BUTTON_RELATIVE_SIZE)],
-                              [[AKButton alloc] initWithText:@"lol" andDiameter:(BUTTON_HEIGHT * BRUSH_BUTTON_RELATIVE_SIZE)],
+                              [[MCBouncyButton alloc] initWithText:@"ignore" andRadius:(BUTTON_HEIGHT * BRUSH_BUTTON_RELATIVE_SIZE / 2.0f)],
+                              [[MCBouncyButton alloc] initWithText:@"this" andRadius:(BUTTON_HEIGHT * BRUSH_BUTTON_RELATIVE_SIZE / 2.0f)],
+                              [[MCBouncyButton alloc] initWithText:@"lol" andRadius:(BUTTON_HEIGHT * BRUSH_BUTTON_RELATIVE_SIZE / 2.0f)],
                               nil];
 
     characterPackMenu = [[LIVBubbleMenu alloc] initWithPoint:self.numpadButton.center radius:self.numpadButton.frame.size.width * 2.0f menuItems:self.characterPackButtonsArray inView:self.view];
@@ -443,6 +443,7 @@
     [self enterButtonPressed:sender];
     enterButtonWasHeld = YES;
     [self.textDocumentProxy insertText:@"\n"];
+    [self.insertHistory removeAllObjects];
 }
 
 - (void)numpadButtonPressed:(UIButton *)sender
@@ -461,7 +462,7 @@
         UILongPressGestureRecognizer *backspaceRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(backspaceButtonHeld:)];
         [self.numpadView.deleteButton addGestureRecognizer:backspaceRecognizer];
         // everyone else
-        for (AKButton *btn in self.numpadView.numpadButtons) {
+        for (MCBouncyButton *btn in self.numpadView.numpadButtons) {
             [btn addTarget:self action:@selector(numpadNumberButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
         }
         // add and to view
@@ -475,17 +476,17 @@
     }];
 }
 
-- (void)removeNumPad:(AKButton *)sender
+- (void)removeNumPad:(MCBouncyButton *)sender
 {
     [self.numpadView removeFromSuperview];
 }
 
-- (void)numpadBackspaceButtonPressed:(AKButton *)sender
+- (void)numpadBackspaceButtonPressed:(MCBouncyButton *)sender
 {
     [self.textDocumentProxy deleteBackward];
 }
 
-- (void)numpadNumberButtonPressed:(AKButton *)sender
+- (void)numpadNumberButtonPressed:(MCBouncyButton *)sender
 {
     [self.textDocumentProxy insertText:[sender currentTitle]];
 }
@@ -900,14 +901,14 @@
 - (void)setBrushSelected
 {
     // select brush, deselect eraser
-    [self.brushButton setStyle:AKButtonStyleSelected animated:YES];
-    [self.eraserButton setStyle:AKButtonStyleDefault animated:YES];
+    [self.brushButton setStyle:MCBouncyButtonStyleSelected animated:YES];
+    [self.eraserButton setStyle:MCBouncyButtonStyleDefault animated:YES];
 }
 - (void)setEraserSelected
 {
     // select eraser and deselect brush
-    [self.brushButton setStyle:AKButtonStyleDefault animated:YES];
-    [self.eraserButton setStyle:AKButtonStyleSelected animated:YES];
+    [self.brushButton setStyle:MCBouncyButtonStyleDefault animated:YES];
+    [self.eraserButton setStyle:MCBouncyButtonStyleSelected animated:YES];
 }
 
 @end

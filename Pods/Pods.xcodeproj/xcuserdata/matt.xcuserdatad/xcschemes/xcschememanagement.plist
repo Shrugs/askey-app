@@ -14,6 +14,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-MCBouncyButton.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Masonry.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -32,27 +37,32 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>3880471A8C6D8A54BCB78E5B</key>
+		<key>0F65094C7B5C99857D5A9492</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>757B576C2B3722814F63AFBD</key>
+		<key>21C011B43FAD9B37C4EC61D9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A315C680C90140D1A4E879FA</key>
+		<key>46EE3C1031A9781A1580A6B7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BB93D7FD6C1C72D4418E677C</key>
+		<key>4C22258B0CA85EFDA724EFF4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BE3AF0248E9F0EBD1EADE07A</key>
+		<key>74F1BC5C1B1DD2A3D14CE8B6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>AA40AAE30BAE87F364C74254</key>
 		<dict>
 			<key>primary</key>
 			<true/>
