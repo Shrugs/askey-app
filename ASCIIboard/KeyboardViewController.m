@@ -89,9 +89,6 @@
     [self.brushButton addTarget:self action:@selector(brushButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.brushButton setAdjustsImageWhenDisabled:NO];
     [self.brushButton setStyle:MCBouncyButtonStyleSelected animated:NO];
-    UILongPressGestureRecognizer *brushRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(brushButtonHeld:)];
-    brushRecognizer.minimumPressDuration = ASKEY_HOLD_DURATION;
-    [self.brushButton addGestureRecognizer:brushRecognizer];
 
     // ERASER BUTTON
     self.eraserButton = [[MCBouncyButton alloc] initWithImage:[UIImage imageNamed:@"eraser"] andRadius:(BUTTON_HEIGHT/2.0f)];
@@ -369,17 +366,13 @@
 
 - (void)brushButtonPressed:(UIButton *)sender
 {
-    // select brush
-    self.currentSheet.drawView.drawTool = ACEDrawingToolTypePen;
-    self.currentSheet.drawView.lineWidth = lastBrushSize;
-    [self setBrushSelected];
-    
-}
-
-- (void)brushButtonHeld:(UILongPressGestureRecognizer *)sender
-{
-    if (sender.state == UIGestureRecognizerStateBegan) {
+    if (self.currentSheet.drawView.drawTool == ACEDrawingToolTypePen) {
         [self showBrushMenu];
+    } else {
+        // select brush
+        self.currentSheet.drawView.drawTool = ACEDrawingToolTypePen;
+        self.currentSheet.drawView.lineWidth = lastBrushSize;
+        [self setBrushSelected];
     }
 }
 
@@ -875,7 +868,11 @@
                                                                        ASKEY_HEIGHT*ASKEY_HEIGHT_FRACTION)];
     sheet.delegate = self;
     if (self.currentSheet != nil) {
-        sheet.drawView.lineWidth = self.currentSheet.drawView.lineWidth;
+        if (self.currentSheet.drawView.drawTool == ACEDrawingToolTypePen) {
+            sheet.drawView.lineWidth = self.currentSheet.drawView.lineWidth;
+        } else {
+            sheet.drawView.lineWidth = lastBrushSize;
+        }
     } else {
         sheet.drawView.lineWidth = BRUSH_SIZE_MEDIUM;
     }
