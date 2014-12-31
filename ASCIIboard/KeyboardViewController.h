@@ -22,6 +22,8 @@
     BOOL enterButtonWasHeld;
 
     float lastBrushSize;
+
+    BOOL hasOpenAccess;
 }
 
 // BUTTONS

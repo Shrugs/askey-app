@@ -8,6 +8,9 @@
 
 #import "ViewController.h"
 #import "Masonry.h"
+#import <MCBouncyButton/MCBouncyButton.h>
+#import <Crashlytics/Crashlytics.h>
+#import "Flurry.h"
 
 @implementation ViewController
 
@@ -24,6 +27,19 @@
         make.right.equalTo(self.view).offset(-50);
         make.top.equalTo(self.text.mas_bottom).offset(50);
     }];
+
+    MCBouncyButton *myButton = [[MCBouncyButton alloc] initWithText:@"yo" andRadius:50];
+    [self.view addSubview:myButton];
+    [myButton setStyle:MCBouncyButtonStyleSelected animated:YES];
+    [myButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.and.height.equalTo(@(100));
+        make.center.equalTo(self.view);
+    }];
+    CLSLog(@"LOGGING STUFF");
+    [myButton addTarget:[Crashlytics sharedInstance] action:@selector(crash) forControlEvents:UIControlEventTouchUpInside];
+
+
+    [Flurry logEvent:@"APP_OPENED"];
 
 }
 

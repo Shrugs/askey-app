@@ -42,10 +42,13 @@
 // position thresh to guarantee decrement
 #define SHEET_TRANSLATION_THRESHOLD 50
 
+// UI/UX
 #define ASKEY_HOLD_DURATION 0.3f
-
-
 #define ASKEY_BACKGROUND_COLOR [UIColor colorWithRed:0.863 green:.8671875 blue:.8828125 alpha:1.000]
+
+
+// CONSTS
+#define ASKEY_CONTAINER_GROUP_NAME @"group.io.askey"
 
 
 typedef enum {

@@ -13,6 +13,10 @@
 #import "POP.h"
 #import "AKBrushButton.h"
 #import "AKConfig.h"
+#import <Fabric/Fabric.h>
+#import <Crashlytics/Crashlytics.h>
+#import "Flurry.h"
+#import "AKCharacterPackManager.h"
 
 @implementation KeyboardViewController
 
@@ -21,6 +25,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    hasOpenAccess = [self isOpenAccessGranted];
+    if (hasOpenAccess) {
+        // if we have open access, we can access the network / filesystem, so enable logging
+        [Fabric with:@[CrashlyticsKit]];
+        [Flurry startSession:@"QH7F5T9FMSKJVKSFNMY3"];
+    }
+
     // LOAD KLUDGE so that height can change -_-
     [self loadKludge];
 
@@ -28,7 +39,8 @@
     self.insertHistory = [[NSMutableArray alloc] init];
 
     // LAYOUT
-    // set bg color 220, 222, 226
+
+    // bg color
     [self.view setBackgroundColor:ASKEY_BACKGROUND_COLOR];
 
     // setup draw sheets
@@ -49,6 +61,8 @@
         make.left.equalTo(self.view);
         make.width.equalTo(self.view);
     }];
+
+    [self logEvent:@"ASKEY_OPENED"];
 
 }
 
@@ -76,6 +90,9 @@
     }];
 
     [NSTimer scheduledTimerWithTimeInterval:INITIAL_SHEET_DELAY target:self selector:@selector(animateSheetInWithTimer:) userInfo:firstSheet repeats:NO];
+
+    AKCharacterPackManager *myManager = [AKCharacterPackManager sharedManager];
+    [myManager refreshCharacterPacks];
 
 
 }
@@ -537,7 +554,6 @@
 
 - (void)backspaceButtonReleased:(UIButton *)sender
 {
-    NSLog(@"RELEASED");
     [holdTimer invalidate];
 }
 
@@ -572,7 +588,6 @@
 
 - (void)backspaceButtonRepeat:(UIButton *)sender
 {
-    NSLog(@"REPEATING BACKSPACE");
     [self.textDocumentProxy deleteBackward];
     [self updateButtonStatus];
 }
@@ -677,7 +692,6 @@
     previousAnim.velocity = @(SHEET_VELOCITY);
     previousAnim.name = @"currentSheetSlideOut";
     previousAnim.completionBlock = ^(POPAnimation *anim, BOOL finished) {
-        NSLog(@"DONE PREVIOUS");
         MCDrawSheet *tempSheet = self.currentSheet;
         self.currentSheet = self.previousSheet;
 
@@ -929,6 +943,25 @@
     // select eraser and deselect brush
     [self.brushButton setStyle:MCBouncyButtonStyleDefault animated:YES];
     [self.eraserButton setStyle:MCBouncyButtonStyleSelected animated:YES];
+}
+
+// http://stackoverflow.com/questions/26057300/how-can-i-check-does-my-ios8-custom-keyboard-extension-have-open-access
+-(BOOL)isOpenAccessGranted{
+
+    NSFileManager *fm = [NSFileManager defaultManager];
+    NSString *containerPath = [[fm containerURLForSecurityApplicationGroupIdentifier:ASKEY_CONTAINER_GROUP_NAME] path];
+
+    NSError *err;
+    [fm contentsOfDirectoryAtPath:containerPath error:&err];
+
+    return err == nil;
+}
+
+- (void)logEvent:(NSString *)event
+{
+    if (hasOpenAccess) {
+        [Flurry logEvent:event];
+    }
 }
 
 @end

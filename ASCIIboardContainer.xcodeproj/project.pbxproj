@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C9197D631A54A189008B2087 /* AKCharacterPackManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C9197D621A54A189008B2087 /* AKCharacterPackManager.m */; };
+		C9197D741A54ADAD008B2087 /* original.pack.plist in Resources */ = {isa = PBXBuildFile; fileRef = C9197D731A54ADAD008B2087 /* original.pack.plist */; };
+		C9197D771A54ADB7008B2087 /* original.pack.plist in Resources */ = {isa = PBXBuildFile; fileRef = C9197D761A54ADB7008B2087 /* original.pack.plist */; };
 		C93223531A3CF91A0082C72C /* AKBrushButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C93223521A3CF91A0082C72C /* AKBrushButton.m */; };
 		C93223561A3D22490082C72C /* UIImage+NegativeImage.m in Sources */ = {isa = PBXBuildFile; fileRef = C93223551A3D22490082C72C /* UIImage+NegativeImage.m */; };
 		C93A516119DA2E1A00BC939D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C93A516019DA2E1A00BC939D /* libPods.a */; };
@@ -20,6 +23,14 @@
 		C952A47219D123870025DD73 /* ASCIIboardContainerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C952A47119D123870025DD73 /* ASCIIboardContainerTests.m */; };
 		C952A48519D123990025DD73 /* KeyboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C952A48419D123990025DD73 /* KeyboardViewController.m */; };
 		C952A48819D123990025DD73 /* ASCIIboard.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C952A47F19D123990025DD73 /* ASCIIboard.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C99451271A511E0B009A7EFF /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C99451251A511E0B009A7EFF /* Crashlytics.framework */; };
+		C99451421A512590009A7EFF /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C994513F1A512590009A7EFF /* Crashlytics.framework */; };
+		C99451431A512590009A7EFF /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C99451401A512590009A7EFF /* Fabric.framework */; };
+		C99451441A512590009A7EFF /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C99451401A512590009A7EFF /* Fabric.framework */; };
+		C994514B1A512BB0009A7EFF /* libFlurry_6.0.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C994514A1A512BB0009A7EFF /* libFlurry_6.0.0.a */; };
+		C994514C1A512BB0009A7EFF /* libFlurry_6.0.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C994514A1A512BB0009A7EFF /* libFlurry_6.0.0.a */; };
+		C994514E1A512D91009A7EFF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C994514D1A512D91009A7EFF /* SystemConfiguration.framework */; };
+		C994514F1A512D9C009A7EFF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C994514D1A512D91009A7EFF /* SystemConfiguration.framework */; };
 		C9959CDC1A3B86DB0038315E /* MCDrawSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = C9959CDB1A3B86DB0038315E /* MCDrawSheet.m */; };
 		C9A7181F1A44F9E9002A8824 /* AKNumPadView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A7181E1A44F9E9002A8824 /* AKNumPadView.m */; };
 		C9C094661A3BE1C300742427 /* UIColor+Random.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C094651A3BE1C300742427 /* UIColor+Random.m */; };
@@ -75,6 +86,10 @@
 		246A63C1FC39E0DD3657E3B9 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		848203DA404B8484DED96D51 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		B3DDAEF02FB1B2E2B404DE3F /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		C9197D611A54A189008B2087 /* AKCharacterPackManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKCharacterPackManager.h; sourceTree = "<group>"; };
+		C9197D621A54A189008B2087 /* AKCharacterPackManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKCharacterPackManager.m; sourceTree = "<group>"; };
+		C9197D731A54ADAD008B2087 /* original.pack.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = original.pack.plist; sourceTree = "<group>"; };
+		C9197D761A54ADB7008B2087 /* original.pack.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = original.pack.plist; sourceTree = "<group>"; };
 		C93223511A3CF91A0082C72C /* AKBrushButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKBrushButton.h; sourceTree = "<group>"; };
 		C93223521A3CF91A0082C72C /* AKBrushButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKBrushButton.m; sourceTree = "<group>"; };
 		C93223541A3D22490082C72C /* UIImage+NegativeImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+NegativeImage.h"; sourceTree = "<group>"; };
@@ -99,6 +114,15 @@
 		C952A48219D123990025DD73 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C952A48319D123990025DD73 /* KeyboardViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeyboardViewController.h; sourceTree = "<group>"; };
 		C952A48419D123990025DD73 /* KeyboardViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KeyboardViewController.m; sourceTree = "<group>"; };
+		C99451251A511E0B009A7EFF /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = SOURCE_ROOT; };
+		C99451261A511E0B009A7EFF /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = SOURCE_ROOT; };
+		C994513F1A512590009A7EFF /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = SOURCE_ROOT; };
+		C99451401A512590009A7EFF /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = SOURCE_ROOT; };
+		C99451461A512840009A7EFF /* ASCIIboard.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ASCIIboard.entitlements; sourceTree = "<group>"; };
+		C99451471A5128BE009A7EFF /* ASCIIboardContainer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ASCIIboardContainer.entitlements; sourceTree = "<group>"; };
+		C99451491A512BB0009A7EFF /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
+		C994514A1A512BB0009A7EFF /* libFlurry_6.0.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry_6.0.0.a; sourceTree = "<group>"; };
+		C994514D1A512D91009A7EFF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		C9959CDA1A3B86DB0038315E /* MCDrawSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCDrawSheet.h; sourceTree = "<group>"; };
 		C9959CDB1A3B86DB0038315E /* MCDrawSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCDrawSheet.m; sourceTree = "<group>"; };
 		C9A7181D1A44F9E9002A8824 /* AKNumPadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKNumPadView.h; sourceTree = "<group>"; };
@@ -120,6 +144,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C994514E1A512D91009A7EFF /* SystemConfiguration.framework in Frameworks */,
+				C99451431A512590009A7EFF /* Fabric.framework in Frameworks */,
+				C99451271A511E0B009A7EFF /* Crashlytics.framework in Frameworks */,
+				C994514B1A512BB0009A7EFF /* libFlurry_6.0.0.a in Frameworks */,
 				F27B2AE4F798D923F6690A40 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -135,7 +163,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C994514F1A512D9C009A7EFF /* SystemConfiguration.framework in Frameworks */,
+				C99451441A512590009A7EFF /* Fabric.framework in Frameworks */,
 				C93A516119DA2E1A00BC939D /* libPods.a in Frameworks */,
+				C99451421A512590009A7EFF /* Crashlytics.framework in Frameworks */,
+				C994514C1A512BB0009A7EFF /* libFlurry_6.0.0.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -145,11 +177,30 @@
 		C1F96D68E01993E66C03A35A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C994514D1A512D91009A7EFF /* SystemConfiguration.framework */,
 				C93A516019DA2E1A00BC939D /* libPods.a */,
 				246A63C1FC39E0DD3657E3B9 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
+		};
+		C9197D721A54ADAD008B2087 /* CharacterPacks */ = {
+			isa = PBXGroup;
+			children = (
+				C9197D731A54ADAD008B2087 /* original.pack.plist */,
+			);
+			name = CharacterPacks;
+			path = media/CharacterPacks;
+			sourceTree = SOURCE_ROOT;
+		};
+		C9197D751A54ADB7008B2087 /* CharacterPacks */ = {
+			isa = PBXGroup;
+			children = (
+				C9197D761A54ADB7008B2087 /* original.pack.plist */,
+			);
+			name = CharacterPacks;
+			path = media/CharacterPacks;
+			sourceTree = SOURCE_ROOT;
 		};
 		C952A44919D123870025DD73 = {
 			isa = PBXGroup;
@@ -176,6 +227,11 @@
 		C952A45419D123870025DD73 /* ASCIIboardContainer */ = {
 			isa = PBXGroup;
 			children = (
+				C9197D751A54ADB7008B2087 /* CharacterPacks */,
+				C99451481A512BB0009A7EFF /* Flurry */,
+				C99451471A5128BE009A7EFF /* ASCIIboardContainer.entitlements */,
+				C99451251A511E0B009A7EFF /* Crashlytics.framework */,
+				C99451261A511E0B009A7EFF /* Fabric.framework */,
 				C952A45919D123870025DD73 /* AppDelegate.h */,
 				C952A45A19D123870025DD73 /* AppDelegate.m */,
 				C952A45C19D123870025DD73 /* ViewController.h */,
@@ -217,6 +273,10 @@
 		C952A48019D123990025DD73 /* ASCIIboard */ = {
 			isa = PBXGroup;
 			children = (
+				C9197D721A54ADAD008B2087 /* CharacterPacks */,
+				C99451461A512840009A7EFF /* ASCIIboard.entitlements */,
+				C994513F1A512590009A7EFF /* Crashlytics.framework */,
+				C99451401A512590009A7EFF /* Fabric.framework */,
 				C9EB33B41A280614006754A6 /* Buttons */,
 				C93A516219DA576F00BC939D /* UIImage+ASCII.h */,
 				C93A516319DA576F00BC939D /* UIImage+ASCII.m */,
@@ -234,6 +294,8 @@
 				C9A7181D1A44F9E9002A8824 /* AKNumPadView.h */,
 				C9A7181E1A44F9E9002A8824 /* AKNumPadView.m */,
 				C9A718201A44FCC7002A8824 /* AKConfig.h */,
+				C9197D611A54A189008B2087 /* AKCharacterPackManager.h */,
+				C9197D621A54A189008B2087 /* AKCharacterPackManager.m */,
 			);
 			path = ASCIIboard;
 			sourceTree = "<group>";
@@ -244,6 +306,15 @@
 				C952A48219D123990025DD73 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C99451481A512BB0009A7EFF /* Flurry */ = {
+			isa = PBXGroup;
+			children = (
+				C99451491A512BB0009A7EFF /* Flurry.h */,
+				C994514A1A512BB0009A7EFF /* libFlurry_6.0.0.a */,
+			);
+			path = Flurry;
 			sourceTree = "<group>";
 		};
 		C9EB33B41A280614006754A6 /* Buttons */ = {
@@ -282,6 +353,7 @@
 				C952A45019D123870025DD73 /* Resources */,
 				C952A48E19D123990025DD73 /* Embed App Extensions */,
 				FE89D7699B159ABFE956B5BB /* Copy Pods Resources */,
+				C99451231A511DB5009A7EFF /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -319,6 +391,7 @@
 				C952A47B19D123990025DD73 /* Sources */,
 				C952A47C19D123990025DD73 /* Frameworks */,
 				C952A47D19D123990025DD73 /* Resources */,
+				C99451451A51259A009A7EFF /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -340,6 +413,12 @@
 				TargetAttributes = {
 					C952A45119D123870025DD73 = {
 						CreatedOnToolsVersion = 6.0;
+						DevelopmentTeam = 8DZG85JJAZ;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					C952A46A19D123870025DD73 = {
 						CreatedOnToolsVersion = 6.0;
@@ -347,6 +426,12 @@
 					};
 					C952A47E19D123990025DD73 = {
 						CreatedOnToolsVersion = 6.0;
+						DevelopmentTeam = 8DZG85JJAZ;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -378,6 +463,7 @@
 				C952A46119D123870025DD73 /* Main.storyboard in Resources */,
 				C952A46619D123870025DD73 /* LaunchScreen.xib in Resources */,
 				C952A46319D123870025DD73 /* Images.xcassets in Resources */,
+				C9197D771A54ADB7008B2087 /* original.pack.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -399,12 +485,39 @@
 				C9C094771A3BED4800742427 /* undo.png in Resources */,
 				C9C094721A3BED4800742427 /* eraser.png in Resources */,
 				C9C094751A3BED4800742427 /* return.png in Resources */,
+				C9197D741A54ADAD008B2087 /* original.pack.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		C99451231A511DB5009A7EFF /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run fd509efd73866e31893188648cfa0a10c260e7db ff255cd40b067cc0a8e3774ca815edd0de7800c8528feb840f574f1e6f05ce41";
+		};
+		C99451451A51259A009A7EFF /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run fd509efd73866e31893188648cfa0a10c260e7db ff255cd40b067cc0a8e3774ca815edd0de7800c8528feb840f574f1e6f05ce41";
+		};
 		FD14332535ABC72D3C439BFE /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -466,6 +579,7 @@
 				C952A48519D123990025DD73 /* KeyboardViewController.m in Sources */,
 				C9A7181F1A44F9E9002A8824 /* AKNumPadView.m in Sources */,
 				C93A516419DA576F00BC939D /* UIImage+ASCII.m in Sources */,
+				C9197D631A54A189008B2087 /* AKCharacterPackManager.m in Sources */,
 				C93223561A3D22490082C72C /* UIImage+NegativeImage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -591,9 +705,23 @@
 			baseConfigurationReference = B3DDAEF02FB1B2E2B404DE3F /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = ASCIIboardContainer/ASCIIboardContainer.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = ASCIIboardContainer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ASCIIboard",
+					"$(PROJECT_DIR)/ASCIIboardContainer",
+					"$(PROJECT_DIR)/ASCIIboardContainer/Flurry",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -602,9 +730,23 @@
 			baseConfigurationReference = 848203DA404B8484DED96D51 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = ASCIIboardContainer/ASCIIboardContainer.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = ASCIIboardContainer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ASCIIboard",
+					"$(PROJECT_DIR)/ASCIIboardContainer",
+					"$(PROJECT_DIR)/ASCIIboardContainer/Flurry",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -646,6 +788,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B3DDAEF02FB1B2E2B404DE3F /* Pods.debug.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = ASCIIboard/ASCIIboard.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -655,8 +804,12 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/ASCIIboard",
+					"$(PROJECT_DIR)/ASCIIboardContainer",
+					"$(PROJECT_DIR)/ASCIIboardContainer/Flurry",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/**";
 			};
@@ -666,13 +819,24 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 848203DA404B8484DED96D51 /* Pods.release.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = ASCIIboard/ASCIIboard.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = ASCIIboard/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/ASCIIboard",
+					"$(PROJECT_DIR)/ASCIIboardContainer",
+					"$(PROJECT_DIR)/ASCIIboardContainer/Flurry",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/**";
 			};
