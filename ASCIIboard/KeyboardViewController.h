@@ -24,6 +24,7 @@
     float lastBrushSize;
 
     BOOL hasOpenAccess;
+    NSMutableDictionary *currentCharacterPack;
 }
 
 // BUTTONS
@@ -46,6 +47,8 @@
 // array of images that must be retained
 @property (nonatomic, strong) NSArray *brushButtonsArray;
 @property (nonatomic, strong) NSArray *characterPackButtonsArray;
+
+@property (nonatomic, strong) NSArray *characterPacks;
 
 
 // array of characters that were inserted (I should use a queue for this)

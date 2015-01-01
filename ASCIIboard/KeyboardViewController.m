@@ -91,9 +91,29 @@
 
     [NSTimer scheduledTimerWithTimeInterval:INITIAL_SHEET_DELAY target:self selector:@selector(animateSheetInWithTimer:) userInfo:firstSheet repeats:NO];
 
-    AKCharacterPackManager *myManager = [AKCharacterPackManager sharedManager];
-    [myManager refreshCharacterPacks];
 
+    if (hasOpenAccess) {
+        AKCharacterPackManager *myManager = [AKCharacterPackManager sharedManager];
+        [myManager refreshCharacterPacks];
+        self.characterPacks = myManager.characterPacks;
+    } else {
+        self.characterPacks = @[
+                                @{
+                                    @"keyName": @"original",
+                                    @"displayName": @"Original",
+                                    @"icon": @"!;'",
+                                    @"enabled": @YES
+                                    },
+                                @{
+                                    @"keyName": @"emoji",
+                                    @"displayName": @"Emoji",
+                                    @"icon": @"😄",
+                                    @"enabled": @NO
+                                    }
+                                ];
+    }
+
+    currentCharacterPack = [self.characterPacks objectAtIndex:0];
 
 }
 
@@ -440,15 +460,22 @@
 
 - (void)characterPackButtonPressed:(UIButton *)sender
 {
-    // @TODO(Shrugs) grab character packs and icons from container
-    // disable ones that have not been unlocked
-    // fuck drm, just write to a plist
-    // jailbreak users could make their own if they really wanted to
-    self.characterPackButtonsArray = [NSArray arrayWithObjects:
-                              [[MCBouncyButton alloc] initWithText:@"ignore" andRadius:(BUTTON_HEIGHT * BRUSH_BUTTON_RELATIVE_SIZE / 2.0f)],
-                              [[MCBouncyButton alloc] initWithText:@"this" andRadius:(BUTTON_HEIGHT * BRUSH_BUTTON_RELATIVE_SIZE / 2.0f)],
-                              [[MCBouncyButton alloc] initWithText:@"lol" andRadius:(BUTTON_HEIGHT * BRUSH_BUTTON_RELATIVE_SIZE / 2.0f)],
-                              nil];
+
+    
+    NSMutableArray *buttons = [[NSMutableArray alloc] initWithCapacity:[self.characterPacks count]];
+    for (NSMutableDictionary *pack in self.characterPacks) {
+        MCBouncyButton *button = [[MCBouncyButton alloc] initWithText:[pack objectForKey:@"icon"] andRadius:(BUTTON_HEIGHT * BRUSH_BUTTON_RELATIVE_SIZE / 2.0f)];
+        if (![[pack objectForKey:@"enabled"] boolValue]) {
+            // is not enabled
+            [button setStyle:MCBouncyButtonStyleDisabled animated:YES];
+        } else if ([[pack objectForKey:@"keyName"] isEqualToString:[currentCharacterPack objectForKey:@"keyName"]]) {
+            // if this is the currently selected pack, highlight it
+            [button setStyle:MCBouncyButtonStyleSelected animated:YES];
+        }
+        [buttons addObject:button];
+
+    }
+    self.characterPackButtonsArray = [NSArray arrayWithArray:buttons];
 
     characterPackMenu = [[LIVBubbleMenu alloc] initWithPoint:self.numpadButton.center radius:self.numpadButton.frame.size.width * 2.0f menuItems:self.characterPackButtonsArray inView:self.view];
     characterPackMenu.bubbleStartAngle = -45;
@@ -457,7 +484,6 @@
     characterPackMenu.bubbleShowDelayTime = 0.1f;
     characterPackMenu.bubbleHideDelayTime = 0.1f;
     characterPackMenu.bubbleSpringBounciness = 5.0f;
-    // characterPackMenu.bubbleSpringSpeed = 10.0f;
     characterPackMenu.bubblePopInDuration = 0.3f;
     characterPackMenu.bubblePopOutDuration = 0.3f;
     characterPackMenu.backgroundFadeDuration = 0.3f;
@@ -818,6 +844,7 @@
         }
     } else if (bubbleMenu == characterPackMenu) {
         // switch character packs
+        NSLog(@"CHARACTER PACK %lu CLICKED", (unsigned long)index);
     }
 }
 
