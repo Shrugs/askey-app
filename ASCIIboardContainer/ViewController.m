@@ -183,6 +183,16 @@
 
     card.titleLabel.text = [pack objectForKey:@"displayName"];
     [card addShadow];
+
+    AKFullWidthButton *buyButton = [[AKFullWidthButton alloc] initWithText:@"Buy"];
+    buyButton.backgroundColor = ASKEY_BLUE_COLOR;
+    [buyButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    buyButton.layer.shadowColor = [[UIColor clearColor] CGColor];
+    [card addSubview:buyButton];
+    [buyButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.left.and.right.equalTo(card);
+    }];
+
     [[_bgBlurView contentView] addSubview:card];
     [self.view addSubview:_bgBlurView];
 
