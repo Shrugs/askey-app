@@ -11,7 +11,7 @@
 @implementation UIImage (ASCII)
 
 
-- (NSString *)getASCIIWithResolution:(CGSize)numBlocks
+- (NSString *)getASCIIWithResolution:(CGSize)numBlocks andChars:(NSDictionary *)alphaChars
 {
 
     // numBlocks = number of ASCII "pixels" in widthxheight
@@ -26,27 +26,6 @@
     CGSize blockSize = CGSizeMake(floor(picSize.width/numBlocks.width), floor(picSize.height/numBlocks.height));
 
     float maxAlpha = blockSize.width * blockSize.height * 1.0;
-
-    NSArray *alphaChars = [NSArray arrayWithObjects:@" ",
-                                                    @".",
-                                                    @".",
-                                                    @",",
-                                                    @",",
-                                                    @"'",
-                                                    @"'",
-                                                    @":",
-                                                    @";",
-                                                    @"!",
-                                                    // @"'",
-                                                    // @"~",
-                                                    // @"^",
-                                                    // @"+",
-                                                    // @"o",
-                                                    // @"()",
-                                                    // @"[]",
-                                                    // @"8",
-                                                    // @"#",
-                                                    nil];
 
 
     NSArray *rawPixels = [UIImage getAlphaFromImage:self atX:0 andY:0 count:picSize.width*picSize.height];
@@ -131,7 +110,9 @@
 
             // convert to [0 .. 9] value
             int relativeAlpha = floor((totalAlpha/maxAlpha) * ([alphaChars count] - 1));
-            finalString = [finalString stringByAppendingString:[alphaChars objectAtIndex:relativeAlpha]];
+            NSArray *possibleChars = [alphaChars objectForKey:[NSString stringWithFormat:@"%i", relativeAlpha]];
+            NSUInteger myCount = [possibleChars count];
+            finalString = [finalString stringByAppendingString:[possibleChars objectAtIndex:arc4random_uniform((u_int32_t)myCount)]];
 
         }
         finalString = [finalString stringByAppendingString:@"\n"];

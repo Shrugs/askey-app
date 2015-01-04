@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		C9197D631A54A189008B2087 /* AKCharacterPackManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C9197D621A54A189008B2087 /* AKCharacterPackManager.m */; };
-		C9197D741A54ADAD008B2087 /* original.pack.plist in Resources */ = {isa = PBXBuildFile; fileRef = C9197D731A54ADAD008B2087 /* original.pack.plist */; };
-		C9197D771A54ADB7008B2087 /* original.pack.plist in Resources */ = {isa = PBXBuildFile; fileRef = C9197D761A54ADB7008B2087 /* original.pack.plist */; };
 		C93223531A3CF91A0082C72C /* AKBrushButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C93223521A3CF91A0082C72C /* AKBrushButton.m */; };
 		C93223561A3D22490082C72C /* UIImage+NegativeImage.m in Sources */ = {isa = PBXBuildFile; fileRef = C93223551A3D22490082C72C /* UIImage+NegativeImage.m */; };
 		C93A516119DA2E1A00BC939D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C93A516019DA2E1A00BC939D /* libPods.a */; };
@@ -23,6 +21,9 @@
 		C952A47219D123870025DD73 /* ASCIIboardContainerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C952A47119D123870025DD73 /* ASCIIboardContainerTests.m */; };
 		C952A48519D123990025DD73 /* KeyboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C952A48419D123990025DD73 /* KeyboardViewController.m */; };
 		C952A48819D123990025DD73 /* ASCIIboard.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C952A47F19D123990025DD73 /* ASCIIboard.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C988AC631A58B91000CDAD6F /* 0original.pack.plist in Resources */ = {isa = PBXBuildFile; fileRef = C988AC601A58B91000CDAD6F /* 0original.pack.plist */; };
+		C988AC641A58B91000CDAD6F /* 1emojiface.pack.plist in Resources */ = {isa = PBXBuildFile; fileRef = C988AC611A58B91000CDAD6F /* 1emojiface.pack.plist */; };
+		C988AC651A58B91000CDAD6F /* 2emojifood.pack.plist in Resources */ = {isa = PBXBuildFile; fileRef = C988AC621A58B91000CDAD6F /* 2emojifood.pack.plist */; };
 		C99451271A511E0B009A7EFF /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C99451251A511E0B009A7EFF /* Crashlytics.framework */; };
 		C99451421A512590009A7EFF /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C994513F1A512590009A7EFF /* Crashlytics.framework */; };
 		C99451431A512590009A7EFF /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C99451401A512590009A7EFF /* Fabric.framework */; };
@@ -88,8 +89,6 @@
 		B3DDAEF02FB1B2E2B404DE3F /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		C9197D611A54A189008B2087 /* AKCharacterPackManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKCharacterPackManager.h; sourceTree = "<group>"; };
 		C9197D621A54A189008B2087 /* AKCharacterPackManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKCharacterPackManager.m; sourceTree = "<group>"; };
-		C9197D731A54ADAD008B2087 /* original.pack.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = original.pack.plist; sourceTree = "<group>"; };
-		C9197D761A54ADB7008B2087 /* original.pack.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = original.pack.plist; sourceTree = "<group>"; };
 		C93223511A3CF91A0082C72C /* AKBrushButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKBrushButton.h; sourceTree = "<group>"; };
 		C93223521A3CF91A0082C72C /* AKBrushButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKBrushButton.m; sourceTree = "<group>"; };
 		C93223541A3D22490082C72C /* UIImage+NegativeImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+NegativeImage.h"; sourceTree = "<group>"; };
@@ -114,6 +113,9 @@
 		C952A48219D123990025DD73 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C952A48319D123990025DD73 /* KeyboardViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeyboardViewController.h; sourceTree = "<group>"; };
 		C952A48419D123990025DD73 /* KeyboardViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KeyboardViewController.m; sourceTree = "<group>"; };
+		C988AC601A58B91000CDAD6F /* 0original.pack.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 0original.pack.plist; sourceTree = "<group>"; };
+		C988AC611A58B91000CDAD6F /* 1emojiface.pack.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 1emojiface.pack.plist; sourceTree = "<group>"; };
+		C988AC621A58B91000CDAD6F /* 2emojifood.pack.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 2emojifood.pack.plist; sourceTree = "<group>"; };
 		C99451251A511E0B009A7EFF /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = SOURCE_ROOT; };
 		C99451261A511E0B009A7EFF /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = SOURCE_ROOT; };
 		C994513F1A512590009A7EFF /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = SOURCE_ROOT; };
@@ -184,24 +186,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		C9197D721A54ADAD008B2087 /* CharacterPacks */ = {
-			isa = PBXGroup;
-			children = (
-				C9197D731A54ADAD008B2087 /* original.pack.plist */,
-			);
-			name = CharacterPacks;
-			path = media/CharacterPacks;
-			sourceTree = SOURCE_ROOT;
-		};
-		C9197D751A54ADB7008B2087 /* CharacterPacks */ = {
-			isa = PBXGroup;
-			children = (
-				C9197D761A54ADB7008B2087 /* original.pack.plist */,
-			);
-			name = CharacterPacks;
-			path = media/CharacterPacks;
-			sourceTree = SOURCE_ROOT;
-		};
 		C952A44919D123870025DD73 = {
 			isa = PBXGroup;
 			children = (
@@ -227,7 +211,6 @@
 		C952A45419D123870025DD73 /* ASCIIboardContainer */ = {
 			isa = PBXGroup;
 			children = (
-				C9197D751A54ADB7008B2087 /* CharacterPacks */,
 				C99451481A512BB0009A7EFF /* Flurry */,
 				C99451471A5128BE009A7EFF /* ASCIIboardContainer.entitlements */,
 				C99451251A511E0B009A7EFF /* Crashlytics.framework */,
@@ -273,7 +256,7 @@
 		C952A48019D123990025DD73 /* ASCIIboard */ = {
 			isa = PBXGroup;
 			children = (
-				C9197D721A54ADAD008B2087 /* CharacterPacks */,
+				C988AC5F1A58B91000CDAD6F /* CharacterPacks */,
 				C99451461A512840009A7EFF /* ASCIIboard.entitlements */,
 				C994513F1A512590009A7EFF /* Crashlytics.framework */,
 				C99451401A512590009A7EFF /* Fabric.framework */,
@@ -307,6 +290,17 @@
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
+		};
+		C988AC5F1A58B91000CDAD6F /* CharacterPacks */ = {
+			isa = PBXGroup;
+			children = (
+				C988AC601A58B91000CDAD6F /* 0original.pack.plist */,
+				C988AC611A58B91000CDAD6F /* 1emojiface.pack.plist */,
+				C988AC621A58B91000CDAD6F /* 2emojifood.pack.plist */,
+			);
+			name = CharacterPacks;
+			path = media/CharacterPacks;
+			sourceTree = SOURCE_ROOT;
 		};
 		C99451481A512BB0009A7EFF /* Flurry */ = {
 			isa = PBXGroup;
@@ -463,7 +457,6 @@
 				C952A46119D123870025DD73 /* Main.storyboard in Resources */,
 				C952A46619D123870025DD73 /* LaunchScreen.xib in Resources */,
 				C952A46319D123870025DD73 /* Images.xcassets in Resources */,
-				C9197D771A54ADB7008B2087 /* original.pack.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -478,14 +471,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C988AC631A58B91000CDAD6F /* 0original.pack.plist in Resources */,
 				C9C094731A3BED4800742427 /* globe.png in Resources */,
 				C9C094741A3BED4800742427 /* pen.png in Resources */,
 				C9C094761A3BED4800742427 /* trash.png in Resources */,
 				C9C094711A3BED4800742427 /* backspace.png in Resources */,
 				C9C094771A3BED4800742427 /* undo.png in Resources */,
+				C988AC641A58B91000CDAD6F /* 1emojiface.pack.plist in Resources */,
 				C9C094721A3BED4800742427 /* eraser.png in Resources */,
+				C988AC651A58B91000CDAD6F /* 2emojifood.pack.plist in Resources */,
 				C9C094751A3BED4800742427 /* return.png in Resources */,
-				C9197D741A54ADAD008B2087 /* original.pack.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -722,6 +717,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -747,6 +743,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

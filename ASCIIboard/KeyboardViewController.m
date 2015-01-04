@@ -97,12 +97,28 @@
         [myManager refreshCharacterPacks];
         self.characterPacks = myManager.characterPacks;
     } else {
+        // The original pack must be completely filled out (because we can't load it from disk)
+        // -> everything else just needs to be presented as a button that they can't select
         self.characterPacks = @[
                                 @{
                                     @"keyName": @"original",
                                     @"displayName": @"Original",
                                     @"icon": @"!;'",
-                                    @"enabled": @YES
+                                    @"enabled": @YES,
+                                    @"width": @40,
+                                    @"height": @11,
+                                    @"chars": @{
+                                            @"0": @[@" "],
+                                            @"1": @[@"."],
+                                            @"2": @[@"."],
+                                            @"3": @[@","],
+                                            @"4": @[@","],
+                                            @"5": @[@"'"],
+                                            @"6": @[@"'"],
+                                            @"7": @[@":"],
+                                            @"8": @[@":"],
+                                            @"9": @[@"!", @";"],
+                                            }
                                     },
                                 @{
                                     @"keyName": @"emoji",
@@ -477,9 +493,9 @@
     }
     self.characterPackButtonsArray = [NSArray arrayWithArray:buttons];
 
-    characterPackMenu = [[LIVBubbleMenu alloc] initWithPoint:self.numpadButton.center radius:self.numpadButton.frame.size.width * 2.0f menuItems:self.characterPackButtonsArray inView:self.view];
-    characterPackMenu.bubbleStartAngle = -45;
-    characterPackMenu.bubbleTotalAngle = 90;
+    characterPackMenu = [[LIVBubbleMenu alloc] initWithPoint:self.numpadButton.center radius:self.numpadButton.frame.size.width * 1.8f menuItems:self.characterPackButtonsArray inView:self.view];
+    characterPackMenu.bubbleStartAngle = -90;
+    characterPackMenu.bubbleTotalAngle = 180;
     characterPackMenu.bubbleRadius = (BUTTON_HEIGHT*BRUSH_BUTTON_RELATIVE_SIZE) / 2.0f;
     characterPackMenu.bubbleShowDelayTime = 0.1f;
     characterPackMenu.bubbleHideDelayTime = 0.1f;
@@ -558,10 +574,11 @@
     if (enterButtonWasHeld) {
         return;
     }
-    CGSize numBlocks = CGSizeMake(40, 11);
-    NSString *text = [self.currentSheet.drawView.image getASCIIWithResolution:numBlocks];
+    CGSize numBlocks = CGSizeMake([[currentCharacterPack objectForKey:@"width"] integerValue],
+                                  [[currentCharacterPack objectForKey:@"height"] integerValue]);
+    NSString *text = [self.currentSheet.drawView.image getASCIIWithResolution:numBlocks andChars:[currentCharacterPack objectForKey:@"chars"]];
 
-    if (![self.textDocumentProxy hasText]) {
+    if (![self.textDocumentProxy hasText] && ([[text substringFromIndex:1] isEqualToString:@" "])) {
         // if textField is empty
         // strip extra white space
         text = [self removeExtraWhiteSpaceLinesFromText:text withSize:numBlocks];
@@ -844,7 +861,21 @@
         }
     } else if (bubbleMenu == characterPackMenu) {
         // switch character packs
-        NSLog(@"CHARACTER PACK %lu CLICKED", (unsigned long)index);
+        if (![[[self.characterPacks objectAtIndex:index] objectForKey:@"enabled"] boolValue]) {
+            // if the pack isn't enabled for them
+            // display error
+            NSLog(@"BAD PACK. NO DONUT.");
+        } else {
+            // highlight selected and unselect last one
+            for (int i = 0; i < [self.characterPackButtonsArray count]; i++) {
+                if (i == index) {
+                    [[self.characterPackButtonsArray objectAtIndex:index] setStyle:MCBouncyButtonStyleSelected animated:YES];
+                } else if (((MCBouncyButton *)[self.characterPackButtonsArray objectAtIndex:i]).style == MCBouncyButtonStyleSelected) {
+                    [[self.characterPackButtonsArray objectAtIndex:i] setStyle:MCBouncyButtonStyleDefault animated:YES];
+                }
+            }
+            currentCharacterPack = [self.characterPacks objectAtIndex:index];
+        }
     }
 }
 

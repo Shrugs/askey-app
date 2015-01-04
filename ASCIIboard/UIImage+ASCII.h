@@ -10,6 +10,6 @@
 
 @interface UIImage (ASCII)
 
-- (NSString *)getASCIIWithResolution:(CGSize)numBlocks;
+- (NSString *)getASCIIWithResolution:(CGSize)numBlocks andChars:(NSDictionary *)alphaChars;
 
 @end

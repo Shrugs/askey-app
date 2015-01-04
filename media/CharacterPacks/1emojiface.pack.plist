@@ -3,59 +3,59 @@
 <plist version="1.0">
 <dict>
 	<key>keyName</key>
-	<string>original</string>
+	<string>emojiface</string>
 	<key>enabled</key>
-	<false/>
+	<true/>
 	<key>height</key>
-	<integer>10</integer>
+	<integer>11</integer>
 	<key>width</key>
-	<integer>40</integer>
+	<integer>8</integer>
 	<key>chars</key>
 	<dict>
 		<key>9</key>
 		<array>
-			<string>!</string>
+			<string>😝</string>
 		</array>
 		<key>8</key>
 		<array>
-			<string>;</string>
+			<string>😛</string>
 		</array>
 		<key>7</key>
 		<array>
-			<string>:</string>
+			<string>😃</string>
 		</array>
 		<key>6</key>
 		<array>
-			<string>&apos;</string>
+			<string>😄</string>
 		</array>
 		<key>5</key>
 		<array>
-			<string>&apos;</string>
+			<string>😀</string>
 		</array>
 		<key>4</key>
 		<array>
-			<string>,</string>
+			<string>😳</string>
 		</array>
 		<key>3</key>
 		<array>
-			<string>,</string>
+			<string>😐</string>
 		</array>
 		<key>2</key>
 		<array>
-			<string>.</string>
+			<string>😑</string>
 		</array>
 		<key>1</key>
 		<array>
-			<string>.</string>
+			<string>😶</string>
 		</array>
 		<key>0</key>
 		<array>
-			<string> </string>
+			<string>     </string>
 		</array>
 	</dict>
 	<key>icon</key>
-	<string>!;&apos;</string>
+	<string>😄</string>
 	<key>displayName</key>
-	<string>Original</string>
+	<string>Emoji Faces 😄</string>
 </dict>
 </plist>
