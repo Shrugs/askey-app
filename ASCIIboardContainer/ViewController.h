@@ -8,10 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource>
+{
+    UICollectionView *_characterPackButtons;
+    NSArray *_characterPacks;
+}
 
-@property (weak, nonatomic) IBOutlet UILabel *text;
-@property (weak, nonatomic) IBOutlet UILabel *moreText;
+@property (nonatomic, strong) UIScrollView *scrollView;
 
 @end
 

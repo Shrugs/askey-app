@@ -128,7 +128,9 @@
                                     }
                                 ];
     }
-
+    if ([self.characterPacks count] == 0) {
+        CLSLog(@"No character packs found.");
+    }
     currentCharacterPack = [self.characterPacks objectAtIndex:0];
 
 }

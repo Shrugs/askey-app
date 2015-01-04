@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import <UIKit/UIKit.h>
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
 #import "Flurry.h"
@@ -23,6 +24,11 @@
     [Fabric with:@[CrashlyticsKit]];
     [Flurry startSession:@"QH7F5T9FMSKJVKSFNMY3"];
 
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    // Override point for customization after application launch.
+    self.viewController = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
+    self.window.rootViewController = self.viewController;
+    [self.window makeKeyAndVisible];
     return YES;
 }
 
