@@ -4,3 +4,4 @@ pod 'LIVBubbleMenu', :git => 'https://github.com/Shrugs/LIVBubbleMenu-iOS.git', 
 pod 'ACEDrawingView'
 pod 'pop', '~> 1.0'
 pod 'MCBouncyButton'
+pod 'RKCardView'
