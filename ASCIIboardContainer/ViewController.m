@@ -115,6 +115,7 @@
 
     // intro button
     AKFullWidthButton *introButton = [[AKFullWidthButton alloc] initWithText:@"Launch Intro"];
+    [introButton registerHandlers];
     [self.scrollView addSubview:introButton];
     [introButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.scrollView);
@@ -154,6 +155,10 @@
     return CGSizeMake((_characterPackButtons.frame.size.width/2)*0.95, 50);
 }
 
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"TAPPED");
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

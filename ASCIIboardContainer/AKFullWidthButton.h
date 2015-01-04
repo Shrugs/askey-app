@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AKButton.h"
 
-@interface AKFullWidthButton : UIButton
+@interface AKFullWidthButton : AKButton
 
 - (id)initWithText:(NSString *)text;
 

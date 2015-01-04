@@ -23,6 +23,7 @@
         self.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:25];
         [self setTitleColor:ASKEY_BLUE_COLOR forState:UIControlStateNormal];
 
+        self.layer.cornerRadius = 1.0f;
         self.layer.masksToBounds = NO;
         self.layer.shadowOffset = CGSizeMake(0.0f, 2.0f);
         self.layer.shadowOpacity = 1.0f;

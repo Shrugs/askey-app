@@ -9,6 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface AKCharacterPackCollectionViewCell : UICollectionViewCell
+{
+    UILabel *textLabel;
+    BOOL touchDown;
+}
 
 - (void)setText:(NSString *)text;
 

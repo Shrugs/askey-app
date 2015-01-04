@@ -19,6 +19,7 @@
 		C941023A1A58DD8500954953 /* 1emojiface.pack.plist in Resources */ = {isa = PBXBuildFile; fileRef = C94102371A58DD8500954953 /* 1emojiface.pack.plist */; };
 		C941023B1A58DD8500954953 /* 2emojifood.pack.plist in Resources */ = {isa = PBXBuildFile; fileRef = C94102381A58DD8500954953 /* 2emojifood.pack.plist */; };
 		C94102431A58DFB000954953 /* AKCharacterPackCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C94102421A58DFB000954953 /* AKCharacterPackCollectionViewCell.m */; };
+		C941024F1A59E9CC00954953 /* AKButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C941024E1A59E9CC00954953 /* AKButton.m */; };
 		C952A45819D123870025DD73 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C952A45719D123870025DD73 /* main.m */; };
 		C952A45B19D123870025DD73 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C952A45A19D123870025DD73 /* AppDelegate.m */; };
 		C952A45E19D123870025DD73 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C952A45D19D123870025DD73 /* ViewController.m */; };
@@ -114,6 +115,8 @@
 		C94102381A58DD8500954953 /* 2emojifood.pack.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 2emojifood.pack.plist; sourceTree = "<group>"; };
 		C94102411A58DFB000954953 /* AKCharacterPackCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKCharacterPackCollectionViewCell.h; sourceTree = "<group>"; };
 		C94102421A58DFB000954953 /* AKCharacterPackCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKCharacterPackCollectionViewCell.m; sourceTree = "<group>"; };
+		C941024D1A59E9CC00954953 /* AKButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKButton.h; sourceTree = "<group>"; };
+		C941024E1A59E9CC00954953 /* AKButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKButton.m; sourceTree = "<group>"; };
 		C952A45219D123870025DD73 /* ASCIIboardContainer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ASCIIboardContainer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C952A45619D123870025DD73 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C952A45719D123870025DD73 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -257,6 +260,8 @@
 				C952A45519D123870025DD73 /* Supporting Files */,
 				C94102291A58C99F00954953 /* ViewController.xib */,
 				C941022B1A58CFFA00954953 /* Config.h */,
+				C941024D1A59E9CC00954953 /* AKButton.h */,
+				C941024E1A59E9CC00954953 /* AKButton.m */,
 				C941022C1A58D1A300954953 /* AKFullWidthButton.h */,
 				C941022D1A58D1A300954953 /* AKFullWidthButton.m */,
 				C94102411A58DFB000954953 /* AKCharacterPackCollectionViewCell.h */,
@@ -601,6 +606,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C952A45E19D123870025DD73 /* ViewController.m in Sources */,
+				C941024F1A59E9CC00954953 /* AKButton.m in Sources */,
 				C94102431A58DFB000954953 /* AKCharacterPackCollectionViewCell.m in Sources */,
 				C94102341A58DD6A00954953 /* AKCharacterPackManager.m in Sources */,
 				C941022E1A58D1A300954953 /* AKFullWidthButton.m in Sources */,
