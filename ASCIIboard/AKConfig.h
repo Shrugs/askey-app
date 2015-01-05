@@ -45,6 +45,7 @@
 // UI/UX
 #define ASKEY_HOLD_DURATION 0.3f
 #define ASKEY_BACKGROUND_COLOR [UIColor colorWithRed:0.863 green:.8671875 blue:.8828125 alpha:1.000]
+#define ASKEY_BLUE_COLOR [UIColor colorWithRed:11.0/255.0 green:106.0/255.0 blue:1.0 alpha: 1.0]
 
 
 // CONSTS

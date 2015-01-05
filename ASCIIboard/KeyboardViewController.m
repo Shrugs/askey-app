@@ -17,6 +17,7 @@
 #import <Crashlytics/Crashlytics.h>
 #import "Flurry.h"
 #import "AKCharacterPackManager.h"
+#import "RKDropdownAlert.h"
 
 @implementation KeyboardViewController
 
@@ -872,7 +873,10 @@
         if (![[[self.characterPacks objectAtIndex:index] objectForKey:@"enabled"] boolValue]) {
             // if the pack isn't enabled for them
             // display error
-            NSLog(@"BAD PACK. NO DONUT.");
+            RKDropdownAlert *alert = [[RKDropdownAlert alloc] initWithFrame:CGRectMake(0, -30, self.view.frame.size.width, 30)];
+            [self.view addSubview:alert];
+            [alert title:@"Enable Full Access to Use Character Packs" message:nil backgroundColor:ASKEY_BLUE_COLOR textColor:[UIColor whiteColor] time:1];
+
         } else {
             // highlight selected and unselect last one
             for (int i = 0; i < [self.characterPackButtonsArray count]; i++) {

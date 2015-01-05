@@ -20,6 +20,7 @@
 		C941023B1A58DD8500954953 /* 2emojifood.pack.plist in Resources */ = {isa = PBXBuildFile; fileRef = C94102381A58DD8500954953 /* 2emojifood.pack.plist */; };
 		C94102431A58DFB000954953 /* AKCharacterPackCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C94102421A58DFB000954953 /* AKCharacterPackCollectionViewCell.m */; };
 		C941024F1A59E9CC00954953 /* AKButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C941024E1A59E9CC00954953 /* AKButton.m */; };
+		C94102521A5B2E0700954953 /* RKDropdownAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = C94102511A5B2E0700954953 /* RKDropdownAlert.m */; };
 		C952A45819D123870025DD73 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C952A45719D123870025DD73 /* main.m */; };
 		C952A45B19D123870025DD73 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C952A45A19D123870025DD73 /* AppDelegate.m */; };
 		C952A45E19D123870025DD73 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C952A45D19D123870025DD73 /* ViewController.m */; };
@@ -117,6 +118,8 @@
 		C94102421A58DFB000954953 /* AKCharacterPackCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKCharacterPackCollectionViewCell.m; sourceTree = "<group>"; };
 		C941024D1A59E9CC00954953 /* AKButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKButton.h; sourceTree = "<group>"; };
 		C941024E1A59E9CC00954953 /* AKButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKButton.m; sourceTree = "<group>"; };
+		C94102501A5B2E0700954953 /* RKDropdownAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKDropdownAlert.h; sourceTree = "<group>"; };
+		C94102511A5B2E0700954953 /* RKDropdownAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKDropdownAlert.m; sourceTree = "<group>"; };
 		C952A45219D123870025DD73 /* ASCIIboardContainer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ASCIIboardContainer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C952A45619D123870025DD73 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C952A45719D123870025DD73 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -299,6 +302,8 @@
 		C952A48019D123990025DD73 /* ASCIIboard */ = {
 			isa = PBXGroup;
 			children = (
+				C94102501A5B2E0700954953 /* RKDropdownAlert.h */,
+				C94102511A5B2E0700954953 /* RKDropdownAlert.m */,
 				C9197D611A54A189008B2087 /* AKCharacterPackManager.h */,
 				C9197D621A54A189008B2087 /* AKCharacterPackManager.m */,
 				C988AC5F1A58B91000CDAD6F /* CharacterPacks */,
@@ -632,6 +637,7 @@
 				C9959CDC1A3B86DB0038315E /* MCDrawSheet.m in Sources */,
 				C952A48519D123990025DD73 /* KeyboardViewController.m in Sources */,
 				C9A7181F1A44F9E9002A8824 /* AKNumPadView.m in Sources */,
+				C94102521A5B2E0700954953 /* RKDropdownAlert.m in Sources */,
 				C93A516419DA576F00BC939D /* UIImage+ASCII.m in Sources */,
 				C9197D631A54A189008B2087 /* AKCharacterPackManager.m in Sources */,
 				C93223561A3D22490082C72C /* UIImage+NegativeImage.m in Sources */,
