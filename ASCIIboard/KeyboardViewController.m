@@ -121,9 +121,15 @@
                                             }
                                     },
                                 @{
-                                    @"keyName": @"emoji",
+                                    @"keyName": @"emojiface",
                                     @"displayName": @"Emoji",
                                     @"icon": @"😄",
+                                    @"enabled": @NO
+                                    },
+                                @{
+                                    @"keyName": @"emojifood",
+                                    @"displayName": @"Emoji",
+                                    @"icon": @"🍗",
                                     @"enabled": @NO
                                     }
                                 ];
@@ -496,8 +502,8 @@
     self.characterPackButtonsArray = [NSArray arrayWithArray:buttons];
 
     characterPackMenu = [[LIVBubbleMenu alloc] initWithPoint:self.numpadButton.center radius:self.numpadButton.frame.size.width * 1.8f menuItems:self.characterPackButtonsArray inView:self.view];
-    characterPackMenu.bubbleStartAngle = -90;
-    characterPackMenu.bubbleTotalAngle = 180;
+    characterPackMenu.bubbleStartAngle = -70;
+    characterPackMenu.bubbleTotalAngle = 140;
     characterPackMenu.bubbleRadius = (BUTTON_HEIGHT*BRUSH_BUTTON_RELATIVE_SIZE) / 2.0f;
     characterPackMenu.bubbleShowDelayTime = 0.1f;
     characterPackMenu.bubbleHideDelayTime = 0.1f;

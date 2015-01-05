@@ -58,10 +58,10 @@
 
     // header icon
     UIImageView *iconHeader = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon1024"]];
-    // iconHeader.layer.cornerRadius = 25.0f;
-    // iconHeader.layer.masksToBounds = YES;
-    // iconHeader.layer.borderColor = [ASKEY_BLUE_COLOR CGColor];
-    // iconHeader.layer.borderWidth = 2.0f;
+     iconHeader.layer.cornerRadius = 25.0f;
+     iconHeader.layer.masksToBounds = YES;
+//     iconHeader.layer.borderColor = [ASKEY_BLUE_COLOR CGColor];
+//     iconHeader.layer.borderWidth = 2.0f;
     [header addSubview:iconHeader];
     [iconHeader mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(header).offset(40);
@@ -118,18 +118,23 @@
     // intro button
     AKFullWidthButton *introButton = [[AKFullWidthButton alloc] initWithText:@"Launch Intro"];
     [introButton registerHandlers];
+    [introButton addTarget:self action:@selector(launchIntro) forControlEvents:UIControlEventTouchUpInside];
     [self.scrollView addSubview:introButton];
     [introButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.scrollView);
         make.width.equalTo(self.scrollView);
         make.height.equalTo(@70);
         make.top.equalTo(_characterPackButtons.mas_bottom).offset(50);
-
     }];
 
-
-
-    [Flurry logEvent:@"APP_OPENED"];
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"]) {
+        // app already launched
+    } else {
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"HasLaunchedOnce"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        // This is the first launch ever
+        [self launchIntro];
+    }
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle
@@ -179,8 +184,6 @@
                                                                     self.view.frame.size.width*0.8)];
     card.center = CGPointMake(self.scrollView.center.x, self.view.frame.size.height + card.frame.size.height / 2.0);
 
-    NSLog(@"%@", NSStringFromCGRect(card.frame));
-
     card.titleLabel.text = [pack objectForKey:@"displayName"];
     [card addShadow];
 
@@ -188,6 +191,7 @@
     buyButton.backgroundColor = ASKEY_BLUE_COLOR;
     [buyButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     buyButton.layer.shadowColor = [[UIColor clearColor] CGColor];
+    [buyButton registerHandlers];
     [card addSubview:buyButton];
     [buyButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.left.and.right.equalTo(card);
@@ -195,12 +199,6 @@
 
     [[_bgBlurView contentView] addSubview:card];
     [self.view addSubview:_bgBlurView];
-
-//    [card mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.center.equalTo(_bgBlurView);
-//        make.width.equalTo(self.scrollView.mas_width).multipliedBy(0.9);
-//        make.height.equalTo(self.view.mas_height).multipliedBy(0.8);
-//    }];
 
     // animate blur in
     POPBasicAnimation *fadeIn = [POPBasicAnimation animationWithPropertyNamed:kPOPViewAlpha];
@@ -238,6 +236,17 @@
         _bgBlurView = nil;
     };
     [_bgBlurView pop_addAnimation:fadeOut forKey:@"fadeOut"];
+}
+
+#pragma mark - Intro
+
+- (void)launchIntro
+{
+    // ask user to enable keyboard in settings and allow full access
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Yo, Enable Askey"
+                               message:@"1/ Enable Askey via Settings>General>Keyboard>Keyboards>Add New Keyboard \n2/ Select Askey - Askey \n3/ Allow Askey Full Access \n(This is for character packs and error reports)."
+                              delegate:nil cancelButtonTitle:@"K" otherButtonTitles:nil];
+    [alert show];
 }
 
 #pragma mark - util
