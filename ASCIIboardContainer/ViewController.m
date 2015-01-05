@@ -167,25 +167,32 @@
     // generate and show cardview by animating in opacity of the card and a blur view
     NSDictionary *pack = [_characterPacks objectAtIndex:indexPath.row];
 
-//    UIImageView *bgImg = [[UIImageView alloc] initWithImage:[self getScreenshot]];
-//    bgImg.frame = self.view.frame;
-
+    // take screenshot of screen
+    UIImageView *bgImg = [[UIImageView alloc] initWithImage:[self getScreenshot]];
+    bgImg.frame = self.view.bounds;
+    bgImg.alpha = 0;
+    // assign a blur to it
     UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
-    _bgBlurView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
-    _bgBlurView.frame = self.view.bounds;
-    _bgBlurView.alpha = 0;
+    UIVisualEffectView *blurView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+    blurView.frame = bgImg.bounds;
+    [bgImg addSubview:blurView];
+
+    // create the background view and add the blurred image to it
+    _cardBackgroundView = [[UIView alloc] initWithFrame:self.view.bounds];
+    _cardBackgroundView.alpha = 1;
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(closeCard)];
-    [_bgBlurView addGestureRecognizer:tapRecognizer];
+    [_cardBackgroundView addGestureRecognizer:tapRecognizer];
+    [_cardBackgroundView addSubview:bgImg];
 
     // CARD
-    RKCardView *card = [[RKCardView alloc] initWithFrame:CGRectMake(0,
+    int cardWidth = self.scrollView.frame.size.width*0.9;
+    RKCardView *card = [[RKCardView alloc] initWithFrame:CGRectMake((self.scrollView.frame.size.width/2.0)-(cardWidth/2.0),
                                                                     self.view.frame.size.height,
-                                                                    self.scrollView.frame.size.width*0.9,
+                                                                    cardWidth,
                                                                     self.view.frame.size.width*0.8)];
-    card.center = CGPointMake(self.scrollView.center.x, self.view.frame.size.height + card.frame.size.height / 2.0);
 
     card.titleLabel.text = [pack objectForKey:@"displayName"];
-    [card addShadow];
+    // [card addShadow];
 
     AKFullWidthButton *buyButton = [[AKFullWidthButton alloc] initWithText:@"Buy"];
     buyButton.backgroundColor = ASKEY_BLUE_COLOR;
@@ -197,25 +204,25 @@
         make.bottom.left.and.right.equalTo(card);
     }];
 
-    [[_bgBlurView contentView] addSubview:card];
-    [self.view addSubview:_bgBlurView];
+    [_cardBackgroundView addSubview:card];
+    [self.view addSubview:_cardBackgroundView];
 
     // animate blur in
     POPBasicAnimation *fadeIn = [POPBasicAnimation animationWithPropertyNamed:kPOPViewAlpha];
     fadeIn.toValue = @1;
     fadeIn.completionBlock = ^(POPAnimation *anim, BOOL finished) {
     };
-    [_bgBlurView pop_addAnimation:fadeIn forKey:@"fadeIn"];
+    [bgImg pop_addAnimation:fadeIn forKey:@"fadeIn"];
 
     // animate card in
     POPSpringAnimation *slideIn = [POPSpringAnimation animationWithPropertyNamed:kPOPViewCenter];
-    slideIn.toValue = [NSValue valueWithCGPoint:CGPointMake(_bgBlurView.center.x, _bgBlurView.center.y)];
+    slideIn.toValue = [NSValue valueWithCGPoint:CGPointMake(_cardBackgroundView.center.x, _cardBackgroundView.center.y)];
     slideIn.completionBlock = ^(POPAnimation *anim, BOOL finished) {
         // create close button and place
         UIButton *closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [closeButton setTitle:@"X" forState:UIControlStateNormal];
         [closeButton addTarget:self action:@selector(closeCard) forControlEvents:UIControlEventTouchUpInside];
-        [[_bgBlurView contentView] addSubview:closeButton];
+        [_cardBackgroundView addSubview:closeButton];
         [closeButton mas_makeConstraints:^(MASConstraintMaker *make) {
             make.bottom.equalTo(card.mas_top).offset(-5);
             make.right.equalTo(card.mas_right).offset(-5);
@@ -232,10 +239,10 @@
     POPBasicAnimation *fadeOut = [POPBasicAnimation animationWithPropertyNamed:kPOPViewAlpha];
     fadeOut.toValue = @0;
     fadeOut.completionBlock = ^(POPAnimation *anim, BOOL finished) {
-        [_bgBlurView removeFromSuperview];
-        _bgBlurView = nil;
+        [_cardBackgroundView removeFromSuperview];
+        _cardBackgroundView = nil;
     };
-    [_bgBlurView pop_addAnimation:fadeOut forKey:@"fadeOut"];
+    [_cardBackgroundView pop_addAnimation:fadeOut forKey:@"fadeOut"];
 }
 
 #pragma mark - Intro

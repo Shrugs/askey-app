@@ -25,6 +25,7 @@
     // actual pixels in a block (AKA "pixel")
     CGSize blockSize = CGSizeMake(floor(picSize.width/numBlocks.width), floor(picSize.height/numBlocks.height));
 
+    // maxiumum alpha value a block can have
     float maxAlpha = blockSize.width * blockSize.height * 1.0;
 
 

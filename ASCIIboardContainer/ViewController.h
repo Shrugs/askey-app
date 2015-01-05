@@ -12,7 +12,7 @@
 {
     UICollectionView *_characterPackButtons;
     NSArray *_characterPacks;
-    UIVisualEffectView *_bgBlurView;
+    UIView *_cardBackgroundView;
 }
 
 @property (nonatomic, strong) UIScrollView *scrollView;
