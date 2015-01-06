@@ -102,6 +102,18 @@
         make.height.equalTo(@120).multipliedBy(ceilf([_characterPacks count]/2.0));
     }];
 
+    // try out button
+    AKFullWidthButton *tryoutButton = [[AKFullWidthButton alloc] initWithText:@"Try Askey"];
+    [tryoutButton registerHandlers];
+    [tryoutButton addTarget:self action:@selector(tryoutAskey) forControlEvents:UIControlEventTouchUpInside];
+    [self.scrollView addSubview:tryoutButton];
+    [tryoutButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.scrollView);
+        make.width.equalTo(self.scrollView);
+        make.height.equalTo(@70);
+        make.top.equalTo(_characterPackButtons.mas_bottom).offset(50);
+    }];
+
 
     // intro button
     AKFullWidthButton *introButton = [[AKFullWidthButton alloc] initWithText:@"Launch Intro"];
@@ -112,7 +124,7 @@
         make.left.equalTo(self.scrollView);
         make.width.equalTo(self.scrollView);
         make.height.equalTo(@70);
-        make.top.equalTo(_characterPackButtons.mas_bottom).offset(50);
+        make.top.equalTo(tryoutButton.mas_bottom).offset(50);
     }];
 
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"]) {
@@ -125,7 +137,40 @@
     }
 }
 
+- (void)tryoutAskey
+{
+    self.tryAskeyVC = [[TryAskeyViewController alloc] init];
+    self.tryAskeyVC.delegate = self;
+    // set initial frame
+    CGRect _f = self.view.bounds;
+    self.tryAskeyVC.view.frame = _f;
+    // offset below screen
+    _f.origin.y = self.view.frame.size.height;
+    self.tryAskeyVC.view.frame = _f;
 
+    // animate in
+    [self.view addSubview:self.tryAskeyVC.view];
+
+    POPSpringAnimation *slideIn = [POPSpringAnimation animationWithPropertyNamed:kPOPViewCenter];
+    slideIn.toValue = [NSValue valueWithCGPoint:self.view.center];
+    slideIn.completionBlock = ^(POPAnimation *anim, BOOL finished) {
+        [self setNeedsStatusBarAppearanceUpdate];
+    };
+    [self.tryAskeyVC.view pop_addAnimation:slideIn forKey:@"slide"];
+
+}
+
+- (void)shouldCloseTryAskeyViewController:(TryAskeyViewController *)controller
+{
+    // animate controller away and set to nil
+    POPSpringAnimation *slideIn = [POPSpringAnimation animationWithPropertyNamed:kPOPViewScaleXY];
+    slideIn.toValue = [NSValue valueWithCGSize:CGSizeMake(0.0, 0.0)];
+    slideIn.completionBlock = ^(POPAnimation *anim, BOOL finished) {
+        self.tryAskeyVC = nil;
+        [self setNeedsStatusBarAppearanceUpdate];
+    };
+    [self.tryAskeyVC.view pop_addAnimation:slideIn forKey:@"slide"];
+}
 
 - (void)updateCharacterPacks
 {
@@ -143,7 +188,8 @@
 
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
-    return UIStatusBarStyleDefault; // Set status bar color to white
+    // white or black depending on context
+    return self.tryAskeyVC ? UIStatusBarStyleLightContent : UIStatusBarStyleDefault;
 }
 
 - (void)viewDidLayoutSubviews
@@ -153,6 +199,7 @@
         contentRect = CGRectUnion(contentRect, view.frame);
     }
     contentRect.size.width = self.view.frame.size.width;
+    contentRect.size.height += 20;
     self.scrollView.contentSize = contentRect.size;
 }
 

@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "AKCardView.h"
+#import "TryAskeyViewController.h"
 
-@interface ViewController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource, AKCardViewDelegate>
+@interface ViewController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource, AKCardViewDelegate, TryAskeyViewControllerDelegate>
 {
     UICollectionView *_characterPackButtons;
     NSArray *_characterPacks;
@@ -17,6 +18,7 @@
 }
 
 @property (nonatomic, strong) UIScrollView *scrollView;
+@property (nonatomic, retain) TryAskeyViewController *tryAskeyVC;
 
 @end
 
