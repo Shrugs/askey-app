@@ -51,11 +51,6 @@
     // iconHeader.layer.borderColor = [ASKEY_BLUE_COLOR CGColor];
     // iconHeader.layer.borderWidth = 2.0f;
     [header addSubview:iconHeader];
-    [iconHeader mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(header).offset(40);
-        make.centerX.equalTo(header);
-        make.height.and.width.equalTo(header.mas_width).multipliedBy(0.6f);
-    }];
 
     // header label
     UILabel *labelHeader = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
@@ -65,26 +60,14 @@
     labelHeader.textAlignment = NSTextAlignmentCenter;
     labelHeader.font = [UIFont fontWithName:ASKEY_FONT size:30];
     [header addSubview:labelHeader];
-    [labelHeader mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(header);
-        make.top.equalTo(iconHeader.mas_bottom).offset(0);
-    }];
 
-    [header mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.width.and.top.equalTo(self.scrollView);
-        make.bottom.equalTo(labelHeader.mas_bottom).offset(20);
-    }];
-
+    // character pack text
     UILabel *characterPackHeader = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.scrollView.frame.size.width, 20)];
     [characterPackHeader setText:@"Character Packs"];
     characterPackHeader.font = [UIFont fontWithName:ASKEY_FONT size:20];
     characterPackHeader.textAlignment = NSTextAlignmentCenter;
     characterPackHeader.textColor = [UIColor whiteColor];
     [self.scrollView addSubview:characterPackHeader];
-    [characterPackHeader mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(header.mas_bottom).offset(15);
-        make.left.right.and.width.equalTo(self.scrollView);
-    }];
 
     // character pack collection view
     _characterPackButtons = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.scrollView.frame.size.width, 200)
@@ -95,38 +78,58 @@
     _characterPackButtons.backgroundColor = ASKEY_BLUE_COLOR;
 
     [self.scrollView addSubview:_characterPackButtons];
-    [_characterPackButtons mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.equalTo(self.scrollView).multipliedBy(0.9);
-        make.centerX.equalTo(self.scrollView);
-        make.top.equalTo(characterPackHeader.mas_bottom).offset(10);
-        make.height.equalTo(@120).multipliedBy(ceilf([_characterPacks count]/2.0));
-    }];
 
     // try out button
     AKFullWidthButton *tryoutButton = [[AKFullWidthButton alloc] initWithText:@"Try Askey"];
     [tryoutButton registerHandlers];
     [tryoutButton addTarget:self action:@selector(tryoutAskey) forControlEvents:UIControlEventTouchUpInside];
     [self.scrollView addSubview:tryoutButton];
-    [tryoutButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.scrollView);
-        make.width.equalTo(self.scrollView);
-        make.height.equalTo(@70);
-        make.top.equalTo(_characterPackButtons.mas_bottom).offset(50);
-    }];
-
 
     // intro button
     AKFullWidthButton *introButton = [[AKFullWidthButton alloc] initWithText:@"Launch Intro"];
     [introButton registerHandlers];
     [introButton addTarget:self action:@selector(launchIntro) forControlEvents:UIControlEventTouchUpInside];
     [self.scrollView addSubview:introButton];
+
+
+    // CONSTRAINTS
+    [iconHeader mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(header).offset(40);
+        make.centerX.equalTo(header);
+        make.height.and.width.equalTo(header.mas_width).multipliedBy(0.6f);
+    }];
+    [labelHeader mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(header);
+        make.top.equalTo(iconHeader.mas_bottom).offset(0);
+    }];
+    [header mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.width.and.top.equalTo(self.scrollView);
+        make.bottom.equalTo(labelHeader.mas_bottom).offset(20);
+    }];
+    [characterPackHeader mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(header.mas_bottom).offset(15);
+        make.left.right.and.width.equalTo(self.scrollView);
+    }];
+    [_characterPackButtons mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.equalTo(self.scrollView).multipliedBy(0.9);
+        make.centerX.equalTo(self.scrollView);
+        make.top.equalTo(characterPackHeader.mas_bottom).offset(10);
+        make.height.equalTo(@120).multipliedBy(ceilf([_characterPacks count]/2.0));
+    }];
+    [tryoutButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.scrollView);
+        make.width.equalTo(self.scrollView);
+        make.height.equalTo(@70);
+        make.top.equalTo(_characterPackButtons.mas_bottom).offset(50);
+    }];
     [introButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.scrollView);
         make.width.equalTo(self.scrollView);
         make.height.equalTo(@70);
-        make.top.equalTo(tryoutButton.mas_bottom).offset(50);
+        make.top.equalTo(tryoutButton.mas_bottom).offset(25);
     }];
 
+    // launch intro on startup
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"]) {
         // app already launched
     } else {
@@ -199,7 +202,7 @@
         contentRect = CGRectUnion(contentRect, view.frame);
     }
     contentRect.size.width = self.view.frame.size.width;
-    contentRect.size.height += 20;
+    contentRect.size.height += 50;
     self.scrollView.contentSize = contentRect.size;
 }
 

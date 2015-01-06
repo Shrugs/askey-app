@@ -25,8 +25,8 @@
 		C94102581A5B370500954953 /* NSString+FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = C94102571A5B370500954953 /* NSString+FontAwesome.m */; };
 		C941025F1A5B3BF200954953 /* AKCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = C941025E1A5B3BF200954953 /* AKCardView.m */; };
 		C94102641A5BA3D900954953 /* UIImage+ASCII.m in Sources */ = {isa = PBXBuildFile; fileRef = C94102631A5BA3D900954953 /* UIImage+ASCII.m */; };
-		C94102681A5BA45400954953 /* example_template.png in Resources */ = {isa = PBXBuildFile; fileRef = C94102671A5BA45400954953 /* example_template.png */; };
 		C941026B1A5C6F8000954953 /* TryAskeyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C941026A1A5C6F8000954953 /* TryAskeyViewController.m */; };
+		C941026F1A5CA65900954953 /* example_template.png in Resources */ = {isa = PBXBuildFile; fileRef = C941026E1A5CA65900954953 /* example_template.png */; };
 		C952A45819D123870025DD73 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C952A45719D123870025DD73 /* main.m */; };
 		C952A45B19D123870025DD73 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C952A45A19D123870025DD73 /* AppDelegate.m */; };
 		C952A45E19D123870025DD73 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C952A45D19D123870025DD73 /* ViewController.m */; };
@@ -133,9 +133,9 @@
 		C941025E1A5B3BF200954953 /* AKCardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKCardView.m; sourceTree = "<group>"; };
 		C94102621A5BA3D900954953 /* UIImage+ASCII.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+ASCII.h"; path = "ASCIIboard/UIImage+ASCII.h"; sourceTree = SOURCE_ROOT; };
 		C94102631A5BA3D900954953 /* UIImage+ASCII.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+ASCII.m"; path = "ASCIIboard/UIImage+ASCII.m"; sourceTree = SOURCE_ROOT; };
-		C94102671A5BA45400954953 /* example_template.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = example_template.png; sourceTree = "<group>"; };
 		C94102691A5C6F8000954953 /* TryAskeyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TryAskeyViewController.h; sourceTree = "<group>"; };
 		C941026A1A5C6F8000954953 /* TryAskeyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TryAskeyViewController.m; sourceTree = "<group>"; };
+		C941026E1A5CA65900954953 /* example_template.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = example_template.png; sourceTree = "<group>"; };
 		C952A45219D123870025DD73 /* ASCIIboardContainer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ASCIIboardContainer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C952A45619D123870025DD73 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C952A45719D123870025DD73 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -280,8 +280,8 @@
 		C952A45419D123870025DD73 /* ASCIIboardContainer */ = {
 			isa = PBXGroup;
 			children = (
-				C94102671A5BA45400954953 /* example_template.png */,
 				C94102621A5BA3D900954953 /* UIImage+ASCII.h */,
+				C941026E1A5CA65900954953 /* example_template.png */,
 				C94102631A5BA3D900954953 /* UIImage+ASCII.m */,
 				C94102591A5B370800954953 /* Vendor */,
 				C94102351A58DD8500954953 /* CharacterPacks */,
@@ -553,7 +553,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C941023A1A58DD8500954953 /* 1emojiface.pack.plist in Resources */,
-				C94102681A5BA45400954953 /* example_template.png in Resources */,
+				C941026F1A5CA65900954953 /* example_template.png in Resources */,
 				C952A46619D123870025DD73 /* LaunchScreen.xib in Resources */,
 				C94102391A58DD8500954953 /* 0original.pack.plist in Resources */,
 				C94102551A5B36D100954953 /* FontAwesome.ttf in Resources */,

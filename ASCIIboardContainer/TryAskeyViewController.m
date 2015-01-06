@@ -38,9 +38,8 @@
     backButton.font = [UIFont fontWithName:kFontAwesomeFont size:18];
     [backButton setText:[NSString fa_stringForFontAwesomeIcon:FAClose]];
     [backButton setTextColor:[UIColor whiteColor]];
-    backButton.userInteractionEnabled = YES;
     UITapGestureRecognizer *tr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissSelf)];
-    [backButton addGestureRecognizer:tr];
+    [titleBar addGestureRecognizer:tr];
 
     [titleBar addSubview:backButton];
     [self.view addSubview:titleBar];
