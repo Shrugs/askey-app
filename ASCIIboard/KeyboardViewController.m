@@ -106,7 +106,7 @@
                                     @"displayName": @"Original",
                                     @"icon": @"!;'",
                                     @"enabled": @YES,
-                                    @"width": @40,
+                                    @"width": @32,
                                     @"height": @11,
                                     @"chars": @{
                                             @"0": @[@" "],

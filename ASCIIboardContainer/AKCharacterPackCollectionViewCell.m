@@ -10,10 +10,13 @@
 #import "Config.h"
 #import <Masonry/Masonry.h>
 #import <POP.h>
+#import "NSString+FontAwesome.h"
+
+#define EDGE_OFFSET 15
 
 @implementation AKCharacterPackCollectionViewCell
 
-- (void)setText:(NSString *)text
+- (void)setPack:(NSDictionary *)pack
 {
     self.layer.backgroundColor = [ASKEY_BUTTON_BODY_COLOR CGColor];
     self.layer.shadowColor = [ASKEY_BUTTON_SHADOW_COLOR CGColor];
@@ -24,13 +27,34 @@
     self.layer.shadowRadius = 0.0f;
 
     textLabel = [[UILabel alloc] initWithFrame:self.frame];
-    [textLabel setText:text];
-    [textLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Medium" size:18]];
+    [textLabel setText:[pack objectForKey:@"displayName"]];
+    [textLabel setFont:[UIFont fontWithName:ASKEY_FONT size:18]];
     [textLabel setTextColor:ASKEY_BLUE_COLOR];
-    textLabel.textAlignment = NSTextAlignmentCenter;
+    textLabel.textAlignment = NSTextAlignmentLeft;
     [self addSubview:textLabel];
+
+    UILabel *priceLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+    priceLabel.textAlignment = NSTextAlignmentRight;
+    if ([[pack objectForKey:@"enabled"] boolValue]) {
+        [priceLabel setText:[NSString fa_stringForFontAwesomeIcon:FACheckCircleO]];
+        [priceLabel setTextColor:[UIColor greenColor]];
+        [priceLabel setFont:[UIFont fontWithName:kFontAwesomeFont size:25]];
+    } else {
+        [priceLabel setText:@"$0.99"];
+        [priceLabel setTextColor:ASKEY_BLUE_COLOR];
+        [priceLabel setFont:[UIFont fontWithName:ASKEY_FONT size:18]];
+    }
+    [self addSubview:priceLabel];
+
     [textLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.center.equalTo(self);
+        make.top.and.bottom.equalTo(self);
+        make.left.equalTo(self).offset(EDGE_OFFSET);
+        make.right.equalTo(priceLabel.mas_left);
+    }];
+    [priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self).offset(-EDGE_OFFSET);
+        make.top.and.bottom.equalTo(self);
+        make.left.equalTo(textLabel.mas_right);
     }];
 
 }

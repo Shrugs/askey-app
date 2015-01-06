@@ -21,6 +21,11 @@
 		C94102431A58DFB000954953 /* AKCharacterPackCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C94102421A58DFB000954953 /* AKCharacterPackCollectionViewCell.m */; };
 		C941024F1A59E9CC00954953 /* AKButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C941024E1A59E9CC00954953 /* AKButton.m */; };
 		C94102521A5B2E0700954953 /* RKDropdownAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = C94102511A5B2E0700954953 /* RKDropdownAlert.m */; };
+		C94102551A5B36D100954953 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C94102541A5B36D100954953 /* FontAwesome.ttf */; };
+		C94102581A5B370500954953 /* NSString+FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = C94102571A5B370500954953 /* NSString+FontAwesome.m */; };
+		C941025F1A5B3BF200954953 /* AKCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = C941025E1A5B3BF200954953 /* AKCardView.m */; };
+		C94102641A5BA3D900954953 /* UIImage+ASCII.m in Sources */ = {isa = PBXBuildFile; fileRef = C94102631A5BA3D900954953 /* UIImage+ASCII.m */; };
+		C94102681A5BA45400954953 /* example_template.png in Resources */ = {isa = PBXBuildFile; fileRef = C94102671A5BA45400954953 /* example_template.png */; };
 		C952A45819D123870025DD73 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C952A45719D123870025DD73 /* main.m */; };
 		C952A45B19D123870025DD73 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C952A45A19D123870025DD73 /* AppDelegate.m */; };
 		C952A45E19D123870025DD73 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C952A45D19D123870025DD73 /* ViewController.m */; };
@@ -120,6 +125,14 @@
 		C941024E1A59E9CC00954953 /* AKButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKButton.m; sourceTree = "<group>"; };
 		C94102501A5B2E0700954953 /* RKDropdownAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKDropdownAlert.h; sourceTree = "<group>"; };
 		C94102511A5B2E0700954953 /* RKDropdownAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKDropdownAlert.m; sourceTree = "<group>"; };
+		C94102541A5B36D100954953 /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.ttf; sourceTree = "<group>"; };
+		C94102561A5B370500954953 /* NSString+FontAwesome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+FontAwesome.h"; sourceTree = "<group>"; };
+		C94102571A5B370500954953 /* NSString+FontAwesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+FontAwesome.m"; sourceTree = "<group>"; };
+		C941025D1A5B3BF200954953 /* AKCardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKCardView.h; sourceTree = "<group>"; };
+		C941025E1A5B3BF200954953 /* AKCardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKCardView.m; sourceTree = "<group>"; };
+		C94102621A5BA3D900954953 /* UIImage+ASCII.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+ASCII.h"; path = "ASCIIboard/UIImage+ASCII.h"; sourceTree = SOURCE_ROOT; };
+		C94102631A5BA3D900954953 /* UIImage+ASCII.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+ASCII.m"; path = "ASCIIboard/UIImage+ASCII.m"; sourceTree = SOURCE_ROOT; };
+		C94102671A5BA45400954953 /* example_template.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = example_template.png; sourceTree = "<group>"; };
 		C952A45219D123870025DD73 /* ASCIIboardContainer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ASCIIboardContainer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C952A45619D123870025DD73 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C952A45719D123870025DD73 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -221,6 +234,24 @@
 			path = media/CharacterPacks;
 			sourceTree = SOURCE_ROOT;
 		};
+		C94102531A5B36A300954953 /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				C94102501A5B2E0700954953 /* RKDropdownAlert.h */,
+				C94102511A5B2E0700954953 /* RKDropdownAlert.m */,
+			);
+			name = Vendor;
+			sourceTree = "<group>";
+		};
+		C94102591A5B370800954953 /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				C94102561A5B370500954953 /* NSString+FontAwesome.h */,
+				C94102571A5B370500954953 /* NSString+FontAwesome.m */,
+			);
+			name = Vendor;
+			sourceTree = "<group>";
+		};
 		C952A44919D123870025DD73 = {
 			isa = PBXGroup;
 			children = (
@@ -246,6 +277,10 @@
 		C952A45419D123870025DD73 /* ASCIIboardContainer */ = {
 			isa = PBXGroup;
 			children = (
+				C94102671A5BA45400954953 /* example_template.png */,
+				C94102621A5BA3D900954953 /* UIImage+ASCII.h */,
+				C94102631A5BA3D900954953 /* UIImage+ASCII.m */,
+				C94102591A5B370800954953 /* Vendor */,
 				C94102351A58DD8500954953 /* CharacterPacks */,
 				C94102321A58DD6A00954953 /* AKCharacterPackManager.h */,
 				C94102331A58DD6A00954953 /* AKCharacterPackManager.m */,
@@ -269,6 +304,8 @@
 				C941022D1A58D1A300954953 /* AKFullWidthButton.m */,
 				C94102411A58DFB000954953 /* AKCharacterPackCollectionViewCell.h */,
 				C94102421A58DFB000954953 /* AKCharacterPackCollectionViewCell.m */,
+				C941025D1A5B3BF200954953 /* AKCardView.h */,
+				C941025E1A5B3BF200954953 /* AKCardView.m */,
 			);
 			path = ASCIIboardContainer;
 			sourceTree = "<group>";
@@ -276,6 +313,7 @@
 		C952A45519D123870025DD73 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C94102541A5B36D100954953 /* FontAwesome.ttf */,
 				C952A45619D123870025DD73 /* Info.plist */,
 				C952A45719D123870025DD73 /* main.m */,
 			);
@@ -302,8 +340,7 @@
 		C952A48019D123990025DD73 /* ASCIIboard */ = {
 			isa = PBXGroup;
 			children = (
-				C94102501A5B2E0700954953 /* RKDropdownAlert.h */,
-				C94102511A5B2E0700954953 /* RKDropdownAlert.m */,
+				C94102531A5B36A300954953 /* Vendor */,
 				C9197D611A54A189008B2087 /* AKCharacterPackManager.h */,
 				C9197D621A54A189008B2087 /* AKCharacterPackManager.m */,
 				C988AC5F1A58B91000CDAD6F /* CharacterPacks */,
@@ -311,11 +348,11 @@
 				C994513F1A512590009A7EFF /* Crashlytics.framework */,
 				C99451401A512590009A7EFF /* Fabric.framework */,
 				C9EB33B41A280614006754A6 /* Buttons */,
-				C93A516219DA576F00BC939D /* UIImage+ASCII.h */,
-				C93A516319DA576F00BC939D /* UIImage+ASCII.m */,
 				C952A48319D123990025DD73 /* KeyboardViewController.h */,
 				C952A48419D123990025DD73 /* KeyboardViewController.m */,
 				C952A48119D123990025DD73 /* Supporting Files */,
+				C93A516219DA576F00BC939D /* UIImage+ASCII.h */,
+				C93A516319DA576F00BC939D /* UIImage+ASCII.m */,
 				C9959CDA1A3B86DB0038315E /* MCDrawSheet.h */,
 				C9959CDB1A3B86DB0038315E /* MCDrawSheet.m */,
 				C9C094641A3BE1C300742427 /* UIColor+Random.h */,
@@ -511,8 +548,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				C941023A1A58DD8500954953 /* 1emojiface.pack.plist in Resources */,
+				C94102681A5BA45400954953 /* example_template.png in Resources */,
 				C952A46619D123870025DD73 /* LaunchScreen.xib in Resources */,
 				C94102391A58DD8500954953 /* 0original.pack.plist in Resources */,
+				C94102551A5B36D100954953 /* FontAwesome.ttf in Resources */,
 				C952A46319D123870025DD73 /* Images.xcassets in Resources */,
 				C941023B1A58DD8500954953 /* 2emojifood.pack.plist in Resources */,
 				C941022A1A58C99F00954953 /* ViewController.xib in Resources */,
@@ -610,11 +649,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C941025F1A5B3BF200954953 /* AKCardView.m in Sources */,
 				C952A45E19D123870025DD73 /* ViewController.m in Sources */,
 				C941024F1A59E9CC00954953 /* AKButton.m in Sources */,
 				C94102431A58DFB000954953 /* AKCharacterPackCollectionViewCell.m in Sources */,
 				C94102341A58DD6A00954953 /* AKCharacterPackManager.m in Sources */,
+				C94102581A5B370500954953 /* NSString+FontAwesome.m in Sources */,
 				C941022E1A58D1A300954953 /* AKFullWidthButton.m in Sources */,
+				C94102641A5BA3D900954953 /* UIImage+ASCII.m in Sources */,
 				C952A45B19D123870025DD73 /* AppDelegate.m in Sources */,
 				C952A45819D123870025DD73 /* main.m in Sources */,
 			);

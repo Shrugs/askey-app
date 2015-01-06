@@ -80,7 +80,7 @@
                 for (int w=0; w < blockSize.width; w++) {
                     // for each pixel in this block,
                     // access with col * blockSize.width + w
-                    UIColor *thisPixel = [[pixels objectAtIndex:(row * blockSize.height + w)] objectAtIndex:(col * blockSize.width + w)];
+                    UIColor *thisPixel = [[pixels objectAtIndex:(row * blockSize.height + h)] objectAtIndex:(col * blockSize.width + w)];
                     [blockPixelRow addObject:thisPixel];
                 }
                 [block addObject:blockPixelRow];

@@ -5,7 +5,7 @@
 	<key>keyName</key>
 	<string>emojifood</string>
 	<key>enabled</key>
-	<true/>
+	<false/>
 	<key>height</key>
 	<integer>11</integer>
 	<key>width</key>
@@ -60,6 +60,6 @@
 	<key>icon</key>
 	<string>🍗</string>
 	<key>displayName</key>
-	<string>Emoji Food 🍗</string>
+	<string>Food 🍗</string>
 </dict>
 </plist>

@@ -15,7 +15,7 @@
 #import "AKFullWidthButton.h"
 #import "AKCharacterPackManager.h"
 #import "AKCharacterPackCollectionViewCell.h"
-#import <RKCardView/RKCardView.h>
+#import "AKCardView.h"
 #import <POP.h>
 
 @implementation ViewController
@@ -47,21 +47,12 @@
     header.backgroundColor = [UIColor whiteColor];
     [self.scrollView addSubview:header];
 
-    // status bar strip
-//    UIView *statusBarStrip = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.scrollView.frame.size.width, 20)];
-//    statusBarStrip.backgroundColor = ASKEY_BLUE_COLOR;
-//    [header addSubview:statusBarStrip];
-//    [statusBarStrip mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.left.right.width.equalTo(header);
-//        make.height.equalTo(@30);
-//    }];
-
     // header icon
     UIImageView *iconHeader = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon1024"]];
-     iconHeader.layer.cornerRadius = 25.0f;
-     iconHeader.layer.masksToBounds = YES;
-//     iconHeader.layer.borderColor = [ASKEY_BLUE_COLOR CGColor];
-//     iconHeader.layer.borderWidth = 2.0f;
+    iconHeader.layer.cornerRadius = 25.0f;
+    iconHeader.layer.masksToBounds = YES;
+    // iconHeader.layer.borderColor = [ASKEY_BLUE_COLOR CGColor];
+    // iconHeader.layer.borderWidth = 2.0f;
     [header addSubview:iconHeader];
     [iconHeader mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(header).offset(40);
@@ -75,7 +66,7 @@
     labelHeader.textColor = ASKEY_BLUE_COLOR;
     labelHeader.adjustsFontSizeToFitWidth = YES;
     labelHeader.textAlignment = NSTextAlignmentCenter;
-    labelHeader.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:30];
+    labelHeader.font = [UIFont fontWithName:ASKEY_FONT size:30];
     [header addSubview:labelHeader];
     [labelHeader mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(header);
@@ -89,7 +80,7 @@
 
     UILabel *characterPackHeader = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.scrollView.frame.size.width, 20)];
     [characterPackHeader setText:@"Character Packs"];
-    characterPackHeader.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:20];
+    characterPackHeader.font = [UIFont fontWithName:ASKEY_FONT size:20];
     characterPackHeader.textAlignment = NSTextAlignmentCenter;
     characterPackHeader.textColor = [UIColor whiteColor];
     [self.scrollView addSubview:characterPackHeader];
@@ -153,7 +144,7 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     AKCharacterPackCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
-    [cell setText:[[_characterPacks objectAtIndex:indexPath.row] objectForKey:@"displayName"]];
+    [cell setPack:[_characterPacks objectAtIndex:indexPath.row]];
     return cell;
 }
 
@@ -167,6 +158,12 @@
     // generate and show cardview by animating in opacity of the card and a blur view
     NSDictionary *pack = [_characterPacks objectAtIndex:indexPath.row];
 
+    [self showCardForPack:pack];
+
+}
+
+- (void)showCardForPack:(NSDictionary *)pack
+{
     // take screenshot of screen
     UIImageView *bgImg = [[UIImageView alloc] initWithImage:[self getScreenshot]];
     bgImg.frame = self.view.bounds;
@@ -184,26 +181,12 @@
     [_cardBackgroundView addGestureRecognizer:tapRecognizer];
     [_cardBackgroundView addSubview:bgImg];
 
-    // CARD
     int cardWidth = self.scrollView.frame.size.width*0.9;
-    RKCardView *card = [[RKCardView alloc] initWithFrame:CGRectMake((self.scrollView.frame.size.width/2.0)-(cardWidth/2.0),
+    AKCardView *card = [[AKCardView alloc] initWithFrame:CGRectMake((self.scrollView.frame.size.width/2.0)-(cardWidth/2.0),
                                                                     self.view.frame.size.height,
                                                                     cardWidth,
-                                                                    self.view.frame.size.width*0.8)];
-
-    card.titleLabel.text = [pack objectForKey:@"displayName"];
-    // [card addShadow];
-
-    AKFullWidthButton *buyButton = [[AKFullWidthButton alloc] initWithText:@"Buy"];
-    buyButton.backgroundColor = ASKEY_BLUE_COLOR;
-    [buyButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    buyButton.layer.shadowColor = [[UIColor clearColor] CGColor];
-    [buyButton registerHandlers];
-    [card addSubview:buyButton];
-    [buyButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.left.and.right.equalTo(card);
-    }];
-
+                                                                    self.view.frame.size.width)];
+    [card setPack:pack];
     [_cardBackgroundView addSubview:card];
     [self.view addSubview:_cardBackgroundView];
 
@@ -229,8 +212,6 @@
         }];
     };
     [card pop_addAnimation:slideIn forKey:@"slidein"];
-
-
 }
 
 - (void)closeCard

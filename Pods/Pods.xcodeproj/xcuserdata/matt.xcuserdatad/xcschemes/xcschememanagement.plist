@@ -24,11 +24,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-RKCardView.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Pods-pop.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -42,37 +37,32 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>104B5D43BBFA771A07F904B6</key>
+		<key>1F1818158F1829E9710C2EE7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>335C74E3B9BF11881B52F681</key>
+		<key>B38CA9D7007B618FB0D1B782</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>57188607AB089E03F5886A1F</key>
+		<key>B6AAD624D29FCF06231C4C61</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7738C798FE698BFEE0C5D457</key>
+		<key>E22CB6CE8450DAD06DF767D0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9741546B4219F4AB3BAC4DF9</key>
+		<key>E9FF9A23426A39744D9A53D4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>CB099CA83CD7935396B29A74</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>CC2F2ABCCEF377C2CD9E2B27</key>
+		<key>ECD3BC3EA00EC9103848A511</key>
 		<dict>
 			<key>primary</key>
 			<true/>

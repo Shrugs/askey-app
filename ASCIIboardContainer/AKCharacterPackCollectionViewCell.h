@@ -14,6 +14,6 @@
     BOOL touchDown;
 }
 
-- (void)setText:(NSString *)text;
+- (void)setPack:(NSDictionary *)pack;
 
 @end
