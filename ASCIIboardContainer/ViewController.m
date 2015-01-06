@@ -15,7 +15,6 @@
 #import "AKFullWidthButton.h"
 #import "AKCharacterPackManager.h"
 #import "AKCharacterPackCollectionViewCell.h"
-#import "AKCardView.h"
 #import <POP.h>
 
 @implementation ViewController
@@ -38,9 +37,7 @@
     [self setNeedsStatusBarAppearanceUpdate];
 
     // update character packs
-    AKCharacterPackManager *myManager = [AKCharacterPackManager sharedManager];
-    [myManager refreshCharacterPacks];
-    _characterPacks = myManager.characterPacks;
+    [self updateCharacterPacks];
 
     // header
     UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.scrollView.frame.size.width, 100)];
@@ -128,6 +125,22 @@
     }
 }
 
+
+
+- (void)updateCharacterPacks
+{
+    AKCharacterPackManager *myManager = [AKCharacterPackManager sharedManager];
+    [myManager refreshCharacterPacks];
+    _characterPacks = myManager.characterPacks;
+}
+
+- (void)updateCharacterPackUI
+{
+    [self updateCharacterPacks];
+    [_characterPackButtons reloadItemsAtIndexPaths:[_characterPackButtons indexPathsForVisibleItems]];
+}
+
+
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
     return UIStatusBarStyleDefault; // Set status bar color to white
@@ -198,6 +211,7 @@
                                                                     self.view.frame.size.height,
                                                                     cardWidth,
                                                                     self.view.frame.size.height*0.75)];
+    card.delegate = self;
     [card setPack:pack];
     [_cardBackgroundView addSubview:card];
     [self.view addSubview:_cardBackgroundView];
@@ -236,6 +250,12 @@
         _cardBackgroundView = nil;
     };
     [_cardBackgroundView pop_addAnimation:fadeOut forKey:@"fadeOut"];
+}
+
+- (void)shouldHideCardView:(AKCardView *)cardView
+{
+    [self closeCard];
+    [self updateCharacterPackUI];
 }
 
 #pragma mark - Intro

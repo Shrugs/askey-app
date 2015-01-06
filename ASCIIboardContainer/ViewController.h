@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AKCardView.h"
 
-@interface ViewController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource>
+@interface ViewController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource, AKCardViewDelegate>
 {
     UICollectionView *_characterPackButtons;
     NSArray *_characterPacks;

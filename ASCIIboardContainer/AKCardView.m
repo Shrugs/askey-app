@@ -11,6 +11,7 @@
 #import "Config.h"
 #import <Masonry/Masonry.h>
 #import "UIImage+ASCII.h"
+#import "AKCharacterPackManager.h"
 
 #define EDGE_INSET 10
 static const CGFloat MAX_FONT_SIZE = 22.0;
@@ -76,6 +77,7 @@ static const CGFloat MIN_FONT_SIZE = 14.0;
     } else {
         // offer purchase button
         buyButton = [[AKFullWidthButton alloc] initWithText:@"Buy for $.99"];
+        [buyButton addTarget:self action:@selector(buyPack) forControlEvents:UIControlEventTouchUpInside];
     }
     buyButton.backgroundColor = ASKEY_BLUE_COLOR;
     [buyButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -123,6 +125,20 @@ static const CGFloat MIN_FONT_SIZE = 14.0;
     _f.size.height = _textView.contentSize.height;
     _textView.frame = _f;
 
+}
+
+- (void)buyPack
+{
+    [[AKCharacterPackManager sharedManager] setCharacterPackEnabled:[_pack objectForKey:@"keyName"]];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Awesome!" message:@"For the beta, pressing the button gets you the character pack!" delegate:self cancelButtonTitle:@"Sweet!" otherButtonTitles:nil];
+    [alert show];
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(shouldHideCardView:)]) {
+        [self.delegate shouldHideCardView:self];
+    }
 }
 
 - (void)getASCIIFromPack:(NSDictionary *)pack

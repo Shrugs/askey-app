@@ -8,11 +8,21 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AKCardView : UIView <UITextViewDelegate>
+@class AKCardView;
+
+@protocol AKCardViewDelegate <NSObject>
+
+- (void)shouldHideCardView:(AKCardView *)cardView;
+
+@end
+
+@interface AKCardView : UIView <UITextViewDelegate, UIAlertViewDelegate>
 {
     NSDictionary *_pack;
     UITextView *_textView;
 }
+
+@property (nonatomic, weak) id <AKCardViewDelegate> delegate;
 
 - (void)setPack:(NSDictionary *)pack;
 

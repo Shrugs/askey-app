@@ -40,8 +40,7 @@
     NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:ASKEY_CONTAINER_GROUP_NAME];
     if ([defaults objectForKey:@"characterPacks"] == nil) {
         // first launch or something
-        [defaults setObject:@[@"original"] forKey:@"characterPacks"];
-        [defaults synchronize];
+        [self reset];
     }
 
     for (NSString *key in [defaults objectForKey:@"characterPacks"]) {
@@ -60,10 +59,22 @@
 
 - (BOOL)setCharacterPackEnabled:(NSString *)pack
 {
-    // pack is name of pack's file (i.e. emoji.pack.plst)
+    // pack is key of pack
+    NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:ASKEY_CONTAINER_GROUP_NAME];
+    NSMutableArray *existingPacks = [NSMutableArray arrayWithArray:[defaults objectForKey:@"characterPacks"]];
+    [existingPacks addObject:pack];
+    [defaults setObject:[NSArray arrayWithArray:existingPacks] forKey:@"characterPacks"];
+    [defaults synchronize];
 
     // returns success or not
     return YES;
+}
+
+- (void)reset
+{
+    NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:ASKEY_CONTAINER_GROUP_NAME];
+    [defaults setObject:@[@"original"] forKey:@"characterPacks"];
+    [defaults synchronize];
 }
 
 #pragma mark - Util
