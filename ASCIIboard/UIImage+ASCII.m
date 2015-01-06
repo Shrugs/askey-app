@@ -13,7 +13,6 @@
 
 - (NSString *)getASCIIWithResolution:(CGSize)numBlocks andChars:(NSDictionary *)alphaChars
 {
-
     // numBlocks = number of ASCII "pixels" in widthxheight
 
     CGImageRef imageRef = [self CGImage];
@@ -59,53 +58,25 @@
 
     // now split the pixels 2 dimensional array into another two dimentional array based on blockSize
 
-    // this will be an array
-    NSMutableArray *blocks = [NSMutableArray arrayWithCapacity:numBlocks.height];
+    NSString *finalString = @"";
 
     for (int row=0; row < numBlocks.height; row++) {
         // for every blockHeight rows
-        // create a blockRow
-        NSMutableArray *blockRow = [NSMutableArray arrayWithCapacity:numBlocks.width];
 
         for (int col=0; col < numBlocks.width; col++) {
             // for every blockWidth columns
 
-            // create a block array and then for each pixel in the block, add it to an array and add that to block
-            NSMutableArray *block = [NSMutableArray arrayWithCapacity:blockSize.height];
+            float totalAlpha = 0;
 
             for (int h=0; h < blockSize.height; h++) {
                 // for each row of pixels in this block
                 // access with row * blockSize.height + h
-                NSMutableArray *blockPixelRow = [NSMutableArray arrayWithCapacity:blockSize.width];
                 for (int w=0; w < blockSize.width; w++) {
                     // for each pixel in this block,
                     // access with col * blockSize.width + w
-                    UIColor *thisPixel = [[pixels objectAtIndex:(row * blockSize.height + h)] objectAtIndex:(col * blockSize.width + w)];
-                    [blockPixelRow addObject:thisPixel];
-                }
-                [block addObject:blockPixelRow];
-            }
-
-            [blockRow addObject:block];
-        }
-        [blocks addObject:blockRow];
-    }
-
-    // NSLog(@"blocks.height: %lu", (unsigned long)[blocks count]);
-    // NSLog(@"blocks.width: %lu", (unsigned long)[[blocks objectAtIndex:0] count]);
-    NSString *finalString = @"";
-
-    for (int h=0; h < numBlocks.height; h++) {
-        // for each block row
-        for (int w=0; w < numBlocks.width; w++) {
-            // for each block in that row
-            // compute darkness
-            NSMutableArray *thisBlock = [[blocks objectAtIndex:h] objectAtIndex:w];
-            // NSLog(@"%@", thisBlock);
-            float totalAlpha = 0;
-            for (int i=0; i < blockSize.height; i++) {
-                for (int j=0; j < blockSize.width; j++) {
-                    totalAlpha += [[[thisBlock objectAtIndex:i] objectAtIndex:j] floatValue];
+                    float thisPixelAlpha = [[[pixels objectAtIndex:(row * blockSize.height + h)] objectAtIndex:(col * blockSize.width + w)] floatValue];
+                    // add to totalAlpha for this block
+                    totalAlpha += thisPixelAlpha;
                 }
             }
 
@@ -116,8 +87,10 @@
             finalString = [finalString stringByAppendingString:[possibleChars objectAtIndex:arc4random_uniform((u_int32_t)myCount)]];
 
         }
+
         finalString = [finalString stringByAppendingString:@"\n"];
     }
+
     return finalString;
 }
 
