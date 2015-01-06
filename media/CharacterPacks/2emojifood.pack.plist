@@ -5,7 +5,7 @@
 	<key>keyName</key>
 	<string>emojifood</string>
 	<key>enabled</key>
-	<false/>
+	<true/>
 	<key>height</key>
 	<integer>11</integer>
 	<key>width</key>
