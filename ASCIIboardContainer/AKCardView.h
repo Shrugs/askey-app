@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AKCardView : UIView
+@interface AKCardView : UIView <UITextViewDelegate>
 {
     NSDictionary *_pack;
     UITextView *_textView;

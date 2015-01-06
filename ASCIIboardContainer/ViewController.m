@@ -133,6 +133,16 @@
     return UIStatusBarStyleDefault; // Set status bar color to white
 }
 
+- (void)viewDidLayoutSubviews
+{
+    CGRect contentRect = CGRectZero;
+    for (UIView *view in self.scrollView.subviews) {
+        contentRect = CGRectUnion(contentRect, view.frame);
+    }
+    contentRect.size.width = self.view.frame.size.width;
+    self.scrollView.contentSize = contentRect.size;
+}
+
 #pragma mark - UICollectionView Delegate
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
@@ -162,6 +172,8 @@
 
 }
 
+#pragma mark - Cards
+
 - (void)showCardForPack:(NSDictionary *)pack
 {
     // take screenshot of screen
@@ -185,7 +197,7 @@
     AKCardView *card = [[AKCardView alloc] initWithFrame:CGRectMake((self.scrollView.frame.size.width/2.0)-(cardWidth/2.0),
                                                                     self.view.frame.size.height,
                                                                     cardWidth,
-                                                                    self.view.frame.size.width)];
+                                                                    self.view.frame.size.height*0.75)];
     [card setPack:pack];
     [_cardBackgroundView addSubview:card];
     [self.view addSubview:_cardBackgroundView];
