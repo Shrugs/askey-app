@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-JazzHands.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-LIVBubbleMenu.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -20,6 +25,11 @@
 			<false/>
 		</dict>
 		<key>Pods-Masonry.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-iOS-MagnifyingGlass.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -37,32 +47,42 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>1F1818158F1829E9710C2EE7</key>
+		<key>27649E94B2FE617BC476D91E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B38CA9D7007B618FB0D1B782</key>
+		<key>616975B8B2A8C8915118D93C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B6AAD624D29FCF06231C4C61</key>
+		<key>86DD4386A458FAC27D6C7D00</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E22CB6CE8450DAD06DF767D0</key>
+		<key>A055321335937561DD803F39</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E9FF9A23426A39744D9A53D4</key>
+		<key>A6ABE1832865108D5BF9AAB2</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>ECD3BC3EA00EC9103848A511</key>
+		<key>B841F6E54256DF25894669FA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B8FBFE83546C1B481B543F7A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F6C7A92F524C6FA0A44AAADB</key>
 		<dict>
 			<key>primary</key>
 			<true/>

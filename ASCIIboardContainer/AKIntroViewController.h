@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <ACMagnifyingGlass.h>
+#import <IFTTTJazzHands.h>
 
 @class AKIntroViewController;
 
@@ -18,6 +20,18 @@
 @end
 
 
-@interface AKIntroViewController : UIViewController
+@interface AKIntroViewController : UIViewController <UIScrollViewDelegate>
+{
+    ACMagnifyingGlass *_magnifier;
+    UIScrollView *_scrollView;
+    NSMutableArray *_introImages;
+    float _imgWidth;
+    float _imgHeight;
+}
+
+- (id)initWithBackground:(UIView *)container;
+
+@property (nonatomic, strong) IFTTTAnimator *animator;
+@property (nonatomic, strong) UIView *container;
 
 @end

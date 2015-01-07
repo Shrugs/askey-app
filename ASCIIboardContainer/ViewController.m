@@ -16,6 +16,7 @@
 #import "AKCharacterPackManager.h"
 #import "AKCharacterPackCollectionViewCell.h"
 #import <POP.h>
+#import "NSString+FontAwesome.h"
 
 @implementation ViewController
 
@@ -138,6 +139,7 @@
         // This is the first launch ever
         [self launchIntro];
     }
+
 }
 
 - (void)tryoutAskey
@@ -260,19 +262,21 @@
     slideIn.toValue = [NSValue valueWithCGPoint:CGPointMake(_cardBackgroundView.center.x, _cardBackgroundView.center.y)];
     slideIn.completionBlock = ^(POPAnimation *anim, BOOL finished) {
         // create close button and place
-        UIButton *closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [closeButton setTitle:@"X" forState:UIControlStateNormal];
-        closeButton.alpha = 0;
-        [closeButton addTarget:self action:@selector(closeCard) forControlEvents:UIControlEventTouchUpInside];
-        [_cardBackgroundView addSubview:closeButton];
-        [closeButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [backButton setTitle:[NSString fa_stringForFontAwesomeIcon:FAClose] forState:UIControlStateNormal];
+        [backButton.titleLabel setFont:[UIFont fontWithName:kFontAwesomeFont size:18]];
+        backButton.alpha = 0;
+        [backButton addTarget:self action:@selector(closeCard) forControlEvents:UIControlEventTouchUpInside];
+        [_cardBackgroundView addSubview:backButton];
+        [backButton mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(card);
             make.bottom.equalTo(card.mas_top).offset(-5);
-            make.left.equalTo(card).offset(5);
+            make.height.and.width.equalTo(@20);
         }];
 
         POPBasicAnimation *fadeIn = [POPBasicAnimation animationWithPropertyNamed:kPOPViewAlpha];
         fadeIn.toValue = @1;
-        [closeButton pop_addAnimation:fadeIn forKey:@"fadeIn"];
+        [backButton pop_addAnimation:fadeIn forKey:@"fadeIn"];
 
     };
     [card pop_addAnimation:slideIn forKey:@"slidein"];
@@ -332,9 +336,9 @@
 - (void)launchIntro
 {
     [self setStatusBarWhite];
-    self.introVC = [[AKIntroViewController alloc] init];
+    self.introVC = [[AKIntroViewController alloc] initWithBackground:[self getBlurredBackgroundView]];
     // set frames
-    _cardBackgroundView = [self getBlurredBackgroundView];
+    _cardBackgroundView = [[UIView alloc] initWithFrame:self.view.bounds];
     self.introVC.view.frame = _cardBackgroundView.bounds;
 
     // add

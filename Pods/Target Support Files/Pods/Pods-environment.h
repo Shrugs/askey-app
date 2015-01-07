@@ -12,6 +12,12 @@
 #define COCOAPODS_VERSION_MINOR_ACEDrawingView 3
 #define COCOAPODS_VERSION_PATCH_ACEDrawingView 2
 
+// JazzHands
+#define COCOAPODS_POD_AVAILABLE_JazzHands
+#define COCOAPODS_VERSION_MAJOR_JazzHands 0
+#define COCOAPODS_VERSION_MINOR_JazzHands 1
+#define COCOAPODS_VERSION_PATCH_JazzHands 1
+
 // LIVBubbleMenu
 #define COCOAPODS_POD_AVAILABLE_LIVBubbleMenu
 #define COCOAPODS_VERSION_MAJOR_LIVBubbleMenu 1
@@ -29,6 +35,12 @@
 #define COCOAPODS_VERSION_MAJOR_Masonry 0
 #define COCOAPODS_VERSION_MINOR_Masonry 5
 #define COCOAPODS_VERSION_PATCH_Masonry 3
+
+// iOS-MagnifyingGlass
+#define COCOAPODS_POD_AVAILABLE_iOS_MagnifyingGlass
+#define COCOAPODS_VERSION_MAJOR_iOS_MagnifyingGlass 0
+#define COCOAPODS_VERSION_MINOR_iOS_MagnifyingGlass 0
+#define COCOAPODS_VERSION_PATCH_iOS_MagnifyingGlass 2
 
 // pop
 #define COCOAPODS_POD_AVAILABLE_pop
