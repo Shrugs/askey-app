@@ -34,7 +34,7 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [self setNeedsStatusBarAppearanceUpdate];
+    [self setStatusBarBlack];
 
     // update character packs
     [self updateCharacterPacks];
@@ -157,7 +157,7 @@
     POPSpringAnimation *slideIn = [POPSpringAnimation animationWithPropertyNamed:kPOPViewCenter];
     slideIn.toValue = [NSValue valueWithCGPoint:self.view.center];
     slideIn.completionBlock = ^(POPAnimation *anim, BOOL finished) {
-        [self setNeedsStatusBarAppearanceUpdate];
+        [self setStatusBarWhite];
     };
     [self.tryAskeyVC.view pop_addAnimation:slideIn forKey:@"slide"];
 
@@ -170,7 +170,7 @@
     slideIn.toValue = [NSValue valueWithCGSize:CGSizeMake(0.0, 0.0)];
     slideIn.completionBlock = ^(POPAnimation *anim, BOOL finished) {
         self.tryAskeyVC = nil;
-        [self setNeedsStatusBarAppearanceUpdate];
+        [self setStatusBarBlack];
     };
     [self.tryAskeyVC.view pop_addAnimation:slideIn forKey:@"slide"];
 }
@@ -192,7 +192,7 @@
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
     // white or black depending on context
-    return self.tryAskeyVC ? UIStatusBarStyleLightContent : UIStatusBarStyleDefault;
+    return _statusBarShouldBeWhite ? UIStatusBarStyleLightContent : UIStatusBarStyleDefault;
 }
 
 - (void)viewDidLayoutSubviews
@@ -239,22 +239,11 @@
 
 - (void)showCardForPack:(NSDictionary *)pack
 {
-    // take screenshot of screen
-    UIImageView *bgImg = [[UIImageView alloc] initWithImage:[self getScreenshot]];
-    bgImg.frame = self.view.bounds;
-    bgImg.alpha = 0;
-    // assign a blur to it
-    UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
-    UIVisualEffectView *blurView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
-    blurView.frame = bgImg.bounds;
-    [bgImg addSubview:blurView];
+    [self setStatusBarWhite];
 
-    // create the background view and add the blurred image to it
-    _cardBackgroundView = [[UIView alloc] initWithFrame:self.view.bounds];
-    _cardBackgroundView.alpha = 1;
-    UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(closeCard)];
-    [_cardBackgroundView addGestureRecognizer:tapRecognizer];
-    [_cardBackgroundView addSubview:bgImg];
+
+    _cardBackgroundView = [self getBlurredBackgroundView];
+
 
     int cardWidth = self.scrollView.frame.size.width*0.9;
     AKCardView *card = [[AKCardView alloc] initWithFrame:CGRectMake((self.scrollView.frame.size.width/2.0)-(cardWidth/2.0),
@@ -266,13 +255,6 @@
     [_cardBackgroundView addSubview:card];
     [self.view addSubview:_cardBackgroundView];
 
-    // animate blur in
-    POPBasicAnimation *fadeIn = [POPBasicAnimation animationWithPropertyNamed:kPOPViewAlpha];
-    fadeIn.toValue = @1;
-    fadeIn.completionBlock = ^(POPAnimation *anim, BOOL finished) {
-    };
-    [bgImg pop_addAnimation:fadeIn forKey:@"fadeIn"];
-
     // animate card in
     POPSpringAnimation *slideIn = [POPSpringAnimation animationWithPropertyNamed:kPOPViewCenter];
     slideIn.toValue = [NSValue valueWithCGPoint:CGPointMake(_cardBackgroundView.center.x, _cardBackgroundView.center.y)];
@@ -280,18 +262,55 @@
         // create close button and place
         UIButton *closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [closeButton setTitle:@"X" forState:UIControlStateNormal];
+        closeButton.alpha = 0;
         [closeButton addTarget:self action:@selector(closeCard) forControlEvents:UIControlEventTouchUpInside];
         [_cardBackgroundView addSubview:closeButton];
         [closeButton mas_makeConstraints:^(MASConstraintMaker *make) {
             make.bottom.equalTo(card.mas_top).offset(-5);
-            make.right.equalTo(card.mas_right).offset(-5);
+            make.left.equalTo(card).offset(5);
         }];
+
+        POPBasicAnimation *fadeIn = [POPBasicAnimation animationWithPropertyNamed:kPOPViewAlpha];
+        fadeIn.toValue = @1;
+        [closeButton pop_addAnimation:fadeIn forKey:@"fadeIn"];
+
     };
     [card pop_addAnimation:slideIn forKey:@"slidein"];
 }
 
+- (UIView *)getBlurredBackgroundView
+{
+    // take screenshot of screen
+    UIImageView *bgImg = [[UIImageView alloc] initWithImage:[self getScreenshot]];
+    bgImg.frame = self.view.bounds;
+    bgImg.alpha = 0;
+    // assign a blur to it
+    UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
+    UIVisualEffectView *blurView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+    blurView.frame = bgImg.bounds;
+    [bgImg addSubview:blurView];
+
+    // create the background view and add the blurred image to it
+    UIView *backgroundView = [[UIView alloc] initWithFrame:self.view.bounds];
+    backgroundView.alpha = 1;
+    UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(closeCard)];
+    [backgroundView addGestureRecognizer:tapRecognizer];
+    [backgroundView addSubview:bgImg];
+
+    // animate blur in
+    POPBasicAnimation *fadeIn = [POPBasicAnimation animationWithPropertyNamed:kPOPViewAlpha];
+    fadeIn.toValue = @1;
+    fadeIn.completionBlock = ^(POPAnimation *anim, BOOL finished) {
+    };
+    [bgImg pop_addAnimation:fadeIn forKey:@"fadeIn"];
+
+    return backgroundView;
+}
+
 - (void)closeCard
 {
+    [self setStatusBarBlack];
+
     // animate blur in
     POPBasicAnimation *fadeOut = [POPBasicAnimation animationWithPropertyNamed:kPOPViewAlpha];
     fadeOut.toValue = @0;
@@ -312,11 +331,15 @@
 
 - (void)launchIntro
 {
-    // ask user to enable keyboard in settings and allow full access
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Yo, Enable Askey"
-                               message:@"1/ Enable Askey via Settings>General>Keyboard>Keyboards>Add New Keyboard \n2/ Select Askey - Askey \n3/ Allow Askey Full Access \n(This is for character packs and error reports)."
-                              delegate:nil cancelButtonTitle:@"K" otherButtonTitles:nil];
-    [alert show];
+    [self setStatusBarWhite];
+    self.introVC = [[AKIntroViewController alloc] init];
+    // set frames
+    _cardBackgroundView = [self getBlurredBackgroundView];
+    self.introVC.view.frame = _cardBackgroundView.bounds;
+
+    // add
+    [_cardBackgroundView addSubview:self.introVC.view];
+    [self.view addSubview:_cardBackgroundView];
 }
 
 #pragma mark - util
@@ -333,6 +356,18 @@
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return image;
+}
+
+- (void)setStatusBarWhite
+{
+    _statusBarShouldBeWhite = YES;
+    [self setNeedsStatusBarAppearanceUpdate];
+}
+
+- (void)setStatusBarBlack
+{
+    _statusBarShouldBeWhite = NO;
+    [self setNeedsStatusBarAppearanceUpdate];
 }
 
 - (void)didReceiveMemoryWarning {

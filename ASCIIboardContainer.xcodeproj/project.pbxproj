@@ -27,6 +27,7 @@
 		C94102641A5BA3D900954953 /* UIImage+ASCII.m in Sources */ = {isa = PBXBuildFile; fileRef = C94102631A5BA3D900954953 /* UIImage+ASCII.m */; };
 		C941026B1A5C6F8000954953 /* TryAskeyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C941026A1A5C6F8000954953 /* TryAskeyViewController.m */; };
 		C941026F1A5CA65900954953 /* example_template.png in Resources */ = {isa = PBXBuildFile; fileRef = C941026E1A5CA65900954953 /* example_template.png */; };
+		C94102721A5CD09B00954953 /* AKIntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C94102711A5CD09B00954953 /* AKIntroViewController.m */; };
 		C952A45819D123870025DD73 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C952A45719D123870025DD73 /* main.m */; };
 		C952A45B19D123870025DD73 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C952A45A19D123870025DD73 /* AppDelegate.m */; };
 		C952A45E19D123870025DD73 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C952A45D19D123870025DD73 /* ViewController.m */; };
@@ -136,6 +137,8 @@
 		C94102691A5C6F8000954953 /* TryAskeyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TryAskeyViewController.h; sourceTree = "<group>"; };
 		C941026A1A5C6F8000954953 /* TryAskeyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TryAskeyViewController.m; sourceTree = "<group>"; };
 		C941026E1A5CA65900954953 /* example_template.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = example_template.png; sourceTree = "<group>"; };
+		C94102701A5CD09B00954953 /* AKIntroViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKIntroViewController.h; sourceTree = "<group>"; };
+		C94102711A5CD09B00954953 /* AKIntroViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKIntroViewController.m; sourceTree = "<group>"; };
 		C952A45219D123870025DD73 /* ASCIIboardContainer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ASCIIboardContainer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C952A45619D123870025DD73 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C952A45719D123870025DD73 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -311,6 +314,8 @@
 				C941025E1A5B3BF200954953 /* AKCardView.m */,
 				C94102691A5C6F8000954953 /* TryAskeyViewController.h */,
 				C941026A1A5C6F8000954953 /* TryAskeyViewController.m */,
+				C94102701A5CD09B00954953 /* AKIntroViewController.h */,
+				C94102711A5CD09B00954953 /* AKIntroViewController.m */,
 			);
 			path = ASCIIboardContainer;
 			sourceTree = "<group>";
@@ -663,6 +668,7 @@
 				C941026B1A5C6F8000954953 /* TryAskeyViewController.m in Sources */,
 				C941022E1A58D1A300954953 /* AKFullWidthButton.m in Sources */,
 				C94102641A5BA3D900954953 /* UIImage+ASCII.m in Sources */,
+				C94102721A5CD09B00954953 /* AKIntroViewController.m in Sources */,
 				C952A45B19D123870025DD73 /* AppDelegate.m in Sources */,
 				C952A45819D123870025DD73 /* main.m in Sources */,
 			);

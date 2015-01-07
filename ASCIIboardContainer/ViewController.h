@@ -9,16 +9,19 @@
 #import <UIKit/UIKit.h>
 #import "AKCardView.h"
 #import "TryAskeyViewController.h"
+#import "AKIntroViewController.h"
 
 @interface ViewController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource, AKCardViewDelegate, TryAskeyViewControllerDelegate>
 {
     UICollectionView *_characterPackButtons;
     NSArray *_characterPacks;
     UIView *_cardBackgroundView;
+    BOOL _statusBarShouldBeWhite;
 }
 
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, retain) TryAskeyViewController *tryAskeyVC;
+@property (nonatomic, retain) AKIntroViewController *introVC;
 
 @end
 
