@@ -40,8 +40,16 @@
     [backButton setTextColor:[UIColor whiteColor]];
     UITapGestureRecognizer *tr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissSelf)];
     [titleBar addGestureRecognizer:tr];
-
     [titleBar addSubview:backButton];
+
+    // title label
+    UILabel *title = [[UILabel alloc] initWithFrame:titleBar.bounds];
+    title.text = @"Test Out Askey";
+    [title setTextColor:[UIColor whiteColor]];
+    title.textAlignment = NSTextAlignmentCenter;
+    [titleBar addSubview:title];
+
+
     [self.view addSubview:titleBar];
 
     // create a textview from the top bar to the clear button
@@ -52,6 +60,7 @@
     // place the clear button so bottom is at self.view.mas_bottom offset -ASKEY_HEIGHT(280)
     AKFullWidthButton *clearButton = [[AKFullWidthButton alloc] initWithText:@"Clear"];
     [clearButton registerHandlers];
+    [clearButton.titleLabel setFont:[UIFont systemFontOfSize:22]];
     clearButton.layer.backgroundColor = [ASKEY_BLUE_COLOR CGColor];
     [clearButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [clearButton addTarget:self action:@selector(clearTextView) forControlEvents:UIControlEventTouchUpInside];
@@ -69,6 +78,10 @@
     [titleBar mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.and.right.equalTo(self.view);
         make.height.equalTo(@55);
+    }];
+    [title mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.left.and.right.equalTo(titleBar);
+        make.top.equalTo(titleBar).offset(20);
     }];
     [backButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(titleBar).offset(10);
