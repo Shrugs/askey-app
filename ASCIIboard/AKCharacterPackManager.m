@@ -24,7 +24,7 @@
 
 - (NSMutableArray *)characterSets;
 {
-    NSMutableArray *sets = [NSMutableArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"characterSets" ofType:@"plist"]];
+    NSMutableArray *sets = [NSMutableArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"characterpacks" ofType:@"plist"]];
 
     // check preferences for purchased and enabled sets
 
@@ -37,6 +37,7 @@
     }
 
     for (NSString *key in [defaults objectForKey:@"characterSets"]) {
+        NSLog(@"%@", key);
         // for each pack in that array, find it in allcharacterSets and make sure enabled is true
         // -> they are disabled by default
         for (NSMutableDictionary *set in sets) {
@@ -53,9 +54,9 @@
 
 - (BOOL)setCharacterSetEnabled:(NSString *)set
 {
-    // pack is key of pack
+    // set is key of set
     NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:ASKEY_CONTAINER_GROUP_NAME];
-    NSMutableArray *existingSets = [NSMutableArray arrayWithArray:[defaults objectForKey:@"characterPacks"]];
+    NSMutableArray *existingSets = [NSMutableArray arrayWithArray:[defaults objectForKey:@"characterSets"]];
     [existingSets addObject:set];
     [defaults setObject:[NSArray arrayWithArray:existingSets] forKey:@"characterSets"];
     [defaults synchronize];

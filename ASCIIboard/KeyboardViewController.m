@@ -26,8 +26,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    hasOpenAccess = [self isOpenAccessGranted];
-    if (hasOpenAccess) {
+    _hasFullAccess = [self isFullAccessGranted];
+    if (_hasFullAccess) {
         // if we have open access, we can access the network / filesystem, so enable logging
         [Fabric with:@[CrashlyticsKit]];
         [Flurry startSession:@"QH7F5T9FMSKJVKSFNMY3"];
@@ -93,53 +93,57 @@
     [NSTimer scheduledTimerWithTimeInterval:INITIAL_SHEET_DELAY target:self selector:@selector(animateSheetInWithTimer:) userInfo:firstSheet repeats:NO];
 
 
-    if (hasOpenAccess) {
-        AKCharacterPackManager *myManager = [AKCharacterPackManager sharedManager];
-        [myManager refreshCharacterPacks];
-        self.characterPacks = myManager.characterPacks;
+    if (_hasFullAccess) {
+        self.characterSets = [[AKCharacterPackManager sharedManager] characterSets];
     } else {
         // The original pack must be completely filled out (because we can't load it from disk)
         // -> everything else just needs to be presented as a button that they can't select
-        self.characterPacks = @[
-                                @{
-                                    @"keyName": @"original",
-                                    @"displayName": @"Original",
-                                    @"icon": @"!;'",
-                                    @"enabled": @YES,
-                                    @"width": @32,
-                                    @"height": @11,
-                                    @"chars": @{
-                                            @"0": @[@" "],
-                                            @"1": @[@"."],
-                                            @"2": @[@"."],
-                                            @"3": @[@","],
-                                            @"4": @[@","],
-                                            @"5": @[@"'"],
-                                            @"6": @[@"'"],
-                                            @"7": @[@":"],
-                                            @"8": @[@":"],
-                                            @"9": @[@"!", @";"],
-                                            }
-                                    },
-                                @{
-                                    @"keyName": @"emojiface",
-                                    @"displayName": @"Emoji",
-                                    @"icon": @"😄",
-                                    @"enabled": @NO
-                                    },
-                                @{
-                                    @"keyName": @"emojifood",
-                                    @"displayName": @"Emoji",
-                                    @"icon": @"🍗",
-                                    @"enabled": @NO
-                                    }
-                                ];
+        self.characterSets = [NSMutableArray arrayWithArray:@[
+                                                              @{
+                                                                  @"enabled": @YES,
+                                                                  @"purchased": @NO,
+                                                                  @"keyName": @"text",
+                                                                  @"icon": @"!;'",
+                                                                  @"packs": @[
+                                                                              @{
+                                                                                  @"keyName": @"original",
+                                                                                  @"displayName": @"Original",
+                                                                                  @"icon": @"!;'",
+                                                                                  @"enabled": @YES,
+                                                                                  @"width": @32,
+                                                                                  @"height": @11,
+                                                                                  @"chars": @{
+                                                                                          @"0": @[@" "],
+                                                                                          @"1": @[@"."],
+                                                                                          @"2": @[@"."],
+                                                                                          @"3": @[@","],
+                                                                                          @"4": @[@","],
+                                                                                          @"5": @[@"'"],
+                                                                                          @"6": @[@"'"],
+                                                                                          @"7": @[@":"],
+                                                                                          @"8": @[@":"],
+                                                                                          @"9": @[@"!", @";"],
+                                                                                          }
+                                                                                  }
+                                                                          ]
+                                                                  }
+                                                              ]];
     }
-    if ([self.characterPacks count] == 0) {
+    if ([self.characterSets count] == 0) {
         CLSLog(@"No character packs found.");
     }
-    currentCharacterPack = [self.characterPacks objectAtIndex:0];
 
+    // set to first pack
+    // @TODO(Shrugs) load last used pack from nsuserdefaults
+    [self setCurrentCharacterPack:[[[self.characterSets objectAtIndex:0] objectForKey:@"packs"] objectAtIndex:0]];
+    _currentCharacterSet = 0;
+
+}
+
+- (void)setCurrentCharacterPack:(NSMutableDictionary *)pack
+{
+    _currentCharacterPack = pack;
+    self.numpadButton.text = [pack objectForKey:@"icon"];
 }
 
 - (void)createButtons
@@ -158,7 +162,7 @@
 
     // NUMPAD BUTTON
     self.numpadButton = [[MCBouncyButton alloc] initWithText:@"123" andRadius:(BUTTON_HEIGHT/2.0f)];
-    [self.numpadButton addTarget:self action:@selector(characterPackButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [self.numpadButton addTarget:self action:@selector(characterSetButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     UILongPressGestureRecognizer *numpadRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(numpadButtonPressed:)];
     numpadRecognizer.minimumPressDuration = ASKEY_HOLD_DURATION;
     [self.numpadButton addGestureRecognizer:numpadRecognizer];
@@ -483,26 +487,65 @@
     self.currentSheet.drawView.lineWidth = BRUSH_SIZE_MEDIUM;
 }
 
-- (void)characterPackButtonPressed:(UIButton *)sender
+- (void)characterSetButtonPressed:(UIButton *)sender
 {
 
     
-    NSMutableArray *buttons = [[NSMutableArray alloc] initWithCapacity:[self.characterPacks count]];
-    for (NSMutableDictionary *pack in self.characterPacks) {
-        MCBouncyButton *button = [[MCBouncyButton alloc] initWithText:[pack objectForKey:@"icon"] andRadius:(BUTTON_HEIGHT * BRUSH_BUTTON_RELATIVE_SIZE / 2.0f)];
-        if (![[pack objectForKey:@"enabled"] boolValue]) {
+    NSMutableArray *buttons = [[NSMutableArray alloc] initWithCapacity:[self.characterSets count]];
+    for (NSMutableDictionary *set in self.characterSets) {
+        MCBouncyButton *button = [[MCBouncyButton alloc] initWithText:[set objectForKey:@"icon"] andRadius:(BUTTON_HEIGHT * BRUSH_BUTTON_RELATIVE_SIZE / 2.0f)];
+        if (![[set objectForKey:@"enabled"] boolValue]) {
             // is not enabled
             [button setStyle:MCBouncyButtonStyleDisabled animated:YES];
-        } else if ([[pack objectForKey:@"keyName"] isEqualToString:[currentCharacterPack objectForKey:@"keyName"]]) {
+        } else if ([[set objectForKey:@"keyName"] isEqualToString:[[self.characterSets objectAtIndex:_currentCharacterSet] objectForKey:@"keyName"]]) {
             // if this is the currently selected pack, highlight it
             [button setStyle:MCBouncyButtonStyleSelected animated:YES];
         }
         [buttons addObject:button];
 
     }
+    self.characterSetButtonsArray = [NSArray arrayWithArray:buttons];
+
+    characterSetMenu = [[LIVBubbleMenu alloc] initWithPoint:self.numpadButton.center radius:self.numpadButton.frame.size.width * 1.8f menuItems:self.characterSetButtonsArray inView:self.view];
+    characterSetMenu.bubbleStartAngle = -70;
+    characterSetMenu.bubbleTotalAngle = 140;
+    characterSetMenu.bubbleRadius = (BUTTON_HEIGHT*BRUSH_BUTTON_RELATIVE_SIZE) / 2.0f;
+    characterSetMenu.bubbleShowDelayTime = 0.1f;
+    characterSetMenu.bubbleHideDelayTime = 0.1f;
+    characterSetMenu.bubbleSpringBounciness = 5.0f;
+    characterSetMenu.bubblePopInDuration = 0.3f;
+    characterSetMenu.bubblePopOutDuration = 0.3f;
+    characterSetMenu.backgroundFadeDuration = 0.3f;
+    characterSetMenu.backgroundAlpha = 0.3f;
+    characterSetMenu.customButtons = YES;
+    characterSetMenu.delegate = self;
+
+    [characterSetMenu show];
+    self.numpadButton.enabled = NO;
+    [self.view bringSubviewToFront:self.numpadButton];
+}
+
+- (void)showMenuForSet:(NSDictionary *)set
+{
+
+    NSMutableArray *buttons = [[NSMutableArray alloc] initWithCapacity:[[set objectForKey:@"packs"] count]];
+    for (NSMutableDictionary *pack in [set objectForKey:@"packs"]) {
+        MCBouncyButton *button = [[MCBouncyButton alloc] initWithText:[pack objectForKey:@"icon"] andRadius:(BUTTON_HEIGHT * BRUSH_BUTTON_RELATIVE_SIZE / 2.0f)];
+        if ([[pack objectForKey:@"keyName"] isEqualToString:[_currentCharacterPack objectForKey:@"keyName"]]) {
+            // if this is the currently selected pack, highlight it
+            [button setStyle:MCBouncyButtonStyleSelected animated:YES];
+        } else if ([[[self.characterSets objectAtIndex:_currentCharacterSet] objectForKey:@"purchased"] boolValue]) {
+            // pack was purchased, don't do anything
+        } else if (![[pack objectForKey:@"enabled"] boolValue]) {
+            // pack was not purchased and pack is not enabled by default
+            [button setStyle:MCBouncyButtonStyleDisabled animated:YES];
+        }
+        [buttons addObject:button];
+
+    }
     self.characterPackButtonsArray = [NSArray arrayWithArray:buttons];
 
-    characterPackMenu = [[LIVBubbleMenu alloc] initWithPoint:self.numpadButton.center radius:self.numpadButton.frame.size.width * 1.8f menuItems:self.characterPackButtonsArray inView:self.view];
+    characterPackMenu = [[LIVBubbleMenu alloc] initWithPoint:self.numpadButton.center radius:self.numpadButton.frame.size.width * 1.8f menuItems:self.characterPackButtonsArray  inView:self.view];
     characterPackMenu.bubbleStartAngle = -70;
     characterPackMenu.bubbleTotalAngle = 140;
     characterPackMenu.bubbleRadius = (BUTTON_HEIGHT*BRUSH_BUTTON_RELATIVE_SIZE) / 2.0f;
@@ -583,11 +626,12 @@
     if (enterButtonWasHeld) {
         return;
     }
-    CGSize numBlocks = CGSizeMake([[currentCharacterPack objectForKey:@"width"] integerValue],
-                                  [[currentCharacterPack objectForKey:@"height"] integerValue]);
-    NSString *text = [self.currentSheet.drawView.image getASCIIWithResolution:numBlocks andChars:[currentCharacterPack objectForKey:@"chars"]];
+    CGSize numBlocks = CGSizeMake([[_currentCharacterPack objectForKey:@"width"] integerValue],
+                                  [[_currentCharacterPack objectForKey:@"height"] integerValue]);
+    NSString *text = [self.currentSheet.drawView.image getASCIIWithResolution:numBlocks andChars:[_currentCharacterPack objectForKey:@"chars"]];
 
-    if (![self.textDocumentProxy hasText] && ([[text substringToIndex:1] isEqualToString:@" "])) {
+    // has text, normal space, or unicode space
+    if (![self.textDocumentProxy hasText] && ([[text substringToIndex:1] isEqualToString:@" "] || [[text substringToIndex:1] isEqualToString:@" "])) {
         // if textField is empty
         // strip extra white space
         text = [self removeExtraWhiteSpaceLinesFromText:text withSize:numBlocks];
@@ -876,16 +920,36 @@
                 self.currentSheet.drawView.lineWidth = BRUSH_SIZE_MEDIUM;
                 break;
         }
-    } else if (bubbleMenu == characterPackMenu) {
-        // switch character packs
-        if (![[[self.characterPacks objectAtIndex:index] objectForKey:@"enabled"] boolValue]) {
-            // if the pack isn't enabled for them
-            // display error
-            RKDropdownAlert *alert = [[RKDropdownAlert alloc] initWithFrame:CGRectMake(0, -30, self.view.frame.size.width, 30)];
-            [self.view addSubview:alert];
-            [alert title:@"Enable Full Access to Use Character Packs" message:nil backgroundColor:ASKEY_BLUE_COLOR textColor:[UIColor whiteColor] time:1];
+    } else if (bubbleMenu == characterSetMenu) {
+        //
+        if ([[[self.characterSets objectAtIndex:index] objectForKey:@"enabled"] boolValue]) {
+            // if the set is enabled
+
+            _currentCharacterSet = (int)index;
+
+            // highlight selected and unselect last one
+            for (int i = 0; i < [self.characterSetButtonsArray count]; i++) {
+                if (i == index) {
+                    [[self.characterSetButtonsArray objectAtIndex:index] setStyle:MCBouncyButtonStyleSelected animated:YES];
+                } else if (((MCBouncyButton *)[self.characterSetButtonsArray objectAtIndex:i]).style == MCBouncyButtonStyleSelected) {
+                    [[self.characterSetButtonsArray objectAtIndex:i] setStyle:MCBouncyButtonStyleDefault animated:YES];
+                }
+            }
+
+            [self showMenuForSet:[self.characterSets objectAtIndex:_currentCharacterSet]];
 
         } else {
+            // display error
+            [self displayAccessError];
+        }
+    } else if (bubbleMenu == characterPackMenu) {
+
+        if ([[[self.characterSets objectAtIndex:_currentCharacterSet] objectForKey:@"purchased"] boolValue] ||
+            [[[[[self.characterSets objectAtIndex:_currentCharacterSet] objectForKey:@"packs"] objectAtIndex:index] objectForKey:@"enabled"] boolValue]) {
+            // if set purchased or pack enabled
+
+            [self setCurrentCharacterPack:[[[self.characterSets objectAtIndex:_currentCharacterSet] objectForKey:@"packs"] objectAtIndex:index]];
+
             // highlight selected and unselect last one
             for (int i = 0; i < [self.characterPackButtonsArray count]; i++) {
                 if (i == index) {
@@ -894,8 +958,21 @@
                     [[self.characterPackButtonsArray objectAtIndex:i] setStyle:MCBouncyButtonStyleDefault animated:YES];
                 }
             }
-            currentCharacterPack = [self.characterPacks objectAtIndex:index];
+        } else {
+            // display error
+            [self displayAccessError];
         }
+    }
+}
+
+- (void)displayAccessError
+{
+    RKDropdownAlert *alert = [[RKDropdownAlert alloc] initWithFrame:CGRectMake(0, -30, self.view.frame.size.width, 30)];
+    [self.view addSubview:alert];
+    if (!_hasFullAccess) {
+        [alert title:@"Enable Full Access to Use Character Packs" message:nil backgroundColor:ASKEY_BLUE_COLOR textColor:[UIColor whiteColor] time:1];
+    } else {
+        [alert title:@"Buy This Character Set to Unlock the Packs" message:nil backgroundColor:ASKEY_BLUE_COLOR textColor:[UIColor whiteColor] time:1];
     }
 }
 
@@ -1024,7 +1101,7 @@
 }
 
 // http://stackoverflow.com/questions/26057300/how-can-i-check-does-my-ios8-custom-keyboard-extension-have-open-access
--(BOOL)isOpenAccessGranted{
+-(BOOL)isFullAccessGranted{
 
     NSFileManager *fm = [NSFileManager defaultManager];
     NSString *containerPath = [[fm containerURLForSecurityApplicationGroupIdentifier:ASKEY_CONTAINER_GROUP_NAME] path];
@@ -1037,7 +1114,7 @@
 
 - (void)logEvent:(NSString *)event
 {
-    if (hasOpenAccess) {
+    if (_hasFullAccess) {
         [Flurry logEvent:event];
     }
 }

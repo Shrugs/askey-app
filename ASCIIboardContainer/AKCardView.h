@@ -18,12 +18,12 @@
 
 @interface AKCardView : UIView <UITextViewDelegate, UIAlertViewDelegate>
 {
-    NSDictionary *_pack;
+    NSDictionary *_set;
     UITextView *_textView;
 }
 
 @property (nonatomic, weak) id <AKCardViewDelegate> delegate;
 
-- (void)setPack:(NSDictionary *)pack;
+- (void)setSet:(NSDictionary *)set;
 
 @end

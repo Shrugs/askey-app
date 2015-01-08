@@ -16,26 +16,46 @@
 
 @implementation AKCharacterPackCollectionViewCell
 
-- (void)setPack:(NSDictionary *)pack
+- (id)initWithFrame:(CGRect)frame
 {
-    self.layer.backgroundColor = [ASKEY_BUTTON_BODY_COLOR CGColor];
-    self.layer.shadowColor = [ASKEY_BUTTON_SHADOW_COLOR CGColor];
-    self.layer.cornerRadius = 4.0f;
-    self.layer.masksToBounds = NO;
-    self.layer.shadowOffset = CGSizeMake(0.0f, 2.0f);
-    self.layer.shadowOpacity = 1.0f;
-    self.layer.shadowRadius = 0.0f;
+    self = [super initWithFrame:frame];
+    if (self) {
+        self.layer.backgroundColor = [ASKEY_BUTTON_BODY_COLOR CGColor];
+        self.layer.shadowColor = [ASKEY_BUTTON_SHADOW_COLOR CGColor];
+        self.layer.cornerRadius = 4.0f;
+        self.layer.masksToBounds = NO;
+        self.layer.shadowOffset = CGSizeMake(0.0f, 2.0f);
+        self.layer.shadowOpacity = 1.0f;
+        self.layer.shadowRadius = 0.0f;
 
-    textLabel = [[UILabel alloc] initWithFrame:self.frame];
-    [textLabel setText:[pack objectForKey:@"displayName"]];
-    [textLabel setFont:[UIFont fontWithName:ASKEY_FONT size:18]];
-    [textLabel setTextColor:ASKEY_BLUE_COLOR];
-    textLabel.textAlignment = NSTextAlignmentLeft;
-    [self addSubview:textLabel];
+        textLabel = [[UILabel alloc] initWithFrame:self.frame];
+        [textLabel setFont:[UIFont fontWithName:ASKEY_FONT size:18]];
+        [textLabel setTextColor:ASKEY_BLUE_COLOR];
+        textLabel.textAlignment = NSTextAlignmentLeft;
+        [self addSubview:textLabel];
 
-    UILabel *priceLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
-    priceLabel.textAlignment = NSTextAlignmentRight;
-    if ([[pack objectForKey:@"enabled"] boolValue]) {
+        priceLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+        priceLabel.textAlignment = NSTextAlignmentRight;
+
+        [self addSubview:priceLabel];
+
+        [textLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.and.bottom.equalTo(self);
+            make.left.equalTo(self).offset(EDGE_OFFSET);
+            make.right.equalTo(priceLabel.mas_left);
+        }];
+        [priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.right.equalTo(self).offset(-EDGE_OFFSET);
+            make.top.and.bottom.equalTo(self);
+            make.left.equalTo(textLabel.mas_right);
+        }];
+    }
+    return self;
+}
+
+- (void)setSet:(NSDictionary *)set
+{
+    if ([[set objectForKey:@"purchased"] boolValue]) {
         [priceLabel setText:[NSString fa_stringForFontAwesomeIcon:FACheckCircleO]];
         [priceLabel setTextColor:[UIColor greenColor]];
         [priceLabel setFont:[UIFont fontWithName:kFontAwesomeFont size:25]];
@@ -44,18 +64,7 @@
         [priceLabel setTextColor:ASKEY_BLUE_COLOR];
         [priceLabel setFont:[UIFont fontWithName:ASKEY_FONT size:18]];
     }
-    [self addSubview:priceLabel];
-
-    [textLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.and.bottom.equalTo(self);
-        make.left.equalTo(self).offset(EDGE_OFFSET);
-        make.right.equalTo(priceLabel.mas_left);
-    }];
-    [priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self).offset(-EDGE_OFFSET);
-        make.top.and.bottom.equalTo(self);
-        make.left.equalTo(textLabel.mas_right);
-    }];
+    [textLabel setText:[set objectForKey:@"displayName"]];
 
 }
 

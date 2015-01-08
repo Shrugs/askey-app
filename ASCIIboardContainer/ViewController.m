@@ -63,22 +63,22 @@
     [header addSubview:labelHeader];
 
     // character pack text
-    UILabel *characterPackHeader = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.scrollView.frame.size.width, 20)];
-    [characterPackHeader setText:@"Character Packs"];
-    characterPackHeader.font = [UIFont fontWithName:ASKEY_FONT size:20];
-    characterPackHeader.textAlignment = NSTextAlignmentCenter;
-    characterPackHeader.textColor = [UIColor whiteColor];
-    [self.scrollView addSubview:characterPackHeader];
+    UILabel *characterSetsHeader = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.scrollView.frame.size.width, 20)];
+    [characterSetsHeader setText:@"Character Sets"];
+    characterSetsHeader.font = [UIFont fontWithName:ASKEY_FONT size:20];
+    characterSetsHeader.textAlignment = NSTextAlignmentCenter;
+    characterSetsHeader.textColor = [UIColor whiteColor];
+    [self.scrollView addSubview:characterSetsHeader];
 
     // character pack collection view
-    _characterPackButtons = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.scrollView.frame.size.width, 200)
+    _characterSetButtons = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.scrollView.frame.size.width, 200)
                                                collectionViewLayout:[[UICollectionViewFlowLayout alloc] init]];
-    [_characterPackButtons registerClass:[AKCharacterPackCollectionViewCell class] forCellWithReuseIdentifier:@"cell"];
-    [_characterPackButtons setDataSource:self];
-    [_characterPackButtons setDelegate:self];
-    _characterPackButtons.backgroundColor = ASKEY_BLUE_COLOR;
+    [_characterSetButtons registerClass:[AKCharacterPackCollectionViewCell class] forCellWithReuseIdentifier:@"cell"];
+    [_characterSetButtons setDataSource:self];
+    [_characterSetButtons setDelegate:self];
+    _characterSetButtons.backgroundColor = ASKEY_BLUE_COLOR;
 
-    [self.scrollView addSubview:_characterPackButtons];
+    [self.scrollView addSubview:_characterSetButtons];
 
     // try out button
     AKFullWidthButton *tryoutButton = [[AKFullWidthButton alloc] initWithText:@"Try Askey"];
@@ -107,21 +107,21 @@
         make.left.right.width.and.top.equalTo(self.scrollView);
         make.bottom.equalTo(labelHeader.mas_bottom).offset(20);
     }];
-    [characterPackHeader mas_makeConstraints:^(MASConstraintMaker *make) {
+    [characterSetsHeader mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(header.mas_bottom).offset(15);
         make.left.right.and.width.equalTo(self.scrollView);
     }];
-    [_characterPackButtons mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_characterSetButtons mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.equalTo(self.scrollView).multipliedBy(0.9);
         make.centerX.equalTo(self.scrollView);
-        make.top.equalTo(characterPackHeader.mas_bottom).offset(10);
-        make.height.equalTo(@120).multipliedBy(ceilf([_characterPacks count]/2.0));
+        make.top.equalTo(characterSetsHeader.mas_bottom).offset(10);
+        make.height.equalTo(@120).multipliedBy(ceilf([_characterSets count]/2.0));
     }];
     [tryoutButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.scrollView);
         make.width.equalTo(self.scrollView);
         make.height.equalTo(@70);
-        make.top.equalTo(_characterPackButtons.mas_bottom).offset(50);
+        make.top.equalTo(_characterSetButtons.mas_bottom).offset(50);
     }];
     [introButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.scrollView);
@@ -179,15 +179,13 @@
 
 - (void)updateCharacterPacks
 {
-    AKCharacterPackManager *myManager = [AKCharacterPackManager sharedManager];
-    [myManager refreshCharacterPacks];
-    _characterPacks = myManager.characterPacks;
+    _characterSets = [[AKCharacterPackManager sharedManager] characterSets];
 }
 
-- (void)updateCharacterPackUI
+- (void)updateCharacterSetUI
 {
     [self updateCharacterPacks];
-    [_characterPackButtons reloadItemsAtIndexPaths:[_characterPackButtons indexPathsForVisibleItems]];
+    [_characterSetButtons reloadItemsAtIndexPaths:[_characterSetButtons indexPathsForVisibleItems]];
 }
 
 
@@ -212,34 +210,34 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return [_characterPacks count];
+    return [_characterSets count];
 }
 
 // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     AKCharacterPackCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
-    [cell setPack:[_characterPacks objectAtIndex:indexPath.row]];
+    [cell setSet:[_characterSets objectAtIndex:indexPath.row]];
     return cell;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGSizeMake((_characterPackButtons.frame.size.width/2)*0.95, 50);
+    return CGSizeMake((_characterSetButtons.frame.size.width/2)*0.95, 50);
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     // generate and show cardview by animating in opacity of the card and a blur view
-    NSDictionary *pack = [_characterPacks objectAtIndex:indexPath.row];
+    NSDictionary *set = [_characterSets objectAtIndex:indexPath.row];
 
-    [self showCardForPack:pack];
+    [self showCardForSet:set];
 
 }
 
 #pragma mark - Cards
 
-- (void)showCardForPack:(NSDictionary *)pack
+- (void)showCardForSet:(NSDictionary *)set
 {
     [self setStatusBarWhite];
 
@@ -253,7 +251,7 @@
                                                                     cardWidth,
                                                                     self.view.frame.size.height*0.75)];
     card.delegate = self;
-    [card setPack:pack];
+    [card setSet:set];
     [_cardBackgroundView addSubview:card];
     [self.view addSubview:_cardBackgroundView];
 
@@ -328,7 +326,7 @@
 - (void)shouldHideCardView:(AKCardView *)cardView
 {
     [self closeCard];
-    [self updateCharacterPackUI];
+    [self updateCharacterSetUI];
 }
 
 #pragma mark - Intro

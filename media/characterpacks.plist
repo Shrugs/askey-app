@@ -6,7 +6,7 @@
 		<key>purchased</key>
 		<false/>
 		<key>displayName</key>
-		<string>Text Packs</string>
+		<string>Text</string>
 		<key>keyName</key>
 		<string>text</string>
 		<key>enabled</key>
@@ -78,7 +78,7 @@
 		<key>purchased</key>
 		<false/>
 		<key>displayName</key>
-		<string>Emoji Packs</string>
+		<string>Emoji 😀</string>
 		<key>keyName</key>
 		<string>emoji</string>
 		<key>enabled</key>
@@ -211,7 +211,7 @@
 		<key>purchased</key>
 		<false/>
 		<key>displayName</key>
-		<string>Mail Packs</string>
+		<string>Mail 📧</string>
 		<key>keyName</key>
 		<string>mail</string>
 		<key>enabled</key>
@@ -222,7 +222,7 @@
 		<array>
 			<dict>
 				<key>keyName</key>
-				<string>original</string>
+				<string>originalmail</string>
 				<key>enabled</key>
 				<false/>
 				<key>height</key>

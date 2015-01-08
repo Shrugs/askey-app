@@ -13,8 +13,8 @@
 
 @interface ViewController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource, AKCardViewDelegate, TryAskeyViewControllerDelegate>
 {
-    UICollectionView *_characterPackButtons;
-    NSArray *_characterPacks;
+    UICollectionView *_characterSetButtons;
+    NSMutableArray *_characterSets;
     UIView *_cardBackgroundView;
     BOOL _statusBarShouldBeWhite;
 }

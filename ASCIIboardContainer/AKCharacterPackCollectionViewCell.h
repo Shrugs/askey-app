@@ -12,8 +12,9 @@
 {
     UILabel *textLabel;
     BOOL touchDown;
+    UILabel *priceLabel;
 }
 
-- (void)setPack:(NSDictionary *)pack;
+- (void)setSet:(NSDictionary *)set;
 
 @end
