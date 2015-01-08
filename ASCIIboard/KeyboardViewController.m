@@ -587,7 +587,7 @@
                                   [[currentCharacterPack objectForKey:@"height"] integerValue]);
     NSString *text = [self.currentSheet.drawView.image getASCIIWithResolution:numBlocks andChars:[currentCharacterPack objectForKey:@"chars"]];
 
-    if (![self.textDocumentProxy hasText] && ([[text substringFromIndex:1] isEqualToString:@" "])) {
+    if (![self.textDocumentProxy hasText] && ([[text substringToIndex:1] isEqualToString:@" "])) {
         // if textField is empty
         // strip extra white space
         text = [self removeExtraWhiteSpaceLinesFromText:text withSize:numBlocks];
@@ -598,6 +598,14 @@
     if (text != nil && text.length) {
         [self.insertHistory insertObject:@([text length]) atIndex:0];
         [self.textDocumentProxy insertText:text];
+//        NSUInteger len = [text length];
+//        unichar buffer[len + 1];
+//        [text getCharacters:buffer range:NSMakeRange(0, len)];
+//
+//        for (int i = 0; i < len; i++) {
+//            [self.textDocumentProxy insertText:[NSString stringWithFormat:@"%C", buffer[i]]];
+//        }
+
     }
     // update UI
     [self updateButtonStatus];

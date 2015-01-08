@@ -20,50 +20,44 @@
     return sharedManager;
 }
 
-- (void)refreshCharacterPacks
+
+
+- (NSMutableArray *)characterSets;
 {
+    NSMutableArray *sets = [NSMutableArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"characterSets" ofType:@"plist"]];
 
-    NSMutableArray *allCharacterPacks = [[NSMutableArray alloc] init];
-
-    NSArray *characterPackPaths = [self filesAtPath:[[NSBundle mainBundle] bundlePath] withExtension:@".pack.plist"];
-
-    for (NSString *path in characterPackPaths) {
-        NSMutableDictionary *pack = [NSMutableDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[path stringByDeletingPathExtension] ofType:@"plist"]];
-        [allCharacterPacks addObject:pack];
-    }
-
-
-    // check preferences for enabled packs
+    // check preferences for purchased and enabled sets
 
     // if none exist, create and populat with defaults
     // otherwise, read and modify results in memory after retrieving their data
     NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:ASKEY_CONTAINER_GROUP_NAME];
-    if ([defaults objectForKey:@"characterPacks"] == nil) {
+    if ([defaults objectForKey:@"characterSets"] == nil) {
         // first launch or something
         [self reset];
     }
 
-    for (NSString *key in [defaults objectForKey:@"characterPacks"]) {
-        // for each pack in that array, find it in allCharacterPacks and make sure enabled is true
+    for (NSString *key in [defaults objectForKey:@"characterSets"]) {
+        // for each pack in that array, find it in allcharacterSets and make sure enabled is true
         // -> they are disabled by default
-        for (NSMutableDictionary *pack in allCharacterPacks) {
-            if ([[pack objectForKey:@"keyName"] isEqualToString:key]) {
-                [pack setValue:@YES forKey:@"enabled"];
+        for (NSMutableDictionary *set in sets) {
+            if ([[set objectForKey:@"keyName"] isEqualToString:key]) {
+                [set setValue:@YES forKey:@"enabled"];
+                [set setValue:@YES forKey:@"purchased"];
             }
         }
     }
 
-    self.characterPacks = [NSArray arrayWithArray:allCharacterPacks];
+    return sets;
 
 }
 
-- (BOOL)setCharacterPackEnabled:(NSString *)pack
+- (BOOL)setCharacterSetEnabled:(NSString *)set
 {
     // pack is key of pack
     NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:ASKEY_CONTAINER_GROUP_NAME];
-    NSMutableArray *existingPacks = [NSMutableArray arrayWithArray:[defaults objectForKey:@"characterPacks"]];
-    [existingPacks addObject:pack];
-    [defaults setObject:[NSArray arrayWithArray:existingPacks] forKey:@"characterPacks"];
+    NSMutableArray *existingSets = [NSMutableArray arrayWithArray:[defaults objectForKey:@"characterPacks"]];
+    [existingSets addObject:set];
+    [defaults setObject:[NSArray arrayWithArray:existingSets] forKey:@"characterSets"];
     [defaults synchronize];
 
     // returns success or not
@@ -73,25 +67,9 @@
 - (void)reset
 {
     NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:ASKEY_CONTAINER_GROUP_NAME];
-    [defaults setObject:@[@"original"] forKey:@"characterPacks"];
+    // we haven't purchased any sets
+    [defaults setObject:@[] forKey:@"characterSets"];
     [defaults synchronize];
-}
-
-#pragma mark - Util
-
-- (NSArray *)filesAtPath:(NSString *)path withExtension:(NSString *)extension
-{
-    NSMutableArray *matches = [[NSMutableArray alloc]init];
-    NSFileManager *fManager = [NSFileManager defaultManager];
-    NSString *item;
-    NSArray *contents = [fManager contentsOfDirectoryAtPath:path error:nil];
-
-    for (item in contents){
-        if ([item hasSuffix:extension]) {
-            [matches addObject:item];
-        }
-    }
-    return matches;
 }
 
 @end

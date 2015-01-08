@@ -11,10 +11,8 @@
 
 @interface AKCharacterPackManager : NSObject
 
-@property (nonatomic, retain) NSArray *characterPacks;
-
 + (id)sharedManager;
-- (void)refreshCharacterPacks; // refreshed character packs from disk
-- (BOOL)setCharacterPackEnabled:(NSString *)pack; // called after user buys a pack
+- (NSMutableArray *)characterSets;
+- (BOOL)setCharacterSetEnabled:(NSString *)set; // called after user buys a set
 
 @end
