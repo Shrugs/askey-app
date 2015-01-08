@@ -168,7 +168,7 @@
 - (void)shouldCloseTryAskeyViewController:(TryAskeyViewController *)controller
 {
     // animate controller away and set to nil
-    POPSpringAnimation *slideIn = [POPSpringAnimation animationWithPropertyNamed:kPOPViewScaleXY];
+    POPBasicAnimation *slideIn = [POPBasicAnimation animationWithPropertyNamed:kPOPViewScaleXY];
     slideIn.toValue = [NSValue valueWithCGSize:CGSizeMake(0.0, 0.0)];
     slideIn.completionBlock = ^(POPAnimation *anim, BOOL finished) {
         self.tryAskeyVC = nil;

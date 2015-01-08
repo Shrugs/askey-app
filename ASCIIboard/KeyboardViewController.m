@@ -135,8 +135,27 @@
 
     // set to first pack
     // @TODO(Shrugs) load last used pack from nsuserdefaults
-    [self setCurrentCharacterPack:[[[self.characterSets objectAtIndex:0] objectForKey:@"packs"] objectAtIndex:0]];
-    _currentCharacterSet = 0;
+    if (_hasFullAccess) {
+        NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:ASKEY_CONTAINER_GROUP_NAME];
+
+        if (![defaults objectForKey:@"_currentCharacterSet"]) {
+            [defaults setObject:[NSNumber numberWithInt:0] forKey:@"_currentCharacterSet"];
+        }
+
+        if (![defaults objectForKey:@"_currentPackIndex"]) {
+            [defaults setObject:[NSNumber numberWithInt:0] forKey:@"_currentPackIndex"];
+        }
+
+        [defaults synchronize];
+
+        _currentCharacterSet = [[defaults objectForKey:@"_currentCharacterSet"] intValue];
+        int currentPackIndex = [[defaults objectForKey:@"_currentPackIndex"] intValue];
+        [self setCurrentCharacterPack:[[[self.characterSets objectAtIndex:_currentCharacterSet] objectForKey:@"packs"] objectAtIndex:currentPackIndex]];
+    } else {
+        // else default to original
+        [self setCurrentCharacterPack:[[[self.characterSets objectAtIndex:0] objectForKey:@"packs"] objectAtIndex:0]];
+        _currentCharacterSet = 0;
+    }
 
 }
 
@@ -949,6 +968,12 @@
             // if set purchased or pack enabled
 
             [self setCurrentCharacterPack:[[[self.characterSets objectAtIndex:_currentCharacterSet] objectForKey:@"packs"] objectAtIndex:index]];
+
+            if (_hasFullAccess) {
+                NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:ASKEY_CONTAINER_GROUP_NAME];
+                [defaults setObject:[NSNumber numberWithInt:_currentCharacterSet] forKey:@"_currentCharacterSet"];
+                [defaults setObject:[NSNumber numberWithInt:(int)index] forKey:@"_currentPackIndex"];
+            }
 
             // highlight selected and unselect last one
             for (int i = 0; i < [self.characterPackButtonsArray count]; i++) {

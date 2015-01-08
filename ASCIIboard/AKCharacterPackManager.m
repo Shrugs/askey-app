@@ -37,7 +37,6 @@
     }
 
     for (NSString *key in [defaults objectForKey:@"characterSets"]) {
-        NSLog(@"%@", key);
         // for each pack in that array, find it in allcharacterSets and make sure enabled is true
         // -> they are disabled by default
         for (NSMutableDictionary *set in sets) {
