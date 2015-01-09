@@ -161,8 +161,9 @@
 
 - (void)setCurrentCharacterPack:(NSMutableDictionary *)pack
 {
+    
+    [self.numpadButton setTitle:[pack objectForKey:@"icon"] forState:UIControlStateNormal];
     _currentCharacterPack = pack;
-    self.numpadButton.text = [pack objectForKey:@"icon"];
 }
 
 - (void)createButtons
@@ -944,6 +945,7 @@
         if ([[[self.characterSets objectAtIndex:index] objectForKey:@"enabled"] boolValue]) {
             // if the set is enabled
 
+            _lastCharacterSet = _currentCharacterSet;
             _currentCharacterSet = (int)index;
 
             // highlight selected and unselect last one
@@ -968,6 +970,8 @@
             // if set purchased or pack enabled
 
             [self setCurrentCharacterPack:[[[self.characterSets objectAtIndex:_currentCharacterSet] objectForKey:@"packs"] objectAtIndex:index]];
+
+            _lastCharacterSet = _currentCharacterSet;
 
             if (_hasFullAccess) {
                 NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:ASKEY_CONTAINER_GROUP_NAME];
@@ -1009,6 +1013,8 @@
     } else {
         [self setEraserSelected];
     }
+
+    _currentCharacterSet = _lastCharacterSet;
 
     self.brushButton.enabled = YES;
     self.numpadButton.enabled = YES;

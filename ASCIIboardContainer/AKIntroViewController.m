@@ -9,11 +9,15 @@
 #import "AKIntroViewController.h"
 #import "NSString+FontAwesome.h"
 #import "Config.h"
+#import <Masonry/Masonry.h>
 
 #define NUM_PAGES 9
 #define NUM_PICTURES 8
 #define SCREENSHOT_W_H_RATIO (0.562218891f)
-#define SCREENSHOT_HEIGHT_RATIO 0.8
+#define SCREENSHOT_HEIGHT_RATIO 0.7
+
+// percentage of the screen to move the screenshot up to make room for text below it
+#define SCREENSHOT_DELTA_Y_RATIO 0.05
 
 static int MAG_SIZE = 210;
 
@@ -56,10 +60,24 @@ static int MAG_SIZE = 210;
         // for each page, load from disk, create a UIImageView, and place accordingly
         UIImageView *iv = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[@"intro" stringByAppendingString:[NSString stringWithFormat:@"%i", i]]]];
         iv.frame = CGRectMake(0, 0, _imgWidth, _imgHeight);
-        iv.center = CGPointMake(originalCenter.x + (i * self.view.frame.size.width), originalCenter.y);
-        NSLog(@"center for %i: %@", i, NSStringFromCGPoint(iv.center));
+        iv.center = CGPointMake(originalCenter.x + (i * self.view.frame.size.width),
+                                originalCenter.y - self.view.frame.size.height*SCREENSHOT_DELTA_Y_RATIO);
+
         [_scrollView addSubview:iv];
         [_introImages addObject:iv];
+
+        // create text for each image
+        UILabel *textLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 50)];
+        [textLabel setText:[self textForStep:i]];
+        textLabel.numberOfLines = 2;
+        textLabel.textColor = [UIColor whiteColor];
+        textLabel.textAlignment = NSTextAlignmentCenter;
+        [_scrollView addSubview:textLabel];
+        [textLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(iv.mas_bottom).offset(5);
+            make.left.and.right.equalTo(iv);
+            make.height.equalTo(@50);
+        }];
     }
 
     // create x button at top left
@@ -119,6 +137,35 @@ static int MAG_SIZE = 210;
     // Dispose of any resources that can be recreated.
 }
 
+- (NSString *)textForStep:(int)i {
+    switch (i) {
+        case 1: {
+            return @"Go to 'Settings' > 'General'";
+        }
+        case 2: {
+            return @"Scroll Down and Choose 'Keyboard'";
+        }
+        case 3: {
+            return @"Then Choose 'Keyboards'";
+        }
+        case 4: {
+            return @"Add a New Keyboard";
+        }
+        case 5: {
+            return @"Select 'Askey'";
+        }
+        case 6: {
+            return @"Select the New 'Askey - Askey' Keyboard";
+        }
+        case 7: {
+            return @"Enable Full Access\n(For Character Sets and Awesomeness)";
+        }
+        default: {
+            return @"lolwat";
+        }
+    }
+}
+
 - (CGRect)magRectForIntro:(int)i
 {
     float xRatio, yRatio;
@@ -166,7 +213,6 @@ static int MAG_SIZE = 210;
     }
 
     CGPoint center = [[_introImages objectAtIndex:0] convertPoint:CGPointMake(_imgWidth*xRatio, _imgHeight*yRatio) toView:self.view];
-
     return CGRectMake(center.x - MAG_SIZE/2 - self.view.frame.size.width, center.y - MAG_SIZE/2, MAG_SIZE, MAG_SIZE);
 
 }

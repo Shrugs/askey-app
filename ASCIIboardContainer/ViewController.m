@@ -168,13 +168,13 @@
 - (void)shouldCloseTryAskeyViewController:(TryAskeyViewController *)controller
 {
     // animate controller away and set to nil
-    POPBasicAnimation *slideIn = [POPBasicAnimation animationWithPropertyNamed:kPOPViewScaleXY];
-    slideIn.toValue = [NSValue valueWithCGSize:CGSizeMake(0.0, 0.0)];
-    slideIn.completionBlock = ^(POPAnimation *anim, BOOL finished) {
+    POPBasicAnimation *scaleOut = [POPBasicAnimation animationWithPropertyNamed:kPOPViewScaleXY];
+    scaleOut.toValue = [NSValue valueWithCGSize:CGSizeMake(0.0, 0.0)];
+    scaleOut.completionBlock = ^(POPAnimation *anim, BOOL finished) {
         self.tryAskeyVC = nil;
         [self setStatusBarBlack];
     };
-    [self.tryAskeyVC.view pop_addAnimation:slideIn forKey:@"slide"];
+    [self.tryAskeyVC.view pop_addAnimation:scaleOut forKey:@"slide"];
 }
 
 - (void)updateCharacterPacks
