@@ -18,14 +18,79 @@
          <BreakpointContent
             shouldBeEnabled = "No"
             ignoreCount = "0"
+            condition = "_currentCharacterSet &gt; "
             continueAfterRunningActions = "No"
             filePath = "ASCIIboard/KeyboardViewController.m"
-            timestampString = "442549207.48201"
+            timestampString = "442620598.452801"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "974"
-            endingLineNumber = "974"
+            startingLineNumber = "973"
+            endingLineNumber = "973"
             landmarkName = "-livBubbleMenu:tappedBubbleWithIndex:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ASCIIboard/KeyboardViewController.m"
+            timestampString = "442620598.452801"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "975"
+            endingLineNumber = "975"
+            landmarkName = "-livBubbleMenu:tappedBubbleWithIndex:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ASCIIboard/KeyboardViewController.m"
+            timestampString = "442620598.452801"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "950"
+            endingLineNumber = "950"
+            landmarkName = "-livBubbleMenu:tappedBubbleWithIndex:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ASCIIboard/KeyboardViewController.m"
+            timestampString = "442620598.452801"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1022"
+            endingLineNumber = "1022"
+            landmarkName = "-livBubbleMenuDidHide:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ASCIIboard/KeyboardViewController.m"
+            timestampString = "442620598.452801"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1021"
+            endingLineNumber = "1021"
+            landmarkName = "-livBubbleMenuDidHide:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

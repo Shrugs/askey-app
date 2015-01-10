@@ -943,7 +943,6 @@
                 break;
         }
     } else if (bubbleMenu == characterSetMenu) {
-        //
         if ([[[self.characterSets objectAtIndex:index] objectForKey:@"enabled"] boolValue]) {
             // if the set is enabled
 
@@ -953,7 +952,7 @@
             // highlight selected and unselect last one
             for (int i = 0; i < [self.characterSetButtonsArray count]; i++) {
                 if (i == index) {
-                    [[self.characterSetButtonsArray objectAtIndex:index] setStyle:MCBouncyButtonStyleSelected animated:YES];
+                    [[self.characterSetButtonsArray objectAtIndex:(int)index] setStyle:MCBouncyButtonStyleSelected animated:YES];
                 } else if (((MCBouncyButton *)[self.characterSetButtonsArray objectAtIndex:i]).style == MCBouncyButtonStyleSelected) {
                     [[self.characterSetButtonsArray objectAtIndex:i] setStyle:MCBouncyButtonStyleDefault animated:YES];
                 }
@@ -966,12 +965,12 @@
             [self displayAccessError];
         }
     } else if (bubbleMenu == characterPackMenu) {
-
         if ([[[self.characterSets objectAtIndex:_currentCharacterSet] objectForKey:@"purchased"] boolValue] ||
             [[[[[self.characterSets objectAtIndex:_currentCharacterSet] objectForKey:@"packs"] objectAtIndex:index] objectForKey:@"enabled"] boolValue]) {
             // if set purchased or pack enabled
-
-            [self setCurrentCharacterPack:[[[self.characterSets objectAtIndex:_currentCharacterSet] objectForKey:@"packs"] objectAtIndex:index]];
+            CLSLog(@"pack: {%i, %i}", _currentCharacterSet, (int)index);
+            NSLog(@"pack: {%i, %i}", _currentCharacterSet, (int)index);
+            [self setCurrentCharacterPack:[[[self.characterSets objectAtIndex:_currentCharacterSet] objectForKey:@"packs"] objectAtIndex:(int)index]];
 
             _lastCharacterSet = _currentCharacterSet;
 
@@ -1016,10 +1015,22 @@
         [self setEraserSelected];
     }
 
-    _currentCharacterSet = _lastCharacterSet;
+
+    if (bubbleMenu == characterSetMenu || bubbleMenu == characterPackMenu) {
+        if (![bubbleMenu bubbleWasTapped]) {
+            // if the menus were dismissed, reset stuff, otherwise don't
+            _currentCharacterSet = _lastCharacterSet;
+        }
+    }
 
     self.brushButton.enabled = YES;
     self.numpadButton.enabled = YES;
+
+    // if the set menu was tapped, keep button disabled for the pack menu
+    if (bubbleMenu == characterSetMenu && [bubbleMenu bubbleWasTapped]) {
+        self.numpadButton.enabled = NO;
+    }
+
 }
 
 #pragma mark - Utils
