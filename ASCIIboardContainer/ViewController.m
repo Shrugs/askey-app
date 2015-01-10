@@ -29,7 +29,7 @@
     [self.view removeConstraints:self.view.constraints];
 
     self.scrollView = [[UIScrollView alloc] initWithFrame:self.view.frame];
-    self.scrollView.backgroundColor = ASKEY_BLUE_COLOR;
+    self.scrollView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.scrollView];
     [self.scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
@@ -66,13 +66,23 @@
     labelHeader.font = [UIFont fontWithName:ASKEY_FONT size:30];
     [header addSubview:labelHeader];
 
+    // content container
+    UIView *content = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.scrollView.frame.size.width, 500)];
+    content.backgroundColor = ASKEY_BLUE_COLOR;
+    content.layer.shadowColor = [ASKEY_BUTTON_SHADOW_COLOR CGColor];
+    content.layer.masksToBounds = NO;
+    content.layer.shadowOffset = CGSizeMake(0.0f, 2.0f);
+    content.layer.shadowOpacity = 1.0f;
+    content.layer.shadowRadius = 0.0f;
+    [self.scrollView addSubview:content];
+
     // character pack text
     UILabel *characterSetsHeader = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.scrollView.frame.size.width, 20)];
     [characterSetsHeader setText:@"Character Sets"];
     characterSetsHeader.font = [UIFont fontWithName:ASKEY_FONT size:20];
     characterSetsHeader.textAlignment = NSTextAlignmentCenter;
     characterSetsHeader.textColor = [UIColor whiteColor];
-    [self.scrollView addSubview:characterSetsHeader];
+    [content addSubview:characterSetsHeader];
 
     // character pack collection view
     _characterSetButtons = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.scrollView.frame.size.width, 200)
@@ -82,33 +92,33 @@
     [_characterSetButtons setDelegate:self];
     _characterSetButtons.backgroundColor = ASKEY_BLUE_COLOR;
 
-    [self.scrollView addSubview:_characterSetButtons];
+    [content addSubview:_characterSetButtons];
 
     // try out button
     AKFullWidthButton *tryoutButton = [[AKFullWidthButton alloc] initWithText:@"Try Askey"];
     [tryoutButton registerHandlers];
     [tryoutButton addTarget:self action:@selector(tryoutAskey) forControlEvents:UIControlEventTouchUpInside];
-    [self.scrollView addSubview:tryoutButton];
+    [content addSubview:tryoutButton];
 
     // intro button
     AKFullWidthButton *introButton = [[AKFullWidthButton alloc] initWithText:@"Launch Intro"];
     [introButton registerHandlers];
     [introButton addTarget:self action:@selector(launchIntro) forControlEvents:UIControlEventTouchUpInside];
-    [self.scrollView addSubview:introButton];
+    [content addSubview:introButton];
 
     // FAQ Button
     AKFullWidthButton *faqButton = [[AKFullWidthButton alloc] initWithText:@"FAQ"];
     [faqButton registerHandlers];
     [faqButton addTarget:self action:@selector(showFAQ) forControlEvents:UIControlEventTouchUpInside];
-    [self.scrollView addSubview:faqButton];
+    [content addSubview:faqButton];
 
     // Matt Condon
     AKCreditView *matt = [[AKCreditView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 70) text:@"Matt Condon" twitter:@"mattgcondon" andWeb:@"http://mat.tc"];
-    [self.scrollView addSubview:matt];
+    [content addSubview:matt];
 
     // Benjamin Zweig
     AKCreditView *ben = [[AKCreditView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 70) text:@"Ben Zweig" twitter:@"tfzweig" andWeb:@"http://www.tfzweig.com/"];
-    [self.scrollView addSubview:ben];
+    [content addSubview:ben];
 
     // CONSTRAINTS
     [iconHeader mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -124,8 +134,13 @@
         make.left.right.width.and.top.equalTo(self.scrollView);
         make.bottom.equalTo(labelHeader.mas_bottom).offset(20);
     }];
+    [content mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(ben).offset(50);
+        make.top.equalTo(header.mas_bottom);
+        make.centerX.left.and.right.equalTo(self.scrollView);
+    }];
     [characterSetsHeader mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(header.mas_bottom).offset(15);
+        make.top.equalTo(content).offset(15);
         make.left.right.and.width.equalTo(self.scrollView);
     }];
     [_characterSetButtons mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -246,7 +261,6 @@
         contentRect = CGRectUnion(contentRect, view.frame);
     }
     contentRect.size.width = self.view.frame.size.width;
-    contentRect.size.height += 50;
     self.scrollView.contentSize = contentRect.size;
 }
 
