@@ -17,6 +17,10 @@
 #import "AKCharacterPackCollectionViewCell.h"
 #import <POP.h>
 #import "NSString+FontAwesome.h"
+#import "AKCreditView.h"
+
+#define BUTTON_OFFSET 25
+#define BUTTON_SIZE 70
 
 @implementation ViewController
 
@@ -92,6 +96,19 @@
     [introButton addTarget:self action:@selector(launchIntro) forControlEvents:UIControlEventTouchUpInside];
     [self.scrollView addSubview:introButton];
 
+    // FAQ Button
+    AKFullWidthButton *faqButton = [[AKFullWidthButton alloc] initWithText:@"FAQ"];
+    [faqButton registerHandlers];
+    [faqButton addTarget:self action:@selector(showFAQ) forControlEvents:UIControlEventTouchUpInside];
+    [self.scrollView addSubview:faqButton];
+
+    // Matt Condon
+    AKCreditView *matt = [[AKCreditView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 70) text:@"Matt Condon" twitter:@"mattgcondon" andWeb:@"http://mat.tc"];
+    [self.scrollView addSubview:matt];
+
+    // Benjamin Zweig
+    AKCreditView *ben = [[AKCreditView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 70) text:@"Ben Zweig" twitter:@"tfzweig" andWeb:@"http://www.tfzweig.com/"];
+    [self.scrollView addSubview:ben];
 
     // CONSTRAINTS
     [iconHeader mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -120,14 +137,30 @@
     [tryoutButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.scrollView);
         make.width.equalTo(self.scrollView);
-        make.height.equalTo(@70);
+        make.height.equalTo(@BUTTON_SIZE);
         make.top.equalTo(_characterSetButtons.mas_bottom).offset(50);
     }];
     [introButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.scrollView);
         make.width.equalTo(self.scrollView);
-        make.height.equalTo(@70);
-        make.top.equalTo(tryoutButton.mas_bottom).offset(25);
+        make.height.equalTo(@BUTTON_SIZE);
+        make.top.equalTo(tryoutButton.mas_bottom).offset(BUTTON_OFFSET);
+    }];
+    [faqButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.scrollView);
+        make.width.equalTo(self.scrollView);
+        make.height.equalTo(@BUTTON_SIZE);
+        make.top.equalTo(introButton.mas_bottom).offset(BUTTON_OFFSET);
+    }];
+    [matt mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(faqButton.mas_bottom).offset(BUTTON_OFFSET + 20);
+        make.left.and.right.equalTo(self.scrollView);
+        make.height.equalTo(@(BUTTON_SIZE));
+    }];
+    [ben mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(matt.mas_bottom).offset(BUTTON_OFFSET);
+        make.left.and.right.equalTo(self.scrollView);
+        make.height.equalTo(@BUTTON_SIZE);
     }];
 
     // launch intro on startup
@@ -186,6 +219,17 @@
 {
     [self updateCharacterPacks];
     [_characterSetButtons reloadItemsAtIndexPaths:[_characterSetButtons indexPathsForVisibleItems]];
+}
+
+
+- (void)showFAQ
+{
+    [self launchURL:@"http://mat.tc"];
+}
+
+- (void)launchURL:(NSString *)url
+{
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
 }
 
 

@@ -11,7 +11,7 @@
 @implementation UIImage (ASCII)
 
 
-- (NSString *)getASCIIWithResolution:(CGSize)numBlocks andChars:(NSDictionary *)alphaChars
+- (NSString *)getASCIIWithResolution:(CGSize)numBlocks andChars:(NSDictionary *)alphaChars andIsHardwrapped:(BOOL)isHardWrapped
 {
     // numBlocks = number of ASCII "pixels" in widthxheight
 
@@ -60,18 +60,19 @@
 
     NSString *finalString = @"";
 
-    for (int row=0; row < numBlocks.height; row++) {
-        // for every blockHeight rows
+    for (int row = 0; row < numBlocks.height; row++) {
+        // for every block row
 
-        for (int col=0; col < numBlocks.width; col++) {
-            // for every blockWidth columns
+        for (int col = 0; col < numBlocks.width; col++) {
+            // for every block in that row
 
             float totalAlpha = 0;
 
-            for (int h=0; h < blockSize.height; h++) {
+            for (int h = 0; h < blockSize.height; h++) {
                 // for each row of pixels in this block
                 // access with row * blockSize.height + h
-                for (int w=0; w < blockSize.width; w++) {
+                for (int w = 0; w < blockSize.width; w++) {
+
                     // for each pixel in this block,
                     // access with col * blockSize.width + w
                     float thisPixelAlpha = [[[pixels objectAtIndex:(row * blockSize.height + h)] objectAtIndex:(col * blockSize.width + w)] floatValue];
@@ -84,7 +85,14 @@
             int relativeAlpha = floor((totalAlpha/maxAlpha) * ([alphaChars count] - 1));
             NSArray *possibleChars = [alphaChars objectForKey:[NSString stringWithFormat:@"%i", relativeAlpha]];
             NSUInteger myCount = [possibleChars count];
-            finalString = [finalString stringByAppendingString:[possibleChars objectAtIndex:arc4random_uniform((u_int32_t)myCount)]];
+            // append this char
+            NSString *charToEnter = [possibleChars objectAtIndex:arc4random_uniform((u_int32_t)myCount)];
+
+            if (isHardWrapped && col == 0 && [[charToEnter substringToIndex:1] isEqualToString:@" "]) {
+                charToEnter = [charToEnter stringByReplacingCharactersInRange:NSMakeRange(0, 1) withString:@"."];
+            }
+
+            finalString = [finalString stringByAppendingString:charToEnter];
 
         }
 

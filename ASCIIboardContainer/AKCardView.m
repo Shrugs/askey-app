@@ -15,13 +15,15 @@
 
 #define EDGE_INSET 10
 static const CGFloat MAX_FONT_SIZE = 22.0;
-static const CGFloat MIN_FONT_SIZE = 14.0;
+static const CGFloat MAIL_FONT_SIZE = 13;
 
 @implementation AKCardView
 
 - (void)setSet:(NSDictionary *)set
 {
     _set = set;
+
+    _isHardwrapped = [[_set objectForKey:@"keyName"] isEqualToString:@"mail"];
 
     [self getASCIIFromSet:_set];
 
@@ -69,7 +71,7 @@ static const CGFloat MIN_FONT_SIZE = 14.0;
     // TEXT VIEW
     _textView = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, card.frame.size.width, 100)];
     _textView.editable = NO;
-    _textView.font = [UIFont fontWithName:ASKEY_FONT size:MAX_FONT_SIZE];
+    _textView.font = [UIFont fontWithName:ASKEY_FONT size:(_isHardwrapped ? MAIL_FONT_SIZE : MAX_FONT_SIZE)];
     _textView.delegate = self;
     [card addSubview:_textView];
 
@@ -155,7 +157,8 @@ static const CGFloat MIN_FONT_SIZE = 14.0;
         for (NSDictionary *pack in [_set objectForKey:@"packs"]) {
             NSString *temp = [[UIImage imageNamed:@"example_template"] getASCIIWithResolution:CGSizeMake([[pack objectForKey:@"width"] integerValue],
                                                                                                          [[pack objectForKey:@"height"] integerValue])
-                                                                                     andChars:[pack objectForKey:@"chars"]];
+                                                                                     andChars:[pack objectForKey:@"chars"]
+                                                                             andIsHardwrapped:_isHardwrapped];
 
             text = [text stringByAppendingString:temp];
             dispatch_async(dispatch_get_main_queue(), ^{

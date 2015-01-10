@@ -72,6 +72,67 @@
 				<key>displayName</key>
 				<string>Original</string>
 			</dict>
+            <dict>
+                <key>keyName</key>
+                <string>code</string>
+                <key>enabled</key>
+                <true/>
+                <key>height</key>
+                <integer>11</integer>
+                <key>width</key>
+                <integer>15</integer>
+                <key>chars</key>
+                <dict>
+                    <key>9</key>
+                    <array>
+                        <string>#</string>
+                    </array>
+                    <key>8</key>
+                    <array>
+                        <string>;:</string>
+                        <string>:;</string>
+                    </array>
+                    <key>7</key>
+                    <array>
+                        <string>!;</string>
+                        <string>;!</string>
+                    </array>
+                    <key>6</key>
+                    <array>
+                        <string>8</string>
+                    </array>
+                    <key>5</key>
+                    <array>
+                        <string>&gt;</string>
+                        <string>&lt;</string>
+                    </array>
+                    <key>4</key>
+                    <array>
+                        <string>o</string>
+                    </array>
+                    <key>3</key>
+                    <array>
+                        <string>,.</string>
+                        <string>.,</string>
+                    </array>
+                    <key>2</key>
+                    <array>
+                        <string>  </string>
+                    </array>
+                    <key>1</key>
+                    <array>
+                        <string>  </string>
+                    </array>
+                    <key>0</key>
+                    <array>
+                        <string>  </string>
+                    </array>
+                </dict>
+                <key>icon</key>
+                <string>#!</string>
+                <key>displayName</key>
+                <string>Code</string>
+            </dict>
 		</array>
 	</dict>
 	<dict>
@@ -100,43 +161,45 @@
 				<dict>
 					<key>9</key>
 					<array>
-						<string>😝</string>
+						<string>😀</string>
+						<string>😎</string>
 					</array>
 					<key>8</key>
 					<array>
 						<string>😛</string>
+						<string>😋</string>
 					</array>
 					<key>7</key>
 					<array>
-						<string>😃</string>
+						<string>😟</string>
 					</array>
 					<key>6</key>
 					<array>
-						<string>😄</string>
+						<string>😦</string>
 					</array>
 					<key>5</key>
 					<array>
-						<string>😀</string>
+						<string>😧</string>
 					</array>
 					<key>4</key>
 					<array>
-						<string>😳</string>
+						<string>😮</string>
 					</array>
 					<key>3</key>
 					<array>
-						<string>😐</string>
+						<string>😗</string>
 					</array>
 					<key>2</key>
 					<array>
-						<string>😑</string>
+						<string>    </string>
 					</array>
 					<key>1</key>
 					<array>
-						<string>😶</string>
+						<string>    </string>
 					</array>
 					<key>0</key>
 					<array>
-						<string>     </string>
+						<string>    </string>
 					</array>
 				</dict>
 				<key>icon</key>
@@ -157,9 +220,9 @@
 				<dict>
 					<key>9</key>
 					<array>
-						<string>🍰</string>
-						<string>🍪</string>
-						<string>🎂</string>
+                        <string>🍕</string>
+                        <string>🍪</string>
+                        <string>🎂</string>
 					</array>
 					<key>8</key>
 					<array>
@@ -169,11 +232,11 @@
 					<key>7</key>
 					<array>
 						<string>🍩</string>
-						<string>🍞</string>
+						<string>🍤</string>
 					</array>
 					<key>6</key>
 					<array>
-						<string>🍓</string>
+						<string>🍒</string>
 					</array>
 					<key>5</key>
 					<array>
@@ -181,15 +244,15 @@
 					</array>
 					<key>4</key>
 					<array>
-						<string>🍢</string>
+						<string>🍌</string>
 					</array>
 					<key>3</key>
 					<array>
-						<string>🍡</string>
+						<string>🍍</string>
 					</array>
 					<key>2</key>
 					<array>
-						<string>🍍</string>
+						<string>🍭</string>
 					</array>
 					<key>1</key>
 					<array>
@@ -201,10 +264,138 @@
 					</array>
 				</dict>
 				<key>icon</key>
-				<string>🍗</string>
+				<string>🍕</string>
 				<key>displayName</key>
-				<string>Food 🍗</string>
+				<string>Food 🍕</string>
 			</dict>
+            <dict>
+                <key>keyName</key>
+                <string>emojianimals</string>
+                <key>enabled</key>
+                <false/>
+                <key>height</key>
+                <integer>11</integer>
+                <key>width</key>
+                <integer>8</integer>
+                <key>chars</key>
+                <dict>
+                    <key>9</key>
+                    <array>
+                        <string>🐼</string>
+                        <string>🐋</string>
+                    </array>
+                    <key>8</key>
+                    <array>
+                        <string>🐞</string>
+                        <string>🐝</string>
+                    </array>
+                    <key>7</key>
+                    <array>
+                        <string>🐤</string>
+                        <string>🐣</string>
+                        <string>😾</string>
+                    </array>
+                    <key>6</key>
+                    <array>
+                        <string>🐢</string>
+                        <string>🐊</string>
+                    </array>
+                    <key>5</key>
+                    <array>
+                        <string>🐕</string>
+                        <string>🙈</string>
+                        <string>🐈</string>
+                    </array>
+                    <key>4</key>
+                    <array>
+                        <string>🐄</string>
+                        <string>🐓</string>
+                    </array>
+                    <key>3</key>
+                    <array>
+                        <string>🐇</string>
+                        <string>🐖</string>
+                    </array>
+                    <key>2</key>
+                    <array>
+                        <string>    </string>
+                    </array>
+                    <key>1</key>
+                    <array>
+                        <string>    </string>
+                    </array>
+                    <key>0</key>
+                    <array>
+                        <string>    </string>
+                    </array>
+                </dict>
+                <key>icon</key>
+                <string>🐋</string>
+                <key>displayName</key>
+                <string>Animals 🐋</string>
+            </dict>
+            <dict>
+                <key>keyName</key>
+                <string>emojihearts</string>
+                <key>enabled</key>
+                <false/>
+                <key>height</key>
+                <integer>11</integer>
+                <key>width</key>
+                <integer>8</integer>
+                <key>chars</key>
+                <dict>
+                    <key>9</key>
+                    <array>
+                        <string>💖</string>
+                        <string>💘</string>
+                    </array>
+                    <key>8</key>
+                    <array>
+                        <string>❤</string>
+                        <string>💚</string>
+                        <string>💜</string>
+                    </array>
+                    <key>7</key>
+                    <array>
+                        <string>💛</string>
+                        <string>💙</string>
+                    </array>
+                    <key>6</key>
+                    <array>
+                        <string>💎</string>
+                        <string>👑</string>
+                    </array>
+                    <key>5</key>
+                    <array>
+                        <string>💕</string>
+                    </array>
+                    <key>4</key>
+                    <array>
+                        <string>💓</string>
+                    </array>
+                    <key>3</key>
+                    <array>
+                        <string>    </string>
+                    </array>
+                    <key>2</key>
+                    <array>
+                        <string>    </string>
+                    </array>
+                    <key>1</key>
+                    <array>
+                        <string>    </string>
+                    </array>
+                    <key>0</key>
+                    <array>
+                        <string>    </string>
+                    </array>
+                </dict>
+                <key>icon</key>
+                <string>💖</string>
+                <key>displayName</key>
+                <string>Hearts 💖</string>
+            </dict>
 		</array>
 	</dict>
 	<dict>
@@ -226,9 +417,9 @@
 				<key>enabled</key>
 				<false/>
 				<key>height</key>
-				<integer>10</integer>
+				<integer>20</integer>
 				<key>width</key>
-				<integer>32</integer>
+				<integer>64</integer>
 				<key>chars</key>
 				<dict>
 					<key>9</key>
@@ -276,6 +467,65 @@
 				<string>!;&apos;</string>
 				<key>displayName</key>
 				<string>Original</string>
+			</dict>
+			<dict>
+				<key>keyName</key>
+				<string>emojimail</string>
+				<key>enabled</key>
+				<false/>
+				<key>height</key>
+				<integer>20</integer>
+				<key>width</key>
+				<integer>16</integer>
+				<key>chars</key>
+				<dict>
+					<key>9</key>
+					<array>
+						<string>😎</string>
+						<string>😀</string>
+					</array>
+					<key>8</key>
+					<array>
+						<string>😛</string>
+						<string>😋</string>
+					</array>
+					<key>7</key>
+					<array>
+						<string>😟</string>
+					</array>
+					<key>6</key>
+					<array>
+						<string>😦</string>
+					</array>
+					<key>5</key>
+					<array>
+						<string>😧</string>
+					</array>
+					<key>4</key>
+					<array>
+						<string>😮</string>
+					</array>
+					<key>3</key>
+					<array>
+						<string>😗</string>
+					</array>
+					<key>2</key>
+					<array>
+						<string>    </string>
+					</array>
+					<key>1</key>
+					<array>
+						<string>    </string>
+					</array>
+					<key>0</key>
+					<array>
+						<string>    </string>
+					</array>
+				</dict>
+				<key>icon</key>
+				<string>😄</string>
+				<key>displayName</key>
+				<string>Faces 😄</string>
 			</dict>
 		</array>
 	</dict>

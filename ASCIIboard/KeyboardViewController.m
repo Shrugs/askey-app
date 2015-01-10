@@ -648,7 +648,8 @@
     }
     CGSize numBlocks = CGSizeMake([[_currentCharacterPack objectForKey:@"width"] integerValue],
                                   [[_currentCharacterPack objectForKey:@"height"] integerValue]);
-    NSString *text = [self.currentSheet.drawView.image getASCIIWithResolution:numBlocks andChars:[_currentCharacterPack objectForKey:@"chars"]];
+    BOOL isMail = [[[self.characterSets objectAtIndex:_currentCharacterSet] objectForKey:@"keyName"] isEqualToString:@"mail"];
+    NSString *text = [self.currentSheet.drawView.image getASCIIWithResolution:numBlocks andChars:[_currentCharacterPack objectForKey:@"chars"] andIsHardwrapped:isMail];
 
     // has text, normal space, or unicode space
     if (![self.textDocumentProxy hasText] && ([[text substringToIndex:1] isEqualToString:@" "] || [[text substringToIndex:1] isEqualToString:@" "])) {
@@ -658,6 +659,7 @@
         // and insert period
         text = [text stringByReplacingCharactersInRange:NSMakeRange(0, 1) withString:@"."];
     }
+
     // insert into textField
     if (text != nil && text.length) {
         [self.insertHistory insertObject:@([text length]) atIndex:0];

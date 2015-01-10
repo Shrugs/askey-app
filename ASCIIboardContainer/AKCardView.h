@@ -20,6 +20,7 @@
 {
     NSDictionary *_set;
     UITextView *_textView;
+    BOOL _isHardwrapped;
 }
 
 @property (nonatomic, weak) id <AKCardViewDelegate> delegate;

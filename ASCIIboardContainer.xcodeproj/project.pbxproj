@@ -34,6 +34,9 @@
 		C94102811A5CEA4000954953 /* intro7.png in Resources */ = {isa = PBXBuildFile; fileRef = C941027A1A5CEA4000954953 /* intro7.png */; };
 		C94102951A5E66A500954953 /* characterpacks.plist in Resources */ = {isa = PBXBuildFile; fileRef = C94102941A5E66A500954953 /* characterpacks.plist */; };
 		C94102971A5E66AC00954953 /* characterpacks.plist in Resources */ = {isa = PBXBuildFile; fileRef = C94102961A5E66AC00954953 /* characterpacks.plist */; };
+		C941029A1A5F75F300954953 /* AKCreditView.m in Sources */ = {isa = PBXBuildFile; fileRef = C94102991A5F75F300954953 /* AKCreditView.m */; };
+		C941029E1A5F80D000954953 /* globe.png in Resources */ = {isa = PBXBuildFile; fileRef = C941029D1A5F80D000954953 /* globe.png */; };
+		C94102A01A5F814A00954953 /* twitter.png in Resources */ = {isa = PBXBuildFile; fileRef = C941029F1A5F814A00954953 /* twitter.png */; };
 		C952A45819D123870025DD73 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C952A45719D123870025DD73 /* main.m */; };
 		C952A45B19D123870025DD73 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C952A45A19D123870025DD73 /* AppDelegate.m */; };
 		C952A45E19D123870025DD73 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C952A45D19D123870025DD73 /* ViewController.m */; };
@@ -148,6 +151,10 @@
 		C941027A1A5CEA4000954953 /* intro7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = intro7.png; sourceTree = "<group>"; };
 		C94102941A5E66A500954953 /* characterpacks.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = characterpacks.plist; path = media/characterpacks.plist; sourceTree = SOURCE_ROOT; };
 		C94102961A5E66AC00954953 /* characterpacks.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = characterpacks.plist; path = media/characterpacks.plist; sourceTree = SOURCE_ROOT; };
+		C94102981A5F75F300954953 /* AKCreditView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKCreditView.h; sourceTree = "<group>"; };
+		C94102991A5F75F300954953 /* AKCreditView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKCreditView.m; sourceTree = "<group>"; };
+		C941029D1A5F80D000954953 /* globe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = globe.png; sourceTree = "<group>"; };
+		C941029F1A5F814A00954953 /* twitter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twitter.png; sourceTree = "<group>"; };
 		C952A45219D123870025DD73 /* ASCIIboardContainer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ASCIIboardContainer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C952A45619D123870025DD73 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C952A45719D123870025DD73 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -292,6 +299,8 @@
 		C952A45419D123870025DD73 /* ASCIIboardContainer */ = {
 			isa = PBXGroup;
 			children = (
+				C941029D1A5F80D000954953 /* globe.png */,
+				C941029F1A5F814A00954953 /* twitter.png */,
 				C94102941A5E66A500954953 /* characterpacks.plist */,
 				C94102731A5CEA4000954953 /* Intro Pics */,
 				C94102621A5BA3D900954953 /* UIImage+ASCII.h */,
@@ -326,6 +335,8 @@
 				C941026A1A5C6F8000954953 /* TryAskeyViewController.m */,
 				C94102701A5CD09B00954953 /* AKIntroViewController.h */,
 				C94102711A5CD09B00954953 /* AKIntroViewController.m */,
+				C94102981A5F75F300954953 /* AKCreditView.h */,
+				C94102991A5F75F300954953 /* AKCreditView.m */,
 			);
 			path = ASCIIboardContainer;
 			sourceTree = "<group>";
@@ -557,10 +568,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				C94102811A5CEA4000954953 /* intro7.png in Resources */,
+				C94102A01A5F814A00954953 /* twitter.png in Resources */,
 				C941027D1A5CEA4000954953 /* intro3.png in Resources */,
 				C941027F1A5CEA4000954953 /* intro5.png in Resources */,
 				C941026F1A5CA65900954953 /* example_template.png in Resources */,
 				C952A46619D123870025DD73 /* LaunchScreen.xib in Resources */,
+				C941029E1A5F80D000954953 /* globe.png in Resources */,
 				C941027B1A5CEA4000954953 /* intro1.png in Resources */,
 				C941027C1A5CEA4000954953 /* intro2.png in Resources */,
 				C94102551A5B36D100954953 /* FontAwesome.ttf in Resources */,
@@ -666,6 +679,7 @@
 				C941024F1A59E9CC00954953 /* AKButton.m in Sources */,
 				C94102431A58DFB000954953 /* AKCharacterPackCollectionViewCell.m in Sources */,
 				C94102341A58DD6A00954953 /* AKCharacterPackManager.m in Sources */,
+				C941029A1A5F75F300954953 /* AKCreditView.m in Sources */,
 				C94102581A5B370500954953 /* NSString+FontAwesome.m in Sources */,
 				C941026B1A5C6F8000954953 /* TryAskeyViewController.m in Sources */,
 				C941022E1A58D1A300954953 /* AKFullWidthButton.m in Sources */,
