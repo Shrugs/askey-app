@@ -664,13 +664,6 @@
     if (text != nil && text.length) {
         [self.insertHistory insertObject:@([text length]) atIndex:0];
         [self.textDocumentProxy insertText:text];
-//        NSUInteger len = [text length];
-//        unichar buffer[len + 1];
-//        [text getCharacters:buffer range:NSMakeRange(0, len)];
-//
-//        for (int i = 0; i < len; i++) {
-//            [self.textDocumentProxy insertText:[NSString stringWithFormat:@"%C", buffer[i]]];
-//        }
 
     }
     // update UI

@@ -301,10 +301,10 @@
 			children = (
 				C941029D1A5F80D000954953 /* globe.png */,
 				C941029F1A5F814A00954953 /* twitter.png */,
+				C941026E1A5CA65900954953 /* example_template.png */,
 				C94102941A5E66A500954953 /* characterpacks.plist */,
 				C94102731A5CEA4000954953 /* Intro Pics */,
 				C94102621A5BA3D900954953 /* UIImage+ASCII.h */,
-				C941026E1A5CA65900954953 /* example_template.png */,
 				C94102631A5BA3D900954953 /* UIImage+ASCII.m */,
 				C94102591A5B370800954953 /* Vendor */,
 				C94102321A58DD6A00954953 /* AKCharacterPackManager.h */,
