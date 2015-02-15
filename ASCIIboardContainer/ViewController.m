@@ -120,6 +120,12 @@
     AKCreditView *ben = [[AKCreditView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 70) text:@"Ben Zweig" twitter:@"tfzweig" andWeb:@"http://www.tfzweig.com/"];
     [content addSubview:ben];
 
+    // Blue view at bottom
+    int blueThingWidth = 100;
+    UIView *blueThing = [[UIView alloc] initWithFrame:CGRectMake(0, self.scrollView.frame.size.height - blueThingWidth, self.view.frame.size.width, self.view.frame.size.height)];
+    [blueThing setBackgroundColor:ASKEY_BLUE_COLOR];
+    [self.scrollView.layer insertSublayer:blueThing.layer atIndex:0];
+
     // CONSTRAINTS
     [iconHeader mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(header).offset(40);
@@ -177,6 +183,10 @@
         make.left.and.right.equalTo(self.scrollView);
         make.height.equalTo(@BUTTON_SIZE);
     }];
+//    [blueThing mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.bottom.left.and.right.equalTo(self.view);
+//        make.height.equalTo(self.view.mas_height).multipliedBy(0.5);
+//    }];
 
     // launch intro on startup
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"]) {
