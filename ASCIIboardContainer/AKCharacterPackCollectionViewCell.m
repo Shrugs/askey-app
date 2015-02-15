@@ -29,7 +29,7 @@
         self.layer.shadowRadius = 0.0f;
 
         textLabel = [[UILabel alloc] initWithFrame:self.frame];
-        [textLabel setFont:[UIFont fontWithName:ASKEY_FONT size:18]];
+        [textLabel setFont:[UIFont fontWithName:ASKEY_BUTTON_FONT size:18]];
         [textLabel setTextColor:ASKEY_BLUE_COLOR];
         textLabel.textAlignment = NSTextAlignmentLeft;
         [self addSubview:textLabel];
@@ -62,7 +62,7 @@
     } else {
         [priceLabel setText:@"$0.99"];
         [priceLabel setTextColor:ASKEY_BLUE_COLOR];
-        [priceLabel setFont:[UIFont fontWithName:ASKEY_FONT size:18]];
+        [priceLabel setFont:[UIFont fontWithName:ASKEY_BUTTON_FONT size:18]];
     }
     [textLabel setText:[set objectForKey:@"displayName"]];
 

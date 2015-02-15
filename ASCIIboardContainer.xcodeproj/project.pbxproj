@@ -13,16 +13,13 @@
 		C93A516119DA2E1A00BC939D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C93A516019DA2E1A00BC939D /* libPods.a */; };
 		C93A516419DA576F00BC939D /* UIImage+ASCII.m in Sources */ = {isa = PBXBuildFile; fileRef = C93A516319DA576F00BC939D /* UIImage+ASCII.m */; };
 		C941022A1A58C99F00954953 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C94102291A58C99F00954953 /* ViewController.xib */; };
-		C941022E1A58D1A300954953 /* AKFullWidthButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C941022D1A58D1A300954953 /* AKFullWidthButton.m */; };
+		C941022E1A58D1A300954953 /* AKLargeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C941022D1A58D1A300954953 /* AKLargeButton.m */; };
 		C94102341A58DD6A00954953 /* AKCharacterPackManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C94102331A58DD6A00954953 /* AKCharacterPackManager.m */; };
 		C94102431A58DFB000954953 /* AKCharacterPackCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C94102421A58DFB000954953 /* AKCharacterPackCollectionViewCell.m */; };
-		C941024F1A59E9CC00954953 /* AKButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C941024E1A59E9CC00954953 /* AKButton.m */; };
 		C94102521A5B2E0700954953 /* RKDropdownAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = C94102511A5B2E0700954953 /* RKDropdownAlert.m */; };
 		C94102551A5B36D100954953 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C94102541A5B36D100954953 /* FontAwesome.ttf */; };
 		C94102581A5B370500954953 /* NSString+FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = C94102571A5B370500954953 /* NSString+FontAwesome.m */; };
-		C941025F1A5B3BF200954953 /* AKCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = C941025E1A5B3BF200954953 /* AKCardView.m */; };
 		C94102641A5BA3D900954953 /* UIImage+ASCII.m in Sources */ = {isa = PBXBuildFile; fileRef = C94102631A5BA3D900954953 /* UIImage+ASCII.m */; };
-		C941026B1A5C6F8000954953 /* TryAskeyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C941026A1A5C6F8000954953 /* TryAskeyViewController.m */; };
 		C941026F1A5CA65900954953 /* example_template.png in Resources */ = {isa = PBXBuildFile; fileRef = C941026E1A5CA65900954953 /* example_template.png */; };
 		C94102721A5CD09B00954953 /* AKIntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C94102711A5CD09B00954953 /* AKIntroViewController.m */; };
 		C941027B1A5CEA4000954953 /* intro1.png in Resources */ = {isa = PBXBuildFile; fileRef = C94102741A5CEA4000954953 /* intro1.png */; };
@@ -120,25 +117,19 @@
 		C93A516319DA576F00BC939D /* UIImage+ASCII.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ASCII.m"; sourceTree = "<group>"; };
 		C94102291A58C99F00954953 /* ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
 		C941022B1A58CFFA00954953 /* Config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
-		C941022C1A58D1A300954953 /* AKFullWidthButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKFullWidthButton.h; sourceTree = "<group>"; };
-		C941022D1A58D1A300954953 /* AKFullWidthButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKFullWidthButton.m; sourceTree = "<group>"; };
+		C941022C1A58D1A300954953 /* AKLargeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKLargeButton.h; sourceTree = "<group>"; };
+		C941022D1A58D1A300954953 /* AKLargeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKLargeButton.m; sourceTree = "<group>"; };
 		C94102321A58DD6A00954953 /* AKCharacterPackManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AKCharacterPackManager.h; path = ASCIIboard/AKCharacterPackManager.h; sourceTree = SOURCE_ROOT; };
 		C94102331A58DD6A00954953 /* AKCharacterPackManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AKCharacterPackManager.m; path = ASCIIboard/AKCharacterPackManager.m; sourceTree = SOURCE_ROOT; };
 		C94102411A58DFB000954953 /* AKCharacterPackCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKCharacterPackCollectionViewCell.h; sourceTree = "<group>"; };
 		C94102421A58DFB000954953 /* AKCharacterPackCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKCharacterPackCollectionViewCell.m; sourceTree = "<group>"; };
-		C941024D1A59E9CC00954953 /* AKButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKButton.h; sourceTree = "<group>"; };
-		C941024E1A59E9CC00954953 /* AKButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKButton.m; sourceTree = "<group>"; };
 		C94102501A5B2E0700954953 /* RKDropdownAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKDropdownAlert.h; sourceTree = "<group>"; };
 		C94102511A5B2E0700954953 /* RKDropdownAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKDropdownAlert.m; sourceTree = "<group>"; };
 		C94102541A5B36D100954953 /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.ttf; sourceTree = "<group>"; };
 		C94102561A5B370500954953 /* NSString+FontAwesome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+FontAwesome.h"; sourceTree = "<group>"; };
 		C94102571A5B370500954953 /* NSString+FontAwesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+FontAwesome.m"; sourceTree = "<group>"; };
-		C941025D1A5B3BF200954953 /* AKCardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKCardView.h; sourceTree = "<group>"; };
-		C941025E1A5B3BF200954953 /* AKCardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKCardView.m; sourceTree = "<group>"; };
 		C94102621A5BA3D900954953 /* UIImage+ASCII.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+ASCII.h"; path = "ASCIIboard/UIImage+ASCII.h"; sourceTree = SOURCE_ROOT; };
 		C94102631A5BA3D900954953 /* UIImage+ASCII.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+ASCII.m"; path = "ASCIIboard/UIImage+ASCII.m"; sourceTree = SOURCE_ROOT; };
-		C94102691A5C6F8000954953 /* TryAskeyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TryAskeyViewController.h; sourceTree = "<group>"; };
-		C941026A1A5C6F8000954953 /* TryAskeyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TryAskeyViewController.m; sourceTree = "<group>"; };
 		C941026E1A5CA65900954953 /* example_template.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = example_template.png; sourceTree = "<group>"; };
 		C94102701A5CD09B00954953 /* AKIntroViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKIntroViewController.h; sourceTree = "<group>"; };
 		C94102711A5CD09B00954953 /* AKIntroViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKIntroViewController.m; sourceTree = "<group>"; };
@@ -323,16 +314,10 @@
 				C952A45519D123870025DD73 /* Supporting Files */,
 				C94102291A58C99F00954953 /* ViewController.xib */,
 				C941022B1A58CFFA00954953 /* Config.h */,
-				C941024D1A59E9CC00954953 /* AKButton.h */,
-				C941024E1A59E9CC00954953 /* AKButton.m */,
-				C941022C1A58D1A300954953 /* AKFullWidthButton.h */,
-				C941022D1A58D1A300954953 /* AKFullWidthButton.m */,
+				C941022C1A58D1A300954953 /* AKLargeButton.h */,
+				C941022D1A58D1A300954953 /* AKLargeButton.m */,
 				C94102411A58DFB000954953 /* AKCharacterPackCollectionViewCell.h */,
 				C94102421A58DFB000954953 /* AKCharacterPackCollectionViewCell.m */,
-				C941025D1A5B3BF200954953 /* AKCardView.h */,
-				C941025E1A5B3BF200954953 /* AKCardView.m */,
-				C94102691A5C6F8000954953 /* TryAskeyViewController.h */,
-				C941026A1A5C6F8000954953 /* TryAskeyViewController.m */,
 				C94102701A5CD09B00954953 /* AKIntroViewController.h */,
 				C94102711A5CD09B00954953 /* AKIntroViewController.m */,
 				C94102981A5F75F300954953 /* AKCreditView.h */,
@@ -674,15 +659,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C941025F1A5B3BF200954953 /* AKCardView.m in Sources */,
 				C952A45E19D123870025DD73 /* ViewController.m in Sources */,
-				C941024F1A59E9CC00954953 /* AKButton.m in Sources */,
 				C94102431A58DFB000954953 /* AKCharacterPackCollectionViewCell.m in Sources */,
 				C94102341A58DD6A00954953 /* AKCharacterPackManager.m in Sources */,
 				C941029A1A5F75F300954953 /* AKCreditView.m in Sources */,
 				C94102581A5B370500954953 /* NSString+FontAwesome.m in Sources */,
-				C941026B1A5C6F8000954953 /* TryAskeyViewController.m in Sources */,
-				C941022E1A58D1A300954953 /* AKFullWidthButton.m in Sources */,
+				C941022E1A58D1A300954953 /* AKLargeButton.m in Sources */,
 				C94102641A5BA3D900954953 /* UIImage+ASCII.m in Sources */,
 				C94102721A5CD09B00954953 /* AKIntroViewController.m in Sources */,
 				C952A45B19D123870025DD73 /* AppDelegate.m in Sources */,

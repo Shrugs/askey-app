@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "AKButton.h"
+#import <MCBouncyButton/MCBouncyButton.h>
 
-@interface AKFullWidthButton : AKButton
+@interface AKLargeButton : MCBouncyButton
 
 - (id)initWithText:(NSString *)text;
 
