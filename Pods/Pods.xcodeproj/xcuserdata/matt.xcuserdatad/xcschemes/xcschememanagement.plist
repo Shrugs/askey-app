@@ -4,42 +4,67 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Pods-ACEDrawingView.xcscheme</key>
+		<key>Pods-ASCIIboard-ACEDrawingView.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-JazzHands.xcscheme</key>
+		<key>Pods-ASCIIboard-LIVBubbleMenu.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-LIVBubbleMenu.xcscheme</key>
+		<key>Pods-ASCIIboard-MCBouncyButton.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-MCBouncyButton.xcscheme</key>
+		<key>Pods-ASCIIboard-Masonry.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-Masonry.xcscheme</key>
+		<key>Pods-ASCIIboard-pop.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-iOS-MagnifyingGlass.xcscheme</key>
+		<key>Pods-ASCIIboard.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-pop.xcscheme</key>
+		<key>Pods-ASCIIboardContainer-JazzHands.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods.xcscheme</key>
+		<key>Pods-ASCIIboardContainer-MCBouncyButton.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-ASCIIboardContainer-Masonry.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-ASCIIboardContainer-SDiPhoneVersion.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-ASCIIboardContainer-iOS-MagnifyingGlass.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-ASCIIboardContainer-pop.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-ASCIIboardContainer.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -47,42 +72,67 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>27649E94B2FE617BC476D91E</key>
+		<key>02D3690D3405C4099FABB4DF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>616975B8B2A8C8915118D93C</key>
+		<key>0FFCAF9316706F1D80A5B8F6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>86DD4386A458FAC27D6C7D00</key>
+		<key>2AE07E6F3999B96BFB1BD828</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A055321335937561DD803F39</key>
+		<key>3E6C8762192C49102A0D9143</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A6ABE1832865108D5BF9AAB2</key>
+		<key>4372810273C6A7B2CA1F3419</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B841F6E54256DF25894669FA</key>
+		<key>4BD3CA551EE1E91E1D95144E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B8FBFE83546C1B481B543F7A</key>
+		<key>5B3431F8BDBE670F926F12F1</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F6C7A92F524C6FA0A44AAADB</key>
+		<key>68507763EC343EEF1E03A0B4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B6C6AD1279D59489EE043543</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C56D1727EFA654604D41B269</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DF156AD33C57D09A0F446319</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E7A759FE0D65D8B768AAA3C1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>EFBC140F1C2793B9F7C4AD13</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4B1029587C4A102DB7372DBD /* libPods-ASCIIboardContainer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA508355F428BA6CE144EF20 /* libPods-ASCIIboardContainer.a */; };
 		C9197D631A54A189008B2087 /* AKCharacterPackManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C9197D621A54A189008B2087 /* AKCharacterPackManager.m */; };
+		C92BCBC41A908CB70051F1B4 /* libPods-ASCIIboard.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C92BCBC31A908CB70051F1B4 /* libPods-ASCIIboard.a */; };
 		C93223531A3CF91A0082C72C /* AKBrushButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C93223521A3CF91A0082C72C /* AKBrushButton.m */; };
 		C93223561A3D22490082C72C /* UIImage+NegativeImage.m in Sources */ = {isa = PBXBuildFile; fileRef = C93223551A3D22490082C72C /* UIImage+NegativeImage.m */; };
 		C93A516119DA2E1A00BC939D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C93A516019DA2E1A00BC939D /* libPods.a */; };
@@ -103,11 +105,16 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		11F4B97D625790356E4A48FA /* Pods-ASCIIboardContainer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ASCIIboardContainer.release.xcconfig"; path = "Pods/Target Support Files/Pods-ASCIIboardContainer/Pods-ASCIIboardContainer.release.xcconfig"; sourceTree = "<group>"; };
 		246A63C1FC39E0DD3657E3B9 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		4BEA009D12F2906206D32D90 /* Pods-ASCIIboardContainer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ASCIIboardContainer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ASCIIboardContainer/Pods-ASCIIboardContainer.debug.xcconfig"; sourceTree = "<group>"; };
 		848203DA404B8484DED96D51 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		89CA615D71906BF148A2C02A /* libPods-ASCIIboard.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ASCIIboard.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3DDAEF02FB1B2E2B404DE3F /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		B9E12B08E48688881D78CBA6 /* Pods-ASCIIboard.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ASCIIboard.release.xcconfig"; path = "Pods/Target Support Files/Pods-ASCIIboard/Pods-ASCIIboard.release.xcconfig"; sourceTree = "<group>"; };
 		C9197D611A54A189008B2087 /* AKCharacterPackManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKCharacterPackManager.h; sourceTree = "<group>"; };
 		C9197D621A54A189008B2087 /* AKCharacterPackManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKCharacterPackManager.m; sourceTree = "<group>"; };
+		C92BCBC31A908CB70051F1B4 /* libPods-ASCIIboard.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-ASCIIboard.a"; path = "Pods/build/Debug-iphoneos/libPods-ASCIIboard.a"; sourceTree = "<group>"; };
 		C93223511A3CF91A0082C72C /* AKBrushButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKBrushButton.h; sourceTree = "<group>"; };
 		C93223521A3CF91A0082C72C /* AKBrushButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKBrushButton.m; sourceTree = "<group>"; };
 		C93223541A3D22490082C72C /* UIImage+NegativeImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+NegativeImage.h"; sourceTree = "<group>"; };
@@ -186,6 +193,8 @@
 		C9C0946E1A3BED4800742427 /* return.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = return.png; sourceTree = "<group>"; };
 		C9C0946F1A3BED4800742427 /* trash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trash.png; sourceTree = "<group>"; };
 		C9C094701A3BED4800742427 /* undo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = undo.png; sourceTree = "<group>"; };
+		CA508355F428BA6CE144EF20 /* libPods-ASCIIboardContainer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ASCIIboardContainer.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CDA112B1CA819298D62D2901 /* Pods-ASCIIboard.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ASCIIboard.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ASCIIboard/Pods-ASCIIboard.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -198,6 +207,7 @@
 				C99451271A511E0B009A7EFF /* Crashlytics.framework in Frameworks */,
 				C994514B1A512BB0009A7EFF /* libFlurry_6.0.0.a in Frameworks */,
 				F27B2AE4F798D923F6690A40 /* libPods.a in Frameworks */,
+				4B1029587C4A102DB7372DBD /* libPods-ASCIIboardContainer.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -212,6 +222,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C92BCBC41A908CB70051F1B4 /* libPods-ASCIIboard.a in Frameworks */,
 				C994514F1A512D9C009A7EFF /* SystemConfiguration.framework in Frameworks */,
 				C99451441A512590009A7EFF /* Fabric.framework in Frameworks */,
 				C93A516119DA2E1A00BC939D /* libPods.a in Frameworks */,
@@ -226,9 +237,12 @@
 		C1F96D68E01993E66C03A35A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C92BCBC31A908CB70051F1B4 /* libPods-ASCIIboard.a */,
 				C994514D1A512D91009A7EFF /* SystemConfiguration.framework */,
 				C93A516019DA2E1A00BC939D /* libPods.a */,
 				246A63C1FC39E0DD3657E3B9 /* libPods.a */,
+				CA508355F428BA6CE144EF20 /* libPods-ASCIIboardContainer.a */,
+				89CA615D71906BF148A2C02A /* libPods-ASCIIboard.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -428,6 +442,10 @@
 			children = (
 				B3DDAEF02FB1B2E2B404DE3F /* Pods.debug.xcconfig */,
 				848203DA404B8484DED96D51 /* Pods.release.xcconfig */,
+				CDA112B1CA819298D62D2901 /* Pods-ASCIIboard.debug.xcconfig */,
+				B9E12B08E48688881D78CBA6 /* Pods-ASCIIboard.release.xcconfig */,
+				4BEA009D12F2906206D32D90 /* Pods-ASCIIboardContainer.debug.xcconfig */,
+				11F4B97D625790356E4A48FA /* Pods-ASCIIboardContainer.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -480,10 +498,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C952A48B19D123990025DD73 /* Build configuration list for PBXNativeTarget "ASCIIboard" */;
 			buildPhases = (
+				6FD020C28645D07D11526B31 /* Check Pods Manifest.lock */,
 				C952A47B19D123990025DD73 /* Sources */,
 				C952A47C19D123990025DD73 /* Frameworks */,
 				C952A47D19D123990025DD73 /* Resources */,
 				C99451451A51259A009A7EFF /* ShellScript */,
+				989AC1DA13AE73D7EE22CE3C /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -596,6 +616,36 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		6FD020C28645D07D11526B31 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		989AC1DA13AE73D7EE22CE3C /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ASCIIboard/Pods-ASCIIboard-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		C99451231A511DB5009A7EFF /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -649,7 +699,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ASCIIboardContainer/Pods-ASCIIboardContainer-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -806,7 +856,7 @@
 		};
 		C952A47619D123870025DD73 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B3DDAEF02FB1B2E2B404DE3F /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 4BEA009D12F2906206D32D90 /* Pods-ASCIIboardContainer.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ASCIIboardContainer/ASCIIboardContainer.entitlements;
@@ -832,7 +882,7 @@
 		};
 		C952A47719D123870025DD73 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 848203DA404B8484DED96D51 /* Pods.release.xcconfig */;
+			baseConfigurationReference = 11F4B97D625790356E4A48FA /* Pods-ASCIIboardContainer.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ASCIIboardContainer/ASCIIboardContainer.entitlements;
@@ -892,7 +942,7 @@
 		};
 		C952A48C19D123990025DD73 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B3DDAEF02FB1B2E2B404DE3F /* Pods.debug.xcconfig */;
+			baseConfigurationReference = CDA112B1CA819298D62D2901 /* Pods-ASCIIboard.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ASCIIboard/ASCIIboard.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -924,7 +974,7 @@
 		};
 		C952A48D19D123990025DD73 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 848203DA404B8484DED96D51 /* Pods.release.xcconfig */;
+			baseConfigurationReference = B9E12B08E48688881D78CBA6 /* Pods-ASCIIboard.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ASCIIboard/ASCIIboard.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
