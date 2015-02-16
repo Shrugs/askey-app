@@ -20,10 +20,20 @@
     return sharedManager;
 }
 
-
-
-- (NSMutableArray *)characterSets;
++ (NSMutableArray *)characterSets
 {
+    return [[AKCharacterPackManager sharedManager] characterSets];
+}
+
+
+
+- (NSMutableArray *)characterSets
+{
+
+    if (_sets) {
+        return _sets;
+    }
+
     NSMutableArray *sets = [NSMutableArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"characterpacks" ofType:@"plist"]];
 
     // check preferences for purchased and enabled sets
@@ -47,6 +57,7 @@
         }
     }
 
+    _sets = sets;
     return sets;
 
 }

@@ -10,13 +10,14 @@
 #import "AKIntroViewController.h"
 #import "AskeyHeaderViewController.h"
 #import "AKTwitterButton.h"
+#import "AskeyScrollView.h"
 
-@interface AskeyViewController : UIViewController <UINavigationControllerDelegate>
+@interface AskeyViewController : UIViewController <UINavigationControllerDelegate, UIScrollViewDelegate>
 {
     UICollectionView *_characterSetButtons;
     NSMutableArray *_characterSets;
-    UIScrollView *scrollView;
-    AskeyHeaderViewController *header;
+    AskeyScrollView *scrollView;
+    AskeyHeaderViewController *_header;
 
     AKTwitterButton *matt;
 }

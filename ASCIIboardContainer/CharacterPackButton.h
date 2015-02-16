@@ -6,9 +6,9 @@
 //  Copyright (c) 2015 Shrugs. All rights reserved.
 //
 
-#import "MCBouncyButton.h"
+#import "MCGenericBouncyButton.h"
 
-@interface CharacterPackButton : MCBouncyButton
+@interface CharacterPackButton : MCGenericBouncyButton
 
 - (id)initWithText:(NSString *)text andBackground:(NSString *)image purchased:(BOOL)purchased;
 - (void)setPurchased:(BOOL)purchased;

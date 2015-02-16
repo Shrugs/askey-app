@@ -43,7 +43,7 @@
         }];
 
         [self addTarget:self action:@selector(launchTwitter) forControlEvents:UIControlEventTouchUpInside];
-
+        [self registerHandlers];
     }
     return self;
 }

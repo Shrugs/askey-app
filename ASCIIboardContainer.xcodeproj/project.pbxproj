@@ -21,9 +21,11 @@
 		C92BCBDF1A90C3C30051F1B4 /* AKTwitterButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C92BCBDE1A90C3C30051F1B4 /* AKTwitterButton.m */; };
 		C92BCBE21A90C5570051F1B4 /* matt.png in Resources */ = {isa = PBXBuildFile; fileRef = C92BCBE01A90C5570051F1B4 /* matt.png */; };
 		C92BCBE31A90C5570051F1B4 /* ben.png in Resources */ = {isa = PBXBuildFile; fileRef = C92BCBE11A90C5570051F1B4 /* ben.png */; };
+		C92BCC181A918E580051F1B4 /* MCGenericBouncyButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C92BCC171A918E580051F1B4 /* MCGenericBouncyButton.m */; };
+		C92BCC1B1A9192350051F1B4 /* AskeyScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = C92BCC1A1A9192350051F1B4 /* AskeyScrollView.m */; };
+		C92BCC1E1A919F0C0051F1B4 /* CharacterPackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C92BCC1D1A919F0C0051F1B4 /* CharacterPackViewController.m */; };
 		C93223531A3CF91A0082C72C /* AKBrushButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C93223521A3CF91A0082C72C /* AKBrushButton.m */; };
 		C93223561A3D22490082C72C /* UIImage+NegativeImage.m in Sources */ = {isa = PBXBuildFile; fileRef = C93223551A3D22490082C72C /* UIImage+NegativeImage.m */; };
-		C93A516119DA2E1A00BC939D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C93A516019DA2E1A00BC939D /* libPods.a */; };
 		C93A516419DA576F00BC939D /* UIImage+ASCII.m in Sources */ = {isa = PBXBuildFile; fileRef = C93A516319DA576F00BC939D /* UIImage+ASCII.m */; };
 		C941022E1A58D1A300954953 /* AKLargeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C941022D1A58D1A300954953 /* AKLargeButton.m */; };
 		C94102341A58DD6A00954953 /* AKCharacterPackManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C94102331A58DD6A00954953 /* AKCharacterPackManager.m */; };
@@ -71,7 +73,6 @@
 		C9C094751A3BED4800742427 /* return.png in Resources */ = {isa = PBXBuildFile; fileRef = C9C0946E1A3BED4800742427 /* return.png */; };
 		C9C094761A3BED4800742427 /* trash.png in Resources */ = {isa = PBXBuildFile; fileRef = C9C0946F1A3BED4800742427 /* trash.png */; };
 		C9C094771A3BED4800742427 /* undo.png in Resources */ = {isa = PBXBuildFile; fileRef = C9C094701A3BED4800742427 /* undo.png */; };
-		F27B2AE4F798D923F6690A40 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 246A63C1FC39E0DD3657E3B9 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -138,6 +139,12 @@
 		C92BCBDE1A90C3C30051F1B4 /* AKTwitterButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKTwitterButton.m; sourceTree = "<group>"; };
 		C92BCBE01A90C5570051F1B4 /* matt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = matt.png; sourceTree = "<group>"; };
 		C92BCBE11A90C5570051F1B4 /* ben.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ben.png; sourceTree = "<group>"; };
+		C92BCC161A918E580051F1B4 /* MCGenericBouncyButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCGenericBouncyButton.h; sourceTree = "<group>"; };
+		C92BCC171A918E580051F1B4 /* MCGenericBouncyButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCGenericBouncyButton.m; sourceTree = "<group>"; };
+		C92BCC191A9192350051F1B4 /* AskeyScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AskeyScrollView.h; sourceTree = "<group>"; };
+		C92BCC1A1A9192350051F1B4 /* AskeyScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AskeyScrollView.m; sourceTree = "<group>"; };
+		C92BCC1C1A919F0C0051F1B4 /* CharacterPackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacterPackViewController.h; sourceTree = "<group>"; };
+		C92BCC1D1A919F0C0051F1B4 /* CharacterPackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharacterPackViewController.m; sourceTree = "<group>"; };
 		C93223511A3CF91A0082C72C /* AKBrushButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKBrushButton.h; sourceTree = "<group>"; };
 		C93223521A3CF91A0082C72C /* AKBrushButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKBrushButton.m; sourceTree = "<group>"; };
 		C93223541A3D22490082C72C /* UIImage+NegativeImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+NegativeImage.h"; sourceTree = "<group>"; };
@@ -223,7 +230,6 @@
 				C99451431A512590009A7EFF /* Fabric.framework in Frameworks */,
 				C99451271A511E0B009A7EFF /* Crashlytics.framework in Frameworks */,
 				C994514B1A512BB0009A7EFF /* libFlurry_6.0.0.a in Frameworks */,
-				F27B2AE4F798D923F6690A40 /* libPods.a in Frameworks */,
 				4B1029587C4A102DB7372DBD /* libPods-ASCIIboardContainer.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -242,7 +248,6 @@
 				C92BCBC41A908CB70051F1B4 /* libPods-ASCIIboard.a in Frameworks */,
 				C994514F1A512D9C009A7EFF /* SystemConfiguration.framework in Frameworks */,
 				C99451441A512590009A7EFF /* Fabric.framework in Frameworks */,
-				C93A516119DA2E1A00BC939D /* libPods.a in Frameworks */,
 				C99451421A512590009A7EFF /* Crashlytics.framework in Frameworks */,
 				C994514C1A512BB0009A7EFF /* libFlurry_6.0.0.a in Frameworks */,
 			);
@@ -341,6 +346,12 @@
 				C952A45A19D123870025DD73 /* AppDelegate.m */,
 				C952A45C19D123870025DD73 /* AskeyViewController.h */,
 				C952A45D19D123870025DD73 /* AskeyViewController.m */,
+				C92BCC1C1A919F0C0051F1B4 /* CharacterPackViewController.h */,
+				C92BCC1D1A919F0C0051F1B4 /* CharacterPackViewController.m */,
+				C92BCC191A9192350051F1B4 /* AskeyScrollView.h */,
+				C92BCC1A1A9192350051F1B4 /* AskeyScrollView.m */,
+				C92BCC161A918E580051F1B4 /* MCGenericBouncyButton.h */,
+				C92BCC171A918E580051F1B4 /* MCGenericBouncyButton.m */,
 				C92BCBDD1A90C3C30051F1B4 /* AKTwitterButton.h */,
 				C92BCBDE1A90C3C30051F1B4 /* AKTwitterButton.m */,
 				C92BCBD01A90B8960051F1B4 /* CharacterPackButton.h */,
@@ -741,7 +752,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C92BCC1E1A919F0C0051F1B4 /* CharacterPackViewController.m in Sources */,
 				C952A45E19D123870025DD73 /* AskeyViewController.m in Sources */,
+				C92BCC181A918E580051F1B4 /* MCGenericBouncyButton.m in Sources */,
 				C92BCBD21A90B8960051F1B4 /* CharacterPackButton.m in Sources */,
 				C94102341A58DD6A00954953 /* AKCharacterPackManager.m in Sources */,
 				C92BCBCF1A90A5C60051F1B4 /* AskeyHeaderViewController.m in Sources */,
@@ -751,6 +764,7 @@
 				C92BCBCC1A90A35E0051F1B4 /* TryAskeyViewController.m in Sources */,
 				C94102641A5BA3D900954953 /* UIImage+ASCII.m in Sources */,
 				C94102721A5CD09B00954953 /* AKIntroViewController.m in Sources */,
+				C92BCC1B1A9192350051F1B4 /* AskeyScrollView.m in Sources */,
 				C952A45B19D123870025DD73 /* AppDelegate.m in Sources */,
 				C952A45819D123870025DD73 /* main.m in Sources */,
 			);

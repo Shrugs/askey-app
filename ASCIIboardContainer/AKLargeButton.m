@@ -28,6 +28,8 @@
         [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(self);
         }];
+
+        [self registerHandlers];
     }
     return self;
 }

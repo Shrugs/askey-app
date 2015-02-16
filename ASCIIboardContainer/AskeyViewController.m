@@ -16,7 +16,7 @@
 #import "AKCharacterPackManager.h"
 #import "NSString+FontAwesome.h"
 #import "CharacterPackButton.h"
-
+#import "CharacterPackViewController.h"
 #import "TryAskeyViewController.h"
 
 #define CONTAINER_PADDING 20
@@ -25,6 +25,7 @@
 #define BUTTON_PADDING 15
 #define TWITTER_BUTTON_HEIGHT 40
 #define HEADER_HEIGHT 160
+#define SMALL_HEADER_HEIGHT 120
 
 @implementation AskeyViewController
 
@@ -36,25 +37,31 @@
     [self.navigationController setNavigationBarHidden:YES];
     [self.navigationController setDelegate:self];
 
-    scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, HEADER_HEIGHT, self.view.frame.size.width, self.view.frame.size.height - HEADER_HEIGHT)];
+    scrollView = [[AskeyScrollView alloc] initWithFrame:CGRectMake(0, HEADER_HEIGHT, self.view.frame.size.width, self.view.frame.size.height - HEADER_HEIGHT)];
+    scrollView.delaysContentTouches = NO;
+    scrollView.delegate = self;
     [self.view addSubview:scrollView];
 
     self.view.userInteractionEnabled = YES;
     scrollView.userInteractionEnabled = YES;
 
-    header = [[AskeyHeaderViewController alloc] init];
+    _header = [[AskeyHeaderViewController alloc] init];
     UIWindow *currentWindow = [UIApplication sharedApplication].keyWindow;
-    [currentWindow addSubview:header.view];
+    [currentWindow addSubview:_header.view];
 
-    [header.view setFrame:CGRectMake(0, 0, self.view.frame.size.width, HEADER_HEIGHT)];
+    [_header.view setFrame:CGRectMake(0, 0, self.view.frame.size.width, HEADER_HEIGHT)];
 
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 
 
     CharacterPackButton *textBtn = [[CharacterPackButton alloc] initWithText:@"Text" andBackground:@"textbg" purchased:YES];
+    [textBtn addTarget:self action:@selector(textPackPressed:) forControlEvents:UIControlEventTouchUpInside];
     CharacterPackButton *emojiBtn = [[CharacterPackButton alloc] initWithText:@"Emoji" andBackground:@"emojibg" purchased:NO];
+    [emojiBtn addTarget:self action:@selector(emojiPackPressed:) forControlEvents:UIControlEventTouchUpInside];
     CharacterPackButton *mailBtn = [[CharacterPackButton alloc] initWithText:@"Mail" andBackground:@"mailbg" purchased:NO];
+    [mailBtn addTarget:self action:@selector(mailPackPressed:) forControlEvents:UIControlEventTouchUpInside];
     CharacterPackButton *bundleBtn = [[CharacterPackButton alloc] initWithText:@"Bundle" andBackground:@"combobg" purchased:NO];
+    [bundleBtn addTarget:self action:@selector(bundlePackPressed:) forControlEvents:UIControlEventTouchUpInside];
 
     UIView *buttonContainer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 150)];
     buttonContainer.userInteractionEnabled = YES;
@@ -179,11 +186,41 @@
         [self launchIntro];
     }
 
-    NSLog(@"%f", matt.frame.origin.y + TWITTER_BUTTON_HEIGHT + BUTTON_PADDING/2.0);
     scrollView.contentSize = CGSizeMake(scrollView.frame.size.width,
                                         MAX(scrollView.frame.size.height - 19 , matt.frame.origin.y + TWITTER_BUTTON_HEIGHT + BUTTON_PADDING)
                                         );
 
+}
+
+- (void)textPackPressed:(id)sender
+{
+    CharacterPackViewController *vc = [[CharacterPackViewController alloc] initWithCharacterPack:[[AKCharacterPackManager characterSets] objectAtIndex:0]];
+    [self makeHeaderHeight:SMALL_HEADER_HEIGHT animated:YES];
+    [self presentViewController:vc animated:YES completion:nil];
+}
+
+- (void)emojiPackPressed:(id)sender
+{
+    CharacterPackViewController *vc = [[CharacterPackViewController alloc] initWithCharacterPack:[[AKCharacterPackManager characterSets] objectAtIndex:1]];
+    [self makeHeaderHeight:SMALL_HEADER_HEIGHT animated:YES];
+    [self presentViewController:vc animated:YES completion:nil];
+}
+
+- (void)mailPackPressed:(id)sender
+{
+    CharacterPackViewController *vc = [[CharacterPackViewController alloc] initWithCharacterPack:[[AKCharacterPackManager characterSets] objectAtIndex:2]];
+    [self makeHeaderHeight:SMALL_HEADER_HEIGHT animated:YES];
+    [self presentViewController:vc animated:YES completion:nil];
+}
+
+- (void)makeHeaderHeight:(float)height animated:(BOOL)animated
+{
+    [_header.animator animate:40];
+}
+
+- (void)bundlePackPressed:(id)sender
+{
+    // purchase all of them for $2
 }
 
 - (void)tryoutAskey

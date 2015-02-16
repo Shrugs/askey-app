@@ -10,9 +10,13 @@
 #import "Config.h"
 
 @interface AKCharacterPackManager : NSObject
+{
+    NSMutableArray *_sets;
+}
 
 + (id)sharedManager;
 - (NSMutableArray *)characterSets;
 - (BOOL)setCharacterSetEnabled:(NSString *)set; // called after user buys a set
++ (NSMutableArray *)characterSets;
 
 @end

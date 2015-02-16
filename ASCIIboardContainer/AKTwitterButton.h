@@ -6,9 +6,9 @@
 //  Copyright (c) 2015 Shrugs. All rights reserved.
 //
 
-#import "MCBouncyButton.h"
+#import "MCGenericBouncyButton.h"
 
-@interface AKTwitterButton : MCBouncyButton
+@interface AKTwitterButton : MCGenericBouncyButton
 {
     NSString *_twitter;
 }

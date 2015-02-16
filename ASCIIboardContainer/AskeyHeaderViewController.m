@@ -24,27 +24,32 @@
     self.view.frame = f;
 
     self.view.backgroundColor = ASKEY_BLUE_COLOR;
-    UIImageView *iconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"iconheader"]];
-    UILabel *title = [[UILabel alloc] init];
+    iconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"iconheader"]];
+    title = [[UILabel alloc] init];
     title.text = @"Askey";
     title.font = [UIFont fontWithName:ASKEY_TITLE_FONT size:34];
     title.textAlignment = NSTextAlignmentCenter;
     title.textColor = [UIColor whiteColor];
+    [title sizeToFit];
 
     [self.view addSubview:iconView];
     [self.view addSubview:title];
 
-    iconView.frame = CGRectMake(0,
-                                20 + 14,
-                                self.view.frame.size.height * 0.44,
-                                self.view.frame.size.height * 0.44);
-    iconView.center = CGPointMake(self.view.center.x, iconView.center.y);
+    float iconSizeLarge = self.view.frame.size.height * 0.44;
 
+    [iconView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.view).offset(self.view.center.x - iconSizeLarge/2.0);
+        make.height.equalTo(self.view).multipliedBy(0.44);
+        make.width.equalTo(iconView.mas_height);
+        make.centerY.equalTo(self.view).offset(-10);
+    }];
 
     [title mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(iconView.mas_bottom).offset(3);
-        make.left.and.right.equalTo(self.view);
+        make.left.equalTo(self.view).offset(self.view.frame.size.width/2.0 - title.frame.size.width/2.0);
+        make.centerY.equalTo(self.view).offset(45);
     }];
+
+    // @TODO(animate left constraint with JazzHands
 
 }
 
