@@ -8,7 +8,7 @@
 
 #import "AKNumPadView.h"
 #import "Masonry.h"
-#import "AKConfig.h"
+#import "Config.h"
 #import "UIColor+Random.h"
 
 @implementation AKNumPadView

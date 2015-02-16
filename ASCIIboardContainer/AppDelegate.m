@@ -11,6 +11,7 @@
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
 #import "Flurry.h"
+#import "AskeyViewController.h"
 
 @interface AppDelegate ()
 
@@ -26,9 +27,13 @@
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    self.viewController = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
-    self.window.rootViewController = self.viewController;
+    UIViewController *vc = [[AskeyViewController alloc] init];
+
+    self.navigationController = [[UINavigationController alloc] initWithRootViewController:vc];
+
+    self.window.rootViewController = self.navigationController;
     [self.window makeKeyAndVisible];
+
     return YES;
 }
 

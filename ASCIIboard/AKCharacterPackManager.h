@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "AKConfig.h"
+#import "Config.h"
 
 @interface AKCharacterPackManager : NSObject
 

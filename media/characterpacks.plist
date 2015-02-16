@@ -133,6 +133,63 @@
 				<key>displayName</key>
 				<string>Code</string>
 			</dict>
+			<dict>
+				<key>keyName</key>
+				<string>lol</string>
+				<key>enabled</key>
+				<true/>
+				<key>height</key>
+				<integer>11</integer>
+				<key>width</key>
+				<integer>10</integer>
+				<key>chars</key>
+				<dict>
+					<key>9</key>
+					<array>
+						<string>:^)</string>
+					</array>
+					<key>8</key>
+					<array>
+						<string>:^)</string>
+					</array>
+					<key>7</key>
+					<array>
+						<string>:^)</string>
+					</array>
+					<key>6</key>
+					<array>
+						<string>:^)</string>
+					</array>
+					<key>5</key>
+					<array>
+						<string>:^)</string>
+					</array>
+					<key>4</key>
+					<array>
+						<string>    </string>
+					</array>
+					<key>3</key>
+					<array>
+						<string>    </string>
+					</array>
+					<key>2</key>
+					<array>
+						<string>    </string>
+					</array>
+					<key>1</key>
+					<array>
+						<string>    </string>
+					</array>
+					<key>0</key>
+					<array>
+						<string>    </string>
+					</array>
+				</dict>
+				<key>icon</key>
+				<string>:^)</string>
+				<key>displayName</key>
+				<string>:^)</string>
+			</dict>
 		</array>
 	</dict>
 	<dict>

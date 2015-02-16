@@ -12,7 +12,7 @@
 #import "UIColor+Random.h"
 #import "POP.h"
 #import "AKBrushButton.h"
-#import "AKConfig.h"
+#import "Config.h"
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
 #import "Flurry.h"
@@ -42,7 +42,7 @@
     // LAYOUT
 
     // bg color
-    [self.view setBackgroundColor:ASKEY_BACKGROUND_COLOR];
+    [self.view setBackgroundColor:ASKEY_KEYBOARD_BACKGROUND_COLOR];
 
     // setup draw sheets
 

@@ -8,14 +8,21 @@
 
 #import <UIKit/UIKit.h>
 #import "AKIntroViewController.h"
+#import "AskeyHeaderViewController.h"
+#import "AKTwitterButton.h"
 
-@interface ViewController : UIViewController
+@interface AskeyViewController : UIViewController <UINavigationControllerDelegate>
 {
     UICollectionView *_characterSetButtons;
     NSMutableArray *_characterSets;
+    UIScrollView *scrollView;
+    AskeyHeaderViewController *header;
+
+    AKTwitterButton *matt;
 }
 
 @property (nonatomic, retain) AKIntroViewController *introVC;
+
 
 @end
 
