@@ -20,6 +20,8 @@
     AskeyHeaderViewController *_header;
 
     AKTwitterButton *matt;
+
+    NSTimer *_scrollTimer;
 }
 
 @property (nonatomic, retain) AKIntroViewController *introVC;

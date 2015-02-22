@@ -37,13 +37,12 @@
     [self.navigationController setNavigationBarHidden:YES];
     [self.navigationController setDelegate:self];
 
-    scrollView = [[AskeyScrollView alloc] initWithFrame:CGRectMake(0, HEADER_HEIGHT, self.view.frame.size.width, self.view.frame.size.height - HEADER_HEIGHT)];
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    scrollView = [[AskeyScrollView alloc] initWithFrame:CGRectMake(0, 20, self.view.frame.size.width, self.view.frame.size.height - 20)];
+//    [scrollView setContentInset:UIEdgeInsetsMake(20, 0, 0, 0)];
     scrollView.delaysContentTouches = NO;
     scrollView.delegate = self;
     [self.view addSubview:scrollView];
-
-    self.view.userInteractionEnabled = YES;
-    scrollView.userInteractionEnabled = YES;
 
     _header = [[AskeyHeaderViewController alloc] init];
     UIWindow *currentWindow = [UIApplication sharedApplication].keyWindow;
@@ -63,7 +62,7 @@
     CharacterPackButton *bundleBtn = [[CharacterPackButton alloc] initWithText:@"Bundle" andBackground:@"combobg" purchased:NO];
     [bundleBtn addTarget:self action:@selector(bundlePackPressed:) forControlEvents:UIControlEventTouchUpInside];
 
-    UIView *buttonContainer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 150)];
+    UIView *buttonContainer = [[UIView alloc] initWithFrame:CGRectMake(0, HEADER_HEIGHT, self.view.frame.size.width, 150)];
     buttonContainer.userInteractionEnabled = YES;
     [buttonContainer addSubview:textBtn];
     [buttonContainer addSubview:emojiBtn];
@@ -187,7 +186,7 @@
     }
 
     scrollView.contentSize = CGSizeMake(scrollView.frame.size.width,
-                                        MAX(scrollView.frame.size.height - 19 , matt.frame.origin.y + TWITTER_BUTTON_HEIGHT + BUTTON_PADDING)
+                                        MAX(scrollView.frame.size.height + 1, matt.frame.origin.y + TWITTER_BUTTON_HEIGHT + BUTTON_PADDING)
                                         );
 
 }
@@ -195,27 +194,54 @@
 - (void)textPackPressed:(id)sender
 {
     CharacterPackViewController *vc = [[CharacterPackViewController alloc] initWithCharacterPack:[[AKCharacterPackManager characterSets] objectAtIndex:0]];
-    [self makeHeaderHeight:SMALL_HEADER_HEIGHT animated:YES];
+    [self makeHeaderHeight:SMALL_HEADER_HEIGHT];
     [self presentViewController:vc animated:YES completion:nil];
 }
 
 - (void)emojiPackPressed:(id)sender
 {
     CharacterPackViewController *vc = [[CharacterPackViewController alloc] initWithCharacterPack:[[AKCharacterPackManager characterSets] objectAtIndex:1]];
-    [self makeHeaderHeight:SMALL_HEADER_HEIGHT animated:YES];
+    [self makeHeaderHeight:SMALL_HEADER_HEIGHT];
     [self presentViewController:vc animated:YES completion:nil];
 }
 
 - (void)mailPackPressed:(id)sender
 {
     CharacterPackViewController *vc = [[CharacterPackViewController alloc] initWithCharacterPack:[[AKCharacterPackManager characterSets] objectAtIndex:2]];
-    [self makeHeaderHeight:SMALL_HEADER_HEIGHT animated:YES];
+    [self makeHeaderHeight:SMALL_HEADER_HEIGHT];
     [self presentViewController:vc animated:YES completion:nil];
 }
 
-- (void)makeHeaderHeight:(float)height animated:(BOOL)animated
+- (void)makeHeaderHeight:(float)height
 {
-    [_header.animator animate:40];
+    [_header.animator animate:height];
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)theScrollView
+{
+    [_scrollTimer invalidate];
+    [self makeHeaderHeight:theScrollView.contentOffset.y];
+}
+
+- (void)scrollViewWillEndDragging:(UIScrollView *)theScrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
+{
+    [_scrollTimer invalidate];
+    _scrollTimer = [NSTimer scheduledTimerWithTimeInterval:0.05
+                                                    target:self
+                                                  selector:@selector(resetScrollView:)
+                                                  userInfo:[NSNumber numberWithFloat:velocity.y]
+                                                   repeats:NO];
+}
+
+- (void)resetScrollView:(NSTimer *)timer
+{
+    if (scrollView.contentOffset.y > 5) {
+        if ([timer.userInfo floatValue] < 0) {
+            [scrollView setContentOffset:CGPointMake(0, -20) animated:YES];
+        } else {
+            [scrollView setContentOffset:CGPointMake(0, 100) animated:YES];
+        }
+    }
 }
 
 - (void)bundlePackPressed:(id)sender
