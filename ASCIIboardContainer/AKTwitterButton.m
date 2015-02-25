@@ -56,7 +56,7 @@
     // twitterrific:///profile?screen_name=%@
     // https://twitter.com/%@
 
-    NSArray *urls = @[@"tweetbot://%40%@/timeline",
+    NSArray *urls = @[
                       @"twitterrific:///profile?screen_name=%@",
                       @"twitter://user?screen_name=%@",
                       @"https://twitter.com/%@"

@@ -1,0 +1,26 @@
+/* 
+  Localizable.strings
+  ASCIIboardContainer
+
+  Created by Matt Condon on 2/25/15.
+  Copyright (c) 2015 Shrugs. All rights reserved.
+*/
+"TEXT_PACK" = "文本";
+"EMOJI_PACK" = "表情符号";
+"MAIL_PACK" = "电子邮件";
+"BUNDLE_PACK" = "包";
+"FAQ" = "常问问题";
+"TEST_ASKEY" = "测试 Askey";
+"LAUNCH_INTRO" = "简介";
+"TEXT_PACK_DESCRIPTION" = "文本包包含做成普通的文本字符包，非常适合在任何平台上消息的好友。";
+"EMOJI_PACK_DESCRIPTION" = "打动你的朋友使用的表情符号包你的绘文字游戏;送你的好友做出来的比萨或您的伙伴做出来的心心脏的比萨饼。";
+"MAIL_PACK_DESCRIPTION" = "邮件包，使生成的文本超宽，非常适合使用任何客户端发送电子邮件的朋友。";
+"BUNDLE_PACK_DESCRIPTION" = "抓住所有三包为2美元！使用文字和表情符号的消息魔法打动你的朋友！";
+"INTRO_STEP_1" = "去设置和常规";
+"INTRO_STEP_2" = "向下滚动，选择'键盘'";
+"INTRO_STEP_3" = "然后选择'键盘'";
+"INTRO_STEP_4" = "添加新键盘";
+"INTRO_STEP_5" = "选择'阿斯基'";
+"INTRO_STEP_6" = "选择新的'亚旭 - 阿斯基'键盘";
+"INTRO_STEP_7" = "能完全访问（字符集和迷死）";
+"BUY_PACK" = "购买";

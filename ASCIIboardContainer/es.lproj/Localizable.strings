@@ -1,0 +1,26 @@
+/* 
+  Localizable.strings
+  ASCIIboardContainer
+
+  Created by Matt Condon on 2/25/15.
+  Copyright (c) 2015 Shrugs. All rights reserved.
+*/
+"TEXT_PACK" = "Texto";
+"EMOJI_PACK" = "Emoji";
+"MAIL_PACK" = "eMail";
+"BUNDLE_PACK" = "Liar";
+"FAQ" = "FAQ";
+"TEST_ASKEY" = "Prueba Askey";
+"LAUNCH_INTRO" = "Lanzamiento Intro";
+"TEXT_PACK_DESCRIPTION" = "El texto Pack contiene paquetes de caracteres hechos de texto normal, ideal para la mensajería amigos en cualquier plataforma.";
+"EMOJI_PACK_DESCRIPTION" = "Impresiona a tus amigos con tu juego emoji utilizando el Pack Emoji; envíe su compañero una pizza hecha de pizzas o su pareja un corazón hecho de corazón.";
+"MAIL_PACK_DESCRIPTION" = "El paquete de correo hace que el texto generado súper amplia, ideal para correo electrónico con amigos usando cualquier cliente.";
+"BUNDLE_PACK_DESCRIPTION" = "Coge los tres paquetes por sólo $ 2! Impresiona a tus amigos con tu magia de mensajería mediante el texto y emoji!";
+"INTRO_STEP_1" = "Ir a 'Configuración'> 'General'";
+"INTRO_STEP_2" = "Desplácese hacia abajo y seleccione 'Teclado'";
+"INTRO_STEP_3" = "A continuación, elija 'Teclados'";
+"INTRO_STEP_4" = "Añadir un nuevo teclado";
+"INTRO_STEP_5" = "Seleccione 'Askey'";
+"INTRO_STEP_6" = "Seleccione la Nueva - Teclado 'Askey Askey'";
+"INTRO_STEP_7" = "Habilitar acceso completo (para conjuntos de caracteres y ser cool)";
+"BUY_PACK" = "Compra";

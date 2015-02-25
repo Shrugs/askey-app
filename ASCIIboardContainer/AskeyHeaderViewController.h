@@ -13,8 +13,11 @@
 {
     UIImageView *iconView;
     UILabel *title;
+
+    UIButton *_carat;
 }
 
 @property (nonatomic, strong) IFTTTAnimator *animator;
+@property (nonatomic, strong) IFTTTAnimator *scaleAnimator;
 
 @end

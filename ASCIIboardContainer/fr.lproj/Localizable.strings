@@ -1,0 +1,26 @@
+/* 
+  Localizable.strings
+  ASCIIboardContainer
+
+  Created by Matt Condon on 2/25/15.
+  Copyright (c) 2015 Shrugs. All rights reserved.
+*/
+"TEXT_PACK" = "Texte";
+"EMOJI_PACK" = "Emoji";
+"MAIL_PACK" = "Email";
+"BUNDLE_PACK" = "Groupée";
+"FAQ" = "FAQ";
+"TEST_ASKEY" = "Tester Askey";
+"LAUNCH_INTRO" = "Ouvrir l'introduction";
+"TEXT_PACK_DESCRIPTION" = "Le pack de texte contient des caractères normaux, idéal pour les messages sur toute les plateformes.";
+"EMOJI_PACK_DESCRIPTION" = "Impressionez vos amis avec votre jeux d'Emojis grâce au pack Emoji; envoyez un dessin en pizza à un ami ou de jolis cœurs à votre moitié.";
+"MAIL_PACK_DESCRIPTION" = "Le pack pour les mails rend vos dessins plus larges, c'est plus appréciable pour intégrer dans les mails vers n'importe quelle adresse !";
+"BUNDLE_PACK_DESCRIPTION" = "Obtenez les trois packs pour seulement 1,76€ et impressionnez vos amis en accompagnant vos textes d'Emojis !";
+"INTRO_STEP_1" = "Aller dans 'Réglages' > 'Général'";
+"INTRO_STEP_2" = "Descendre et choisir 'Claviers'";
+"INTRO_STEP_3" = "Puis choisir 'Claviers'";
+"INTRO_STEP_4" = "Ajouter un nouveau clavier";
+"INTRO_STEP_5" = "Sélectionner 'Askey'";
+"INTRO_STEP_6" = "Sélectionner le nouveau clavier 'Askey - Askey'";
+"INTRO_STEP_7" = "Autoriser un accès complet (Pour les jeux de caractères et autre)";
+"BUY_PACK" = "Acheter";

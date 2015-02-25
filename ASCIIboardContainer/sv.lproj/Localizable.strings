@@ -1,0 +1,26 @@
+/* 
+  Localizable.strings
+  ASCIIboardContainer
+
+  Created by Matt Condon on 2/25/15.
+  Copyright (c) 2015 Shrugs. All rights reserved.
+*/
+"TEXT_PACK" = "Text";
+"EMOJI_PACK" = "Emoji";
+"MAIL_PACK" = "Email";
+"BUNDLE_PACK" = "Bundle";
+"FAQ" = "FAQ";
+"TEST_ASKEY" = "Test Askey";
+"LAUNCH_INTRO" = "starta Intro";
+"TEXT_PACK_DESCRIPTION" = "Text Pack innehåller tecken förpackningar gjorda av vanlig text, bra för meddelandehantering kompisar på alla plattformar.";
+"EMOJI_PACK_DESCRIPTION" = "Imponera på dina vänner med din Emoji spel med hjälp av Emoji Pack; skicka din kompis en pizza gjord av pizzor eller din partner ett hjärta gjord av hjärtan.";
+"MAIL_PACK_DESCRIPTION" = "The Mail Pack gör den genererade texten super breda, stora för att e-posta vänner använder någon klient.";
+"BUNDLE_PACK_DESCRIPTION" = "Ta alla tre förpackningar för endast $ 2! Imponera på dina vänner med din meddelandehantering magi med hjälp av text och Emoji!";
+"INTRO_STEP_1" = "Gå till 'Inställningar'> 'Allmänt'";
+"INTRO_STEP_2" = "Rulla ner och välja 'Keyboard'";
+"INTRO_STEP_3" = "Välj sedan 'Tangentbord'";
+"INTRO_STEP_4" = "Lägg ett nytt tangentbord";
+"INTRO_STEP_5" = "Välj 'Askey'";
+"INTRO_STEP_6" = "Välj Ny 'Askey - Askey 'Keyboard'";
+"INTRO_STEP_7" = "Aktivera Full Access (För teckenuppsättningar och vara cool)";
+"BUY_PACK" = "Inköp";

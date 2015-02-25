@@ -1,0 +1,26 @@
+/* 
+  Localizable.strings
+  ASCIIboardContainer
+
+  Created by Matt Condon on 2/25/15.
+  Copyright (c) 2015 Shrugs. All rights reserved.
+*/
+"TEXT_PACK" = "文本";
+"EMOJI_PACK" = "表情符號";
+"MAIL_PACK" = "電子郵件";
+"BUNDLE_PACK" = "包";
+"FAQ" = "常問問題";
+"TEST_ASKEY" = "測試阿斯基";
+"LAUNCH_INTRO" = "啟動簡介";
+"TEXT_PACK_DESCRIPTION" = "文本包包含做成普通的文本字符包，非常適合在任何平台上消息的好友。";
+"EMOJI_PACK_DESCRIPTION" = "打動你的朋友使用的表情符號包你的繪文字遊戲;送你的好友做出來的比薩或你的伴侶做出來的心心臟的比薩餅。";
+"MAIL_PACK_DESCRIPTION" = "郵件包，使生成的文本超寬，非常適合使用任何客戶端發送電子郵件的朋友。";
+"BUNDLE_PACK_DESCRIPTION" = "抓住所有三包為2美元！使用文字和表情符號的消息魔法打動你的朋友！";
+"INTRO_STEP_1" = "進入“設置”>“常規”";
+"INTRO_STEP_2" = "向下滾動，選擇“鍵盤”";
+"INTRO_STEP_3" = "然後選擇“鍵盤”";
+"INTRO_STEP_4" = "添加新鍵盤";
+"INTRO_STEP_5" = "選擇“阿斯基”";
+"INTRO_STEP_6" = "選擇新的“亞旭 - 阿斯基”鍵盤";
+"INTRO_STEP_7" = "能完全訪問（字符集和是酷）";
+"BUY_PACK" = "購買";

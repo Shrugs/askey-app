@@ -19,7 +19,7 @@
         self.layer.backgroundColor = [ASKEY_BUTTON_BODY_COLOR CGColor];
         [self setTitle:text forState:UIControlStateNormal];
         self.titleLabel.textAlignment = NSTextAlignmentCenter;
-        self.titleLabel.font = [UIFont fontWithName:ASKEY_BUTTON_FONT size:30.0];
+        self.titleLabel.font = [UIFont fontWithName:ASKEY_BUTTON_FONT size:28.0];
         [self setTitleColor:ASKEY_BUTTON_TEXT_COLOR forState:UIControlStateNormal];
 
         self.layer.cornerRadius = 8.0f;

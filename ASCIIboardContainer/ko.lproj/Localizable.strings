@@ -1,0 +1,26 @@
+/* 
+  Localizable.strings
+  ASCIIboardContainer
+
+  Created by Matt Condon on 2/25/15.
+  Copyright (c) 2015 Shrugs. All rights reserved.
+*/
+"TEXT_PACK" = "본문";
+"EMOJI_PACK" = "이모티콘";
+"MAIL_PACK" = "이메일";
+"BUNDLE_PACK" = "묶음";
+"FAQ" = "자주 묻는 질문";
+"TEST_ASKEY" = "테스트 Askey";
+"LAUNCH_INTRO" = "소개를 시작합니다";
+"TEXT_PACK_DESCRIPTION" = "텍스트 팩은 모든 플랫폼에서 친구 메시징을위한 큰 일반 텍스트 만든 문자 팩이 포함되어 있습니다.";
+"EMOJI_PACK_DESCRIPTION" = "이모티콘 팩을 사용하여 이모티콘 게임으로 친구를 감동; 당신의 친구 피자 또는 파트너 마음에서 만든 심장 만든 피자를 보낼 수 있습니다.";
+"MAIL_PACK_DESCRIPTION" = "메일 팩은 클라이언트를 사용하여 친구를 이메일에 대해 생성 된 텍스트 슈퍼, 넓은 큰 있습니다.";
+"BUNDLE_PACK_DESCRIPTION" = "단지 $ 2 세 팩을 잡아! 메시징 마법의 텍스트와 이모티콘을 사용하여 친구들에게 감동을!";
+"INTRO_STEP_1" = "설정'> '일반'으로 이동";
+"INTRO_STEP_2" = "아래로 스크롤하여 선택 '키보드'";
+"INTRO_STEP_3" = "그런 다음 '키보드'를 선택";
+"INTRO_STEP_4" = "새로운 키보드 추가";
+"INTRO_STEP_5" = "선택 'Askey'";
+"INTRO_STEP_6" = "- Askey Askey'키보드의 새로운 선택";
+"INTRO_STEP_7" = "전체 (문자 집합하고있는 멋진) 액세스 활성화";
+"BUY_PACK" = "매수";

@@ -128,7 +128,6 @@ static int MAG_SIZE = 210;
 {
     // animate stuff into position
     // animate GIF into position and start playing
-    NSLog(@"would animate GIF in now");
     // when gif is finished, automatically move to next panel if x translation at 0
 }
 
@@ -138,32 +137,9 @@ static int MAG_SIZE = 210;
 }
 
 - (NSString *)textForStep:(int)i {
-    switch (i) {
-        case 1: {
-            return @"Go to 'Settings' > 'General'";
-        }
-        case 2: {
-            return @"Scroll Down and Choose 'Keyboard'";
-        }
-        case 3: {
-            return @"Then Choose 'Keyboards'";
-        }
-        case 4: {
-            return @"Add a New Keyboard";
-        }
-        case 5: {
-            return @"Select 'Askey'";
-        }
-        case 6: {
-            return @"Select the New 'Askey - Askey' Keyboard";
-        }
-        case 7: {
-            return @"Enable Full Access\n(For Character Sets and Awesomeness)";
-        }
-        default: {
-            return @"lolwat";
-        }
-    }
+
+    NSString *introKey = [NSString stringWithFormat:@"INTRO_STEP_%i", i];
+    return NSLocalizedString(introKey, nil);
 }
 
 - (CGRect)magRectForIntro:(int)i

@@ -1,0 +1,26 @@
+/* 
+  Localizable.strings
+  ASCIIboardContainer
+
+  Created by Matt Condon on 2/25/15.
+  Copyright (c) 2015 Shrugs. All rights reserved.
+*/
+"TEXT_PACK" = "text";
+"EMOJI_PACK" = "Emoji";
+"MAIL_PACK" = "E-mail";
+"BUNDLE_PACK" = "balík";
+"FAQ" = "FAQ";
+"TEST_ASKEY" = "testovací Askey";
+"LAUNCH_INTRO" = "Spustit Intro";
+"TEXT_PACK_DESCRIPTION" = "Text Balení obsahuje znak balení vyrobené z běžného textu, ideální pro zasílání zpráv kamarády na jakékoli platformě.";
+"EMOJI_PACK_DESCRIPTION" = "Udělejte dojem na své přátele s vaším emodži hry pomocí emodži aktualizace; poslat tvůj kámoš pizzu vyrobený z pizzy nebo váš partner srdce vyrobený z srdcí.";
+"MAIL_PACK_DESCRIPTION" = "Mail balení je generovaný textový super široký, ideální pro odeslání e-mailem přátelům pomocí libovolného klienta.";
+"BUNDLE_PACK_DESCRIPTION" = "Urvat všechny tři balíčky za pouhých $ 2! Udělejte dojem na své přátele s vaše zpráv magie pomocí textu a emodži!";
+"INTRO_STEP_1" = "Jděte na 'Nastavení'> 'Obecné'";
+"INTRO_STEP_2" = "Přejděte dolů a zvolte 'Keyboard'";
+"INTRO_STEP_3" = "Pak zvolte 'Klávesnice'";
+"INTRO_STEP_4" = "Přidat novou klávesnici";
+"INTRO_STEP_5" = "Vyberte 'Askey'";
+"INTRO_STEP_6" = "Vyberte nový 'Askey - Askey' klávesnice";
+"INTRO_STEP_7" = "Povolit plný přístup (pro znakové sady a v pohodě)";
+"BUY_PACK" ="nákup";

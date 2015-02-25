@@ -1,0 +1,26 @@
+/* 
+  Localizable.strings
+  ASCIIboardContainer
+
+  Created by Matt Condon on 2/25/15.
+  Copyright (c) 2015 Shrugs. All rights reserved.
+*/
+"TEXT_PACK" = "Tekst";
+"EMOJI_PACK" = "Emoji";
+"MAIL_PACK" = "eMail";
+"BUNDLE_PACK" = "Bundel";
+"FAQ" = "FAQ";
+"TEST_ASKEY" = "Test Askey";
+"LAUNCH_INTRO" = "Lanceren Intro";
+"TEXT_PACK_DESCRIPTION" = "De tekst Pack bevat karakter verpakkingen gemaakt van normale tekst, groot voor maatjes messaging op elk platform.";
+"EMOJI_PACK_DESCRIPTION" = "Maak indruk op je vrienden met je emoji spel met behulp van de Emoji Pack; stuur je buddy een pizza gemaakt van pizza's of uw partner een hart gemaakt van hart.";
+"MAIL_PACK_DESCRIPTION" = "The Mail Pack maakt de gegenereerde tekst super breed, ideaal voor e-mailen vrienden met elke klant.";
+"BUNDLE_PACK_DESCRIPTION" = "Pak alle drie packs voor slechts $ 2! Maak indruk op je vrienden met uw messaging-magie met behulp van tekst en emoji!";
+"INTRO_STEP_1" = "Ga naar 'Instellingen'> 'Algemeen'";
+"INTRO_STEP_2" = "Scroll naar beneden en kies 'Keyboard'";
+"INTRO_STEP_3" = "Dan Kies 'Toetsenborden'";
+"INTRO_STEP_4" = "Voeg een nieuw toetsenbord";
+"INTRO_STEP_5" = "Selecteer 'Askey'";
+"INTRO_STEP_6" = "Selecteer de nieuwe 'Askey - Askey' Toetsenbord";
+"INTRO_STEP_7" = "Enable Full Access (Voor Character Sets en cool)";
+"BUY_PACK" = "Aankoop";

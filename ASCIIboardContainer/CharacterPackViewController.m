@@ -19,6 +19,7 @@
     self = [super init];
     if (self) {
         _pack = pack;
+
         self.view.backgroundColor = ASKEY_BLUE_COLOR;
     }
     return self;
@@ -27,6 +28,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    CGRect f = self.view.frame;
+    f.size.height = f.size.height - 60;
+    f.origin.y = 60;
+    self.view.frame = f;
 }
 
 - (void)didReceiveMemoryWarning {

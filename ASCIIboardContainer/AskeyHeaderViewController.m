@@ -9,6 +9,7 @@
 #import "AskeyHeaderViewController.h"
 #import "Config.h"
 #import <Masonry/Masonry.h>
+#import "NSString+FontAwesome.h"
 
 #define MIN_DELTA 0
 #define MAX_DELTA 100
@@ -22,14 +23,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    CGRect f = self.view.frame;
-    f.size.height = 160;
-    self.view.frame = f;
-
     self.view.translatesAutoresizingMaskIntoConstraints = NO;
-
     self.view.backgroundColor = ASKEY_BLUE_COLOR;
+
+    // icon
     iconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"iconheader"]];
+
+    // title
     title = [[UILabel alloc] init];
     title.text = @"Askey";
     title.font = [UIFont fontWithName:ASKEY_TITLE_FONT size:34];
@@ -38,10 +38,26 @@
     title.translatesAutoresizingMaskIntoConstraints = NO;
     [title sizeToFit];
 
+    // carat
+    _carat = [[UIButton alloc] init];
+    [_carat setTitle:[NSString fa_stringForFontAwesomeIcon:FACaretDown] forState:UIControlStateNormal];
+    [_carat.titleLabel setFont:[UIFont fontWithName:kFontAwesomeFont size:30]];
+
+    // add to views
     [self.view addSubview:iconView];
     [self.view addSubview:title];
+    [self.view addSubview:_carat];
 
-    float iconSizeLarge = self.view.frame.size.height * 0.44;
+    // constraints
+    [_carat mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.equalTo(self.view).multipliedBy(0.6);
+        make.width.equalTo(_carat.mas_height);
+        make.left.equalTo(self.view).offset(5);
+        // @TODO make top constraint animated by jazhands
+    }];
+
+
+    float iconSizeLarge = LARGE_HEADER_HEIGHT * 0.44;
 
     [iconView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.equalTo(self.view).multipliedBy(0.44);
@@ -49,36 +65,28 @@
     }];
 
     NSLayoutConstraint *_iconLeftConstraint = [NSLayoutConstraint constraintWithItem:iconView
-                                                       attribute:NSLayoutAttributeLeft
-                                                       relatedBy:NSLayoutRelationEqual
-                                                          toItem:self.view
-                                                       attribute:NSLayoutAttributeLeft
-                                                      multiplier:1
-                                                        constant:0];
+                                                                           attribute:NSLayoutAttributeLeft
+                                                                           relatedBy:NSLayoutRelationEqual
+                                                                              toItem:self.view
+                                                                           attribute:NSLayoutAttributeLeft
+                                                                          multiplier:1
+                                                                            constant:0];
 
     NSLayoutConstraint *_iconCenterYConstraint = [NSLayoutConstraint constraintWithItem:iconView
-                                                       attribute:NSLayoutAttributeCenterY
-                                                       relatedBy:NSLayoutRelationEqual
-                                                          toItem:self.view
-                                                       attribute:NSLayoutAttributeCenterY
-                                                      multiplier:1
-                                                        constant:0];
+                                                                              attribute:NSLayoutAttributeCenterY
+                                                                              relatedBy:NSLayoutRelationEqual
+                                                                                 toItem:self.view
+                                                                              attribute:NSLayoutAttributeCenterY
+                                                                             multiplier:1
+                                                                               constant:0];
 
     NSLayoutConstraint *_titleLeftConstraint = [NSLayoutConstraint constraintWithItem:title
-                                                       attribute:NSLayoutAttributeLeft
-                                                       relatedBy:NSLayoutRelationEqual
-                                                          toItem:self.view
-                                                       attribute:NSLayoutAttributeLeft
-                                                      multiplier:1
-                                                        constant:0];
-
-    NSLayoutConstraint *_titleCenterXConstraint = [NSLayoutConstraint constraintWithItem:title
-                                                        attribute:NSLayoutAttributeCenterX
-                                                        relatedBy:NSLayoutRelationEqual
-                                                           toItem:self.view
-                                                        attribute:NSLayoutAttributeCenterX
-                                                       multiplier:1
-                                                         constant:0];
+                                                                            attribute:NSLayoutAttributeLeft
+                                                                            relatedBy:NSLayoutRelationEqual
+                                                                               toItem:self.view
+                                                                            attribute:NSLayoutAttributeLeft
+                                                                           multiplier:1
+                                                                             constant:0];
 
     NSLayoutConstraint *_titleCenterYConstraint = [NSLayoutConstraint constraintWithItem:title
                                                                                attribute:NSLayoutAttributeCenterY
@@ -89,31 +97,30 @@
                                                                                 constant:0];
 
     NSLayoutConstraint *_heightConstraint = [NSLayoutConstraint constraintWithItem:self.view
-                                                     attribute:NSLayoutAttributeHeight
-                                                     relatedBy:NSLayoutRelationEqual
-                                                        toItem:nil
-                                                     attribute:NSLayoutAttributeNotAnAttribute
-                                                    multiplier:1
-                                                      constant:0];
+                                                                         attribute:NSLayoutAttributeHeight
+                                                                         relatedBy:NSLayoutRelationEqual
+                                                                            toItem:nil
+                                                                         attribute:NSLayoutAttributeNotAnAttribute
+                                                                            multiplier:1
+                                                                          constant:0];
 
     [self.view addConstraints:@[
                                 _iconLeftConstraint,
                                 _iconCenterYConstraint,
                                 _titleLeftConstraint,
-                                _heightConstraint,
-                                _titleCenterXConstraint,
-                                _titleCenterYConstraint
-
+                                _titleCenterYConstraint,
+                                _heightConstraint
                                ]];
 
 
     // JazzHands
     self.animator = [IFTTTAnimator new];
+    self.scaleAnimator = [IFTTTAnimator new];
 
     // icon left
     [self animationWithConstraint:_iconLeftConstraint
                     startConstant:self.view.center.x - iconSizeLarge/2.0
-                   andEndConstant:self.view.center.x - iconSizeLarge/2.0 - 25];
+                   andEndConstant:self.view.center.x - iconSizeLarge/2.0 - 17];
 
     // icon centerY
     [self animationWithConstraint:_iconCenterYConstraint
@@ -123,12 +130,7 @@
     // title left
     [self animationWithConstraint:_titleLeftConstraint
                     startConstant:self.view.frame.size.width/2.0 - title.frame.size.width/2.0
-                   andEndConstant:self.view.frame.size.width/2.0 - title.frame.size.width/2.0 + 20];
-
-    // title centerX
-    [self animationWithConstraint:_titleCenterXConstraint
-                    startConstant:0
-                   andEndConstant:20];
+                   andEndConstant:self.view.frame.size.width/2.0 - title.frame.size.width/2.0 + 10];
 
     // title centerY
     [self animationWithConstraint:_titleCenterYConstraint
@@ -140,8 +142,35 @@
                     startConstant:160
                    andEndConstant:60];
 
-    [self.animator animate:0];
+    // title scale
+    IFTTTScaleAnimation *titleScaleAnimation = [IFTTTScaleAnimation new];
+    titleScaleAnimation.view = title;
+    [self.scaleAnimator addAnimation:titleScaleAnimation];
+    [titleScaleAnimation addKeyFrames:@[
+                                        [[IFTTTAnimationKeyFrame alloc] initWithTime:MIN_DELTA andScale:1.0],
+                                        [[IFTTTAnimationKeyFrame alloc] initWithTime:MAX_DELTA andScale:0.7]
+                                        ]];
 
+    // icon scale
+    IFTTTScaleAnimation *iconScaleAnimation = [IFTTTScaleAnimation new];
+    iconScaleAnimation.view = iconView;
+    [self.scaleAnimator addAnimation:iconScaleAnimation];
+    [iconScaleAnimation addKeyFrames:@[
+                                        [[IFTTTAnimationKeyFrame alloc] initWithTime:MIN_DELTA andScale:1.0],
+                                        [[IFTTTAnimationKeyFrame alloc] initWithTime:MAX_DELTA andScale:0.9]
+                                        ]];
+
+
+    [self.animator animate:0];
+    [self.scaleAnimator animate:0];
+
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    CGRect f = self.view.frame;
+    f.size.height = 160;
+    self.view.frame = f;
 }
 
 - (void)animationWithConstraint:(NSLayoutConstraint *)constraint startConstant:(CGFloat)start andEndConstant:(CGFloat)end
@@ -155,6 +184,11 @@
                               [[IFTTTAnimationKeyFrame alloc] initWithTime:MIN_DELTA andConstraint:start],
                               [[IFTTTAnimationKeyFrame alloc] initWithTime:MAX_DELTA andConstraint:end]
                             ]];
+}
+
+- (void)showCarat:(BOOL)shouldShow
+{
+    _carat.alpha = shouldShow ? 1.0 : 0.0;
 }
 
 - (void)didReceiveMemoryWarning {

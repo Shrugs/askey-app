@@ -31,7 +31,7 @@
 
         [self setTitle:text forState:UIControlStateNormal];
         self.titleLabel.textAlignment = NSTextAlignmentCenter;
-        self.titleLabel.font = [UIFont fontWithName:ASKEY_BUTTON_FONT size:30];
+        self.titleLabel.font = [UIFont fontWithName:ASKEY_BUTTON_FONT size:28.0];
         [self setTitleColor:ASKEY_BUTTON_TEXT_COLOR forState:UIControlStateNormal];
 
         self.layer.masksToBounds = NO;

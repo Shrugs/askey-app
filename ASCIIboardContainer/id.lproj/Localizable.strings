@@ -1,0 +1,26 @@
+/* 
+  Localizable.strings
+  ASCIIboardContainer
+
+  Created by Matt Condon on 2/25/15.
+  Copyright (c) 2015 Shrugs. All rights reserved.
+*/
+"TEXT_PACK" = "Teks";
+"EMOJI_PACK" = "Emoji";
+"MAIL_PACK" = "eMail";
+"BUNDLE_PACK" = "Bundel";
+"FAQ" = "FAQ";
+"TEST_ASKEY" = "uji Askey";
+"LAUNCH_INTRO" = "peluncuran Intro";
+"TEXT_PACK_DESCRIPTION" = "Teks Pack berisi paket karakter terbuat dari teks biasa, bagus untuk pesan teman pada platform apapun.";
+"EMOJI_PACK_DESCRIPTION" = "Kesan teman-teman Anda dengan permainan emoji Anda menggunakan Emoji Pack; kirim teman Anda pizza terbuat dari pizza atau pasangan Anda hati terbuat dari hati.";
+"MAIL_PACK_DESCRIPTION" = "The Mail Pack membuat teks yang dihasilkan super lebar, besar untuk email teman-teman menggunakan klien.";
+"BUNDLE_PACK_DESCRIPTION" = "Ambil semua tiga bungkus untuk hanya $ 2! Kesan teman-teman Anda dengan sihir pesan Anda menggunakan teks dan emoji!";
+"INTRO_STEP_1" = "Pergi ke 'Pengaturan'> 'Umum'";
+"INTRO_STEP_2" = "Gulir Bawah dan Pilih 'Keyboard'";
+"INTRO_STEP_3" = "Kemudian Pilih 'Keyboard'";
+"INTRO_STEP_4" = "Tambahkan Keyboard Baru";
+"INTRO_STEP_5" = "Pilih 'Askey'";
+"INTRO_STEP_6" = "Pilih New 'Askey - Askey' Keyboard";
+"INTRO_STEP_7" = "Aktifkan Akses Penuh (Untuk Set Karakter dan menjadi dingin)";
+"BUY_PACK" = "Pembelian";

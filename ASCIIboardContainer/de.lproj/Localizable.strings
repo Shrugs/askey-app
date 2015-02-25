@@ -1,0 +1,26 @@
+/* 
+  Localizable.strings
+  ASCIIboardContainer
+
+  Created by Matt Condon on 2/25/15.
+  Copyright (c) 2015 Shrugs. All rights reserved.
+*/
+"TEXT_PACK" = "Text";
+"EMOJI_PACK" = "Emoji";
+"MAIL_PACK" = "eMail";
+"BUNDLE_PACK" = "Bündeln";
+"FAQ" = "FAQ";
+"TEST_ASKEY" = "Test Askey";
+"LAUNCH_INTRO" = "Starten Intro";
+"TEXT_PACK_DESCRIPTION" = "Die Text-Pack enthält Zeichen Packungen aus normalen Text gemacht, toll für Messaging-Freunde auf jeder Plattform.";
+"EMOJI_PACK_DESCRIPTION" = "Beeindrucken Sie Ihre Freunde mit Ihrem emoji Spiel mit der Emoji-Pack; senden Freundes eine Pizza von Pizza oder Ihrem Partner ein Herz aus Herzen gemacht.";
+"MAIL_PACK_DESCRIPTION" = "Die E-Mail-Pack macht die erzeugte Textsuperweit, ideal für E-Mail an Freunde mit jedem Kunden.";
+"BUNDLE_PACK_DESCRIPTION" = "Schnappen Sie sich alle drei Packungen für nur $ 2 spielen! Beeindrucken Sie Ihre Freunde mit Ihrer Messaging-Magie mit Text und emoji!";
+"INTRO_STEP_1" = "Zum 'Einstellungen'> 'Allgemein'";
+"INTRO_STEP_2" = "Blättern Sie nach unten und wählen 'Tastatur'";
+"INTRO_STEP_3" = "Dann wählen 'Keyboards'";
+"INTRO_STEP_4" = "Hinzufügen einer neuen Tastatur";
+"INTRO_STEP_5" = "Wählen Sie 'Askey'";
+"INTRO_STEP_6" = "Wählen Sie die neue 'Askey - Askey' Keyboard";
+"INTRO_STEP_7" = "Aktivieren Full Access (für Zeichensätze und cool sein)";
+"BUY_PACK" = "Kauf";

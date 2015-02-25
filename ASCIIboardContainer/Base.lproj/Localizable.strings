@@ -1,0 +1,26 @@
+/* 
+  Localizable.strings
+  ASCIIboardContainer
+
+  Created by Matt Condon on 2/25/15.
+  Copyright (c) 2015 Shrugs. All rights reserved.
+*/
+"TEXT_PACK" = "Text";
+"EMOJI_PACK" = "Emoji";
+"MAIL_PACK" = "Email";
+"BUNDLE_PACK" = "Bundle";
+"FAQ" = "FAQ";
+"TEST_ASKEY" = "Test Askey";
+"LAUNCH_INTRO" = "Launch Intro";
+"TEXT_PACK_DESCRIPTION" = "The Text Pack contains character packs made out of normal text, great for messaging buddies on any platform.";
+"EMOJI_PACK_DESCRIPTION" = "Impress your friends with your emoji game using the Emoji Pack; send your buddy a pizza made out of pizzas or your partner a heart made out of hearts.";
+"MAIL_PACK_DESCRIPTION" = "The Mail Pack makes the generated text super wide, great for emailing friends using any client.";
+"BUNDLE_PACK_DESCRIPTION" = "Grab all three packs for only $2! Impress your friends with your messaging magic using text and emoji!";
+"INTRO_STEP_1" = "Go to 'Settings' > 'General'";
+"INTRO_STEP_2" = "Scroll Down and Choose 'Keyboard'";
+"INTRO_STEP_3" = "Then Choose 'Keyboards'";
+"INTRO_STEP_4" = "Add a New Keyboard";
+"INTRO_STEP_5" = "Select 'Askey'";
+"INTRO_STEP_6" = "Select the New 'Askey - Askey' Keyboard";
+"INTRO_STEP_7" = "Enable Full Access (For Character Sets and Awesomeness)";
+"BUY_PACK" = "Purchase";

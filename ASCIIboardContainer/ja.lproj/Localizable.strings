@@ -1,0 +1,26 @@
+/* 
+  Localizable.strings
+  ASCIIboardContainer
+
+  Created by Matt Condon on 2/25/15.
+  Copyright (c) 2015 Shrugs. All rights reserved.
+*/
+"TEXT_PACK" = "テキスト";
+"EMOJI_PACK" = "絵文字";
+"MAIL_PACK" = "のメールアドレス";
+"BUNDLE_PACK" = "バンドル";
+"FAQ" = "よくある質問";
+"TEST_ASKEY" = "テストアスキー";
+"LAUNCH_INTRO" = "イントロを起動します";
+"TEXT_PACK_DESCRIPTION" = "テキストパックは、任意のプラットフォーム上で仲間をメッセージングに偉大な通常のテキストから作られたキャラクターパックを、含まれています。";
+"EMOJI_PACK_DESCRIPTION" = "絵文字パックを使用して、絵文字のゲームであなたの友達を感心。あなたの相棒ピザやあなたヨンベの心で作られた心で作られたピザを送る。";
+"MAIL_PACK_DESCRIPTION" = "メールパックは、任意のクライアントを使用して友達を電子メールで送信するための生成されたテキストは、スーパー、広い偉大なります。";
+"BUNDLE_PACK_DESCRIPTION" = "唯一の2ドルのためにすべての3つのパックをつかむ！メッセージング魔法がテキストや絵文字を使って友達を感心！";
+"INTRO_STEP_1" = "「設定」>「一般」に移動します";
+"INTRO_STEP_2" = "下にスクロールして選択して「キーボード」";
+"INTRO_STEP_3" = "次に、「キーボード」を選択してください";
+"INTRO_STEP_4" = "新しいキーボードを追加";
+"INTRO_STEP_5" = "選択して「アスキー」";
+"INTRO_STEP_6" = " - アスキーアスキー「キーボード新規作成]を選択します";
+"INTRO_STEP_7" = "フル（文字セットとされてクールな）アクセスを有効にする";
+"BUY_PACK" = "購入";

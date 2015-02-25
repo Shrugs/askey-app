@@ -14,7 +14,6 @@
 #import "Config.h"
 #import "AKLargeButton.h"
 #import "AKCharacterPackManager.h"
-#import "NSString+FontAwesome.h"
 #import "CharacterPackButton.h"
 #import "CharacterPackViewController.h"
 #import "TryAskeyViewController.h"
@@ -24,8 +23,6 @@
 #define LARGE_BUTTON_RATIO 0.933
 #define BUTTON_PADDING 15
 #define TWITTER_BUTTON_HEIGHT 40
-#define HEADER_HEIGHT 160
-#define SMALL_HEADER_HEIGHT 120
 
 @implementation AskeyViewController
 
@@ -39,7 +36,7 @@
 
     self.automaticallyAdjustsScrollViewInsets = NO;
     scrollView = [[AskeyScrollView alloc] initWithFrame:CGRectMake(0, 20, self.view.frame.size.width, self.view.frame.size.height - 20)];
-//    [scrollView setContentInset:UIEdgeInsetsMake(20, 0, 0, 0)];
+
     scrollView.delaysContentTouches = NO;
     scrollView.delegate = self;
     [self.view addSubview:scrollView];
@@ -48,21 +45,23 @@
     UIWindow *currentWindow = [UIApplication sharedApplication].keyWindow;
     [currentWindow addSubview:_header.view];
 
-    [_header.view setFrame:CGRectMake(0, 0, self.view.frame.size.width, HEADER_HEIGHT)];
+    [_header.view mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.equalTo(currentWindow);
+    }];
 
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 
 
-    CharacterPackButton *textBtn = [[CharacterPackButton alloc] initWithText:@"Text" andBackground:@"textbg" purchased:YES];
+    CharacterPackButton *textBtn = [[CharacterPackButton alloc] initWithText:NSLocalizedString(@"TEXT_PACK", nil) andBackground:@"textbg" purchased:YES];
     [textBtn addTarget:self action:@selector(textPackPressed:) forControlEvents:UIControlEventTouchUpInside];
-    CharacterPackButton *emojiBtn = [[CharacterPackButton alloc] initWithText:@"Emoji" andBackground:@"emojibg" purchased:NO];
+    CharacterPackButton *emojiBtn = [[CharacterPackButton alloc] initWithText:NSLocalizedString(@"EMOJI_PACK", nil) andBackground:@"emojibg" purchased:NO];
     [emojiBtn addTarget:self action:@selector(emojiPackPressed:) forControlEvents:UIControlEventTouchUpInside];
-    CharacterPackButton *mailBtn = [[CharacterPackButton alloc] initWithText:@"Mail" andBackground:@"mailbg" purchased:NO];
+    CharacterPackButton *mailBtn = [[CharacterPackButton alloc] initWithText:NSLocalizedString(@"MAIL_PACK", nil) andBackground:@"mailbg" purchased:NO];
     [mailBtn addTarget:self action:@selector(mailPackPressed:) forControlEvents:UIControlEventTouchUpInside];
-    CharacterPackButton *bundleBtn = [[CharacterPackButton alloc] initWithText:@"Bundle" andBackground:@"combobg" purchased:NO];
+    CharacterPackButton *bundleBtn = [[CharacterPackButton alloc] initWithText:NSLocalizedString(@"BUNDLE_PACK", nil) andBackground:@"combobg" purchased:NO];
     [bundleBtn addTarget:self action:@selector(bundlePackPressed:) forControlEvents:UIControlEventTouchUpInside];
 
-    UIView *buttonContainer = [[UIView alloc] initWithFrame:CGRectMake(0, HEADER_HEIGHT, self.view.frame.size.width, 150)];
+    UIView *buttonContainer = [[UIView alloc] initWithFrame:CGRectMake(0, LARGE_HEADER_HEIGHT, self.view.frame.size.width, 150)];
     buttonContainer.userInteractionEnabled = YES;
     [buttonContainer addSubview:textBtn];
     [buttonContainer addSubview:emojiBtn];
@@ -97,15 +96,15 @@
     }];
 
 
-    AKLargeButton *faqBtn = [[AKLargeButton alloc] initWithText:@"FAQ"];
+    AKLargeButton *faqBtn = [[AKLargeButton alloc] initWithText:NSLocalizedString(@"FAQ", nil)];
 //    [faqBtn addTarget:self action:@selector(faqBtnPressed:) forControlEvents:UIControlEventTouchUpInside];
     [scrollView addSubview:faqBtn];
 
-    AKLargeButton *tryBtn = [[AKLargeButton alloc] initWithText:@"Test Askey"];
+    AKLargeButton *tryBtn = [[AKLargeButton alloc] initWithText:NSLocalizedString(@"TEST_ASKEY", nil)];
 //    [tryBtn addTarget:self action:@selector(tryBtnPressed:) forControlEvents:UIControlEventTouchUpInside];
     [scrollView addSubview:tryBtn];
 
-    AKLargeButton *introBtn = [[AKLargeButton alloc] initWithText:@"Launch Intro"];
+    AKLargeButton *introBtn = [[AKLargeButton alloc] initWithText:NSLocalizedString(@"LAUNCH_INTRO", nil)];
 //    [introBtn addTarget:self action:@selector(launchIntro:) forControlEvents:UIControlEventTouchUpInside];
     [scrollView addSubview:introBtn];
 
@@ -215,6 +214,7 @@
 - (void)makeHeaderHeight:(float)height
 {
     [_header.animator animate:height];
+    [_header.scaleAnimator animate:height];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)theScrollView

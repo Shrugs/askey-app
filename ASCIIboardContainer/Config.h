@@ -60,6 +60,9 @@
 // CONSTS
 #define ASKEY_CONTAINER_GROUP_NAME @"group.io.askey"
 
+#define LARGE_HEADER_HEIGHT 160
+#define SMALL_HEADER_HEIGHT 60
+
 
 typedef enum {
     ASKEYScreenOrientationUnknown,

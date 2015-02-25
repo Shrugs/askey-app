@@ -1,0 +1,26 @@
+/* 
+  Localizable.strings
+  ASCIIboardContainer
+
+  Created by Matt Condon on 2/25/15.
+  Copyright (c) 2015 Shrugs. All rights reserved.
+*/
+"TEXT_PACK" = "Tekst";
+"EMOJI_PACK" = "Emoji";
+"MAIL_PACK" = "e-mail";
+"BUNDLE_PACK" = "Pakiet";
+"FAQ" = "Pomoc";
+"TEST_ASKEY" = "Badanie Askey";
+"LAUNCH_INTRO" = "Uruchom Intro";
+"TEXT_PACK_DESCRIPTION" = "Tekst Opakowanie zawiera zestawy znaków wykonane z normalnego tekstu, wielkie dla komunikatorów kumpli na dowolnej platformie.";
+"EMOJI_PACK_DESCRIPTION" = "Zaskocz swoich znajomych z Twojej gry za pomocą Emotikon Emoji pakiet; wysyłać twój kumpel pizzę wykonane z pizzy lub partnera serca wykonana z serca.";
+"MAIL_PACK_DESCRIPTION" = "Poczta Paczka sprawia bardzo szeroka generowany tekst, świetne na e-maila za pomocą dowolnego klienta przyjaciół.";
+"BUNDLE_PACK_DESCRIPTION" = "Weź wszystkie trzy paczki do tylko 2 dolary! Zaimponować znajomym swoje wiadomości za pomocą magii i emoji tekst!";
+"INTRO_STEP_1" = "Idź do 'Ustawienia'> 'Ogólne'";
+"INTRO_STEP_2" = "Przewiń w dół i wybierz 'Klawiatura'";
+"INTRO_STEP_3" = "Następnie wybierz 'Klawiatury'";
+"INTRO_STEP_4" = "Dodaj nową klawiaturę";
+"INTRO_STEP_5" = "Wybierz 'Askey'";
+"INTRO_STEP_6" = "Wybierz nowy - Klawiatura Askey Askey ";
+"INTRO_STEP_7" = "Włącz pełny dostęp (dla zestawów znaków i jest fajne)";
+"BUY_PACK" = "Zakup";

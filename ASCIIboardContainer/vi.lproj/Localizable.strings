@@ -1,0 +1,26 @@
+/* 
+  Localizable.strings
+  ASCIIboardContainer
+
+  Created by Matt Condon on 2/25/15.
+  Copyright (c) 2015 Shrugs. All rights reserved.
+*/
+"TEXT_PACK" = "bản văn";
+"EMOJI_PACK" = "Emoji";
+"MAIL_PACK" = "eMail";
+"BUNDLE_PACK" = "bó lại";
+"FAQ" = "Hỏi đáp";
+"TEST_ASKEY" = "Kiểm tra Askey";
+"LAUNCH_INTRO" = "khởi động Giới thiệu";
+"TEXT_PACK_DESCRIPTION" = "Các văn bản Pack có chứa gói vật làm bằng văn bản bình thường, tuyệt vời cho bạn bè gửi tin nhắn trên nền tảng nào.";
+"EMOJI_PACK_DESCRIPTION" = "Tạo ấn tượng với bạn bè của bạn với các trò chơi biểu tượng cảm xúc của bạn bằng cách sử dụng Emoji Pack; gửi bạn bè của bạn một bánh pizza làm ra chiếc bánh pizza hoặc đối tác của bạn một trái tim làm bằng trái tim.";
+"MAIL_PACK_DESCRIPTION" = "The Mail Gói làm cho văn bản được tạo ra siêu rộng, tuyệt vời nhất cho gửi email bạn sử dụng bất kỳ khách hàng.";
+"BUNDLE_PACK_DESCRIPTION" = "Lấy tất cả ba gói với giá chỉ $ 2! Tạo ấn tượng với bạn bè của bạn với ma thuật của bạn gửi tin nhắn văn bản và sử dụng biểu tượng cảm xúc!";
+"INTRO_STEP_1" = "Tới 'Settings'> 'General'";
+"INTRO_STEP_2" = "Cuộn xuống và chọn 'Keyboard'";
+"INTRO_STEP_3" = "Sau đó Chọn 'Bàn phím'";
+"INTRO_STEP_4" = "Thêm một bàn phím mới";
+"INTRO_STEP_5" = "Chọn 'Askey'";
+"INTRO_STEP_6" = "Chọn New - Bàn phím 'Askey Askey'";
+"INTRO_STEP_7" = "Kích hoạt tính năng Full Access (Đối Character Sets và là cool)";
+"BUY_PACK" = "mua";

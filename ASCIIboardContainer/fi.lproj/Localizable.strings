@@ -1,0 +1,26 @@
+/* 
+  Localizable.strings
+  ASCIIboardContainer
+
+  Created by Matt Condon on 2/25/15.
+  Copyright (c) 2015 Shrugs. All rights reserved.
+*/
+"TEXT_PACK" = "Teksti";
+"EMOJI_PACK" = "Emoji";
+"MAIL_PACK" = "eMail";
+"BUNDLE_PACK" = "Niputtaa";
+"FAQ" = "UKK";
+"TEST_ASKEY" = "Testaa Askey";
+"LAUNCH_INTRO" = "Launch Intro";
+"TEXT_PACK_DESCRIPTION" = "Teksti Pack sisältää hahmopaketeilla valmistettu normaalia tekstiä, suuri messaging kaverinsa millä tahansa alustalla.";
+"EMOJI_PACK_DESCRIPTION" = "Yllätä ystäväsi kanssa emoji peli käyttäen Emoji Pack; lähettää kaveri pizza valmistettu pizzoja tai kumppanisi sydän valmistettu sydämet.";
+"MAIL_PACK_DESCRIPTION" = "Mail Pack tekee syntyvän tekstin erittäin laaja, suuri sähköpostitse kavereita käyttämällä mitä tahansa asiakas.";
+"BUNDLE_PACK_DESCRIPTION" = "Kaappari kaikki kolme pakkausta vain 2 dollaria! Yllätä ystäväsi kanssa viestien magic käyttäen tekstiä ja emoji!";
+"INTRO_STEP_1" = "Mene Asetukset> 'Yleistä'";
+"INTRO_STEP_2" = "Selaa alaspäin ja valitse 'Keyboard'";
+"INTRO_STEP_3" = "Valitse sitten 'näppäimistöt'";
+"INTRO_STEP_4" = "Lisää uusi näppäimistö";
+"INTRO_STEP_5" = "Valitse 'Askey'";
+"INTRO_STEP_6" = "Valitse uusi 'Askey - Askey' Keyboard";
+"INTRO_STEP_7" = "Ota Full Access (For Merkistökoodaukset ja kylminä)";
+"BUY_PACK" = "Osto";

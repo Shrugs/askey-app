@@ -1,0 +1,26 @@
+/* 
+  Localizable.strings
+  ASCIIboardContainer
+
+  Created by Matt Condon on 2/25/15.
+  Copyright (c) 2015 Shrugs. All rights reserved.
+*/
+"TEXT_PACK" = "Tekst";
+"EMOJI_PACK" = "Emoji";
+"MAIL_PACK" = "eMail";
+"BUNDLE_PACK" = "bundle";
+"FAQ" = "FAQ";
+"TEST_ASKEY" = "Test Askey";
+"LAUNCH_INTRO" = "Start Intro";
+"TEXT_PACK_DESCRIPTION" = "Tekst Pack indeholder figurpakker lavet af normal tekst, fantastisk til messaging venner på enhver platform.";
+"EMOJI_PACK_DESCRIPTION" = "Imponer dine venner med din Emoji spil ved hjælp af Emoji Pack; sende din ven en pizza lavet af pizzaer eller din partner et hjerte lavet af hjerter.";
+"MAIL_PACK_DESCRIPTION" = "The Mail Pack gør den genererede tekst super bred, fantastisk til at e-maile venner via enhver klient.";
+"BUNDLE_PACK_DESCRIPTION" = "Grab alle tre pakker for kun $ 2! Imponer dine venner med din messaging magi ved hjælp af tekst og emoji!";
+"INTRO_STEP_1" = "Gå til 'Indstillinger'> 'Generelt'";
+"INTRO_STEP_2" = "Rul ned og vælg 'Keyboard'";
+"INTRO_STEP_3" = "Vælg derefter 'Tastaturer'";
+"INTRO_STEP_4" = "Tilføj et nyt tastatur";
+"INTRO_STEP_5" = "Vælg 'Askey'";
+"INTRO_STEP_6" = "Vælg Ny 'Askey - Askey' Keyboard";
+"INTRO_STEP_7" = "Aktiver fuld adgang (For tegnsæt og være cool)";
+"BUY_PACK" = "købe";

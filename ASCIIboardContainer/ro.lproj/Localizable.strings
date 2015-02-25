@@ -1,0 +1,26 @@
+/* 
+  Localizable.strings
+  ASCIIboardContainer
+
+  Created by Matt Condon on 2/25/15.
+  Copyright (c) 2015 Shrugs. All rights reserved.
+*/
+"TEXT_PACK" = "Text";
+"EMOJI_PACK" = "Emoji";
+"MAIL_PACK" = "e-mail";
+"BUNDLE_PACK" = "Pachet";
+"FAQ" = "FAQ";
+"TEST_ASKEY" = "Testul Askey";
+"LAUNCH_INTRO" = "Lansarea Intro";
+"TEXT_PACK_DESCRIPTION" = "Textul Pack conține pachete caracter realizate din text normal, mare pentru mesaje amici pe orice platformă.";
+"EMOJI_PACK_DESCRIPTION" = "Ti impresionezi prietenii cu jocul emoji folosind pachetul Emoji; trimite prietenul tau o pizza făcută din pizza sau partenerul tau o inimă făcută din inimă.";
+"MAIL_PACK_DESCRIPTION" = "Mail Pack face textul generat foarte larg, mare pentru email-uri prietenilor, folosind orice client.";
+"BUNDLE_PACK_DESCRIPTION" = "Prinde toate cele trei pachete de doar doi dolari! Impresiona prietenii cu magia ta de mesaje folosind text și emoji!";
+"INTRO_STEP_1" = "Accesați 'Setări'> 'General'";
+"INTRO_STEP_2" = "Derulați în jos și selectați 'tastatură'";
+"INTRO_STEP_3" = "Apoi Alegeți 'Tastaturi'";
+"INTRO_STEP_4" = "Adaugă o nouă tastatură";
+"INTRO_STEP_5" = "Selectează 'Askey'";
+"INTRO_STEP_6" = "Selectați noul - tastatură 'Askey Askey'";
+"INTRO_STEP_7" = "Activare Full Access (pentru seturi de caractere și de a fi rece)";
+"BUY_PACK" = "Cumpărare";
