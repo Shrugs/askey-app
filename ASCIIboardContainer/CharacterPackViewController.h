@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CharacterPackButton.h"
+#import "MBProgressHUD.h"
 
 @interface CharacterPackViewController : UIViewController
 {
@@ -16,6 +18,11 @@
     NSMutableArray *_textViews;
     BOOL _isPurchased;
     NSString *_keyName;
+
+    CharacterPackButton *buyButton;
+    UIButton *restoreBtn;
+
+    MBProgressHUD *_hud;
 }
 
 - (id)initWithCharacterPacks:(NSArray *)packs andPurchased:(BOOL)purchased;

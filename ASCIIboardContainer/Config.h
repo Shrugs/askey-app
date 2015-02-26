@@ -23,6 +23,11 @@
 #define LARGE_BUTTON_RATIO 0.933
 #define NORMAL_BUTTON_HEIGHT 65
 
+#define TEXT_IDENTIFIER @"com.shrugs.askey.text"
+#define EMOJI_IDENTIFIER @"com.shrugs.askey.emoji"
+#define MAIL_IDENTIFIER @"com.shrugs.askey.mail"
+#define BUNDLE_IDENTIFIER @"com.shrugs.askey.bundle"
+
 // DEBUG
 #define DEBUG_SPACERS NO
 

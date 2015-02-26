@@ -14,9 +14,8 @@
 #import "Config.h"
 #import "AKLargeButton.h"
 #import "AKCharacterPackManager.h"
-#import "CharacterPackButton.h"
 #import "CharacterPackViewController.h"
-#import "TryAskeyViewController.h"
+#import "MKStoreKit.h"
 
 #define CONTAINER_PADDING 20
 #define BUTTON_PADDING 15
@@ -25,6 +24,8 @@
 @implementation AskeyViewController
 
 - (void)viewDidLoad {
+
+    
 
     [super viewDidLoad];
 
@@ -55,19 +56,19 @@
     [self updatePurchased];
 
 
-    CharacterPackButton *textBtn = [[CharacterPackButton alloc] initWithText:NSLocalizedString(@"TEXT_PACK", nil)
+    textBtn = [[CharacterPackButton alloc] initWithText:NSLocalizedString(@"TEXT_PACK", nil)
                                                                andBackground:@"textbg"
                                                                    purchased:textPurchased];
     [textBtn addTarget:self action:@selector(textPackPressed:) forControlEvents:UIControlEventTouchUpInside];
-    CharacterPackButton *emojiBtn = [[CharacterPackButton alloc] initWithText:NSLocalizedString(@"EMOJI_PACK", nil)
+    emojiBtn = [[CharacterPackButton alloc] initWithText:NSLocalizedString(@"EMOJI_PACK", nil)
                                                                 andBackground:@"emojibg"
                                                                     purchased:emojiPurchased];
     [emojiBtn addTarget:self action:@selector(emojiPackPressed:) forControlEvents:UIControlEventTouchUpInside];
-    CharacterPackButton *mailBtn = [[CharacterPackButton alloc] initWithText:NSLocalizedString(@"MAIL_PACK", nil)
+    mailBtn = [[CharacterPackButton alloc] initWithText:NSLocalizedString(@"MAIL_PACK", nil)
                                                                andBackground:@"mailbg"
                                                                    purchased:mailPurchased];
     [mailBtn addTarget:self action:@selector(mailPackPressed:) forControlEvents:UIControlEventTouchUpInside];
-    CharacterPackButton *bundleBtn = [[CharacterPackButton alloc] initWithText:NSLocalizedString(@"BUNDLE_PACK", nil)
+    bundleBtn = [[CharacterPackButton alloc] initWithText:NSLocalizedString(@"BUNDLE_PACK", nil)
                                                                  andBackground:@"bundlebg"
                                                                      purchased:bundlePurchased];
     [bundleBtn addTarget:self action:@selector(bundlePackPressed:) forControlEvents:UIControlEventTouchUpInside];
@@ -111,10 +112,6 @@
     [faqBtn addTarget:self action:@selector(showFAQ) forControlEvents:UIControlEventTouchUpInside];
     [scrollView addSubview:faqBtn];
 
-    AKLargeButton *tryBtn = [[AKLargeButton alloc] initWithText:NSLocalizedString(@"TEST_ASKEY", nil)];
-    [tryBtn addTarget:self action:@selector(tryAskey) forControlEvents:UIControlEventTouchUpInside];
-    [scrollView addSubview:tryBtn];
-
     AKLargeButton *introBtn = [[AKLargeButton alloc] initWithText:NSLocalizedString(@"LAUNCH_INTRO", nil)];
     [introBtn addTarget:self action:@selector(launchIntro) forControlEvents:UIControlEventTouchUpInside];
     [scrollView addSubview:introBtn];
@@ -126,15 +123,8 @@
         make.centerX.equalTo(self.view);
     }];
 
-    [tryBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(faqBtn.mas_bottom).offset(BUTTON_PADDING);
-        make.height.equalTo(@NORMAL_BUTTON_HEIGHT);
-        make.width.equalTo(self.view).multipliedBy(LARGE_BUTTON_RATIO);
-        make.centerX.equalTo(self.view);
-    }];
-
     [introBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(tryBtn.mas_bottom).offset(BUTTON_PADDING);
+        make.top.equalTo(faqBtn.mas_bottom).offset(BUTTON_PADDING);
         make.height.equalTo(@NORMAL_BUTTON_HEIGHT);
         make.width.equalTo(self.view).multipliedBy(LARGE_BUTTON_RATIO);
         make.centerX.equalTo(self.view);
@@ -161,38 +151,67 @@
     }];
 
 
+
+    [[NSNotificationCenter defaultCenter] addObserverForName:kMKStoreKitProductPurchasedNotification
+                                                      object:nil
+                                                       queue:[[NSOperationQueue alloc] init]
+                                                  usingBlock:^(NSNotification *note) {
+                                                      [self updatePurchased];
+                                                  }];
+
+    [[NSNotificationCenter defaultCenter] addObserverForName:kMKStoreKitRestoredPurchasesNotification
+                                                      object:nil
+                                                       queue:[[NSOperationQueue alloc] init]
+                                                  usingBlock:^(NSNotification *note) {
+                                                      [self updatePurchased];
+                                                  }];
+
+    [[NSNotificationCenter defaultCenter] addObserverForName:kMKStoreKitRestoringPurchasesFailedNotification
+                                                      object:nil
+                                                       queue:[[NSOperationQueue alloc] init]
+                                                  usingBlock:^(NSNotification *note) {
+                                                      [self updatePurchased];
+                                                  }];
+
 }
 
 - (void)updatePurchased
 {
-    textPurchased = [[[[AKCharacterPackManager characterSets] objectAtIndex:0] objectForKey:@"purchased"] boolValue];
-    emojiPurchased = [[[[AKCharacterPackManager characterSets] objectAtIndex:1] objectForKey:@"purchased"] boolValue];
-    mailPurchased = [[[[AKCharacterPackManager characterSets] objectAtIndex:2] objectForKey:@"purchased"] boolValue];
-    bundlePurchased = textPurchased && emojiPurchased && mailPurchased;
+
+    if ([[MKStoreKit sharedKit] isProductPurchased:TEXT_IDENTIFIER]) {
+        textPurchased = YES;
+        [[AKCharacterPackManager sharedManager] setCharacterSetEnabled:@"text"];
+    }
+
+    if ([[MKStoreKit sharedKit] isProductPurchased:EMOJI_IDENTIFIER]) {
+        emojiPurchased = YES;
+        [[AKCharacterPackManager sharedManager] setCharacterSetEnabled:@"emoji"];
+    }
+
+    if ([[MKStoreKit sharedKit] isProductPurchased:MAIL_IDENTIFIER]) {
+        mailPurchased = YES;
+        [[AKCharacterPackManager sharedManager] setCharacterSetEnabled:@"mail"];
+    }
+
+    if ([[MKStoreKit sharedKit] isProductPurchased:BUNDLE_IDENTIFIER]) {
+        [[AKCharacterPackManager sharedManager] setCharacterSetEnabled:@"text"];
+        [[AKCharacterPackManager sharedManager] setCharacterSetEnabled:@"emoji"];
+        [[AKCharacterPackManager sharedManager] setCharacterSetEnabled:@"mail"];
+        bundlePurchased = YES;
+    } else {
+        bundlePurchased = textPurchased && emojiPurchased && mailPurchased;
+    }
+
+
+    [textBtn setPurchased:textPurchased];
+    [emojiBtn setPurchased:emojiPurchased];
+    [mailBtn setPurchased:mailPurchased];
+    [bundleBtn setPurchased:bundlePurchased];
+
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
-
-
-//    // character pack collection view
-//    _characterSetButtons = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.scrollView.frame.size.width, 200)
-//                                               collectionViewLayout:[[UICollectionViewFlowLayout alloc] init]];
-//    [_characterSetButtons registerClass:[AKCharacterPackCollectionViewCell class] forCellWithReuseIdentifier:@"cell"];
-//    [_characterSetButtons setDataSource:self];
-//    [_characterSetButtons setDelegate:self];
-//    _characterSetButtons.backgroundColor = ASKEY_BLUE_COLOR;
-//
-//    [content addSubview:_characterSetButtons];
-
-
-//    [blueThing mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.bottom.left.and.right.equalTo(self.view);
-//        make.height.equalTo(self.view.mas_height).multipliedBy(0.5);
-//    }];
-
-
-
     // launch intro on startup
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"]) {
         // app already launched
@@ -372,16 +391,6 @@
             [scrollView setContentOffset:CGPointMake(0, 100) animated:YES];
         }
     }
-}
-
-- (void)tryAskey
-{
-
-}
-
-- (void)updateCharacterPacks
-{
-
 }
 
 - (void)showFAQ

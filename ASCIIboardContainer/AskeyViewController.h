@@ -12,6 +12,7 @@
 #import "AKTwitterButton.h"
 #import "AskeyScrollView.h"
 #import <POP.h>
+#import "CharacterPackButton.h"
 
 @interface AskeyViewController : UIViewController <UINavigationControllerDelegate, UIScrollViewDelegate, AskeyHeaderDelegate, POPAnimationDelegate, UIGestureRecognizerDelegate>
 {
@@ -30,6 +31,11 @@
     BOOL emojiPurchased;
     BOOL mailPurchased;
     BOOL bundlePurchased;
+
+    CharacterPackButton *textBtn;
+    CharacterPackButton *emojiBtn;
+    CharacterPackButton *mailBtn;
+    CharacterPackButton *bundleBtn;
 
 }
 

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SharedSecret</key>
+	<string>0989f5eef54d4a238de8a8188e3f1899</string>
+	<key>Others</key>
+	<array>
+		<string>com.shrugs.askey.text</string>
+		<string>com.shrugs.askey.emoji</string>
+		<string>com.shrugs.askey.mail</string>
+		<string>com.shrugs.askey.bundle</string>
+	</array>
+</dict>
+</plist>

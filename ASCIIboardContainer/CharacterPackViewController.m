@@ -10,7 +10,7 @@
 #import "Config.h"
 #import "UIImage+ASCII.h"
 #import <Masonry.h>
-#import "CharacterPackButton.h"
+#import "MKStoreKit.h"
 
 #define SCROLL_VIEW_HEIGHT 300
 #define TEXTVIEW_OFFSET 10
@@ -79,6 +79,8 @@
         make.height.equalTo(@(SCROLL_VIEW_HEIGHT));
     }];
 
+    _hud = [MBProgressHUD showHUDAddedTo:_textViewScrollView animated:YES];
+
     // title and description
     UILabel *title = [[UILabel alloc] init];
     [title setFont:[UIFont fontWithName:ASKEY_TITLE_FONT size:30]];
@@ -125,7 +127,7 @@
         make.right.equalTo(self.view).offset(-30);
     }];
 
-    CharacterPackButton *buyButton = [[CharacterPackButton alloc] initWithText:[NSString stringWithFormat:@"%@ %@",
+    buyButton = [[CharacterPackButton alloc] initWithText:[NSString stringWithFormat:@"%@ %@",
                                                                                 NSLocalizedString(@"BUY_PACK", nil),
                                                                                 NSLocalizedString(titleKey, nil)]
                                                                  andBackground:[NSString stringWithFormat:@"%@bg_large", _keyName]
@@ -138,6 +140,20 @@
         make.height.equalTo(@NORMAL_BUTTON_HEIGHT);
         make.width.equalTo(self.view).multipliedBy(LARGE_BUTTON_RATIO);
         make.centerX.equalTo(self.view);
+    }];
+
+    restoreBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [restoreBtn setTitle:@"RESTORE PURCHASES" forState:UIControlStateNormal];
+    [restoreBtn.titleLabel setFont:[UIFont fontWithName:ASKEY_TITLE_FONT size:12]];
+    [restoreBtn setTitleColor:[UIColor colorWithRed:153.0/255.0 green:153.0/255.0 blue:153.0/255.0 alpha:1.0] forState:UIControlStateNormal];
+    [restoreBtn addTarget:self action:@selector(restorePurchases) forControlEvents:UIControlEventTouchUpInside];
+
+    [_scrollView addSubview:restoreBtn];
+
+    [restoreBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(buyButton.mas_bottom).offset(15);
+        make.left.and.right.equalTo(self.view);
+        make.height.equalTo(@30);
     }];
 
 }
@@ -160,7 +176,45 @@
 
 - (void)purchasePack
 {
-    
+
+    NSString *pid;
+    if ([_keyName isEqualToString:@"text"]) {
+        pid = TEXT_IDENTIFIER;
+    } else if ([_keyName isEqualToString:@"emoji"]) {
+        pid = EMOJI_IDENTIFIER;
+    } else if ([_keyName isEqualToString:@"mail"]) {
+        pid = MAIL_IDENTIFIER;
+    } else if ([_keyName isEqualToString:@"bundle"]) {
+        pid = BUNDLE_IDENTIFIER;
+    }
+
+    if ([[MKStoreKit sharedKit] isProductPurchased:pid]) {
+        return;
+    }
+
+
+    [[MKStoreKit sharedKit] initiatePaymentRequestForProductWithIdentifier:pid];
+
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+
+    [[NSNotificationCenter defaultCenter] addObserverForName:kMKStoreKitProductPurchasedNotification
+                                                      object:nil
+                                                       queue:[[NSOperationQueue alloc] init]
+                                                  usingBlock:^(NSNotification *note) {
+                                                      [MBProgressHUD hideHUDForView:self.view animated:YES];
+
+                                                      if ([[note name] isEqualToString:kMKStoreKitProductPurchasedNotification]) {
+                                                          [buyButton setPurchased:YES];
+                                                      }
+                                                  }];
+    [[NSNotificationCenter defaultCenter] addObserverForName:kMKStoreKitProductPurchaseFailedNotification
+                                                      object:nil
+                                                       queue:[[NSOperationQueue alloc] init]
+                                                  usingBlock:^(NSNotification *note) {
+                                                      [MBProgressHUD hideHUDForView:self.view animated:YES];
+                                                  }];
+
+
 }
 
 - (void) setText:(NSString *)text andLayoutTextView:(UITextView *)tv
@@ -179,11 +233,37 @@
     fullWidth += width + TEXTVIEW_OFFSET;
 
     _textViewScrollView.contentSize = CGSizeMake(fullWidth, _textViewScrollView.frame.size.height);
+
+    if (_hud) {
+        [_hud hide:YES];
+        _hud = nil;
+    }
+}
+
+- (void)restorePurchases
+{
+    [[MKStoreKit sharedKit] restorePurchases];
+
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+
+    [[NSNotificationCenter defaultCenter] addObserverForName:kMKStoreKitRestoredPurchasesNotification
+                                                      object:nil
+                                                       queue:[[NSOperationQueue alloc] init]
+                                                  usingBlock:^(NSNotification *note) {
+
+                                                      [MBProgressHUD hideHUDForView:self.view animated:YES];
+                                                      if ([[note name] isEqualToString:kMKStoreKitProductPurchasedNotification]) {
+                                                          [buyButton setPurchased:YES];
+                                                      }
+
+                                                  }];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
-
+    _scrollView.contentSize = CGSizeMake(_scrollView.frame.size.width,
+                                        MAX(_scrollView.frame.size.height + 1, restoreBtn.frame.origin.y + restoreBtn.frame.size.height + 20)
+                                        );
 }
 
 - (void)didReceiveMemoryWarning {

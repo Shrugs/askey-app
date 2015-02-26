@@ -16,6 +16,7 @@ target :ASCIIboardContainer do
     pod 'SDiPhoneVersion', '~> 1.1.1'
     pod 'iOS-MagnifyingGlass', '~> 0.0.2'
     pod 'JazzHands', '~> 0.1.1'
+    pod 'MBProgressHUD', '~> 0.8'
 end
 
 target :ASCIIboard do

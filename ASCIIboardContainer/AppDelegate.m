@@ -12,6 +12,7 @@
 #import <Crashlytics/Crashlytics.h>
 #import "Flurry.h"
 #import "AskeyViewController.h"
+#import "MKStoreKit.h"
 
 @interface AppDelegate ()
 
@@ -24,6 +25,7 @@
     // Override point for customization after application launch.
     [Fabric with:@[CrashlyticsKit]];
     [Flurry startSession:@"QH7F5T9FMSKJVKSFNMY3"];
+    [[MKStoreKit sharedKit] startProductRequest];
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.

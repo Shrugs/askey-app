@@ -10,7 +10,6 @@
 		4B1029587C4A102DB7372DBD /* libPods-ASCIIboardContainer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA508355F428BA6CE144EF20 /* libPods-ASCIIboardContainer.a */; };
 		C9197D631A54A189008B2087 /* AKCharacterPackManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C9197D621A54A189008B2087 /* AKCharacterPackManager.m */; };
 		C92BCBC41A908CB70051F1B4 /* libPods-ASCIIboard.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C92BCBC31A908CB70051F1B4 /* libPods-ASCIIboard.a */; };
-		C92BCBCC1A90A35E0051F1B4 /* TryAskeyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C92BCBCB1A90A35E0051F1B4 /* TryAskeyViewController.m */; };
 		C92BCBCF1A90A5C60051F1B4 /* AskeyHeaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C92BCBCE1A90A5C60051F1B4 /* AskeyHeaderViewController.m */; };
 		C92BCBD21A90B8960051F1B4 /* CharacterPackButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C92BCBD11A90B8960051F1B4 /* CharacterPackButton.m */; };
 		C92BCBD71A90BA090051F1B4 /* emojibg.png in Resources */ = {isa = PBXBuildFile; fileRef = C92BCBD31A90BA090051F1B4 /* emojibg.png */; };
@@ -59,6 +58,9 @@
 		C95DAC5F1A9EF01A006771BE /* textbg_large.png in Resources */ = {isa = PBXBuildFile; fileRef = C95DAC5B1A9EF01A006771BE /* textbg_large.png */; };
 		C95DAC601A9EF01A006771BE /* emojibg_large.png in Resources */ = {isa = PBXBuildFile; fileRef = C95DAC5C1A9EF01A006771BE /* emojibg_large.png */; };
 		C95DAC611A9EF01A006771BE /* mailbg_large.png in Resources */ = {isa = PBXBuildFile; fileRef = C95DAC5D1A9EF01A006771BE /* mailbg_large.png */; };
+		C95DAC631A9EF73F006771BE /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C95DAC621A9EF73F006771BE /* StoreKit.framework */; };
+		C95DAC661A9EFCC0006771BE /* MKStoreKit.m in Sources */ = {isa = PBXBuildFile; fileRef = C95DAC651A9EFCC0006771BE /* MKStoreKit.m */; };
+		C95DAC691A9F00BF006771BE /* MKStoreKitConfigs.plist in Resources */ = {isa = PBXBuildFile; fileRef = C95DAC681A9F00BF006771BE /* MKStoreKitConfigs.plist */; };
 		C988AC671A58BFA200CDAD6F /* icon1024.png in Resources */ = {isa = PBXBuildFile; fileRef = C988AC661A58BFA200CDAD6F /* icon1024.png */; };
 		C99451271A511E0B009A7EFF /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C99451251A511E0B009A7EFF /* Crashlytics.framework */; };
 		C99451421A512590009A7EFF /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C994513F1A512590009A7EFF /* Crashlytics.framework */; };
@@ -129,8 +131,6 @@
 		C9197D611A54A189008B2087 /* AKCharacterPackManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKCharacterPackManager.h; sourceTree = "<group>"; };
 		C9197D621A54A189008B2087 /* AKCharacterPackManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKCharacterPackManager.m; sourceTree = "<group>"; };
 		C92BCBC31A908CB70051F1B4 /* libPods-ASCIIboard.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-ASCIIboard.a"; path = "Pods/build/Debug-iphoneos/libPods-ASCIIboard.a"; sourceTree = "<group>"; };
-		C92BCBCA1A90A35E0051F1B4 /* TryAskeyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TryAskeyViewController.h; sourceTree = "<group>"; };
-		C92BCBCB1A90A35E0051F1B4 /* TryAskeyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TryAskeyViewController.m; sourceTree = "<group>"; };
 		C92BCBCD1A90A5C60051F1B4 /* AskeyHeaderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AskeyHeaderViewController.h; sourceTree = "<group>"; };
 		C92BCBCE1A90A5C60051F1B4 /* AskeyHeaderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AskeyHeaderViewController.m; sourceTree = "<group>"; };
 		C92BCBD01A90B8960051F1B4 /* CharacterPackButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacterPackButton.h; sourceTree = "<group>"; };
@@ -229,6 +229,10 @@
 		C95DAC5B1A9EF01A006771BE /* textbg_large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = textbg_large.png; sourceTree = "<group>"; };
 		C95DAC5C1A9EF01A006771BE /* emojibg_large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = emojibg_large.png; sourceTree = "<group>"; };
 		C95DAC5D1A9EF01A006771BE /* mailbg_large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mailbg_large.png; sourceTree = "<group>"; };
+		C95DAC621A9EF73F006771BE /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		C95DAC641A9EFCC0006771BE /* MKStoreKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKStoreKit.h; sourceTree = "<group>"; };
+		C95DAC651A9EFCC0006771BE /* MKStoreKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKStoreKit.m; sourceTree = "<group>"; };
+		C95DAC681A9F00BF006771BE /* MKStoreKitConfigs.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MKStoreKitConfigs.plist; sourceTree = "<group>"; };
 		C988AC661A58BFA200CDAD6F /* icon1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon1024.png; sourceTree = "<group>"; };
 		C99451251A511E0B009A7EFF /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = SOURCE_ROOT; };
 		C99451261A511E0B009A7EFF /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = SOURCE_ROOT; };
@@ -264,6 +268,7 @@
 				C994514E1A512D91009A7EFF /* SystemConfiguration.framework in Frameworks */,
 				C99451431A512590009A7EFF /* Fabric.framework in Frameworks */,
 				C99451271A511E0B009A7EFF /* Crashlytics.framework in Frameworks */,
+				C95DAC631A9EF73F006771BE /* StoreKit.framework in Frameworks */,
 				C994514B1A512BB0009A7EFF /* libFlurry_6.0.0.a in Frameworks */,
 				4B1029587C4A102DB7372DBD /* libPods-ASCIIboardContainer.a in Frameworks */,
 			);
@@ -294,6 +299,7 @@
 		C1F96D68E01993E66C03A35A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C95DAC621A9EF73F006771BE /* StoreKit.framework */,
 				C92BCBC31A908CB70051F1B4 /* libPods-ASCIIboard.a */,
 				C994514D1A512D91009A7EFF /* SystemConfiguration.framework */,
 				C93A516019DA2E1A00BC939D /* libPods.a */,
@@ -377,6 +383,7 @@
 				C99451251A511E0B009A7EFF /* Crashlytics.framework */,
 				C99451261A511E0B009A7EFF /* Fabric.framework */,
 				C941022B1A58CFFA00954953 /* Config.h */,
+				C95DAC671A9EFCC3006771BE /* MKStoreKit */,
 				C952A45919D123870025DD73 /* AppDelegate.h */,
 				C952A45A19D123870025DD73 /* AppDelegate.m */,
 				C952A45C19D123870025DD73 /* AskeyViewController.h */,
@@ -394,8 +401,6 @@
 				C92BCBD11A90B8960051F1B4 /* CharacterPackButton.m */,
 				C92BCBCD1A90A5C60051F1B4 /* AskeyHeaderViewController.h */,
 				C92BCBCE1A90A5C60051F1B4 /* AskeyHeaderViewController.m */,
-				C92BCBCA1A90A35E0051F1B4 /* TryAskeyViewController.h */,
-				C92BCBCB1A90A35E0051F1B4 /* TryAskeyViewController.m */,
 				C952A46219D123870025DD73 /* Images.xcassets */,
 				C952A46419D123870025DD73 /* LaunchScreen.xib */,
 				C952A45519D123870025DD73 /* Supporting Files */,
@@ -470,6 +475,16 @@
 				C952A48219D123990025DD73 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C95DAC671A9EFCC3006771BE /* MKStoreKit */ = {
+			isa = PBXGroup;
+			children = (
+				C95DAC641A9EFCC0006771BE /* MKStoreKit.h */,
+				C95DAC651A9EFCC0006771BE /* MKStoreKit.m */,
+				C95DAC681A9F00BF006771BE /* MKStoreKitConfigs.plist */,
+			);
+			name = MKStoreKit;
 			sourceTree = "<group>";
 		};
 		C988AC681A58BFA700CDAD6F /* icons */ = {
@@ -607,6 +622,9 @@
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
 							};
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
 						};
 					};
 					C952A46A19D123870025DD73 = {
@@ -700,6 +718,7 @@
 				C94102951A5E66A500954953 /* characterpacks.plist in Resources */,
 				C95DAC591A9EEE8D006771BE /* bundlebg.png in Resources */,
 				C95DAC601A9EF01A006771BE /* emojibg_large.png in Resources */,
+				C95DAC691A9F00BF006771BE /* MKStoreKitConfigs.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -825,12 +844,12 @@
 				C952A45E19D123870025DD73 /* AskeyViewController.m in Sources */,
 				C92BCC181A918E580051F1B4 /* MCGenericBouncyButton.m in Sources */,
 				C92BCBD21A90B8960051F1B4 /* CharacterPackButton.m in Sources */,
+				C95DAC661A9EFCC0006771BE /* MKStoreKit.m in Sources */,
 				C94102341A58DD6A00954953 /* AKCharacterPackManager.m in Sources */,
 				C92BCBCF1A90A5C60051F1B4 /* AskeyHeaderViewController.m in Sources */,
 				C94102581A5B370500954953 /* NSString+FontAwesome.m in Sources */,
 				C92BCBDF1A90C3C30051F1B4 /* AKTwitterButton.m in Sources */,
 				C941022E1A58D1A300954953 /* AKLargeButton.m in Sources */,
-				C92BCBCC1A90A35E0051F1B4 /* TryAskeyViewController.m in Sources */,
 				C94102641A5BA3D900954953 /* UIImage+ASCII.m in Sources */,
 				C94102721A5CD09B00954953 /* AKIntroViewController.m in Sources */,
 				C92BCC1B1A9192350051F1B4 /* AskeyScrollView.m in Sources */,

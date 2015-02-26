@@ -5,6 +5,7 @@ PODS:
   - LIVBubbleMenu (1.0.0):
     - pop (~> 1.0.7)
   - Masonry (0.6.1)
+  - MBProgressHUD (0.9)
   - MCBouncyButton (1.0.0):
     - pop (~> 1.0)
   - pop (1.0.7)
@@ -16,6 +17,7 @@ DEPENDENCIES:
   - JazzHands (~> 0.1.1)
   - LIVBubbleMenu (from `https://github.com/Shrugs/LIVBubbleMenu-iOS.git`, branch `bganimation-fix`)
   - Masonry
+  - MBProgressHUD (~> 0.8)
   - MCBouncyButton
   - pop
   - SDiPhoneVersion (~> 1.1.1)
@@ -36,6 +38,7 @@ SPEC CHECKSUMS:
   JazzHands: d39c6b19bfe34946d220fdede80930b7be37f199
   LIVBubbleMenu: c0f3704c9332cb7b8db80eabef0e666d6a2fac80
   Masonry: 2cb49fd14d203d2db5ca6bb017135b235dde9980
+  MBProgressHUD: 2038dbcf3dce73215abed6001657043d53aa79a8
   MCBouncyButton: f56f99744f56a62d092152c06c929e7868886d69
   pop: 2f14a1ea61339767af9e66741b418c831b3844df
   SDiPhoneVersion: dd5177b6d4ec76bc1ccd294c9b277d28bade9d38

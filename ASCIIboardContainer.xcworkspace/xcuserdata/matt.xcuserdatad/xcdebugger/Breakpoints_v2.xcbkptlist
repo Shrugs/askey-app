@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ASCIIboardContainer/CharacterPackViewController.m"
-            timestampString = "446624902.535011"
+            timestampString = "446630540.533923"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "172"
-            endingLineNumber = "172"
+            startingLineNumber = "226"
+            endingLineNumber = "226"
             landmarkName = "-setText:andLayoutTextView:"
             landmarkType = "5">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ASCIIboardContainer/CharacterPackViewController.m"
-            timestampString = "446624902.535011"
+            timestampString = "446630540.533923"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "174"
-            endingLineNumber = "174"
+            startingLineNumber = "228"
+            endingLineNumber = "228"
             landmarkName = "-setText:andLayoutTextView:"
             landmarkType = "5">
          </BreakpointContent>
@@ -42,12 +42,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ASCIIboardContainer/CharacterPackViewController.m"
-            timestampString = "446624902.535011"
+            timestampString = "446630540.533923"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "182"
-            endingLineNumber = "182"
-            landmarkName = "-setText:andLayoutTextView:"
+            startingLineNumber = "242"
+            endingLineNumber = "242"
+            landmarkName = "-restorePurchases"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -58,7 +58,23 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ASCIIboardContainer/CharacterPackViewController.m"
-            timestampString = "446624902.535011"
+            timestampString = "446630347.90767"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "118"
+            endingLineNumber = "118"
+            landmarkName = "-viewDidLoad"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ASCIIboardContainer/CharacterPackViewController.m"
+            timestampString = "446630347.90767"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "116"
@@ -74,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ASCIIboardContainer/CharacterPackViewController.m"
-            timestampString = "446624902.535011"
+            timestampString = "446630347.90767"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "114"
-            endingLineNumber = "114"
+            startingLineNumber = "120"
+            endingLineNumber = "120"
             landmarkName = "-viewDidLoad"
             landmarkType = "5">
          </BreakpointContent>
@@ -90,12 +106,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ASCIIboardContainer/CharacterPackViewController.m"
-            timestampString = "446624902.535011"
+            timestampString = "446630424.672798"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "118"
-            endingLineNumber = "118"
-            landmarkName = "-viewDidLoad"
+            startingLineNumber = "208"
+            endingLineNumber = "208"
+            landmarkName = "-purchasePack"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
