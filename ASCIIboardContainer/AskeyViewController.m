@@ -42,7 +42,9 @@
     [self.view addSubview:scrollView];
 
     _header = [[AskeyHeaderViewController alloc] init];
+    _header.delegate = self;
     UIWindow *currentWindow = [UIApplication sharedApplication].keyWindow;
+    currentWindow.backgroundColor = ASKEY_BLUE_COLOR;
     [currentWindow addSubview:_header.view];
 
     [_header.view mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -97,15 +99,15 @@
 
 
     AKLargeButton *faqBtn = [[AKLargeButton alloc] initWithText:NSLocalizedString(@"FAQ", nil)];
-//    [faqBtn addTarget:self action:@selector(faqBtnPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [faqBtn addTarget:self action:@selector(showFAQ) forControlEvents:UIControlEventTouchUpInside];
     [scrollView addSubview:faqBtn];
 
     AKLargeButton *tryBtn = [[AKLargeButton alloc] initWithText:NSLocalizedString(@"TEST_ASKEY", nil)];
-//    [tryBtn addTarget:self action:@selector(tryBtnPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [tryBtn addTarget:self action:@selector(tryAskey) forControlEvents:UIControlEventTouchUpInside];
     [scrollView addSubview:tryBtn];
 
     AKLargeButton *introBtn = [[AKLargeButton alloc] initWithText:NSLocalizedString(@"LAUNCH_INTRO", nil)];
-//    [introBtn addTarget:self action:@selector(launchIntro:) forControlEvents:UIControlEventTouchUpInside];
+    [introBtn addTarget:self action:@selector(launchIntro) forControlEvents:UIControlEventTouchUpInside];
     [scrollView addSubview:introBtn];
 
     [faqBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -192,29 +194,67 @@
 
 - (void)textPackPressed:(id)sender
 {
-    CharacterPackViewController *vc = [[CharacterPackViewController alloc] initWithCharacterPack:[[AKCharacterPackManager characterSets] objectAtIndex:0]];
-    [self makeHeaderHeight:SMALL_HEADER_HEIGHT];
-    [self presentViewController:vc animated:YES completion:nil];
+    _presentedViewController = [[CharacterPackViewController alloc] initWithCharacterPack:[[AKCharacterPackManager characterSets] objectAtIndex:0]];
+    [_header showCarat:YES];
+    [self _animateHeaderHeightTo:SMALL_HEADER_HEIGHT];
+    [self presentViewController:_presentedViewController animated:YES completion:nil];
 }
 
 - (void)emojiPackPressed:(id)sender
 {
-    CharacterPackViewController *vc = [[CharacterPackViewController alloc] initWithCharacterPack:[[AKCharacterPackManager characterSets] objectAtIndex:1]];
-    [self makeHeaderHeight:SMALL_HEADER_HEIGHT];
-    [self presentViewController:vc animated:YES completion:nil];
+    _presentedViewController = [[CharacterPackViewController alloc] initWithCharacterPack:[[AKCharacterPackManager characterSets] objectAtIndex:1]];
+    [_header showCarat:YES];
+    [self _animateHeaderHeightTo:SMALL_HEADER_HEIGHT];
+    [self presentViewController:_presentedViewController animated:YES completion:nil];
 }
 
 - (void)mailPackPressed:(id)sender
 {
-    CharacterPackViewController *vc = [[CharacterPackViewController alloc] initWithCharacterPack:[[AKCharacterPackManager characterSets] objectAtIndex:2]];
-    [self makeHeaderHeight:SMALL_HEADER_HEIGHT];
-    [self presentViewController:vc animated:YES completion:nil];
+    _presentedViewController = [[CharacterPackViewController alloc] initWithCharacterPack:[[AKCharacterPackManager characterSets] objectAtIndex:2]];
+    [_header showCarat:YES];
+    [self _animateHeaderHeightTo:SMALL_HEADER_HEIGHT];
+    [self presentViewController:_presentedViewController animated:YES completion:nil];
 }
 
 - (void)makeHeaderHeight:(float)height
 {
     [_header.animator animate:height];
     [_header.scaleAnimator animate:height];
+}
+
+- (void)_animateHeaderHeightTo:(float)height
+{
+
+    POPBasicAnimation *anim = [POPBasicAnimation animation];
+
+    anim.property = [POPAnimatableProperty propertyWithName:@"com.shrugs.askey.header.height" initializer:^(POPMutableAnimatableProperty *prop) {
+        // read value
+        prop.readBlock = ^(id obj, CGFloat values[]) {
+            values[0] = ((AskeyHeaderViewController *)obj).animator.time;
+        };
+        // write value
+        prop.writeBlock = ^(id obj, const CGFloat values[]) {
+
+            [((AskeyHeaderViewController *)obj).animator animate:values[0]];
+            [((AskeyHeaderViewController *)obj).scaleAnimator animate:values[0]];
+
+        };
+        // dynamics threshold
+        prop.threshold = 0.01;
+    }];
+
+    float startVal = _header.animator.time;
+    float endVal;
+    if (height == SMALL_HEADER_HEIGHT) {
+        endVal = 100;
+    } else {
+        endVal = 0;
+    }
+
+    anim.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    anim.fromValue = @(startVal);
+    anim.toValue = @(endVal);
+    [_header pop_addAnimation:anim forKey:@"headerFrame"];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)theScrollView
@@ -233,6 +273,66 @@
                                                    repeats:NO];
 }
 
+- (void)headerHasBeenDragged:(UIPanGestureRecognizer *)rec
+{
+
+    static CGPoint originalCenter;
+
+    if ([rec state] == UIGestureRecognizerStateBegan) {
+        originalCenter = _presentedViewController.view.center;
+
+    } else if ([rec state] == UIGestureRecognizerStateEnded) {
+        // once we end, find velocity and move to the correct side
+        if ([rec velocityInView:_header.view.superview].y > -1) {
+            // dismiss
+            [self _animateHeaderHeightTo:LARGE_HEADER_HEIGHT];
+            [_presentedViewController dismissViewControllerAnimated:YES completion:^() {
+                [_header showCarat:NO];
+                _presentedViewController = nil;
+            }];
+        } else {
+            [self _animateHeaderHeightTo:SMALL_HEADER_HEIGHT];
+            POPSpringAnimation *anim = [POPSpringAnimation animationWithPropertyNamed:kPOPViewCenter];
+            anim.toValue = [NSValue valueWithCGPoint:originalCenter];
+            [_presentedViewController.view pop_addAnimation:anim forKey:@"presentedViewController"];
+        }
+    }
+
+    float deltaY = [rec translationInView:_header.view.superview].y;
+
+    CGPoint f = _presentedViewController.view.center;
+    f.y = originalCenter.y + MIN(deltaY, 100);
+    _presentedViewController.view.center = f;
+
+    [self makeHeaderHeight:[self revertRange:deltaY]];
+
+}
+
+- (float)revertRange:(float)in
+{
+    // turns a number in [100, 0] to [0, 100]
+    float outMax = 100;
+    float outMin = 0;
+    float inMax = 0;
+    float inMin = 100;
+
+    return outMin + (outMax - outMin) * (in - inMin) / (inMax - inMin);
+}
+
+- (void)headerHasBeenTapped
+{
+    [_presentedViewController dismissViewControllerAnimated:YES completion:^(){
+        [_header showCarat:NO];
+        _presentedViewController = nil;
+    }];
+    [self _animateHeaderHeightTo:LARGE_HEADER_HEIGHT];
+}
+
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
+{
+    return !(_presentedViewController == nil);
+}
+
 - (void)resetScrollView:(NSTimer *)timer
 {
     if (scrollView.contentOffset.y > 5) {
@@ -249,7 +349,7 @@
     // purchase all of them for $2
 }
 
-- (void)tryoutAskey
+- (void)tryAskey
 {
 
 }

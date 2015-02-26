@@ -28,6 +28,7 @@
 
     // icon
     iconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"iconheader"]];
+    iconView.userInteractionEnabled = NO;
 
     // title
     title = [[UILabel alloc] init];
@@ -37,11 +38,17 @@
     title.textColor = [UIColor whiteColor];
     title.translatesAutoresizingMaskIntoConstraints = NO;
     [title sizeToFit];
+    title.userInteractionEnabled = NO;
 
     // carat
     _carat = [[UIButton alloc] init];
     [_carat setTitle:[NSString fa_stringForFontAwesomeIcon:FACaretDown] forState:UIControlStateNormal];
     [_carat.titleLabel setFont:[UIFont fontWithName:kFontAwesomeFont size:30]];
+    [_carat addTarget:self.delegate action:@selector(headerHasBeenTapped) forControlEvents:UIControlEventTouchUpInside];
+
+    UIPanGestureRecognizer *headerDragRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self.delegate action:@selector(headerHasBeenDragged:)];
+    headerDragRecognizer.delegate = self.delegate;
+    [self.view addGestureRecognizer:headerDragRecognizer];
 
     // add to views
     [self.view addSubview:iconView];
@@ -50,10 +57,9 @@
 
     // constraints
     [_carat mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.height.equalTo(self.view).multipliedBy(0.6);
+        make.height.equalTo(@(30));
         make.width.equalTo(_carat.mas_height);
-        make.left.equalTo(self.view).offset(5);
-        // @TODO make top constraint animated by jazhands
+        make.left.equalTo(self.view).offset(10);
     }];
 
 
@@ -104,12 +110,22 @@
                                                                             multiplier:1
                                                                           constant:0];
 
+    // carat top
+    NSLayoutConstraint *_caratTopConstraint = [NSLayoutConstraint constraintWithItem:_carat
+                                                                          attribute:NSLayoutAttributeTop
+                                                                          relatedBy:NSLayoutRelationEqual
+                                                                             toItem:self.view
+                                                                          attribute:NSLayoutAttributeTop
+                                                                         multiplier:1
+                                                                           constant:0];
+
     [self.view addConstraints:@[
                                 _iconLeftConstraint,
                                 _iconCenterYConstraint,
                                 _titleLeftConstraint,
                                 _titleCenterYConstraint,
-                                _heightConstraint
+                                _heightConstraint,
+                                _caratTopConstraint
                                ]];
 
 
@@ -161,6 +177,9 @@
                                         ]];
 
 
+    [self animationWithConstraint:_caratTopConstraint startConstant:-30 andEndConstant:(SMALL_HEADER_HEIGHT-10)/2.0 - 5];
+
+
     [self.animator animate:0];
     [self.scaleAnimator animate:0];
 
@@ -171,6 +190,8 @@
     CGRect f = self.view.frame;
     f.size.height = 160;
     self.view.frame = f;
+
+    [self showCarat:NO];
 }
 
 - (void)animationWithConstraint:(NSLayoutConstraint *)constraint startConstant:(CGFloat)start andEndConstant:(CGFloat)end

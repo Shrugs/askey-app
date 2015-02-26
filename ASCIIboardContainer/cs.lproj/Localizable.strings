@@ -5,10 +5,10 @@
   Created by Matt Condon on 2/25/15.
   Copyright (c) 2015 Shrugs. All rights reserved.
 */
-"TEXT_PACK" = "text";
+"TEXT_PACK" = "Text";
 "EMOJI_PACK" = "Emoji";
 "MAIL_PACK" = "E-mail";
-"BUNDLE_PACK" = "balík";
+"BUNDLE_PACK" = "Balík";
 "FAQ" = "FAQ";
 "TEST_ASKEY" = "testovací Askey";
 "LAUNCH_INTRO" = "Spustit Intro";
@@ -23,4 +23,4 @@
 "INTRO_STEP_5" = "Vyberte 'Askey'";
 "INTRO_STEP_6" = "Vyberte nový 'Askey - Askey' klávesnice";
 "INTRO_STEP_7" = "Povolit plný přístup (pro znakové sady a v pohodě)";
-"BUY_PACK" ="nákup";
+"BUY_PACK" ="Nákup";

@@ -20,7 +20,7 @@
     if (self) {
         _pack = pack;
 
-        self.view.backgroundColor = ASKEY_BLUE_COLOR;
+        self.view.backgroundColor = [UIColor redColor];
     }
     return self;
 }

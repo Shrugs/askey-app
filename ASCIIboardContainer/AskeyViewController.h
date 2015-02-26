@@ -11,8 +11,9 @@
 #import "AskeyHeaderViewController.h"
 #import "AKTwitterButton.h"
 #import "AskeyScrollView.h"
+#import <POP.h>
 
-@interface AskeyViewController : UIViewController <UINavigationControllerDelegate, UIScrollViewDelegate>
+@interface AskeyViewController : UIViewController <UINavigationControllerDelegate, UIScrollViewDelegate, AskeyHeaderDelegate, POPAnimationDelegate, UIGestureRecognizerDelegate>
 {
     UICollectionView *_characterSetButtons;
     NSMutableArray *_characterSets;
@@ -22,6 +23,8 @@
     AKTwitterButton *matt;
 
     NSTimer *_scrollTimer;
+
+    UIViewController *_presentedViewController;
 }
 
 @property (nonatomic, retain) AKIntroViewController *introVC;

@@ -4,7 +4,7 @@ platform :ios, "8.1"
 
 def import_pods
     pod 'Masonry'
-    pod 'pop', '~> 1.0'
+    pod 'pop'
     pod 'MCBouncyButton'
 end
 
