@@ -10,9 +10,14 @@
 
 @interface CharacterPackViewController : UIViewController
 {
-    NSMutableArray *_pack;
+    NSArray *_packs;
+    UIScrollView *_scrollView;
+    UIScrollView *_textViewScrollView;
+    NSMutableArray *_textViews;
+    BOOL _isPurchased;
+    NSString *_keyName;
 }
 
-- (id)initWithCharacterPack:(NSMutableArray *)pack;
+- (id)initWithCharacterPacks:(NSArray *)packs andPurchased:(BOOL)purchased;
 
 @end

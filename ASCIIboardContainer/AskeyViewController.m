@@ -19,8 +19,6 @@
 #import "TryAskeyViewController.h"
 
 #define CONTAINER_PADDING 20
-#define NORMAL_BUTTON_HEIGHT 65
-#define LARGE_BUTTON_RATIO 0.933
 #define BUTTON_PADDING 15
 #define TWITTER_BUTTON_HEIGHT 40
 
@@ -44,7 +42,7 @@
     _header = [[AskeyHeaderViewController alloc] init];
     _header.delegate = self;
     UIWindow *currentWindow = [UIApplication sharedApplication].keyWindow;
-    currentWindow.backgroundColor = ASKEY_BLUE_COLOR;
+    currentWindow.backgroundColor = ASKEY_BACKGROUND_COLOR;
     [currentWindow addSubview:_header.view];
 
     [_header.view mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -54,13 +52,24 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 
 
-    CharacterPackButton *textBtn = [[CharacterPackButton alloc] initWithText:NSLocalizedString(@"TEXT_PACK", nil) andBackground:@"textbg" purchased:YES];
+    [self updatePurchased];
+
+
+    CharacterPackButton *textBtn = [[CharacterPackButton alloc] initWithText:NSLocalizedString(@"TEXT_PACK", nil)
+                                                               andBackground:@"textbg"
+                                                                   purchased:textPurchased];
     [textBtn addTarget:self action:@selector(textPackPressed:) forControlEvents:UIControlEventTouchUpInside];
-    CharacterPackButton *emojiBtn = [[CharacterPackButton alloc] initWithText:NSLocalizedString(@"EMOJI_PACK", nil) andBackground:@"emojibg" purchased:NO];
+    CharacterPackButton *emojiBtn = [[CharacterPackButton alloc] initWithText:NSLocalizedString(@"EMOJI_PACK", nil)
+                                                                andBackground:@"emojibg"
+                                                                    purchased:emojiPurchased];
     [emojiBtn addTarget:self action:@selector(emojiPackPressed:) forControlEvents:UIControlEventTouchUpInside];
-    CharacterPackButton *mailBtn = [[CharacterPackButton alloc] initWithText:NSLocalizedString(@"MAIL_PACK", nil) andBackground:@"mailbg" purchased:NO];
+    CharacterPackButton *mailBtn = [[CharacterPackButton alloc] initWithText:NSLocalizedString(@"MAIL_PACK", nil)
+                                                               andBackground:@"mailbg"
+                                                                   purchased:mailPurchased];
     [mailBtn addTarget:self action:@selector(mailPackPressed:) forControlEvents:UIControlEventTouchUpInside];
-    CharacterPackButton *bundleBtn = [[CharacterPackButton alloc] initWithText:NSLocalizedString(@"BUNDLE_PACK", nil) andBackground:@"combobg" purchased:NO];
+    CharacterPackButton *bundleBtn = [[CharacterPackButton alloc] initWithText:NSLocalizedString(@"BUNDLE_PACK", nil)
+                                                                 andBackground:@"bundlebg"
+                                                                     purchased:bundlePurchased];
     [bundleBtn addTarget:self action:@selector(bundlePackPressed:) forControlEvents:UIControlEventTouchUpInside];
 
     UIView *buttonContainer = [[UIView alloc] initWithFrame:CGRectMake(0, LARGE_HEADER_HEIGHT, self.view.frame.size.width, 150)];
@@ -154,6 +163,14 @@
 
 }
 
+- (void)updatePurchased
+{
+    textPurchased = [[[[AKCharacterPackManager characterSets] objectAtIndex:0] objectForKey:@"purchased"] boolValue];
+    emojiPurchased = [[[[AKCharacterPackManager characterSets] objectAtIndex:1] objectForKey:@"purchased"] boolValue];
+    mailPurchased = [[[[AKCharacterPackManager characterSets] objectAtIndex:2] objectForKey:@"purchased"] boolValue];
+    bundlePurchased = textPurchased && emojiPurchased && mailPurchased;
+}
+
 - (void)viewDidAppear:(BOOL)animated
 {
 
@@ -194,7 +211,7 @@
 
 - (void)textPackPressed:(id)sender
 {
-    _presentedViewController = [[CharacterPackViewController alloc] initWithCharacterPack:[[AKCharacterPackManager characterSets] objectAtIndex:0]];
+    _presentedViewController = [[CharacterPackViewController alloc] initWithCharacterPacks:@[[[AKCharacterPackManager characterSets] objectAtIndex:0]] andPurchased:textPurchased];
     [_header showCarat:YES];
     [self _animateHeaderHeightTo:SMALL_HEADER_HEIGHT];
     [self presentViewController:_presentedViewController animated:YES completion:nil];
@@ -202,7 +219,7 @@
 
 - (void)emojiPackPressed:(id)sender
 {
-    _presentedViewController = [[CharacterPackViewController alloc] initWithCharacterPack:[[AKCharacterPackManager characterSets] objectAtIndex:1]];
+    _presentedViewController = [[CharacterPackViewController alloc] initWithCharacterPacks:@[[[AKCharacterPackManager characterSets] objectAtIndex:1]] andPurchased:emojiPurchased];
     [_header showCarat:YES];
     [self _animateHeaderHeightTo:SMALL_HEADER_HEIGHT];
     [self presentViewController:_presentedViewController animated:YES completion:nil];
@@ -210,11 +227,21 @@
 
 - (void)mailPackPressed:(id)sender
 {
-    _presentedViewController = [[CharacterPackViewController alloc] initWithCharacterPack:[[AKCharacterPackManager characterSets] objectAtIndex:2]];
+    _presentedViewController = [[CharacterPackViewController alloc] initWithCharacterPacks:@[[[AKCharacterPackManager characterSets] objectAtIndex:2]] andPurchased:mailPurchased];
     [_header showCarat:YES];
     [self _animateHeaderHeightTo:SMALL_HEADER_HEIGHT];
     [self presentViewController:_presentedViewController animated:YES completion:nil];
 }
+
+
+- (void)bundlePackPressed:(id)sender
+{
+    _presentedViewController = [[CharacterPackViewController alloc] initWithCharacterPacks:[AKCharacterPackManager characterSets] andPurchased:bundlePurchased];
+    [_header showCarat:YES];
+    [self _animateHeaderHeightTo:SMALL_HEADER_HEIGHT];
+    [self presentViewController:_presentedViewController animated:YES completion:nil];
+}
+
 
 - (void)makeHeaderHeight:(float)height
 {
@@ -289,6 +316,9 @@
             [_presentedViewController dismissViewControllerAnimated:YES completion:^() {
                 [_header showCarat:NO];
                 _presentedViewController = nil;
+                if (scrollView.contentOffset.y > 0) {
+                    [self _animateHeaderHeightTo:SMALL_HEADER_HEIGHT];
+                }
             }];
         } else {
             [self _animateHeaderHeightTo:SMALL_HEADER_HEIGHT];
@@ -342,11 +372,6 @@
             [scrollView setContentOffset:CGPointMake(0, 100) animated:YES];
         }
     }
-}
-
-- (void)bundlePackPressed:(id)sender
-{
-    // purchase all of them for $2
 }
 
 - (void)tryAskey

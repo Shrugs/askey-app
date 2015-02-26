@@ -20,6 +20,9 @@
 
 #define ASKEY_TITLE_FONT @"HelveticaNeue-Medium"
 
+#define LARGE_BUTTON_RATIO 0.933
+#define NORMAL_BUTTON_HEIGHT 65
+
 // DEBUG
 #define DEBUG_SPACERS NO
 

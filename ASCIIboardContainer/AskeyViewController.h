@@ -25,6 +25,12 @@
     NSTimer *_scrollTimer;
 
     UIViewController *_presentedViewController;
+
+    BOOL textPurchased;
+    BOOL emojiPurchased;
+    BOOL mailPurchased;
+    BOOL bundlePurchased;
+
 }
 
 @property (nonatomic, retain) AKIntroViewController *introVC;
