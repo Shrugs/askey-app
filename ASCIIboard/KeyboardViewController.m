@@ -342,8 +342,6 @@
         make.right.equalTo(spacerLeftRight.mas_left);
         make.width.equalTo(self.brushButton.mas_height);
         make.height.equalTo(@(BUTTON_HEIGHT));
-
-        // @TODO(Shrugs)
         make.centerY.equalTo(self.enterButton);
     }];
     [self.eraserButton mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -392,13 +390,6 @@
 
 }
 
-- (void)updateViewConstraints {
-
-    [super updateViewConstraints];
-
-
-}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated
@@ -424,7 +415,8 @@
     ASKEYScreenOrientation currentOrientation = (appExtensionWidth == screenWidthValue) ? ASKEYScreenOrientationPortrait : ASKEYScreenOrientationLandscape;
 
     if (currentOrientation != previousOrientation) {
-        [brushMenu hide];
+        [characterSetMenu hide];
+        [characterPackMenu hide];
         previousOrientation = currentOrientation;
     }
 
@@ -432,64 +424,26 @@
 
 #pragma mark - TextInput Delegate
 
-- (void)textWillChange:(id<UITextInput>)textInput {
-    // The app is about to change the document's contents. Perform any preparation here.
-}
-
-- (void)textDidChange:(id<UITextInput>)textInput {
-    // The app has just changed the document's contents, the document context has been updated.
-
-    UIColor *textColor = nil;
-    if (self.textDocumentProxy.keyboardAppearance == UIKeyboardAppearanceDark) {
-        textColor = [UIColor whiteColor];
-    } else {
-        textColor = [UIColor blackColor];
-    }
-    [self.nextKeyboardButton setTitleColor:textColor forState:UIControlStateNormal];
-}
+//- (void)textDidChange:(id<UITextInput>)textInput {
+//    // The app has just changed the document's contents, the document context has been updated.
+//
+//    UIColor *textColor = nil;
+//    if (self.textDocumentProxy.keyboardAppearance == UIKeyboardAppearanceDark) {
+//        textColor = [UIColor whiteColor];
+//    } else {
+//        textColor = [UIColor blackColor];
+//    }
+//    [self.nextKeyboardButton setTitleColor:textColor forState:UIControlStateNormal];
+//}
 
 #pragma mark - Button Handlers
 
 - (void)brushButtonPressed:(UIButton *)sender
 {
-    if (self.currentSheet.drawView.drawTool == ACEDrawingToolTypePen) {
-        [self showBrushMenu];
-    } else {
-        // select brush
-        self.currentSheet.drawView.drawTool = ACEDrawingToolTypePen;
-        self.currentSheet.drawView.lineWidth = lastBrushSize;
-        [self setBrushSelected];
-    }
-}
-
-- (void)showBrushMenu
-{
-    self.brushButtonsArray = [NSArray arrayWithObjects:
-                              [[AKBrushButton alloc] initWithBrushSize:BRUSH_SIZE_SMALL andRadius:(BUTTON_HEIGHT * BRUSH_BUTTON_RELATIVE_SIZE / 2.0f)],
-                              [[AKBrushButton alloc] initWithBrushSize:BRUSH_SIZE_MEDIUM andRadius:(BUTTON_HEIGHT * BRUSH_BUTTON_RELATIVE_SIZE / 2.0f)],
-                              [[AKBrushButton alloc] initWithBrushSize:BRUSH_SIZE_LARGE andRadius:(BUTTON_HEIGHT * BRUSH_BUTTON_RELATIVE_SIZE / 2.0f)],
-                              nil];
-
+    // select brush
+    self.currentSheet.drawView.drawTool = ACEDrawingToolTypePen;
+    self.currentSheet.drawView.lineWidth = BRUSH_SIZE_LARGE;
     [self setBrushSelected];
-
-    brushMenu = [[LIVBubbleMenu alloc] initWithPoint:self.brushButton.center radius:self.brushButton.frame.size.width * 2.0f menuItems:self.brushButtonsArray inView:self.view];
-    brushMenu.bubbleStartAngle = 0;
-    brushMenu.bubbleTotalAngle = 90;
-    brushMenu.bubbleRadius = (BUTTON_HEIGHT*BRUSH_BUTTON_RELATIVE_SIZE) / 2.0f;
-    brushMenu.bubbleShowDelayTime = 0.1f;
-    brushMenu.bubbleHideDelayTime = 0.1f;
-    brushMenu.bubbleSpringBounciness = 5.0f;
-    // brushMenu.bubbleSpringSpeed = 10.0f;
-    brushMenu.bubblePopInDuration = 0.3f;
-    brushMenu.bubblePopOutDuration = 0.3f;
-    brushMenu.backgroundFadeDuration = 0.3f;
-    brushMenu.backgroundAlpha = 0.3f;
-    brushMenu.customButtons = YES;
-    brushMenu.delegate = self;
-
-    [brushMenu show];
-    self.brushButton.enabled = NO;
-    [self.view bringSubviewToFront:self.brushButton];
 }
 
 - (void)clearButtonPressed:(UIButton *)sender
@@ -500,11 +454,8 @@
 
 - (void)eraserButtonPressed:(UIButton *)sender
 {
-    [self setEraserSelected];
-    // change to eraser
     self.currentSheet.drawView.drawTool = ACEDrawingToolTypeEraser;
-    lastBrushSize = self.currentSheet.drawView.lineWidth;
-    self.currentSheet.drawView.lineWidth = BRUSH_SIZE_MEDIUM;
+    [self setEraserSelected];
 }
 
 - (void)characterSetButtonPressed:(UIButton *)sender
@@ -919,23 +870,7 @@
 
 //User selected a bubble
 -(void)livBubbleMenu:(LIVBubbleMenu *)bubbleMenu tappedBubbleWithIndex:(NSUInteger)index {
-    if (bubbleMenu == brushMenu) {
-        self.currentSheet.drawView.drawTool = ACEDrawingToolTypePen;
-        switch (index) {
-            case 0:
-                self.currentSheet.drawView.lineWidth = BRUSH_SIZE_SMALL;
-                break;
-            case 1:
-                self.currentSheet.drawView.lineWidth = BRUSH_SIZE_MEDIUM;
-                break;
-            case 2:
-                self.currentSheet.drawView.lineWidth = BRUSH_SIZE_LARGE;
-                break;
-            default:
-                self.currentSheet.drawView.lineWidth = BRUSH_SIZE_MEDIUM;
-                break;
-        }
-    } else if (bubbleMenu == characterSetMenu) {
+    if (bubbleMenu == characterSetMenu) {
         if ([[[self.characterSets objectAtIndex:index] objectForKey:@"enabled"] boolValue]) {
             // if the set is enabled
 
@@ -1077,12 +1012,11 @@
         if (self.currentSheet.drawView.drawTool == ACEDrawingToolTypePen) {
             sheet.drawView.lineWidth = self.currentSheet.drawView.lineWidth;
         } else {
-            sheet.drawView.lineWidth = lastBrushSize;
+            sheet.drawView.lineWidth = BRUSH_SIZE_LARGE;
         }
     } else {
-        sheet.drawView.lineWidth = BRUSH_SIZE_MEDIUM;
+        sheet.drawView.lineWidth = BRUSH_SIZE_LARGE;
     }
-    lastBrushSize = sheet.drawView.lineWidth;
     sheet.drawView.delegate = self;
     [self.sheetBackground addSubview:sheet];
     // [sheet mas_remakeConstraints:^(MASConstraintMaker *make) {

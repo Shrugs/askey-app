@@ -72,8 +72,8 @@ static int MAG_SIZE = 210;
         [_scrollView addSubview:textLabel];
         [textLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(iv.mas_bottom).offset(5);
-            make.left.equalTo(iv).offset(-30);
-            make.right.equalTo(iv).offset(30);
+            make.left.equalTo(iv).offset(-50);
+            make.right.equalTo(iv).offset(50);
             make.height.equalTo(@50);
         }];
     }

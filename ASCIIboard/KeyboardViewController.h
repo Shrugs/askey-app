@@ -14,7 +14,6 @@
 
 @interface KeyboardViewController : UIInputViewController  <LIVBubbleButtonDelegate, ACEDrawingViewDelegate, MCDrawSheetDelegate>
 {
-    LIVBubbleMenu *brushMenu;
     LIVBubbleMenu *characterSetMenu;
     LIVBubbleMenu *characterPackMenu;
 
@@ -23,10 +22,8 @@
     UIView *kludge;
 
     // back button timer
-    NSTimer* holdTimer;
+    NSTimer * holdTimer;
     BOOL enterButtonWasHeld;
-
-    float lastBrushSize;
 
     BOOL _hasFullAccess;
     NSMutableDictionary *_currentCharacterPack;
@@ -52,7 +49,6 @@
 @property (nonatomic, strong) AKNumPadView *numpadView;
 
 // array of images that must be retained
-@property (nonatomic, strong) NSArray *brushButtonsArray;
 @property (nonatomic, strong) NSArray *characterSetButtonsArray;
 @property (nonatomic, strong) NSArray *characterPackButtonsArray;
 
