@@ -403,82 +403,14 @@
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
 }
 
-
-- (void)viewDidLayoutSubviews
-{
-
-}
-
-#pragma mark - UICollectionView Delegate
-
-//- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
-//{
-//    return [_characterSets count];
-//}
-//
-//// The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
-//- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    AKCharacterPackCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
-//
-//    if (!cell) {
-//        cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
-//    }
-//
-//    [cell setSet:[_characterSets objectAtIndex:indexPath.row]];
-//    return cell;
-//}
-//
-//- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    return CGSizeMake((_characterSetButtons.frame.size.width/2)*0.95, 50);
-//}
-//
-//- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    // generate and show cardview by animating in opacity of the card and a blur view
-//    NSDictionary *set = [_characterSets objectAtIndex:indexPath.row];
-//
-//    [self showCardForSet:set];
-//
-//}
-
-//
-//- (UIView *)getBlurredBackgroundView
-//{
-//    // take screenshot of screen
-//    UIImageView *bgImg = [[UIImageView alloc] initWithImage:[self getScreenshot]];
-//    bgImg.frame = self.view.bounds;
-//    bgImg.alpha = 0;
-//    // assign a blur to it
-//    UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
-//    UIVisualEffectView *blurView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
-//    blurView.frame = bgImg.bounds;
-//    [bgImg addSubview:blurView];
-//
-//    // create the background view and add the blurred image to it
-//    UIView *backgroundView = [[UIView alloc] initWithFrame:self.view.bounds];
-//    backgroundView.alpha = 1;
-//    UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(closeCard)];
-//    [backgroundView addGestureRecognizer:tapRecognizer];
-//    [backgroundView addSubview:bgImg];
-//
-//    // animate blur in
-//    POPBasicAnimation *fadeIn = [POPBasicAnimation animationWithPropertyNamed:kPOPViewAlpha];
-//    fadeIn.toValue = @1;
-//    fadeIn.completionBlock = ^(POPAnimation *anim, BOOL finished) {
-//    };
-//    [bgImg pop_addAnimation:fadeIn forKey:@"fadeIn"];
-//
-//    return backgroundView;
-//}
-
-
 #pragma mark - Intro
 
 - (void)launchIntro
 {
-
+    _presentedViewController = [[AKIntroViewController alloc] init];
+    [_header showCarat:YES];
+    [self _animateHeaderHeightTo:SMALL_HEADER_HEIGHT];
+    [self presentViewController:_presentedViewController animated:YES completion:nil];
 }
 
 #pragma UINavigationController

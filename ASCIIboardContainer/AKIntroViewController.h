@@ -27,11 +27,10 @@
     NSMutableArray *_introImages;
     float _imgWidth;
     float _imgHeight;
+
+    UIView *_container;
 }
 
-- (id)initWithBackground:(UIView *)container;
-
 @property (nonatomic, strong) IFTTTAnimator *animator;
-@property (nonatomic, strong) UIView *container;
 
 @end

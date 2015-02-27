@@ -55,6 +55,7 @@
         for (NSMutableDictionary *pack in [_pack objectForKey:@"packs"]) {
             UITextView *tv = [[UITextView alloc] init];
             tv.scrollEnabled = NO;
+            tv.editable = NO;
             tv.backgroundColor = ASKEY_BACKGROUND_COLOR;
             [tv setTextColor:[UIColor blackColor]];
 
@@ -127,12 +128,17 @@
         make.right.equalTo(self.view).offset(-30);
     }];
 
-    buyButton = [[CharacterPackButton alloc] initWithText:[NSString stringWithFormat:@"%@ %@",
-                                                                                NSLocalizedString(@"BUY_PACK", nil),
-                                                                                NSLocalizedString(titleKey, nil)]
-                                                                 andBackground:[NSString stringWithFormat:@"%@bg_large", _keyName]
-                                                                     purchased:_isPurchased];
+    NSString *buyButtonText = _isPurchased ?
+                                [NSString stringWithFormat:@"%@ Purchased", NSLocalizedString(titleKey, nil)] :
+                                [NSString stringWithFormat:@"%@ %@",
+                                 NSLocalizedString(@"BUY_PACK", nil),
+                                 NSLocalizedString(titleKey, nil)];
+
+    buyButton = [[CharacterPackButton alloc] initWithText:buyButtonText
+                                            andBackground:[NSString stringWithFormat:@"%@bg_large", _keyName]
+                                                purchased:_isPurchased];
     [buyButton addTarget:self action:@selector(purchasePack) forControlEvents:UIControlEventTouchUpInside];
+    [buyButton setEnabled:!_isPurchased];
     [_scrollView addSubview:buyButton];
 
     [buyButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -176,6 +182,10 @@
 
 - (void)purchasePack
 {
+
+    if (_isPurchased) {
+        return;
+    }
 
     NSString *pid;
     if ([_keyName isEqualToString:@"text"]) {
