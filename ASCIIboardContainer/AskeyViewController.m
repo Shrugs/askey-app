@@ -16,6 +16,7 @@
 #import "AKCharacterPackManager.h"
 #import "CharacterPackViewController.h"
 #import "MKStoreKit.h"
+#import "AKLogManager.h"
 
 #define CONTAINER_PADDING 20
 #define BUTTON_PADDING 15
@@ -24,7 +25,6 @@
 @implementation AskeyViewController
 
 - (void)viewDidLoad {
-
     
 
     [super viewDidLoad];
@@ -40,7 +40,7 @@
     scrollView.delegate = self;
     [self.view addSubview:scrollView];
 
-    _header = [[AskeyHeaderViewController alloc] init];
+    _header = [AskeyHeaderViewController sharedHeader];
     _header.delegate = self;
     UIWindow *currentWindow = [UIApplication sharedApplication].keyWindow;
     currentWindow.backgroundColor = ASKEY_BACKGROUND_COLOR;
@@ -157,6 +157,7 @@
                                                        queue:[[NSOperationQueue alloc] init]
                                                   usingBlock:^(NSNotification *note) {
                                                       [self updatePurchased];
+                                                      [Flurry logEvent:@"ANY_PRODUCT_PURCHASED"];
                                                   }];
 
     [[NSNotificationCenter defaultCenter] addObserverForName:kMKStoreKitRestoredPurchasesNotification
@@ -164,6 +165,7 @@
                                                        queue:[[NSOperationQueue alloc] init]
                                                   usingBlock:^(NSNotification *note) {
                                                       [self updatePurchased];
+                                                      [Flurry logEvent:@"PURCHASES_RESTORED"];
                                                   }];
 
     [[NSNotificationCenter defaultCenter] addObserverForName:kMKStoreKitRestoringPurchasesFailedNotification
@@ -171,7 +173,11 @@
                                                        queue:[[NSOperationQueue alloc] init]
                                                   usingBlock:^(NSNotification *note) {
                                                       [self updatePurchased];
+                                                      [Flurry logEvent:@"RESTORING_PURCHASES_FAILED"];
                                                   }];
+
+    [Flurry logEvent:@"CONTAINER_APP_OPENED"];
+    [AKLogManager dumpLogsToFlurry];
 
 }
 
@@ -234,6 +240,8 @@
     [_header showCarat:YES];
     [self _animateHeaderHeightTo:SMALL_HEADER_HEIGHT];
     [self presentViewController:_presentedViewController animated:YES completion:nil];
+
+    [Flurry logEvent:@"PACK_BUTTON_PRESSED" withParameters:@{@"pack": @"text"}];
 }
 
 - (void)emojiPackPressed:(id)sender
@@ -242,6 +250,8 @@
     [_header showCarat:YES];
     [self _animateHeaderHeightTo:SMALL_HEADER_HEIGHT];
     [self presentViewController:_presentedViewController animated:YES completion:nil];
+
+    [Flurry logEvent:@"PACK_BUTTON_PRESSED" withParameters:@{@"pack": @"emoji"}];
 }
 
 - (void)mailPackPressed:(id)sender
@@ -250,6 +260,8 @@
     [_header showCarat:YES];
     [self _animateHeaderHeightTo:SMALL_HEADER_HEIGHT];
     [self presentViewController:_presentedViewController animated:YES completion:nil];
+
+    [Flurry logEvent:@"PACK_BUTTON_PRESSED" withParameters:@{@"pack": @"mail"}];
 }
 
 
@@ -259,6 +271,8 @@
     [_header showCarat:YES];
     [self _animateHeaderHeightTo:SMALL_HEADER_HEIGHT];
     [self presentViewController:_presentedViewController animated:YES completion:nil];
+
+    [Flurry logEvent:@"PACK_BUTTON_PRESSED" withParameters:@{@"pack": @"bundle"}];
 }
 
 
@@ -395,7 +409,8 @@
 
 - (void)showFAQ
 {
-    [self launchURL:@"http://mat.tc"];
+    [self launchURL:@"http://askeyapp.com/faq"];
+    [Flurry logEvent:@"FAQ_BUTTON_CLICKED"];
 }
 
 - (void)launchURL:(NSString *)url
@@ -411,6 +426,8 @@
     [_header showCarat:YES];
     [self _animateHeaderHeightTo:SMALL_HEADER_HEIGHT];
     [self presentViewController:_presentedViewController animated:YES completion:nil];
+
+    [Flurry logEvent:@"LAUNCH_INTRO_BUTTON_CLICKED"];
 }
 
 #pragma UINavigationController
@@ -421,22 +438,6 @@
     } else {
         [self.navigationController setNavigationBarHidden:NO animated:YES];
     }
-}
-
-#pragma mark - util
-
-- (UIImage *)getScreenshot
-{
-    UIWindow *window = [[[UIApplication sharedApplication] windows] objectAtIndex:0];
-    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)]) {
-        UIGraphicsBeginImageContextWithOptions(window.bounds.size, NO, [UIScreen mainScreen].scale);
-    } else {
-        UIGraphicsBeginImageContext(window.bounds.size);
-    }
-    [window.layer renderInContext:UIGraphicsGetCurrentContext()];
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return image;
 }
 
 - (void)didReceiveMemoryWarning {

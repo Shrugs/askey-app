@@ -9,6 +9,7 @@
 #import "AKTwitterButton.h"
 #import "Config.h"
 #import <Masonry/Masonry.h>
+#import "Flurry.h"
 
 @implementation AKTwitterButton
 
@@ -80,6 +81,9 @@
 
 - (void)launchURL:(NSString *)url
 {
+
+    [Flurry logEvent:@"TWITTER_BUTTON_CLICKED" withParameters:@{@"person": _twitter}];
+
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
 }
 

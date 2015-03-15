@@ -20,6 +20,15 @@
 
 @implementation AskeyHeaderViewController
 
++ (AskeyHeaderViewController *)sharedHeader
+{
+    static AskeyHeaderViewController *_header;
+    if (!_header) {
+        _header = [[AskeyHeaderViewController alloc] init];
+    }
+    return _header;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 

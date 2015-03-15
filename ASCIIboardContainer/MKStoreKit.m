@@ -144,10 +144,10 @@ static NSDictionary *errorDictionary;
 #endif
   
   if (!success) {
-    NSLog(@"Failed to remember data record");
+//    NSLog(@"Failed to remember data record");
   }
   
-  NSLog(@"%@", self.purchaseRecord);
+//  NSLog(@"%@", self.purchaseRecord);
 }
 
 #pragma mark -
@@ -201,7 +201,7 @@ static NSDictionary *errorDictionary;
 
 - (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response {
   if (response.invalidProductIdentifiers.count > 0) {
-    NSLog(@"Invalid Product IDs: %@", response.invalidProductIdentifiers);
+//    NSLog(@"Invalid Product IDs: %@", response.invalidProductIdentifiers);
   }
   
   self.availableProducts = response.products;
@@ -210,7 +210,7 @@ static NSDictionary *errorDictionary;
 }
 
 - (void)request:(SKRequest *)request didFailWithError:(NSError *)error {
-  NSLog(@"Product request failed with error: %@", error);
+//  NSLog(@"Product request failed with error: %@", error);
 }
 
 #pragma mark -
@@ -235,7 +235,7 @@ static NSDictionary *errorDictionary;
   if (!self.availableProducts) {
     // TODO: FIX ME
     // Initializer might be running or internet might not be available
-    NSLog(@"No products are available. Did you initialize MKStoreKit by calling [[MKStoreKit sharedKit] startProductRequest]?");
+//    NSLog(@"No products are available. Did you initialize MKStoreKit by calling [[MKStoreKit sharedKit] startProductRequest]?");
   }
   
   if (![SKPaymentQueue canMakePayments]) {
@@ -277,10 +277,10 @@ static NSDictionary *errorDictionary;
   if([request isKindOfClass:[SKReceiptRefreshRequest class]]) {
     NSURL *receiptUrl = [[NSBundle mainBundle] appStoreReceiptURL];
     if ([[NSFileManager defaultManager] fileExistsAtPath:[receiptUrl path]]) {
-      NSLog(@"App receipt exists. Preparing to validate and update local stores.");
+//      NSLog(@"App receipt exists. Preparing to validate and update local stores.");
       [self startValidatingReceiptsAndUpdateLocalStore];
     } else {
-      NSLog(@"Receipt request completed but there is no receipt. The user may have refused to login, or the reciept is missing.");
+//      NSLog(@"Receipt request completed but there is no receipt. The user may have refused to login, or the reciept is missing.");
       // Disable features of your app, but do not terminate the app
     }
   }
@@ -359,7 +359,7 @@ static NSDictionary *errorDictionary;
 - (void)startValidatingReceiptsAndUpdateLocalStore {
   [self startValidatingAppStoreReceiptWithCompletionHandler:^(NSArray *receipts, NSError *error) {
     if (error) {
-      NSLog(@"Receipt validation failed with error: %@", error);
+//      NSLog(@"Receipt validation failed with error: %@", error);
       [[NSNotificationCenter defaultCenter] postNotificationName:kMKStoreKitReceiptValidationFailedNotification object:error];
     } else {
       __block BOOL purchaseRecordDirty = NO;

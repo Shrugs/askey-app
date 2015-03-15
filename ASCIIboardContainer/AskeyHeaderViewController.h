@@ -28,6 +28,8 @@
 
 }
 
++ (AskeyHeaderViewController *)sharedHeader;
+
 - (void)showCarat:(BOOL)shouldShow;
 
 @property (nonatomic, strong) id<AskeyHeaderDelegate, UIGestureRecognizerDelegate> delegate;

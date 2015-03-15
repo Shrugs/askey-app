@@ -15,9 +15,9 @@
 #import "Config.h"
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
-#import "Flurry.h"
 #import "AKCharacterPackManager.h"
 #import "RKDropdownAlert.h"
+#import "AKLogManager.h"
 
 @implementation KeyboardViewController
 
@@ -30,7 +30,6 @@
     if (_hasFullAccess) {
         // if we have open access, we can access the network / filesystem, so enable logging
         [Fabric with:@[CrashlyticsKit]];
-        [Flurry startSession:@"QH7F5T9FMSKJVKSFNMY3"];
     }
 
     // LOAD KLUDGE so that height can change -_-
@@ -63,7 +62,7 @@
         make.width.equalTo(self.view);
     }];
 
-    [self logEvent:@"ASKEY_OPENED"];
+    [self saveLog:@"ASKEY_OPENED" withParams:nil];
 
 }
 
@@ -124,17 +123,74 @@
                                                                                           @"8": @[@":"],
                                                                                           @"9": @[@"!", @";"],
                                                                                           }
+                                                                                  },
+                                                                              @{
+                                                                                  @"enabled": @NO,
+                                                                                  @"purchased": @NO,
+                                                                                  @"keyName": @"code",
+                                                                                  @"icon": @"#!"
                                                                                   }
+                                                                          ]
+                                                                  },
+                                                                @{
+                                                                    @"enabled": @NO,
+                                                                    @"purchased": @NO,
+                                                                    @"keyName": @"emoji",
+                                                                    @"icon": @"😀",
+                                                                    @"packs": @[
+                                                                            @{
+                                                                                @"enabled": @NO,
+                                                                                @"purchased": @NO,
+                                                                                @"keyName": @"emojiface",
+                                                                                @"icon": @"😄"
+                                                                            },
+                                                                            @{
+                                                                                @"enabled": @NO,
+                                                                                @"purchased": @NO,
+                                                                                @"keyName": @"emojifood",
+                                                                                @"icon": @"🍕"
+                                                                                },
+                                                                            @{
+                                                                                @"enabled": @NO,
+                                                                                @"purchased": @NO,
+                                                                                @"keyName": @"emojianimals",
+                                                                                @"icon": @"🐋"
+                                                                                },
+                                                                            @{
+                                                                                @"enabled": @NO,
+                                                                                @"purchased": @NO,
+                                                                                @"keyName": @"emojihearts",
+                                                                                @"icon": @"💖"
+                                                                                }
+                                                                        ]
+                                                                },
+                                                              @{
+                                                                  @"enabled": @NO,
+                                                                  @"purchased": @NO,
+                                                                  @"keyName": @"mail",
+                                                                  @"icon": @"📧",
+                                                                  @"packs": @[
+                                                                          @{
+                                                                              @"enabled": @NO,
+                                                                              @"purchased": @NO,
+                                                                              @"keyName": @"originalmail",
+                                                                              @"icon": @"!;'"
+                                                                              },
+                                                                          @{
+                                                                              @"enabled": @NO,
+                                                                              @"purchased": @NO,
+                                                                              @"keyName": @"emojimail",
+                                                                              @"icon": @"😄"
+                                                                              }
                                                                           ]
                                                                   }
                                                               ]];
     }
     if ([self.characterSets count] == 0) {
-        CLSLog(@"No character packs found.");
+        CLS_LOG(@"No character packs found.");
     }
 
     // set to first pack
-    // @TODO(Shrugs) load last used pack from nsuserdefaults
     if (_hasFullAccess) {
         NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:ASKEY_CONTAINER_GROUP_NAME];
 
@@ -393,6 +449,7 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated
+    [self saveLog:@"DID_RECEIVE_MEMORY_WARNING" withParams:nil];
 }
 
 - (void)viewDidLayoutSubviews
@@ -422,20 +479,6 @@
 
 }
 
-#pragma mark - TextInput Delegate
-
-//- (void)textDidChange:(id<UITextInput>)textInput {
-//    // The app has just changed the document's contents, the document context has been updated.
-//
-//    UIColor *textColor = nil;
-//    if (self.textDocumentProxy.keyboardAppearance == UIKeyboardAppearanceDark) {
-//        textColor = [UIColor whiteColor];
-//    } else {
-//        textColor = [UIColor blackColor];
-//    }
-//    [self.nextKeyboardButton setTitleColor:textColor forState:UIControlStateNormal];
-//}
-
 #pragma mark - Button Handlers
 
 - (void)brushButtonPressed:(UIButton *)sender
@@ -444,18 +487,24 @@
     self.currentSheet.drawView.drawTool = ACEDrawingToolTypePen;
     self.currentSheet.drawView.lineWidth = BRUSH_SIZE_LARGE;
     [self setBrushSelected];
+
+    [self saveLog:@"BRUSH_BUTTON_CLICKED" withParams:nil];
 }
 
 - (void)clearButtonPressed:(UIButton *)sender
 {
     [self.currentSheet.drawView clear];
     [self updateButtonStatus];
+
+    [self saveLog:@"CLEAR_BUTTON_CLICKED" withParams:nil];
 }
 
 - (void)eraserButtonPressed:(UIButton *)sender
 {
     self.currentSheet.drawView.drawTool = ACEDrawingToolTypeEraser;
     [self setEraserSelected];
+
+    [self saveLog:@"ERASER_BUTTON_CLICKED" withParams:nil];
 }
 
 - (void)characterSetButtonPressed:(UIButton *)sender
@@ -494,10 +543,13 @@
     [characterSetMenu show];
     self.numpadButton.enabled = NO;
     [self.view bringSubviewToFront:self.numpadButton];
+
+    [self saveLog:@"CHARACTER_SET_BUTTON_CLICKED" withParams:nil];
 }
 
 - (void)showMenuForSet:(NSDictionary *)set
 {
+    [self saveLog:@"SET_BUTTON_CLICKED" withParams:@{@"set": [set objectForKey:@"keyName"]}];
 
     NSMutableArray *buttons = [[NSMutableArray alloc] initWithCapacity:[[set objectForKey:@"packs"] count]];
     for (NSMutableDictionary *pack in [set objectForKey:@"packs"]) {
@@ -576,6 +628,7 @@
 - (void)removeNumPad:(MCBouncyButton *)sender
 {
     [self.numpadView removeFromSuperview];
+    self.numpadView = nil;
 }
 
 - (void)numpadBackspaceButtonPressed:(MCBouncyButton *)sender
@@ -620,6 +673,9 @@
     // update UI
     [self updateButtonStatus];
     [self incrementSheets];
+
+    [self saveLog:@"ASKEY_TEXT" withParams:@{@"pack": [_currentCharacterPack objectForKey:@"keyName"]}];
+
 }
 
 - (void)backspaceButtonReleased:(UIButton *)sender
@@ -891,13 +947,13 @@
         } else {
             // display error
             [self displayAccessError];
+            self.numpadButton.enabled = YES;
         }
     } else if (bubbleMenu == characterPackMenu) {
         if ([[[self.characterSets objectAtIndex:_currentCharacterSet] objectForKey:@"purchased"] boolValue] ||
             [[[[[self.characterSets objectAtIndex:_currentCharacterSet] objectForKey:@"packs"] objectAtIndex:index] objectForKey:@"enabled"] boolValue]) {
             // if set purchased or pack enabled
-            CLSLog(@"pack: {%i, %i}", _currentCharacterSet, (int)index);
-            NSLog(@"pack: {%i, %i}", _currentCharacterSet, (int)index);
+            CLS_LOG(@"pack: {%i, %i}", _currentCharacterSet, (int)index);
             [self setCurrentCharacterPack:[[[self.characterSets objectAtIndex:_currentCharacterSet] objectForKey:@"packs"] objectAtIndex:(int)index]];
 
             _lastCharacterSet = _currentCharacterSet;
@@ -932,6 +988,9 @@
     } else {
         [alert title:@"Buy This Character Set to Unlock the Packs" message:nil backgroundColor:ASKEY_BLUE_COLOR textColor:[UIColor whiteColor] time:1];
     }
+
+
+
 }
 
 //The bubble menu has been hidden
@@ -955,7 +1014,7 @@
     self.numpadButton.enabled = YES;
 
     // if the set menu was tapped, keep button disabled for the pack menu
-    if (bubbleMenu == characterSetMenu && [bubbleMenu bubbleWasTapped]) {
+    if (bubbleMenu == characterSetMenu && [bubbleMenu bubbleWasTapped] && characterPackMenu) {
         self.numpadButton.enabled = NO;
     }
 
@@ -1083,10 +1142,14 @@
     return err == nil;
 }
 
-- (void)logEvent:(NSString *)event
+- (void)saveLog:(NSString *)event withParams:(NSDictionary *)params
 {
     if (_hasFullAccess) {
-        [Flurry logEvent:event];
+        if (params != nil) {
+            [AKLogManager saveLog:event withParams:params];
+        } else {
+            [AKLogManager saveLog:event];
+        }
     }
 }
 

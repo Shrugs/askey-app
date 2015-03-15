@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <ACMagnifyingGlass.h>
 #import <IFTTTJazzHands.h>
+#import <MediaPlayer/MediaPlayer.h>
 
 @class AKIntroViewController;
 
@@ -29,8 +30,12 @@
     float _imgHeight;
 
     UIView *_container;
+    CGPoint _originalCenter;
+
+    MPMoviePlayerController *_moviePlayer;
 }
 
 @property (nonatomic, strong) IFTTTAnimator *animator;
+@property (nonatomic, strong) IFTTTAnimator *offsetAnimator;
 
 @end

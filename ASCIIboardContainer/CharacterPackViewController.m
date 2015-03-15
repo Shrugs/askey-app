@@ -11,6 +11,7 @@
 #import "UIImage+ASCII.h"
 #import <Masonry.h>
 #import "MKStoreKit.h"
+#import "Flurry.h"
 
 #define SCROLL_VIEW_HEIGHT 300
 #define TEXTVIEW_OFFSET 10
@@ -183,6 +184,8 @@
 - (void)purchasePack
 {
 
+    
+
     if (_isPurchased) {
         return;
     }
@@ -201,6 +204,8 @@
     if ([[MKStoreKit sharedKit] isProductPurchased:pid]) {
         return;
     }
+
+    [Flurry logEvent:@"PACK_PURCHASE_BUTTON_CLICKED" withParameters:@{@"pack": _keyName}];
 
 
     [[MKStoreKit sharedKit] initiatePaymentRequestForProductWithIdentifier:pid];
@@ -252,6 +257,9 @@
 
 - (void)restorePurchases
 {
+
+    [Flurry logEvent:@"RESTORE_PURCHASES_BUTTON_CLICKED"];
+
     [[MKStoreKit sharedKit] restorePurchases];
 
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -274,6 +282,9 @@
     _scrollView.contentSize = CGSizeMake(_scrollView.frame.size.width,
                                         MAX(_scrollView.frame.size.height + 1, restoreBtn.frame.origin.y + restoreBtn.frame.size.height + 20)
                                         );
+
+    [Flurry logEvent:@"CHARACTER_PACK_VIEW_CONTROLLER_SHOWN"];
+
 }
 
 - (void)didReceiveMemoryWarning {

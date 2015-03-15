@@ -9,10 +9,65 @@
         <view contentMode="scaleToFill" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-            <nil key="simulatedStatusBarMetrics"/>
+            <subviews>
+                <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uFS-hD-DOv" userLabel="Container">
+                    <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
+                    <subviews>
+                        <view alpha="0.89999999999999991" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CQ7-G5-XcN" userLabel="Background Blue">
+                            <rect key="frame" x="0.0" y="0.0" width="480" height="160"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="iconheader.png" translatesAutoresizingMaskIntoConstraints="NO" id="oFl-CZ-Jv3" userLabel="Icon">
+                                    <rect key="frame" x="203" y="32" width="74" height="74"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="74" id="DJf-8K-0tc"/>
+                                        <constraint firstAttribute="height" constant="74" id="V6m-fc-JWg"/>
+                                    </constraints>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Askey" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5sD-c8-uLu">
+                                    <rect key="frame" x="178" y="109" width="124" height="41"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="124" id="FzX-Ei-3uY"/>
+                                        <constraint firstAttribute="height" constant="41" id="O7B-Wd-gcb"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="34"/>
+                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" red="0.094117647058823528" green="0.42745098039215684" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="centerX" secondItem="5sD-c8-uLu" secondAttribute="centerX" id="37a-ic-34r"/>
+                                <constraint firstAttribute="height" constant="160" id="EHU-dH-1D3"/>
+                                <constraint firstAttribute="centerY" secondItem="oFl-CZ-Jv3" secondAttribute="centerY" constant="10" id="OVF-XI-CgO"/>
+                                <constraint firstItem="5sD-c8-uLu" firstAttribute="top" secondItem="oFl-CZ-Jv3" secondAttribute="top" constant="77" id="iKr-MC-zqf"/>
+                                <constraint firstAttribute="centerX" secondItem="oFl-CZ-Jv3" secondAttribute="centerX" id="qwJ-GC-8RT"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" red="0.92549019607843142" green="0.92549019607843142" blue="0.92549019607843142" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="CQ7-G5-XcN" firstAttribute="top" secondItem="uFS-hD-DOv" secondAttribute="top" id="2sS-tY-O5m"/>
+                        <constraint firstItem="CQ7-G5-XcN" firstAttribute="width" secondItem="uFS-hD-DOv" secondAttribute="width" id="35G-bL-vAv"/>
+                        <constraint firstAttribute="centerX" secondItem="CQ7-G5-XcN" secondAttribute="centerX" id="HiQ-8G-8bn"/>
+                        <constraint firstItem="CQ7-G5-XcN" firstAttribute="width" secondItem="uFS-hD-DOv" secondAttribute="width" id="QPN-Cm-XJI"/>
+                        <constraint firstAttribute="height" constant="480" id="SJ1-4n-24c"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="480" id="ZPi-zv-BTg"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="0.92549019607843142" green="0.92549019607843142" blue="0.92549019607843142" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="uFS-hD-DOv" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="TbA-Hb-Jja"/>
+                <constraint firstAttribute="bottom" secondItem="uFS-hD-DOv" secondAttribute="bottom" id="YM7-Ig-Use"/>
+                <constraint firstAttribute="centerX" secondItem="uFS-hD-DOv" secondAttribute="centerX" id="c2J-9t-VqT"/>
+            </constraints>
+            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="548" y="455"/>
+            <point key="canvasLocation" x="520" y="436"/>
         </view>
     </objects>
+    <resources>
+        <image name="iconheader.png" width="210" height="210"/>
+    </resources>
 </document>
