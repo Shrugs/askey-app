@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:ASCIIboardContainer.xcodeproj">
+      location = "group:/Users/matt/Projects/ios/ASCIIboardContainer/AskeyContainer.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">

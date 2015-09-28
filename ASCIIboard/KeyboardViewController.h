@@ -29,6 +29,8 @@
     NSMutableDictionary *_currentCharacterPack;
     int _currentCharacterSet;
     int _lastCharacterSet;
+
+    BOOL _bubbleWasTapped;
 }
 
 // BUTTONS

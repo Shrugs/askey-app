@@ -1,19 +1,20 @@
 PODS:
-  - ACEDrawingView (1.3.2)
+  - ACEDrawingView (1.3.6)
   - JazzHands (0.1.1)
   - LIVBubbleMenu (1.0.0):
     - pop (~> 1.0.7)
-  - Masonry (0.6.1)
-  - MBProgressHUD (0.9)
-  - MCBouncyButton (1.0.0):
+  - Masonry (0.6.3)
+  - MBProgressHUD (0.9.1)
+  - MCBouncyButton (1.0.1):
     - pop (~> 1.0)
-  - pop (1.0.7)
+  - pop (1.0.8)
   - SDiPhoneVersion (1.1.2)
 
 DEPENDENCIES:
   - ACEDrawingView
   - JazzHands (~> 0.1.1)
-  - LIVBubbleMenu (from `https://github.com/Shrugs/LIVBubbleMenu-iOS.git`, branch `bganimation-fix`)
+  - LIVBubbleMenu (from `https://github.com/Shrugs/LIVBubbleMenu-iOS.git`, branch
+    `bganimation-fix`)
   - Masonry
   - MBProgressHUD (~> 0.8)
   - MCBouncyButton
@@ -27,17 +28,17 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   LIVBubbleMenu:
-    :commit: 2dc42b82027b41e2db8d5a03937c4bbf1e4a47c9
+    :commit: 931bf3bea5dd128962bf36f12b826dcc8e592412
     :git: https://github.com/Shrugs/LIVBubbleMenu-iOS.git
 
 SPEC CHECKSUMS:
-  ACEDrawingView: 70e79a58cbd3a07c8e3ea9166fc3cafe16cf9a97
-  JazzHands: d39c6b19bfe34946d220fdede80930b7be37f199
-  LIVBubbleMenu: c0f3704c9332cb7b8db80eabef0e666d6a2fac80
-  Masonry: 2cb49fd14d203d2db5ca6bb017135b235dde9980
-  MBProgressHUD: 2038dbcf3dce73215abed6001657043d53aa79a8
-  MCBouncyButton: f56f99744f56a62d092152c06c929e7868886d69
-  pop: 2f14a1ea61339767af9e66741b418c831b3844df
-  SDiPhoneVersion: dd5177b6d4ec76bc1ccd294c9b277d28bade9d38
+  ACEDrawingView: 69e52f4fa4190d643bf6d63af0413cca3b99b6af
+  JazzHands: f5c0beff01ca6f9a22d6e27c400b34d224dbdc6e
+  LIVBubbleMenu: bbb15973182bc452e37f39f5fb8b20ef9bc1525c
+  Masonry: ff105a956abcd19a618b2028b121cb638d7a8e2f
+  MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
+  MCBouncyButton: 89c389a2419ad57b1b7ac7720888684b49da0c9a
+  pop: bb773ae2c791ca2629de13b347e7a8b450fa6a57
+  SDiPhoneVersion: c52245ccaab8142701e2e7fb8f0391ba3f255b76
 
-COCOAPODS: 0.36.0.beta.2
+COCOAPODS: 0.38.2

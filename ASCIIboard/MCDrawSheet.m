@@ -39,7 +39,7 @@
     self.layer.shadowRadius = 0.0f;
 
     self.drawView = [[ACEDrawingView alloc] initWithFrame:self.frame];
-
+  
     [self addSubview:self.drawView];
 
     [self.drawView mas_makeConstraints:^(MASConstraintMaker *make) {

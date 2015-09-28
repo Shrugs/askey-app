@@ -510,13 +510,14 @@
 - (void)characterSetButtonPressed:(UIButton *)sender
 {
 
-    
+    _bubbleWasTapped = NO;
+
     NSMutableArray *buttons = [[NSMutableArray alloc] initWithCapacity:[self.characterSets count]];
     for (NSMutableDictionary *set in self.characterSets) {
         MCBouncyButton *button = [[MCBouncyButton alloc] initWithText:[set objectForKey:@"icon"] andRadius:(BUTTON_HEIGHT * BRUSH_BUTTON_RELATIVE_SIZE / 2.0f)];
         if (![[set objectForKey:@"enabled"] boolValue]) {
             // is not enabled
-            [button setStyle:MCBouncyButtonStyleDisabled animated:YES];
+            [button setStyle:MCBouncyButtonStyleDefault animated:YES];
         } else if ([[set objectForKey:@"keyName"] isEqualToString:[[self.characterSets objectAtIndex:_currentCharacterSet] objectForKey:@"keyName"]]) {
             // if this is the currently selected pack, highlight it
             [button setStyle:MCBouncyButtonStyleSelected animated:YES];
@@ -549,6 +550,8 @@
 
 - (void)showMenuForSet:(NSDictionary *)set
 {
+    _bubbleWasTapped = NO;
+
     [self saveLog:@"SET_BUTTON_CLICKED" withParams:@{@"set": [set objectForKey:@"keyName"]}];
 
     NSMutableArray *buttons = [[NSMutableArray alloc] initWithCapacity:[[set objectForKey:@"packs"] count]];
@@ -561,7 +564,7 @@
             // pack was purchased, don't do anything
         } else if (![[pack objectForKey:@"enabled"] boolValue]) {
             // pack was not purchased and pack is not enabled by default
-            [button setStyle:MCBouncyButtonStyleDisabled animated:YES];
+            [button setStyle:MCBouncyButtonStyleDefault animated:YES];
         }
         [buttons addObject:button];
 
@@ -927,6 +930,7 @@
 //User selected a bubble
 -(void)livBubbleMenu:(LIVBubbleMenu *)bubbleMenu tappedBubbleWithIndex:(NSUInteger)index {
     if (bubbleMenu == characterSetMenu) {
+        _bubbleWasTapped = YES;
         if ([[[self.characterSets objectAtIndex:index] objectForKey:@"enabled"] boolValue]) {
             // if the set is enabled
 
@@ -937,7 +941,7 @@
             for (int i = 0; i < [self.characterSetButtonsArray count]; i++) {
                 if (i == index) {
                     [[self.characterSetButtonsArray objectAtIndex:(int)index] setStyle:MCBouncyButtonStyleSelected animated:YES];
-                } else if (((MCBouncyButton *)[self.characterSetButtonsArray objectAtIndex:i]).style == MCBouncyButtonStyleSelected) {
+                } else {
                     [[self.characterSetButtonsArray objectAtIndex:i] setStyle:MCBouncyButtonStyleDefault animated:YES];
                 }
             }
@@ -950,6 +954,7 @@
             self.numpadButton.enabled = YES;
         }
     } else if (bubbleMenu == characterPackMenu) {
+        _bubbleWasTapped = YES;
         if ([[[self.characterSets objectAtIndex:_currentCharacterSet] objectForKey:@"purchased"] boolValue] ||
             [[[[[self.characterSets objectAtIndex:_currentCharacterSet] objectForKey:@"packs"] objectAtIndex:index] objectForKey:@"enabled"] boolValue]) {
             // if set purchased or pack enabled
@@ -968,7 +973,7 @@
             for (int i = 0; i < [self.characterPackButtonsArray count]; i++) {
                 if (i == index) {
                     [[self.characterPackButtonsArray objectAtIndex:index] setStyle:MCBouncyButtonStyleSelected animated:YES];
-                } else if (((MCBouncyButton *)[self.characterPackButtonsArray objectAtIndex:i]).style == MCBouncyButtonStyleSelected) {
+                } else {
                     [[self.characterPackButtonsArray objectAtIndex:i] setStyle:MCBouncyButtonStyleDefault animated:YES];
                 }
             }
@@ -991,16 +996,9 @@
 
 //The bubble menu has been hidden
 -(void)livBubbleMenuDidHide:(LIVBubbleMenu *)bubbleMenu {
-    // check tool type and enable current tool
-    if (self.currentSheet.drawView.drawTool == ACEDrawingToolTypePen) {
-        [self setBrushSelected];
-    } else {
-        [self setEraserSelected];
-    }
-
 
     if (bubbleMenu == characterSetMenu || bubbleMenu == characterPackMenu) {
-        if (![bubbleMenu bubbleWasTapped]) {
+        if (!_bubbleWasTapped) {
             // if the menus were dismissed, reset stuff, otherwise don't
             _currentCharacterSet = _lastCharacterSet;
         }
@@ -1010,7 +1008,7 @@
     self.numpadButton.enabled = YES;
 
     // if the set menu was tapped, keep button disabled for the pack menu
-    if (bubbleMenu == characterSetMenu && [bubbleMenu bubbleWasTapped] && characterPackMenu) {
+    if (bubbleMenu == characterSetMenu && _bubbleWasTapped && characterPackMenu) {
         self.numpadButton.enabled = NO;
     }
 
@@ -1063,22 +1061,11 @@
                                                                        ASKEY_HEIGHT*ASKEY_HEIGHT_FRACTION*ASKEY_WIDTH_RATIO,
                                                                        ASKEY_HEIGHT*ASKEY_HEIGHT_FRACTION)];
     sheet.delegate = self;
-    if (self.currentSheet != nil) {
-        if (self.currentSheet.drawView.drawTool == ACEDrawingToolTypePen) {
-            sheet.drawView.lineWidth = self.currentSheet.drawView.lineWidth;
-        } else {
-            sheet.drawView.lineWidth = BRUSH_SIZE_LARGE;
-        }
-    } else {
-        sheet.drawView.lineWidth = BRUSH_SIZE_LARGE;
-    }
+    sheet.drawView.drawTool = ACEDrawingToolTypePen;
+    sheet.drawView.lineWidth = BRUSH_SIZE_LARGE;
     sheet.drawView.delegate = self;
     [self.sheetBackground addSubview:sheet];
-    // [sheet mas_remakeConstraints:^(MASConstraintMaker *make) {
-    //     make.height.equalTo(self.view).multipliedBy(ASKEY_HEIGHT_FRACTION);
-    //     make.width.equalTo(sheet.mas_height).multipliedBy(ASKEY_WIDTH_RATIO);
-    //     make.centerX.equalTo(self.sheetBackground);
-    // }];
+    [self setBrushSelected];
     return sheet;
 }
 
