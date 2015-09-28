@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <ACMagnifyingGlass.h>
 #import <IFTTTJazzHands.h>
 #import <MediaPlayer/MediaPlayer.h>
 
@@ -23,7 +22,6 @@
 
 @interface AKIntroViewController : UIViewController <UIScrollViewDelegate>
 {
-    ACMagnifyingGlass *_magnifier;
     UIScrollView *_scrollView;
     NSMutableArray *_introImages;
     float _imgWidth;
@@ -36,6 +34,7 @@
 }
 
 @property (nonatomic, strong) IFTTTAnimator *animator;
+//@property (nonatomic, strong) IFTTTAnimator *transformAnimator;
 @property (nonatomic, strong) IFTTTAnimator *offsetAnimator;
 
 @end

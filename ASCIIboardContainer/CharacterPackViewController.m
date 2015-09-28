@@ -63,7 +63,7 @@
             // get ascii
             BOOL isMail = [[_pack objectForKey:@"keyName"] isEqualToString:@"mail"];
 
-            [self setTextForTextView:tv andPack:pack andIsMail:isMail];
+            [self setTextForTextView:tv andPack:[pack copy] andIsMail:isMail];
 
             [tv setFont:[UIFont fontWithName:ASKEY_TITLE_FONT size:isMail ? 12 : 20]];
 
@@ -165,12 +165,12 @@
 
 }
 
-- (void)setTextForTextView:(UITextView *)tv andPack:(NSMutableDictionary *)pack andIsMail:(BOOL)isMail
+- (void)setTextForTextView:(UITextView *)tv andPack:(NSDictionary *)pack andIsMail:(BOOL)isMail
 {
 
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-        CGSize numBlocks = CGSizeMake([[pack objectForKey:@"width"] integerValue],
-                                      [[pack objectForKey:@"height"] integerValue]);
+        CGSize numBlocks = CGSizeMake([[pack objectForKey:@"width"] floatValue],
+                                      [[pack objectForKey:@"height"] floatValue]);
         NSString *text = [[UIImage imageNamed:@"example_template"] getASCIIWithResolution:numBlocks andChars:[pack objectForKey:@"chars"] andIsHardwrapped:isMail];
 
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -183,8 +183,6 @@
 
 - (void)purchasePack
 {
-
-    
 
     if (_isPurchased) {
         return;
@@ -201,10 +199,6 @@
         pid = BUNDLE_IDENTIFIER;
     }
 
-    if ([[MKStoreKit sharedKit] isProductPurchased:pid]) {
-        return;
-    }
-
     [Flurry logEvent:@"PACK_PURCHASE_BUTTON_CLICKED" withParameters:@{@"pack": _keyName}];
 
 
@@ -216,17 +210,21 @@
                                                       object:nil
                                                        queue:[[NSOperationQueue alloc] init]
                                                   usingBlock:^(NSNotification *note) {
-                                                      [MBProgressHUD hideHUDForView:self.view animated:YES];
+                                                      dispatch_async(dispatch_get_main_queue(), ^{
+                                                          [MBProgressHUD hideHUDForView:self.view animated:YES];
 
-                                                      if ([[note name] isEqualToString:kMKStoreKitProductPurchasedNotification]) {
-                                                          [buyButton setPurchased:YES];
-                                                      }
+                                                          if ([[note name] isEqualToString:kMKStoreKitProductPurchasedNotification]) {
+                                                              [buyButton setPurchased:YES];
+                                                          }
+                                                      });
                                                   }];
     [[NSNotificationCenter defaultCenter] addObserverForName:kMKStoreKitProductPurchaseFailedNotification
                                                       object:nil
                                                        queue:[[NSOperationQueue alloc] init]
                                                   usingBlock:^(NSNotification *note) {
-                                                      [MBProgressHUD hideHUDForView:self.view animated:YES];
+                                                      dispatch_async(dispatch_get_main_queue(), ^{
+                                                          [MBProgressHUD hideHUDForView:self.view animated:YES];
+                                                      });
                                                   }];
 
 
@@ -268,12 +266,12 @@
                                                       object:nil
                                                        queue:[[NSOperationQueue alloc] init]
                                                   usingBlock:^(NSNotification *note) {
-
-                                                      [MBProgressHUD hideHUDForView:self.view animated:YES];
-                                                      if ([[note name] isEqualToString:kMKStoreKitProductPurchasedNotification]) {
-                                                          [buyButton setPurchased:YES];
-                                                      }
-
+                                                      dispatch_async(dispatch_get_main_queue(), ^{
+                                                          [MBProgressHUD hideHUDForView:self.view animated:YES];
+                                                          if ([[note name] isEqualToString:kMKStoreKitProductPurchasedNotification]) {
+                                                              [buyButton setPurchased:YES];
+                                                          }
+                                                      });
                                                   }];
 }
 

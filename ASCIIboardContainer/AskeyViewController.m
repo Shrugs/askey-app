@@ -48,6 +48,7 @@
 
     [_header.view mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.equalTo(currentWindow);
+        make.top.equalTo(currentWindow);
     }];
 
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
@@ -218,15 +219,7 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    // launch intro on startup
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"]) {
-        // app already launched
-    } else {
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"HasLaunchedOnce"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-        // This is the first launch ever
-        [self launchIntro];
-    }
+
 
     scrollView.contentSize = CGSizeMake(scrollView.frame.size.width,
                                         MAX(scrollView.frame.size.height + 1, matt.frame.origin.y + TWITTER_BUTTON_HEIGHT + BUTTON_PADDING)
@@ -359,6 +352,8 @@
             anim.toValue = [NSValue valueWithCGPoint:originalCenter];
             [_presentedViewController.view pop_addAnimation:anim forKey:@"presentedViewController"];
         }
+
+        return;
     }
 
     float deltaY = [rec translationInView:_header.view.superview].y;

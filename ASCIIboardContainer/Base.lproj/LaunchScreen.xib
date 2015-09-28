@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -22,6 +22,9 @@
                                         <constraint firstAttribute="width" constant="74" id="DJf-8K-0tc"/>
                                         <constraint firstAttribute="height" constant="74" id="V6m-fc-JWg"/>
                                     </constraints>
+                                    <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
+                                        <rect key="frame" x="203" y="34" width="74" height="74"/>
+                                    </variation>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Askey" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5sD-c8-uLu">
                                     <rect key="frame" x="178" y="109" width="124" height="41"/>
@@ -32,6 +35,9 @@
                                     <fontDescription key="fontDescription" type="system" pointSize="34"/>
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
+                                    <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
+                                        <rect key="frame" x="178" y="111" width="124" height="41"/>
+                                    </variation>
                                 </label>
                             </subviews>
                             <color key="backgroundColor" red="0.094117647058823528" green="0.42745098039215684" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -40,9 +46,20 @@
                                 <constraint firstAttribute="centerX" secondItem="5sD-c8-uLu" secondAttribute="centerX" id="37a-ic-34r"/>
                                 <constraint firstAttribute="height" constant="160" id="EHU-dH-1D3"/>
                                 <constraint firstAttribute="centerY" secondItem="oFl-CZ-Jv3" secondAttribute="centerY" constant="10" id="OVF-XI-CgO"/>
+                                <constraint firstAttribute="width" constant="800" id="VYt-YL-o70"/>
                                 <constraint firstItem="5sD-c8-uLu" firstAttribute="top" secondItem="oFl-CZ-Jv3" secondAttribute="top" constant="77" id="iKr-MC-zqf"/>
                                 <constraint firstAttribute="centerX" secondItem="oFl-CZ-Jv3" secondAttribute="centerX" id="qwJ-GC-8RT"/>
                             </constraints>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="VYt-YL-o70"/>
+                                </mask>
+                            </variation>
+                            <variation key="heightClass=regular-widthClass=regular">
+                                <mask key="constraints">
+                                    <include reference="VYt-YL-o70"/>
+                                </mask>
+                            </variation>
                         </view>
                     </subviews>
                     <color key="backgroundColor" red="0.92549019607843142" green="0.92549019607843142" blue="0.92549019607843142" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

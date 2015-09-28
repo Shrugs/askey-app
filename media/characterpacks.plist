@@ -327,7 +327,7 @@
 			</dict>
 			<dict>
 				<key>keyName</key>
-				<string>emojianimals</string>
+				<string>emojipoop</string>
 				<key>enabled</key>
 				<false/>
 				<key>height</key>
@@ -338,40 +338,31 @@
 				<dict>
 					<key>9</key>
 					<array>
-						<string>🐼</string>
-						<string>🐋</string>
+						<string>💩</string>
 					</array>
 					<key>8</key>
 					<array>
-						<string>🐞</string>
-						<string>🐝</string>
+						<string>💩</string>
 					</array>
 					<key>7</key>
 					<array>
-						<string>🐤</string>
-						<string>🐣</string>
-						<string>😾</string>
+						<string>💩</string>
 					</array>
 					<key>6</key>
 					<array>
-						<string>🐢</string>
-						<string>🐊</string>
+						<string>💩</string>
 					</array>
 					<key>5</key>
 					<array>
-						<string>🐕</string>
-						<string>🙈</string>
-						<string>🐈</string>
+						<string>💩</string>
 					</array>
 					<key>4</key>
 					<array>
-						<string>🐄</string>
-						<string>🐓</string>
+						<string>💩</string>
 					</array>
 					<key>3</key>
 					<array>
-						<string>🐇</string>
-						<string>🐖</string>
+						<string>💩</string>
 					</array>
 					<key>2</key>
 					<array>
@@ -387,9 +378,9 @@
 					</array>
 				</dict>
 				<key>icon</key>
-				<string>🐋</string>
+				<string>💩</string>
 				<key>displayName</key>
-				<string>Animals 🐋</string>
+				<string>💩</string>
 			</dict>
 			<dict>
 				<key>keyName</key>

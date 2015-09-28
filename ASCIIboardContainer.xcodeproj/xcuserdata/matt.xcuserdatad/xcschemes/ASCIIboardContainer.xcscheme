@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C952A45119D123870025DD73"
-               BuildableName = "ASCIIboardContainer.app"
+               BuildableName = "AskeyContainer.app"
                BlueprintName = "ASCIIboardContainer"
                ReferencedContainer = "container:ASCIIboardContainer.xcodeproj">
             </BuildableReference>
@@ -57,7 +57,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C952A45119D123870025DD73"
-            BuildableName = "ASCIIboardContainer.app"
+            BuildableName = "AskeyContainer.app"
             BlueprintName = "ASCIIboardContainer"
             ReferencedContainer = "container:ASCIIboardContainer.xcodeproj">
          </BuildableReference>
@@ -72,11 +72,12 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C952A45119D123870025DD73"
-            BuildableName = "ASCIIboardContainer.app"
+            BuildableName = "AskeyContainer.app"
             BlueprintName = "ASCIIboardContainer"
             ReferencedContainer = "container:ASCIIboardContainer.xcodeproj">
          </BuildableReference>
@@ -90,11 +91,12 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C952A45119D123870025DD73"
-            BuildableName = "ASCIIboardContainer.app"
+            BuildableName = "AskeyContainer.app"
             BlueprintName = "ASCIIboardContainer"
             ReferencedContainer = "container:ASCIIboardContainer.xcodeproj">
          </BuildableReference>

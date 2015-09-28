@@ -24,7 +24,7 @@
 
 // percentage of the screen to move the screenshot up to make room for text below it
 
-static int MAG_SIZE = 210;
+static int ARROW_SIZE = 210;
 
 @implementation AKIntroViewController
 
@@ -38,7 +38,7 @@ static int MAG_SIZE = 210;
     _container.backgroundColor = ASKEY_BACKGROUND_COLOR;
     self.view.backgroundColor = ASKEY_BACKGROUND_COLOR;
 
-    MAG_SIZE = floor(self.view.frame.size.height * 0.28);
+    ARROW_SIZE = floor(self.view.frame.size.height * 0.28);
 
     _imgHeight = SCREENSHOT_HEIGHT_RATIO * self.view.frame.size.height;
     _imgWidth = SCREENSHOT_W_H_RATIO * _imgHeight;
@@ -109,33 +109,35 @@ static int MAG_SIZE = 210;
     }
 
 
-    // MAGNIFIER
-    _magnifier = [[ACMagnifyingGlass alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2, self.view.frame.size.height, MAG_SIZE, MAG_SIZE)];
-    _magnifier.layer.shadowColor = [ASKEY_BUTTON_SHADOW_COLOR CGColor];
-    _magnifier.layer.shadowRadius = MAG_SIZE * 0.01;
-    _magnifier.layer.shadowOffset = CGSizeMake(1, 2);
-    _magnifier.viewToMagnify = _container;
-    _magnifier.userInteractionEnabled = NO;
-    [self.view addSubview:_magnifier];
-
-    // JAZZ HANDS
-    self.animator = [IFTTTAnimator new];
-    IFTTTFrameAnimation *frameAnimation = [IFTTTFrameAnimation new];
-    frameAnimation.view = _magnifier;
-    [self.animator addAnimation:frameAnimation];
-
-    [frameAnimation addKeyFrame:[[IFTTTAnimationKeyFrame alloc] initWithTime:0 andFrame:_magnifier.frame]];
-    for (int i = 0; i < NUM_PICTURES; i++) {
-        //intro
-        [frameAnimation addKeyFrame:[[IFTTTAnimationKeyFrame alloc] initWithTime:self.view.frame.size.width*i
-                                                                        andFrame:[self magRectForIntro:i]]];
-    }
-    int arbitraryOffset = 50;
-    [frameAnimation addKeyFrame:[[IFTTTAnimationKeyFrame alloc] initWithTime:self.view.frame.size.width*NUM_PICTURES
-                                                                    andFrame:CGRectMake(-MAG_SIZE - arbitraryOffset,
-                                                                                        self.view.frame.size.height - MAG_SIZE - arbitraryOffset,
-                                                                                        MAG_SIZE,
-                                                                                        MAG_SIZE)]];
+//    // ARROW
+//    UIImageView *arrow = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"arrow"]];
+//    arrow.userInteractionEnabled = NO;
+//    [self.view addSubview:arrow];
+//
+//    // JAZZ HANDS
+//    self.animator = [IFTTTAnimator new];
+//    IFTTTFrameAnimation *frameAnimation = [IFTTTFrameAnimation new];
+//    frameAnimation.view = arrow;
+//    [self.animator addAnimation:frameAnimation];
+//
+////    self.transformAnimator = [IFTTTAnimator new];
+////    IFTTTTransform3DAnimation *arrowRotationAnimation = [IFTTTTransform3DAnimation new];
+////    arrowRotationAnimation.view = arrow;
+////    [self.transformAnimator addAnimation:arrowRotationAnimation];
+////
+////    [arrowRotationAnimation addKeyFrame:[[IFTTTAnimationKeyFrame alloc] initWithTime:0 andTransform3D:[IFTTTTransform3D]]];
+//    [frameAnimation addKeyFrame:[[IFTTTAnimationKeyFrame alloc] initWithTime:0 andFrame:arrow.frame]];
+//    for (int i = 0; i < NUM_PICTURES; i++) {
+//        //intro
+//        [frameAnimation addKeyFrame:[[IFTTTAnimationKeyFrame alloc] initWithTime:self.view.frame.size.width*i
+//                                                                        andFrame:[self magRectForIntro:i]]];
+//    }
+//    int arbitraryOffset = 50;
+//    [frameAnimation addKeyFrame:[[IFTTTAnimationKeyFrame alloc] initWithTime:self.view.frame.size.width*NUM_PICTURES
+//                                                                    andFrame:CGRectMake(-ARROW_SIZE - arbitraryOffset,
+//                                                                                        self.view.frame.size.height - ARROW_SIZE - arbitraryOffset,
+//                                                                                        ARROW_SIZE,
+//                                                                                        ARROW_SIZE)]];
 
     // LAST PAGE
     [self getThanksText];
@@ -236,56 +238,56 @@ static int MAG_SIZE = 210;
     return NSLocalizedString(introKey, nil);
 }
 
-- (CGRect)magRectForIntro:(int)i
-{
-    float xRatio, yRatio;
-
-    switch (i) {
-        case 1:
-            xRatio = 0.25;
-            yRatio = 0.43;
-            break;
-
-        case 2:
-            xRatio = 0.25;
-            yRatio = 0.57;
-            break;
-
-        case 3:
-            xRatio = 0.25;
-            yRatio = 0.26;
-            break;
-
-        case 4:
-            xRatio = 0.29;
-            yRatio = 0.42;
-            break;
-
-        case 5:
-            xRatio = 0.25;
-            yRatio = 0.45;
-            break;
-
-        case 6:
-            xRatio = 0.25;
-            yRatio = 0.38;
-            break;
-
-        case 7:
-            xRatio = 0.80;
-            yRatio = 0.25;
-            break;
-
-        default:
-            xRatio = 0.5;
-            yRatio = 0.5;
-            break;
-    }
-
-    CGPoint center = [[_introImages objectAtIndex:0] convertPoint:CGPointMake(_imgWidth*xRatio, _imgHeight*yRatio) toView:self.view];
-    return CGRectMake(center.x - MAG_SIZE/2 - self.view.frame.size.width, center.y - MAG_SIZE/2, MAG_SIZE, MAG_SIZE);
-
-}
+//- (CGRect)magRectForIntro:(int)i
+//{
+//    float xRatio, yRatio;
+//
+//    switch (i) {
+//        case 1:
+//            xRatio = 0.25;
+//            yRatio = 0.43;
+//            break;
+//
+//        case 2:
+//            xRatio = 0.25;
+//            yRatio = 0.57;
+//            break;
+//
+//        case 3:
+//            xRatio = 0.25;
+//            yRatio = 0.26;
+//            break;
+//
+//        case 4:
+//            xRatio = 0.29;
+//            yRatio = 0.42;
+//            break;
+//
+//        case 5:
+//            xRatio = 0.25;
+//            yRatio = 0.45;
+//            break;
+//
+//        case 6:
+//            xRatio = 0.25;
+//            yRatio = 0.38;
+//            break;
+//
+//        case 7:
+//            xRatio = 0.80;
+//            yRatio = 0.25;
+//            break;
+//
+//        default:
+//            xRatio = 0.5;
+//            yRatio = 0.5;
+//            break;
+//    }
+//
+//    CGPoint center = [[_introImages objectAtIndex:0] convertPoint:CGPointMake(_imgWidth*xRatio, _imgHeight*yRatio) toView:self.view];
+//    return CGRectMake(center.x - ARROW_SIZE/2 - self.view.frame.size.width, center.y - ARROW_SIZE/2, ARROW_SIZE, ARROW_SIZE);
+//
+//}
 
 #pragma mark - UIScrollViewSelegate
 
@@ -294,7 +296,6 @@ static int MAG_SIZE = 210;
     // animate magnifier
     [self.animator animate:scrollView.contentOffset.x];
     [self.offsetAnimator animate:scrollView.contentOffset.x];
-    [_magnifier setNeedsDisplay];
 }
 
 
