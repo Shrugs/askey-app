@@ -15,7 +15,6 @@
 #import "AKLargeButton.h"
 #import "AKCharacterPackManager.h"
 #import "CharacterPackViewController.h"
-#import "MKStoreKit.h"
 #import "AKLogManager.h"
 
 #define CONTAINER_PADDING 20
@@ -52,10 +51,6 @@
     }];
 
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-
-
-    [self updatePurchased];
-
 
     textBtn = [[CharacterPackButton alloc] initWithText:NSLocalizedString(@"TEXT_PACK", nil)
                                                                andBackground:@"textbg"
@@ -108,6 +103,8 @@
         make.left.equalTo(buttonContainer.mas_centerX).offset(CONTAINER_PADDING/2.0);
     }];
 
+    [self updatePurchased];
+
 
     AKLargeButton *faqBtn = [[AKLargeButton alloc] initWithText:NSLocalizedString(@"FAQ", nil)];
     [faqBtn addTarget:self action:@selector(showFAQ) forControlEvents:UIControlEventTouchUpInside];
@@ -151,32 +148,6 @@
         make.left.equalTo(self.view.mas_centerX).offset(BUTTON_PADDING/2.0);
     }];
 
-
-
-    [[NSNotificationCenter defaultCenter] addObserverForName:kMKStoreKitProductPurchasedNotification
-                                                      object:nil
-                                                       queue:[[NSOperationQueue alloc] init]
-                                                  usingBlock:^(NSNotification *note) {
-                                                      [self updatePurchased];
-                                                      [Flurry logEvent:@"ANY_PRODUCT_PURCHASED"];
-                                                  }];
-
-    [[NSNotificationCenter defaultCenter] addObserverForName:kMKStoreKitRestoredPurchasesNotification
-                                                      object:nil
-                                                       queue:[[NSOperationQueue alloc] init]
-                                                  usingBlock:^(NSNotification *note) {
-                                                      [self updatePurchased];
-                                                      [Flurry logEvent:@"PURCHASES_RESTORED"];
-                                                  }];
-
-    [[NSNotificationCenter defaultCenter] addObserverForName:kMKStoreKitRestoringPurchasesFailedNotification
-                                                      object:nil
-                                                       queue:[[NSOperationQueue alloc] init]
-                                                  usingBlock:^(NSNotification *note) {
-                                                      [self updatePurchased];
-                                                      [Flurry logEvent:@"RESTORING_PURCHASES_FAILED"];
-                                                  }];
-
     [Flurry logEvent:@"CONTAINER_APP_OPENED"];
     [AKLogManager dumpLogsToFlurry];
 
@@ -185,35 +156,10 @@
 - (void)updatePurchased
 {
 
-    if ([[MKStoreKit sharedKit] isProductPurchased:TEXT_IDENTIFIER]) {
-        textPurchased = YES;
-        [[AKCharacterPackManager sharedManager] setCharacterSetEnabled:@"text"];
-    }
-
-    if ([[MKStoreKit sharedKit] isProductPurchased:EMOJI_IDENTIFIER]) {
-        emojiPurchased = YES;
-        [[AKCharacterPackManager sharedManager] setCharacterSetEnabled:@"emoji"];
-    }
-
-    if ([[MKStoreKit sharedKit] isProductPurchased:MAIL_IDENTIFIER]) {
-        mailPurchased = YES;
-        [[AKCharacterPackManager sharedManager] setCharacterSetEnabled:@"mail"];
-    }
-
-    if ([[MKStoreKit sharedKit] isProductPurchased:BUNDLE_IDENTIFIER]) {
-        [[AKCharacterPackManager sharedManager] setCharacterSetEnabled:@"text"];
-        [[AKCharacterPackManager sharedManager] setCharacterSetEnabled:@"emoji"];
-        [[AKCharacterPackManager sharedManager] setCharacterSetEnabled:@"mail"];
-        bundlePurchased = YES;
-    } else {
-        bundlePurchased = textPurchased && emojiPurchased && mailPurchased;
-    }
-
-
-    [textBtn setPurchased:textPurchased];
-    [emojiBtn setPurchased:emojiPurchased];
-    [mailBtn setPurchased:mailPurchased];
-    [bundleBtn setPurchased:bundlePurchased];
+    [textBtn setPurchased:true];
+    [emojiBtn setPurchased:true];
+    [mailBtn setPurchased:true];
+    [bundleBtn setPurchased:true];
 
 }
 
@@ -229,7 +175,7 @@
 
 - (void)textPackPressed:(id)sender
 {
-    _presentedViewController = [[CharacterPackViewController alloc] initWithCharacterPacks:@[[[AKCharacterPackManager characterSets] objectAtIndex:0]] andPurchased:textPurchased];
+    _presentedViewController = [[CharacterPackViewController alloc] initWithCharacterPacks:@[[[AKCharacterPackManager characterSets] objectAtIndex:0]] andPurchased:true];
     [_header showCarat:YES];
     [self _animateHeaderHeightTo:SMALL_HEADER_HEIGHT];
     [self presentViewController:_presentedViewController animated:YES completion:nil];
@@ -239,7 +185,7 @@
 
 - (void)emojiPackPressed:(id)sender
 {
-    _presentedViewController = [[CharacterPackViewController alloc] initWithCharacterPacks:@[[[AKCharacterPackManager characterSets] objectAtIndex:1]] andPurchased:emojiPurchased];
+    _presentedViewController = [[CharacterPackViewController alloc] initWithCharacterPacks:@[[[AKCharacterPackManager characterSets] objectAtIndex:1]] andPurchased:true];
     [_header showCarat:YES];
     [self _animateHeaderHeightTo:SMALL_HEADER_HEIGHT];
     [self presentViewController:_presentedViewController animated:YES completion:nil];
@@ -249,7 +195,7 @@
 
 - (void)mailPackPressed:(id)sender
 {
-    _presentedViewController = [[CharacterPackViewController alloc] initWithCharacterPacks:@[[[AKCharacterPackManager characterSets] objectAtIndex:2]] andPurchased:mailPurchased];
+    _presentedViewController = [[CharacterPackViewController alloc] initWithCharacterPacks:@[[[AKCharacterPackManager characterSets] objectAtIndex:2]] andPurchased:true];
     [_header showCarat:YES];
     [self _animateHeaderHeightTo:SMALL_HEADER_HEIGHT];
     [self presentViewController:_presentedViewController animated:YES completion:nil];
@@ -260,7 +206,7 @@
 
 - (void)bundlePackPressed:(id)sender
 {
-    _presentedViewController = [[CharacterPackViewController alloc] initWithCharacterPacks:[AKCharacterPackManager characterSets] andPurchased:bundlePurchased];
+    _presentedViewController = [[CharacterPackViewController alloc] initWithCharacterPacks:[AKCharacterPackManager characterSets] andPurchased:true];
     [_header showCarat:YES];
     [self _animateHeaderHeightTo:SMALL_HEADER_HEIGHT];
     [self presentViewController:_presentedViewController animated:YES completion:nil];

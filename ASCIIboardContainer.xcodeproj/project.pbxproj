@@ -63,8 +63,6 @@
 		C95DAC601A9EF01A006771BE /* emojibg_large.png in Resources */ = {isa = PBXBuildFile; fileRef = C95DAC5C1A9EF01A006771BE /* emojibg_large.png */; };
 		C95DAC611A9EF01A006771BE /* mailbg_large.png in Resources */ = {isa = PBXBuildFile; fileRef = C95DAC5D1A9EF01A006771BE /* mailbg_large.png */; };
 		C95DAC631A9EF73F006771BE /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C95DAC621A9EF73F006771BE /* StoreKit.framework */; };
-		C95DAC661A9EFCC0006771BE /* MKStoreKit.m in Sources */ = {isa = PBXBuildFile; fileRef = C95DAC651A9EFCC0006771BE /* MKStoreKit.m */; };
-		C95DAC691A9F00BF006771BE /* MKStoreKitConfigs.plist in Resources */ = {isa = PBXBuildFile; fileRef = C95DAC681A9F00BF006771BE /* MKStoreKitConfigs.plist */; };
 		C970DC4A1AB3DA2000D4C62C /* libFlurry_6.2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C970DC491AB3DA2000D4C62C /* libFlurry_6.2.0.a */; };
 		C970DC4B1AB3DA2000D4C62C /* libFlurry_6.2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C970DC491AB3DA2000D4C62C /* libFlurry_6.2.0.a */; };
 		C970DC4D1AB3DA3000D4C62C /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C970DC4C1AB3DA3000D4C62C /* Security.framework */; };
@@ -241,9 +239,6 @@
 		C95DAC5C1A9EF01A006771BE /* emojibg_large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = emojibg_large.png; sourceTree = "<group>"; };
 		C95DAC5D1A9EF01A006771BE /* mailbg_large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mailbg_large.png; sourceTree = "<group>"; };
 		C95DAC621A9EF73F006771BE /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
-		C95DAC641A9EFCC0006771BE /* MKStoreKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKStoreKit.h; sourceTree = "<group>"; };
-		C95DAC651A9EFCC0006771BE /* MKStoreKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKStoreKit.m; sourceTree = "<group>"; };
-		C95DAC681A9F00BF006771BE /* MKStoreKitConfigs.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MKStoreKitConfigs.plist; sourceTree = "<group>"; };
 		C970DC481AB3DA2000D4C62C /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
 		C970DC491AB3DA2000D4C62C /* libFlurry_6.2.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry_6.2.0.a; sourceTree = "<group>"; };
 		C970DC4C1AB3DA3000D4C62C /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -388,7 +383,6 @@
 				C99451251A511E0B009A7EFF /* Crashlytics.framework */,
 				C99451261A511E0B009A7EFF /* Fabric.framework */,
 				C941022B1A58CFFA00954953 /* Config.h */,
-				C95DAC671A9EFCC3006771BE /* MKStoreKit */,
 				C952A45919D123870025DD73 /* AppDelegate.h */,
 				C952A45A19D123870025DD73 /* AppDelegate.m */,
 				C952A45C19D123870025DD73 /* AskeyViewController.h */,
@@ -482,16 +476,6 @@
 				C952A48219D123990025DD73 /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		C95DAC671A9EFCC3006771BE /* MKStoreKit */ = {
-			isa = PBXGroup;
-			children = (
-				C95DAC641A9EFCC0006771BE /* MKStoreKit.h */,
-				C95DAC651A9EFCC0006771BE /* MKStoreKit.m */,
-				C95DAC681A9F00BF006771BE /* MKStoreKitConfigs.plist */,
-			);
-			name = MKStoreKit;
 			sourceTree = "<group>";
 		};
 		C970DC471AB3DA2000D4C62C /* Flurry */ = {
@@ -633,7 +617,7 @@
 		C952A44A19D123870025DD73 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0600;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = Shrugs;
 				TargetAttributes = {
 					C952A45119D123870025DD73 = {
@@ -742,7 +726,6 @@
 				C95DAC591A9EEE8D006771BE /* bundlebg.png in Resources */,
 				C95D6D0B1AB58B5200C41BE9 /* intro2.png in Resources */,
 				C95DAC601A9EF01A006771BE /* emojibg_large.png in Resources */,
-				C95DAC691A9F00BF006771BE /* MKStoreKitConfigs.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -869,7 +852,6 @@
 				C970DC511AB3DDE300D4C62C /* AKLogManager.m in Sources */,
 				C92BCC181A918E580051F1B4 /* MCGenericBouncyButton.m in Sources */,
 				C92BCBD21A90B8960051F1B4 /* CharacterPackButton.m in Sources */,
-				C95DAC661A9EFCC0006771BE /* MKStoreKit.m in Sources */,
 				C94102341A58DD6A00954953 /* AKCharacterPackManager.m in Sources */,
 				C92BCBCF1A90A5C60051F1B4 /* AskeyHeaderViewController.m in Sources */,
 				C94102581A5B370500954953 /* NSString+FontAwesome.m in Sources */,
@@ -992,7 +974,9 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1007,7 +991,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1033,6 +1017,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1042,7 +1027,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -1057,6 +1042,7 @@
 				CODE_SIGN_ENTITLEMENTS = ASCIIboardContainer/ASCIIboardContainer.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1083,6 +1069,7 @@
 				CODE_SIGN_ENTITLEMENTS = ASCIIboardContainer/ASCIIboardContainer.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1115,6 +1102,7 @@
 				);
 				INFOPLIST_FILE = ASCIIboardContainerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.shrugs.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ASCIIboardContainer.app/ASCIIboardContainer";
 			};
@@ -1130,6 +1118,7 @@
 				);
 				INFOPLIST_FILE = ASCIIboardContainerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.shrugs.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ASCIIboardContainer.app/ASCIIboardContainer";
 			};
@@ -1142,6 +1131,7 @@
 				CODE_SIGN_ENTITLEMENTS = ASCIIboard/ASCIIboard.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1174,6 +1164,7 @@
 				CODE_SIGN_ENTITLEMENTS = ASCIIboard/ASCIIboard.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",

@@ -4,7 +4,7 @@
 <array>
 	<dict>
 		<key>purchased</key>
-		<false/>
+		<true/>
 		<key>displayName</key>
 		<string>Text</string>
 		<key>keyName</key>
@@ -194,13 +194,13 @@
 	</dict>
 	<dict>
 		<key>purchased</key>
-		<false/>
+		<true/>
 		<key>displayName</key>
 		<string>Emoji 😀</string>
 		<key>keyName</key>
 		<string>emoji</string>
 		<key>enabled</key>
-		<false/>
+		<true/>
 		<key>icon</key>
 		<string>😀</string>
 		<key>packs</key>
@@ -448,13 +448,13 @@
 	</dict>
 	<dict>
 		<key>purchased</key>
-		<false/>
+		<true/>
 		<key>displayName</key>
 		<string>Mail 📧</string>
 		<key>keyName</key>
 		<string>mail</string>
 		<key>enabled</key>
-		<false/>
+		<true/>
 		<key>icon</key>
 		<string>📧</string>
 		<key>packs</key>

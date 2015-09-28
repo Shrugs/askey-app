@@ -983,11 +983,7 @@
 {
     RKDropdownAlert *alert = [[RKDropdownAlert alloc] initWithFrame:CGRectMake(0, -30, self.view.frame.size.width, 30)];
     [self.view addSubview:alert];
-    if (!_hasFullAccess) {
-        [alert title:@"Enable Full Access to Use Character Packs" message:nil backgroundColor:ASKEY_BLUE_COLOR textColor:[UIColor whiteColor] time:1];
-    } else {
-        [alert title:@"Buy This Character Set to Unlock the Packs" message:nil backgroundColor:ASKEY_BLUE_COLOR textColor:[UIColor whiteColor] time:1];
-    }
+    [alert title:@"Enable Full Access to Use Character Packs" message:nil backgroundColor:ASKEY_BLUE_COLOR textColor:[UIColor whiteColor] time:1];
 
 
 

@@ -50,7 +50,7 @@
 
 - (void)setPurchased:(BOOL)purchased
 {
-    self.layer.shadowColor = purchased ? [ASKEY_BUTTON_PURCHASED_SHADOW_COLOR CGColor] : [ASKEY_BLUE_COLOR CGColor];
+  self.layer.shadowColor = [ASKEY_BLUE_COLOR CGColor];
 }
 
 @end

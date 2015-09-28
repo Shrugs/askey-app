@@ -10,7 +10,6 @@
 #import "Config.h"
 #import "UIImage+ASCII.h"
 #import <Masonry.h>
-#import "MKStoreKit.h"
 #import "Flurry.h"
 
 #define SCROLL_VIEW_HEIGHT 300
@@ -130,7 +129,7 @@
     }];
 
     NSString *buyButtonText = _isPurchased ?
-                                [NSString stringWithFormat:@"%@ Purchased", NSLocalizedString(titleKey, nil)] :
+                                [NSString stringWithFormat:@"You Own %@", NSLocalizedString(titleKey, nil)] :
                                 [NSString stringWithFormat:@"%@ %@",
                                  NSLocalizedString(@"BUY_PACK", nil),
                                  NSLocalizedString(titleKey, nil)];
@@ -147,20 +146,6 @@
         make.height.equalTo(@NORMAL_BUTTON_HEIGHT);
         make.width.equalTo(self.view).multipliedBy(LARGE_BUTTON_RATIO);
         make.centerX.equalTo(self.view);
-    }];
-
-    restoreBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [restoreBtn setTitle:@"RESTORE PURCHASES" forState:UIControlStateNormal];
-    [restoreBtn.titleLabel setFont:[UIFont fontWithName:ASKEY_TITLE_FONT size:12]];
-    [restoreBtn setTitleColor:[UIColor colorWithRed:153.0/255.0 green:153.0/255.0 blue:153.0/255.0 alpha:1.0] forState:UIControlStateNormal];
-    [restoreBtn addTarget:self action:@selector(restorePurchases) forControlEvents:UIControlEventTouchUpInside];
-
-    [_scrollView addSubview:restoreBtn];
-
-    [restoreBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(buyButton.mas_bottom).offset(15);
-        make.left.and.right.equalTo(self.view);
-        make.height.equalTo(@30);
     }];
 
 }
@@ -201,33 +186,6 @@
 
     [Flurry logEvent:@"PACK_PURCHASE_BUTTON_CLICKED" withParameters:@{@"pack": _keyName}];
 
-
-    [[MKStoreKit sharedKit] initiatePaymentRequestForProductWithIdentifier:pid];
-
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-
-    [[NSNotificationCenter defaultCenter] addObserverForName:kMKStoreKitProductPurchasedNotification
-                                                      object:nil
-                                                       queue:[[NSOperationQueue alloc] init]
-                                                  usingBlock:^(NSNotification *note) {
-                                                      dispatch_async(dispatch_get_main_queue(), ^{
-                                                          [MBProgressHUD hideHUDForView:self.view animated:YES];
-
-                                                          if ([[note name] isEqualToString:kMKStoreKitProductPurchasedNotification]) {
-                                                              [buyButton setPurchased:YES];
-                                                          }
-                                                      });
-                                                  }];
-    [[NSNotificationCenter defaultCenter] addObserverForName:kMKStoreKitProductPurchaseFailedNotification
-                                                      object:nil
-                                                       queue:[[NSOperationQueue alloc] init]
-                                                  usingBlock:^(NSNotification *note) {
-                                                      dispatch_async(dispatch_get_main_queue(), ^{
-                                                          [MBProgressHUD hideHUDForView:self.view animated:YES];
-                                                      });
-                                                  }];
-
-
 }
 
 - (void) setText:(NSString *)text andLayoutTextView:(UITextView *)tv
@@ -253,33 +211,9 @@
     }
 }
 
-- (void)restorePurchases
-{
-
-    [Flurry logEvent:@"RESTORE_PURCHASES_BUTTON_CLICKED"];
-
-    [[MKStoreKit sharedKit] restorePurchases];
-
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-
-    [[NSNotificationCenter defaultCenter] addObserverForName:kMKStoreKitRestoredPurchasesNotification
-                                                      object:nil
-                                                       queue:[[NSOperationQueue alloc] init]
-                                                  usingBlock:^(NSNotification *note) {
-                                                      dispatch_async(dispatch_get_main_queue(), ^{
-                                                          [MBProgressHUD hideHUDForView:self.view animated:YES];
-                                                          if ([[note name] isEqualToString:kMKStoreKitProductPurchasedNotification]) {
-                                                              [buyButton setPurchased:YES];
-                                                          }
-                                                      });
-                                                  }];
-}
-
 - (void)viewDidAppear:(BOOL)animated
 {
-    _scrollView.contentSize = CGSizeMake(_scrollView.frame.size.width,
-                                        MAX(_scrollView.frame.size.height + 1, restoreBtn.frame.origin.y + restoreBtn.frame.size.height + 20)
-                                        );
+    _scrollView.contentSize = CGSizeMake(_scrollView.frame.size.width, _scrollView.frame.size.height + 1);
 
     [Flurry logEvent:@"CHARACTER_PACK_VIEW_CONTROLLER_SHOWN"];
 
