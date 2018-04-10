@@ -7,7 +7,7 @@
 	<key>CFBundleDisplayName</key>
 	<string>Askey</string>
 	<key>CFBundleExecutable</key>
-	<string>askey</string>
+	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.shrugs.ASCIIboard.$(PRODUCT_NAME:rfc1034identifier)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
